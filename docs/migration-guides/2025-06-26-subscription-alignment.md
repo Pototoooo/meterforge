@@ -5,9 +5,9 @@ To Version: `v1.0.0-beta.215`
 
 ## Summary
 
-Unaligned subscriptions are being deprecated. As the first step, OpenMeter will [error](/openmeter/productcatalog/errors.go#L411) when creating a new unaligned subscription. At a later point (`v1.0.0-beta.216`), alignment config (`BillablesMustAlign`) will be removed and all subscriptions will follow the current aligned behavior.
+Unaligned subscriptions are being deprecated. As the first step, MeterForge will [error](/meterforge/productcatalog/errors.go#L411) when creating a new unaligned subscription. At a later point (`v1.0.0-beta.216`), alignment config (`BillablesMustAlign`) will be removed and all subscriptions will follow the current aligned behavior.
 
-This document describes the manual migration steps if you are using unaligned subscriptions. For more information on the alignment behavior, see the [documentation](https://openmeter.io/docs/billing/subscription/overview).
+This document describes the manual migration steps if you are using unaligned subscriptions. For more information on the alignment behavior, see the [documentation](https://github.com/Pototoooo/meterforge/tree/main/docs/billing/subscription/overview).
 
 > We recommend you first read through this document before copy-pasting any queries. Be nice to your database.
 ## Migration Steps
@@ -23,7 +23,7 @@ For each ServiceCadence, either:
 - the two cadences are the same
 ```
 
-That check is otherwise implemented [here](/openmeter/productcatalog/alignment.go#L22).
+That check is otherwise implemented [here](/meterforge/productcatalog/alignment.go#L22).
 
 One could write a PLPGSQL function to exhaustively check this criteria, but in our experience most unaligned plans (and subscriptions) have RateCards that share the same literal value with the Plan's BillingCadence. For simplicity, we'll only go with these cases.
 
@@ -35,7 +35,7 @@ First, we'll collect all plans that have `BillablesMustAlign` set to `false`, an
 -- Let's see the number of unaligned plans
 SELECT COUNT(*) FROM plans WHERE billables_must_align = false;
 
--- Let's see their contents by namespace (openmeter uses default namespace for all resources)
+-- Let's see their contents by namespace (meterforge uses default namespace for all resources)
 SELECT
     p.namespace,
     jsonb_agg(p.*) AS plans
@@ -104,7 +104,7 @@ Second, we'll do a similar process for subscriptions.
 -- Let's see the number of unaligned subscriptions
 SELECT COUNT(*) FROM subscriptions WHERE billables_must_align = false;
 
--- Let's see their contents by namespace (openmeter uses default namespace for all resources)
+-- Let's see their contents by namespace (meterforge uses default namespace for all resources)
 SELECT
     p.namespace,
     jsonb_agg(s.*) AS subscriptions

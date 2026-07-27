@@ -725,9 +725,9 @@ files = [
 ]
 
 [[package]]
-name = "openmeter"
+name = "meterforge"
 version = "0.0.0"
-description = "Client for OpenMeter: Real-Time and Scalable Usage Metering"
+description = "Client for MeterForge: Real-Time and Scalable Usage Metering"
 optional = false
 python-versions = "^3.9"
 groups = ["main"]

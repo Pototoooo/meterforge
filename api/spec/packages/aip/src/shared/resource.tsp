@@ -8,7 +8,7 @@ namespace Shared;
  */
 @friendlyName("Resource")
 model Resource {
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Read)
   id: ULID;
 
@@ -31,7 +31,7 @@ model Resource {
   @visibility(Lifecycle.Read, Lifecycle.Create, Lifecycle.Update)
   description?: string;
 
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Read, Lifecycle.Create, Lifecycle.Update)
   labels?: Common.Labels;
 
@@ -61,7 +61,7 @@ model Resource {
 model ResourceWithKey {
   ...Resource;
 
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Read, Lifecycle.Create)
   key: ResourceKey;
 }
@@ -77,7 +77,7 @@ model ResourceImmutable {
 @doc("{name} reference.", T)
 @friendlyName("{name}Reference", T)
 model ResourceReference<T extends {}> {
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Read, Lifecycle.Create, Lifecycle.Update)
   id: ULID;
 }

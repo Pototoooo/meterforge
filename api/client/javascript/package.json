@@ -1,12 +1,11 @@
 {
-  "name": "@openmeter/sdk",
+  "name": "@meterforge/sdk",
   "version": "0.0.0",
-  "description": "Client for OpenMeter: Real-Time and Scalable Usage Metering",
-  "license": "Apache 2.0",
-  "homepage": "https://openmeter.io",
+  "description": "Client for MeterForge: Real-Time and Scalable Usage Metering",
+  "homepage": "https://github.com/Pototoooo/meterforge",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openmeterio/openmeter.git",
+    "url": "https://github.com/Pototoooo/meterforge.git",
     "directory": "api/client/javascript"
   },
   "type": "module",

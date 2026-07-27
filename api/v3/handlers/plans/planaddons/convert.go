@@ -1,10 +1,10 @@
 package planaddons
 
 import (
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/labels"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog/planaddon"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/labels"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog/planaddon"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 func ToAPIPlanAddon(a planaddon.PlanAddon) (api.PlanAddon, error) {

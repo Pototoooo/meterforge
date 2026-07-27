@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/openmeterio/openmeter/pkg/framework/operation"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport/encoder"
+	"github.com/Pototoooo/meterforge/pkg/framework/operation"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport/encoder"
 )
 
 type HandlerWithArgs[Request any, Response any, ArgType any] interface {

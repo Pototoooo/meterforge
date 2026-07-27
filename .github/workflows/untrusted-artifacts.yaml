@@ -67,7 +67,7 @@ jobs:
 
       - name: Set image name
         id: image-name
-        run: echo "value=ghcr.io/openmeterio/benthos-collector" >> "$GITHUB_OUTPUT"
+        run: echo "value=ghcr.io/Pototoooo/meterforge-benthos-collector" >> "$GITHUB_OUTPUT"
 
       - name: Gather build metadata
         id: meta

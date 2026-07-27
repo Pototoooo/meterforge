@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/clock"
 )
 
 func TestDurationDivisibleBy(t *testing.T) {

@@ -3,11 +3,11 @@ package common
 import (
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/meterevent"
-	"github.com/openmeterio/openmeter/openmeter/meterevent/adapter"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/meterevent"
+	"github.com/Pototoooo/meterforge/meterforge/meterevent/adapter"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
 )
 
 var MeterEvent = wire.NewSet(

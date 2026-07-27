@@ -4,11 +4,11 @@
 package customers
 
 import (
-	v3 "github.com/openmeterio/openmeter/api/v3"
-	response "github.com/openmeterio/openmeter/api/v3/response"
-	customer "github.com/openmeterio/openmeter/openmeter/customer"
-	currencyx "github.com/openmeterio/openmeter/pkg/currencyx"
-	models "github.com/openmeterio/openmeter/pkg/models"
+	v3 "github.com/Pototoooo/meterforge/api/v3"
+	response "github.com/Pototoooo/meterforge/api/v3/response"
+	customer "github.com/Pototoooo/meterforge/meterforge/customer"
+	currencyx "github.com/Pototoooo/meterforge/pkg/currencyx"
+	models "github.com/Pototoooo/meterforge/pkg/models"
 	"time"
 )
 

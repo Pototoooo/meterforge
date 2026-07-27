@@ -1,5 +1,5 @@
 include *.md
 include LICENSE
-include openmeter/py.typed
+include meterforge/py.typed
 recursive-include tests *.py
 recursive-include samples *.py *.md

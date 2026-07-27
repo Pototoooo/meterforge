@@ -9,8 +9,8 @@ import (
 
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/app/common"
-	"github.com/openmeterio/openmeter/app/config"
+	"github.com/Pototoooo/meterforge/app/common"
+	"github.com/Pototoooo/meterforge/app/config"
 )
 
 type Application struct {

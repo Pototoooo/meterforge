@@ -4,7 +4,7 @@ import "@typespec/openapi3";
 
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Order by options for features.
@@ -14,9 +14,9 @@ enum FeatureOrderBy {
   ID: "id",
   Key: "key",
   Name: "name",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   CreatedAt: "createdAt",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   UpdatedAt: "updatedAt",
 }
 

@@ -3,8 +3,8 @@ package charges
 import (
 	"context"
 
-	billingcharges "github.com/openmeterio/openmeter/openmeter/billing/charges"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	billingcharges "github.com/Pototoooo/meterforge/meterforge/billing/charges"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 type Handler interface {

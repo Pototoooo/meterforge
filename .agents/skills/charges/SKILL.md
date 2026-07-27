@@ -1,13 +1,13 @@
 ---
 name: charges
-description: Work with OpenMeter billing charges, including the root charges facade, charge meta queries, charge creation and advancement, usage-based lifecycle state machines, realization runs, and charges test setup. Use when modifying `openmeter/billing/charges/...` or charge-related tests.
+description: Work with MeterForge billing charges, including the root charges facade, charge meta queries, charge creation and advancement, usage-based lifecycle state machines, realization runs, and charges test setup. Use when modifying `meterforge/billing/charges/...` or charge-related tests.
 user-invocable: true
 allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
 ---
 
 # Charges
 
-Guidance for working with OpenMeter billing charges.
+Guidance for working with MeterForge billing charges.
 
 This skill describes the charges package generically. Lifecycle state machines exist for type-specific settlement modes. All three charge types (usage-based, flat-fee, credit-purchase) follow the same structural pattern: `ChargeBase`/`Charge` with `Realizations`, own `Status` type, `status_detailed` DB column, and composite adapter interfaces.
 
@@ -15,34 +15,34 @@ This skill describes the charges package generically. Lifecycle state machines e
 
 Primary packages:
 
-- `openmeter/billing/charges/`
-- `openmeter/billing/charges/service/`
-- `openmeter/billing/charges/meta/`
-- `openmeter/billing/charges/lock/`
-- `openmeter/billing/charges/usagebased/`
-- `openmeter/billing/charges/usagebased/service/`
-- `openmeter/billing/charges/usagebased/adapter/`
-- `openmeter/billing/charges/flatfee/`
-- `openmeter/billing/charges/flatfee/service/`
-- `openmeter/billing/charges/flatfee/adapter/`
-- `openmeter/billing/charges/creditpurchase/`
-- `openmeter/billing/charges/creditpurchase/service/`
-- `openmeter/billing/charges/creditpurchase/adapter/`
-- `openmeter/billing/charges/service/invoicable_test.go`
-- `openmeter/billing/charges/service/advance_test.go`
+- `meterforge/billing/charges/`
+- `meterforge/billing/charges/service/`
+- `meterforge/billing/charges/meta/`
+- `meterforge/billing/charges/lock/`
+- `meterforge/billing/charges/usagebased/`
+- `meterforge/billing/charges/usagebased/service/`
+- `meterforge/billing/charges/usagebased/adapter/`
+- `meterforge/billing/charges/flatfee/`
+- `meterforge/billing/charges/flatfee/service/`
+- `meterforge/billing/charges/flatfee/adapter/`
+- `meterforge/billing/charges/creditpurchase/`
+- `meterforge/billing/charges/creditpurchase/service/`
+- `meterforge/billing/charges/creditpurchase/adapter/`
+- `meterforge/billing/charges/service/invoicable_test.go`
+- `meterforge/billing/charges/service/advance_test.go`
 
 When changing usage-based rating algorithms, update the package documentation in
 the same change. The calculation contracts are documented in:
 
-- `openmeter/billing/charges/usagebased/service/rating/delta/README.md`
-- `openmeter/billing/charges/usagebased/service/rating/periodpreserving/README.md`
-- `openmeter/billing/charges/usagebased/service/rating/subtract/README.md`
+- `meterforge/billing/charges/usagebased/service/rating/delta/README.md`
+- `meterforge/billing/charges/usagebased/service/rating/periodpreserving/README.md`
+- `meterforge/billing/charges/usagebased/service/rating/subtract/README.md`
 
 ## Current Design
 
-`openmeter/billing/charges` is the root facade for charge operations.
+`meterforge/billing/charges` is the root facade for charge operations.
 
-For charge-owned detailed lines, the shared invoice-agnostic base belongs in `openmeter/billing/models/stddetailedline`. Prefer reusing `stddetailedline.Base` for invoice-agnostic base lines, or define a concrete charge-owned type that embeds/composes `stddetailedline.Base` when the package needs additional fields (for example `usagebased.DetailedLine`). Keep ownership implicit through containment in the parent aggregate (`flatfee.Realizations` or `usagebased.RealizationRun`) rather than duplicating `charge_id` / `run_id` fields in the domain type. Reuse the shared detailed-line base mapping and create helpers instead of duplicating common field assembly in charge adapters.
+For charge-owned detailed lines, the shared invoice-agnostic base belongs in `meterforge/billing/models/stddetailedline`. Prefer reusing `stddetailedline.Base` for invoice-agnostic base lines, or define a concrete charge-owned type that embeds/composes `stddetailedline.Base` when the package needs additional fields (for example `usagebased.DetailedLine`). Keep ownership implicit through containment in the parent aggregate (`flatfee.Realizations` or `usagebased.RealizationRun`) rather than duplicating `charge_id` / `run_id` fields in the domain type. Reuse the shared detailed-line base mapping and create helpers instead of duplicating common field assembly in charge adapters.
 
 Charge-backed invoicing no longer relies on a charges-side `InvoicePendingLines(...)` wrapper. Billing owns invoice creation and dispatches gathering lines by `billing.LineEngineType`, while charge packages provide charge-specific line engines where needed.
 
@@ -67,7 +67,7 @@ The generic rule is:
 
 Adapter rules:
 
-- Keep Ent access transaction-aware in `openmeter/billing/charges/.../adapter`, including shared helper functions. Prefer helpers to accept the adapter/repo handle rather than a raw `*entdb.Client`, so `entutils.TransactingRepo(...)` or `entutils.TransactingRepoWithNoValue(...)` can pass the transaction-bound handle from `ctx`. If a helper must accept a raw client, only call it with the swapped handle's client, such as `tx.db` inside the transacting callback.
+- Keep Ent access transaction-aware in `meterforge/billing/charges/.../adapter`, including shared helper functions. Prefer helpers to accept the adapter/repo handle rather than a raw `*entdb.Client`, so `entutils.TransactingRepo(...)` or `entutils.TransactingRepoWithNoValue(...)` can pass the transaction-bound handle from `ctx`. If a helper must accept a raw client, only call it with the swapped handle's client, such as `tx.db` inside the transacting callback.
 - For flat-fee and usage-based adapters, `UpdateCharge(ctx, ChargeBase)` persists charge base-row fields only. Realization-side rows, such as detailed lines, credit allocations/corrections, invoice accruals, payment records, and run/linkage rows, must be persisted through their dedicated adapter methods. Do not call `UpdateCharge(...)` only because expanded `Realizations` changed; expanded realizations are read-model state on the aggregate, not implicit write input.
 
 Important types:
@@ -135,7 +135,7 @@ Patch target rules:
 
 ## Usage-Based Invoice Line Mapping
 
-Usage-based charge realization runs are not billing standard lines. When mapping a run back to `billing.StandardLine` in `openmeter/billing/charges/usagebased/service/linemapper.go`, preserve the billing-facing semantics:
+Usage-based charge realization runs are not billing standard lines. When mapping a run back to `billing.StandardLine` in `meterforge/billing/charges/usagebased/service/linemapper.go`, preserve the billing-facing semantics:
 
 - `MeteredQuantity` and `MeteredPreLinePeriodQuantity` are raw metered usage for the current line period and prior line periods.
 - `Quantity` and `PreLinePeriodQuantity` are net billable usage after rate-card usage discounts.
@@ -168,9 +168,9 @@ Current engine values:
 
 Current implementations:
 
-- flat fee line engine: `openmeter/billing/charges/flatfee/service/lineengine.go`
-- credit purchase line engine: `openmeter/billing/charges/creditpurchase/lineengine`
-- usage-based line engine: `openmeter/billing/charges/usagebased/service/lineengine.go`
+- flat fee line engine: `meterforge/billing/charges/flatfee/service/lineengine.go`
+- credit purchase line engine: `meterforge/billing/charges/creditpurchase/lineengine`
+- usage-based line engine: `meterforge/billing/charges/usagebased/service/lineengine.go`
 
 Important rules:
 
@@ -178,7 +178,7 @@ Important rules:
 - `billing/service.CreatePendingInvoiceLines(...)` rejects charge-backed gathering lines with empty `Engine`
 - production wiring must register charge line engines through `billing.Service.RegisterLineEngine(...)`
 - tests that temporarily add engines can remove them again through `billing.Service.DeregisterLineEngine(...)`; use the public registry API instead of mutating billing internals from non-service packages
-- charge test setups must also register those engines explicitly; keep this in `openmeter/billing/charges/testutils`
+- charge test setups must also register those engines explicitly; keep this in `meterforge/billing/charges/testutils`
 - charge-enabled app/test wiring must also register the charge-aware `CreateLineRouter`; billing's default create router intentionally falls back to legacy `billing.LineEngineTypeInvoice`
 - if a charge create path stamps a new `LineEngineType`, app wiring and charge test wiring must register a matching implementation in the same change
 - for charge-backed standard line creation through invoice API edits, billing preallocates the standard line ID before invoking the charge line engine; charge engines should attach charge/realization state to that existing line identity instead of creating a separate line identity
@@ -244,7 +244,7 @@ Operational consequence:
 
 Current shared contract details:
 
-- line-engine transport structs in `openmeter/billing/lineengine.go` are validated at the billing callsite before invoking the engine, and returned lines/results are validated after the call
+- line-engine transport structs in `meterforge/billing/lineengine.go` are validated at the billing callsite before invoking the engine, and returned lines/results are validated after the call
 - `OnCollectionCompleted(...)` takes `billing.OnCollectionCompletedInput` and returns updated `billing.StandardLines`
 - collection-time engines must preserve the exact line ID set they were given; billing validates that returned line IDs match input line IDs exactly and then merges the returned lines back into the invoice
 - `CalculateLines(...)` returns updated `billing.StandardLines`; billing treats this as a pure recalculation boundary, validates exact line ID preservation, and merges the returned lines back into the invoice instead of relying on in-place mutation
@@ -359,8 +359,8 @@ Rules:
 Important files:
 
 - `api/v3/handlers/customers/credits/convert.go`
-- `openmeter/billing/charges/creditpurchase/settlement.go`
-- `openmeter/billing/creditgrant/service/service.go`
+- `meterforge/billing/charges/creditpurchase/settlement.go`
+- `meterforge/billing/creditgrant/service/service.go`
 - `api/spec/packages/aip/src/customers/credits/grant.tsp`
 
 ## Realization Helper Subpackages
@@ -622,8 +622,8 @@ All three charge types declare the column as `field.Enum("status_detailed").GoTy
 
 Key tests:
 
-- `openmeter/billing/charges/service/advance_test.go`
-- `openmeter/billing/charges/service/invoicable_test.go`
+- `meterforge/billing/charges/service/advance_test.go`
+- `meterforge/billing/charges/service/invoicable_test.go`
 
 Use these conventions for lifecycle tests:
 
@@ -662,8 +662,8 @@ Billing-profile test gotcha:
 For direct package runs, use the repo env and Postgres. Prefer direct command execution; do not wrap these in `sh -lc`, `bash -lc`, or similar helper shells when a direct invocation works.
 
 ```bash
-POSTGRES_HOST=127.0.0.1 direnv exec . go test -run TestInvoicableCharges/TestUsageBasedCreditOnlyLifecycle -v ./openmeter/billing/charges/service
-POSTGRES_HOST=127.0.0.1 direnv exec . go test ./openmeter/billing/charges/...
+POSTGRES_HOST=127.0.0.1 direnv exec . go test -run TestInvoicableCharges/TestUsageBasedCreditOnlyLifecycle -v ./meterforge/billing/charges/service
+POSTGRES_HOST=127.0.0.1 direnv exec . go test ./meterforge/billing/charges/...
 ```
 
 ## Editing Checklist
@@ -744,7 +744,7 @@ External-settled credit purchase (its own lifecycle, separate from promotional/i
 
 ## Credit Realization Model
 
-The `creditrealization` package (`openmeter/billing/charges/models/creditrealization/`) defines the domain model for credit allocations and corrections (partial/full reverts).
+The `creditrealization` package (`meterforge/billing/charges/models/creditrealization/`) defines the domain model for credit allocations and corrections (partial/full reverts).
 
 ### Type hierarchy
 

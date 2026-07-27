@@ -6,8 +6,8 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/pkg/errorsx"
-	"github.com/openmeterio/openmeter/pkg/redis"
+	"github.com/Pototoooo/meterforge/pkg/errorsx"
+	"github.com/Pototoooo/meterforge/pkg/redis"
 )
 
 // ProgressManagerConfiguration stores the configuration parameters for the progress manager

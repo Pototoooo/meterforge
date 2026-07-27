@@ -10,10 +10,10 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/openmeterio/openmeter/openmeter/app"
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/pkg/datetime"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 type ProfileTestSuite struct {

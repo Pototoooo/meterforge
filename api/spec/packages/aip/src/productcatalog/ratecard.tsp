@@ -114,9 +114,9 @@ model RateCard {
  */
 @friendlyName("BillingRateCardTaxConfig")
 model RateCardTaxConfig {
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   behavior?: Billing.TaxBehavior;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   code: Shared.ResourceReference<Tax.TaxCode>;
 }
 

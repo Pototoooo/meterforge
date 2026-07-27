@@ -9,16 +9,16 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog"
-	"github.com/openmeterio/openmeter/pkg/clock"
-	"github.com/openmeterio/openmeter/pkg/currencyx"
-	"github.com/openmeterio/openmeter/pkg/models"
-	"github.com/openmeterio/openmeter/pkg/timeutil"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog"
+	"github.com/Pototoooo/meterforge/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/timeutil"
 )
 
 // This suite is the legacy/standard-line mirror of the charges-path
-// TestRatesConvertedQuantity (openmeter/billing/charges/service/unitconfig_rating_test.go).
+// TestRatesConvertedQuantity (meterforge/billing/charges/service/unitconfig_rating_test.go).
 // It drives a plain (non-charge) usage-based gathering line carrying a unit_config through
 // CreatePendingInvoiceLines -> InvoicePendingLines, exercising the legacy
 // lineengine.BuildStandardInvoiceLines path plus billing rating (StandardLine.GetUnitConfig

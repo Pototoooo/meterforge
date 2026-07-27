@@ -3,10 +3,10 @@ package apps
 import (
 	"context"
 
-	"github.com/openmeterio/openmeter/openmeter/app"
-	appstripe "github.com/openmeterio/openmeter/openmeter/app/stripe"
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	appstripe "github.com/Pototoooo/meterforge/meterforge/app/stripe"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 type Handler interface {

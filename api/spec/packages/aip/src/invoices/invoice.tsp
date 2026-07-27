@@ -349,7 +349,7 @@ model InvoiceCustomer {
     "name" | "usage_attribution" | "billing_address"
   >;
 
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Read, Lifecycle.Update)
   id: Shared.ULID;
 
@@ -695,7 +695,7 @@ model InvoiceStandardLine {
   type: InvoiceLineType.StandardLine;
 
   /**
-   * Indicates whether this line item's lifecycle is controlled by OpenMeter or
+   * Indicates whether this line item's lifecycle is controlled by MeterForge or
    * manually overridden by the API user.
    */
   @visibility(Lifecycle.Read)

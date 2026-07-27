@@ -1,6 +1,6 @@
 ---
 name: service
-description: Create or modify a service package following OpenMeter conventions. Use when building new domain packages or modifying existing service/adapter layers.
+description: Create or modify a service package following MeterForge conventions. Use when building new domain packages or modifying existing service/adapter layers.
 user-invocable: true
 argument-hint: "[description of service to create or modify]"
 allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
@@ -8,14 +8,14 @@ allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
 
 # Service Package Development
 
-You are helping the user create or modify a service package in OpenMeter following established conventions.
+You are helping the user create or modify a service package in MeterForge following established conventions.
 
 ## Package Structure
 
-Each domain package lives under `openmeter/<domain>/` and follows this structure:
+Each domain package lives under `meterforge/<domain>/` and follows this structure:
 
 ```text
-openmeter/<domain>/
+meterforge/<domain>/
 ├── service.go          # Service interface definition
 ├── adapter.go          # Adapter interface definition
 ├── <domain>.go         # Domain types and models
@@ -39,7 +39,7 @@ api/v3/handlers/<domain>/
 
 Defines the public API of the domain. This is what other packages depend on.
 
-See `openmeter/customer/service.go` and `openmeter/llmcost/service.go` for examples.
+See `meterforge/customer/service.go` and `meterforge/llmcost/service.go` for examples.
 
 ```go
 package <domain>
@@ -57,7 +57,7 @@ type Service interface {
 
 Defines the persistence layer contract. Implements DB access using ent ORM.
 
-See `openmeter/customer/adapter.go` and `openmeter/llmcost/adapter.go` for examples.
+See `meterforge/customer/adapter.go` and `meterforge/llmcost/adapter.go` for examples.
 
 ```go
 package <domain>
@@ -78,7 +78,7 @@ All input structs MUST have a `Validate()` method. Follow these patterns:
 - Implement `models.Validator` interface (compile-time check with `var _ models.Validator = (*MyInput)(nil)`)
 - Validate all required fields and return collected errors
 
-See `openmeter/llmcost/service.go` for comprehensive validation examples.
+See `meterforge/llmcost/service.go` for comprehensive validation examples.
 
 ```go
 var _ models.Validator = (*Create<Resource>Input)(nil)
@@ -117,7 +117,7 @@ type DeleteItemInput struct {
 }
 ```
 
-Reference: `pkg/models/id.go`, used in `openmeter/subject/service.go`
+Reference: `pkg/models/id.go`, used in `meterforge/subject/service.go`
 
 ## Responsibility Split
 
@@ -143,8 +143,8 @@ The service layer **orchestrates operations**: validates inputs, applies busines
 - `llmcost/service/service.go` — fetches global prices + namespace overrides, merges in memory
 - `currencies/service/service.go` — mixes in-memory fiat currencies with DB-stored custom ones
 
-See `openmeter/customer/service/customer.go` for a full example with hooks and events.
-See `openmeter/llmcost/service/service.go` for a simpler passthrough example.
+See `meterforge/customer/service/customer.go` for a full example with hooks and events.
+See `meterforge/llmcost/service/service.go` for a simpler passthrough example.
 
 Constructor patterns:
 
@@ -188,7 +188,7 @@ reviewer. Before requesting confirmation:
 Prefer `transaction.Run()` unless the domain explicitly requires the independent
 commit semantics and these risks have been reviewed.
 
-Reference: `openmeter/llmcost/service/service.go`, `openmeter/customer/service/customer.go`
+Reference: `meterforge/llmcost/service/service.go`, `meterforge/customer/service/customer.go`
 
 ### Service Hooks Pattern
 
@@ -224,7 +224,7 @@ if err = s.hooks.PostDelete(ctx, deleted); err != nil {
 }
 ```
 
-Reference: `openmeter/customer/service/service.go`, `openmeter/customer/service/customer.go`
+Reference: `meterforge/customer/service/service.go`, `meterforge/customer/service/customer.go`
 
 ## Adapter Layer Implementation (`adapter/`)
 
@@ -237,11 +237,11 @@ The adapter is **pure data access**: it translates between the domain model and 
 - Translates Ent constraint errors to domain errors (`db.IsNotFound()` → `NewXxxNotFoundError()`)
 - MUST call `input.Validate()` when the service layer is a passthrough (no additional validation)
 
-See `openmeter/customer/adapter/` and `openmeter/llmcost/adapter/` for examples.
+See `meterforge/customer/adapter/` and `meterforge/llmcost/adapter/` for examples.
 
 ### Adapter Transaction Boilerplate
 
-Every adapter MUST implement these three methods. Copy from `openmeter/llmcost/adapter/adapter.go:61-83`:
+Every adapter MUST implement these three methods. Copy from `meterforge/llmcost/adapter/adapter.go:61-83`:
 
 ```go
 func (a *adapter) Tx(ctx context.Context) (context.Context, transaction.Driver, error) {
@@ -316,7 +316,7 @@ func (a *adapter) Delete<Resource>(ctx context.Context, input <domain>.Delete<Re
 }
 ```
 
-Reference: `openmeter/llmcost/adapter/price.go`
+Reference: `meterforge/llmcost/adapter/price.go`
 
 ### Entity Mapping (`mapping.go`)
 
@@ -343,7 +343,7 @@ func map<Resource>FromEntity(entity *db.<Entity>) (<domain>.<Resource>, error) {
 
 For paginated results, use `pagination.MapResultErr(entities, mapFn)`.
 
-Reference: `openmeter/llmcost/adapter/mapping.go`
+Reference: `meterforge/llmcost/adapter/mapping.go`
 
 ## Custom Errors (`errors.go`)
 
@@ -360,7 +360,7 @@ Available generic error types:
 - `models.NewGenericNotImplementedError(err)` — not implemented
 - `models.NewGenericStatusFailedDependencyError(err)` — dependency failure
 
-See `openmeter/customer/errors.go` for the error pattern:
+See `meterforge/customer/errors.go` for the error pattern:
 
 ```go
 type MyCustomError struct {
@@ -380,7 +380,7 @@ Each custom error should:
 
 ## Domain Events (`event.go`)
 
-Packages that modify database entities should emit domain events. See `openmeter/customer/event.go` for the full pattern.
+Packages that modify database entities should emit domain events. See `meterforge/customer/event.go` for the full pattern.
 
 Events follow this structure:
 
@@ -417,7 +417,7 @@ import (
 
     "github.com/google/wire"
 
-    entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
+    entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
     "<domain>"
     <domain>adapter "<domain>/adapter"
     <domain>service "<domain>/service"
@@ -482,7 +482,7 @@ If the service is needed in other entry points (e.g., `cmd/billing-worker`, `cmd
 
 ### Creating a new service package
 
-1. Create the package directory: `openmeter/<domain>/`
+1. Create the package directory: `meterforge/<domain>/`
 2. Define domain types in `<domain>.go`
 3. Define the `Service` interface in `service.go` with input types and their `Validate()` methods
 4. Define the `Adapter` interface in `adapter.go`

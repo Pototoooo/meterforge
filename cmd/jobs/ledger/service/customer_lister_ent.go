@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
-	customerdb "github.com/openmeterio/openmeter/openmeter/ent/db/customer"
-	"github.com/openmeterio/openmeter/pkg/clock"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
+	customerdb "github.com/Pototoooo/meterforge/meterforge/ent/db/customer"
+	"github.com/Pototoooo/meterforge/pkg/clock"
 )
 
 type EntCustomerLister struct {

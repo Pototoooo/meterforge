@@ -15,28 +15,28 @@ import (
 	"go.opentelemetry.io/otel/sdk/resource"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/app/common"
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/ingest/kafkaingest/topicresolver"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/sink"
-	"github.com/openmeterio/openmeter/openmeter/sink/flushhandler"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
-	pkgkafka "github.com/openmeterio/openmeter/pkg/kafka"
+	"github.com/Pototoooo/meterforge/app/common"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/ingest/kafkaingest/topicresolver"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/sink"
+	"github.com/Pototoooo/meterforge/meterforge/sink/flushhandler"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
+	pkgkafka "github.com/Pototoooo/meterforge/pkg/kafka"
 )
 
 type Application struct {
 	common.GlobalInitializer
 
-	FlushHandler     flushhandler.FlushEventHandler
-	Logger           *slog.Logger
-	Metadata         common.Metadata
-	Meter            metric.Meter
-	Streaming        streaming.Connector
-	TelemetryServer  common.TelemetryServer
-	TopicProvisioner pkgkafka.TopicProvisioner
-	TopicResolver    *topicresolver.NamespacedTopicResolver
-	Tracer           trace.Tracer
+	FlushHandler            flushhandler.FlushEventHandler
+	Logger                  *slog.Logger
+	Metadata                common.Metadata
+	Meter                   metric.Meter
+	Streaming               streaming.Connector
+	TelemetryServer         common.TelemetryServer
+	TopicProvisioner        pkgkafka.TopicProvisioner
+	TopicResolver           *topicresolver.NamespacedTopicResolver
+	Tracer                  trace.Tracer
 	MeterService            meter.Service
 	RuntimeMetricsCollector common.RuntimeMetricsCollector
 	Sink                    *sink.Sink

@@ -3,8 +3,8 @@ package llmcost
 import (
 	"context"
 
-	"github.com/openmeterio/openmeter/openmeter/llmcost"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/meterforge/llmcost"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 type Handler interface {

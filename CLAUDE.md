@@ -1,3 +1,3 @@
-# OpenMeter Development Guide
+# MeterForge Development Guide
 
 See consolidated agents instructions in @AGENTS.md

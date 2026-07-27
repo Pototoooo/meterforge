@@ -6,11 +6,11 @@ import (
 
 	"github.com/stretchr/testify/mock"
 
-	"github.com/openmeterio/openmeter/openmeter/secret"
-	secretadapter "github.com/openmeterio/openmeter/openmeter/secret/adapter"
-	secretentity "github.com/openmeterio/openmeter/openmeter/secret/entity"
-	secretservice "github.com/openmeterio/openmeter/openmeter/secret/service"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/meterforge/secret"
+	secretadapter "github.com/Pototoooo/meterforge/meterforge/secret/adapter"
+	secretentity "github.com/Pototoooo/meterforge/meterforge/secret/entity"
+	secretservice "github.com/Pototoooo/meterforge/meterforge/secret/service"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 var _ secret.SecretService = (*MockSecretService)(nil)

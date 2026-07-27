@@ -7,12 +7,12 @@ import (
 
 	"github.com/alpacahq/alpacadecimal"
 
-	v3 "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/request"
-	"github.com/openmeterio/openmeter/openmeter/currencies"
-	"github.com/openmeterio/openmeter/pkg/currencyx"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	v3 "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/request"
+	"github.com/Pototoooo/meterforge/meterforge/currencies"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 type (

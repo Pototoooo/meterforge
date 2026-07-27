@@ -5,7 +5,7 @@
 // standalone Go module while still keeping the generated runtime reviewable.
 
 export const RUNTIME_TEMPLATES: Record<string, string> = {
-  'errors.go': `package openmeter
+  'errors.go': `package meterforge
 
 import (
 	"encoding/json"
@@ -17,7 +17,7 @@ import (
 // resource ID is empty. It is caught before any request is made so an omitted
 // ID surfaces as a clear client-side error rather than an ambiguous server
 // response. Match it with errors.Is.
-var ErrEmptyID = errors.New("openmeter: resource ID must not be empty")
+var ErrEmptyID = errors.New("meterforge: resource ID must not be empty")
 
 // APIError is returned for any non-2xx API response. It mirrors the API's
 // RFC 7807-style problem body. When the body cannot be parsed as such, Title is
@@ -83,9 +83,9 @@ func DecodeAPIError[T any](err error) (T, bool, error) {
 func (e *APIError) Error() string {
 	switch {
 	case e.Title != "" && e.Detail != "":
-		return fmt.Sprintf("openmeter: %d %s: %s", e.StatusCode, e.Title, e.Detail)
+		return fmt.Sprintf("meterforge: %d %s: %s", e.StatusCode, e.Title, e.Detail)
 	case e.Title != "":
-		return fmt.Sprintf("openmeter: %d %s", e.StatusCode, e.Title)
+		return fmt.Sprintf("meterforge: %d %s", e.StatusCode, e.Title)
 	default:
 		// No RFC 7807 fields parsed (e.g. a proxy returned an HTML error page).
 		// Inline the raw body for diagnostics but bound it so a large payload
@@ -97,11 +97,11 @@ func (e *APIError) Error() string {
 			body = body[:maxInline]
 			suffix = "… (truncated)"
 		}
-		return fmt.Sprintf("openmeter: unexpected status %d: %s%s", e.StatusCode, string(body), suffix)
+		return fmt.Sprintf("meterforge: unexpected status %d: %s%s", e.StatusCode, string(body), suffix)
 	}
 }
 `,
-  'filters.go': `package openmeter
+  'filters.go': `package meterforge
 
 import "time"
 
@@ -166,7 +166,7 @@ require github.com/oapi-codegen/nullable v1.2.0
   'go.sum': `github.com/oapi-codegen/nullable v1.2.0 h1:VflFkDW980KhBPiFF7nWSyjg+r4Obqj8lXipV0UkP5w=
 github.com/oapi-codegen/nullable v1.2.0/go.mod h1:KUZ3vUzkmEKY90ksAmit2+5juDIhIZhfDl+0PwOQlFY=
 `,
-  'nullable.go': `package openmeter
+  'nullable.go': `package meterforge
 
 import "github.com/oapi-codegen/nullable"
 
@@ -185,7 +185,7 @@ func NullableValue[T any](value T) Nullable[T] {
 	return nullable.NewNullableWithValue(value)
 }
 `,
-  'one_or_many.go': `package openmeter
+  'one_or_many.go': `package meterforge
 
 import (
 	"bytes"
@@ -254,7 +254,7 @@ func (value *OneOrMany[T]) UnmarshalJSON(data []byte) error {
 	return nil
 }
 `,
-  'option.go': `package openmeter
+  'option.go': `package meterforge
 
 import (
 	"net/http"
@@ -283,7 +283,7 @@ func resolveVersion() string {
 	return "{{SDK_VERSION}}"
 }
 
-var defaultUserAgent = "openmeter-go-sdk/" + Version
+var defaultUserAgent = "meterforge-go-sdk/" + Version
 
 // Option configures a Client during New.
 type Option func(*Client)
@@ -317,7 +317,7 @@ func WithUserAgent(ua string) Option {
 	}
 }
 `,
-  'pagination.go': `package openmeter
+  'pagination.go': `package meterforge
 
 import (
 	"fmt"
@@ -410,7 +410,7 @@ func paginate[T any](start *PageParams, fetch func(page, size int) ([]T, int, er
 			page++
 		}
 		var zero T
-		yield(zero, fmt.Errorf("openmeter: pagination did not terminate within %d pages", maxPages))
+		yield(zero, fmt.Errorf("meterforge: pagination did not terminate within %d pages", maxPages))
 	}
 }
 
@@ -423,7 +423,7 @@ func paginateCursor[T any](start *CursorPageParams, fetch func(after, before *st
 			before = start.Before
 			if after != nil && before != nil {
 				var zero T
-				yield(zero, fmt.Errorf("openmeter: cursor pagination cannot use both after and before"))
+				yield(zero, fmt.Errorf("meterforge: cursor pagination cannot use both after and before"))
 				return
 			}
 			if start.Size != nil {
@@ -456,11 +456,11 @@ func paginateCursor[T any](start *CursorPageParams, fetch func(after, before *st
 			}
 		}
 		var zero T
-		yield(zero, fmt.Errorf("openmeter: cursor pagination did not terminate within %d pages", maxPages))
+		yield(zero, fmt.Errorf("meterforge: cursor pagination did not terminate within %d pages", maxPages))
 	}
 }
 `,
-  'ptr.go': `package openmeter
+  'ptr.go': `package meterforge
 
 import "time"
 
@@ -486,7 +486,7 @@ func Bool(b bool) *bool { return &b }
 // Time returns a pointer to t.
 func Time(t time.Time) *time.Time { return &t }
 `,
-  'query.go': `package openmeter
+  'query.go': `package meterforge
 
 import (
 	"net/url"
@@ -634,7 +634,7 @@ func addBooleanFilter(q url.Values, prefix string, f *BooleanFilter) {
 	}
 }
 `,
-  'request_content_type.go': `package openmeter
+  'request_content_type.go': `package meterforge
 
 import (
 	"context"
@@ -668,7 +668,7 @@ func optionalBody[T any](body *T) any {
 	return body
 }
 `,
-  'transport.go': `package openmeter
+  'transport.go': `package meterforge
 
 import (
 	"bytes"
@@ -730,7 +730,7 @@ func (c *Client) newRequest(ctx context.Context, method, apiPath string, query u
 	if body != nil {
 		buf, err := json.Marshal(body)
 		if err != nil {
-			return nil, fmt.Errorf("openmeter: encoding request body: %w", err)
+			return nil, fmt.Errorf("meterforge: encoding request body: %w", err)
 		}
 
 		bodyReader = bytes.NewReader(buf)
@@ -738,7 +738,7 @@ func (c *Client) newRequest(ctx context.Context, method, apiPath string, query u
 
 	req, err := http.NewRequestWithContext(ctx, method, u.String(), bodyReader)
 	if err != nil {
-		return nil, fmt.Errorf("openmeter: building request: %w", err)
+		return nil, fmt.Errorf("meterforge: building request: %w", err)
 	}
 
 	if body != nil {
@@ -773,7 +773,7 @@ func (c *Client) doJSON(req *http.Request, out any) error {
 	}
 
 	if err := json.Unmarshal(body, out); err != nil {
-		return fmt.Errorf("openmeter: decoding response body: %w", err)
+		return fmt.Errorf("meterforge: decoding response body: %w", err)
 	}
 
 	return nil
@@ -803,7 +803,7 @@ func (c *Client) doRaw(req *http.Request) ([]byte, error) {
 
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
-		return nil, fmt.Errorf("openmeter: request failed: %w", err)
+		return nil, fmt.Errorf("meterforge: request failed: %w", err)
 	}
 	defer resp.Body.Close()
 
@@ -827,7 +827,7 @@ func (c *Client) doRaw(req *http.Request) ([]byte, error) {
 func (c *Client) doStream(req *http.Request) (*http.Response, error) {
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
-		return nil, fmt.Errorf("openmeter: request failed: %w", err)
+		return nil, fmt.Errorf("meterforge: request failed: %w", err)
 	}
 
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
@@ -848,17 +848,17 @@ func (c *Client) doStream(req *http.Request) (*http.Response, error) {
 func readAllCapped(r io.Reader, max int64) ([]byte, error) {
 	body, err := io.ReadAll(io.LimitReader(r, max+1))
 	if err != nil {
-		return body, fmt.Errorf("openmeter: reading response body: %w", err)
+		return body, fmt.Errorf("meterforge: reading response body: %w", err)
 	}
 
 	if int64(len(body)) > max {
-		return body[:max], fmt.Errorf("openmeter: response body exceeds %d-byte limit; use a streaming method for large payloads", max)
+		return body[:max], fmt.Errorf("meterforge: response body exceeds %d-byte limit; use a streaming method for large payloads", max)
 	}
 
 	return body, nil
 }
 `,
-  'types.go': `package openmeter
+  'types.go': `package meterforge
 
 // Numeric represents an arbitrary-precision number. The API encodes it as a
 // decimal string (e.g. "12.3456") to avoid float precision loss, so the SDK

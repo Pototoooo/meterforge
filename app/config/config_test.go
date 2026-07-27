@@ -12,21 +12,21 @@ import (
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/openmeter/dedupe/redisdedupe"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	notificationwebhook "github.com/openmeterio/openmeter/openmeter/notification/webhook"
-	"github.com/openmeterio/openmeter/openmeter/notification/webhook/svix"
-	"github.com/openmeterio/openmeter/pkg/datetime"
-	"github.com/openmeterio/openmeter/pkg/featuregate"
-	pkgkafka "github.com/openmeterio/openmeter/pkg/kafka"
-	"github.com/openmeterio/openmeter/pkg/models"
-	"github.com/openmeterio/openmeter/pkg/pglockx"
-	"github.com/openmeterio/openmeter/pkg/redis"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/meterforge/dedupe/redisdedupe"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	notificationwebhook "github.com/Pototoooo/meterforge/meterforge/notification/webhook"
+	"github.com/Pototoooo/meterforge/meterforge/notification/webhook/svix"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
+	"github.com/Pototoooo/meterforge/pkg/featuregate"
+	pkgkafka "github.com/Pototoooo/meterforge/pkg/kafka"
+	"github.com/Pototoooo/meterforge/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/pglockx"
+	"github.com/Pototoooo/meterforge/pkg/redis"
 )
 
 func TestComplete(t *testing.T) {
-	v, flags := viper.New(), pflag.NewFlagSet("OpenMeter", pflag.ExitOnError)
+	v, flags := viper.New(), pflag.NewFlagSet("MeterForge", pflag.ExitOnError)
 
 	// Messes with vscode defaults
 	val, set := os.LookupEnv("POSTGRES_HOST")
@@ -122,7 +122,7 @@ func TestComplete(t *testing.T) {
 					},
 				},
 				Partitions:          1,
-				EventsTopicTemplate: "om_%s_events",
+				EventsTopicTemplate: "mf_%s_events",
 				TopicProvisioner: TopicProvisionerConfig{
 					Enabled:   true,
 					CacheSize: 200,
@@ -140,7 +140,7 @@ func TestComplete(t *testing.T) {
 				TLS:             true,
 				Username:        "default",
 				Password:        "default",
-				Database:        "openmeter",
+				Database:        "meterforge",
 				DialTimeout:     10 * time.Second,
 				MaxOpenConns:    5,
 				MaxIdleConns:    5,
@@ -157,7 +157,7 @@ func TestComplete(t *testing.T) {
 					PollInterval: 5 * time.Second,
 				},
 			},
-			EventsTableName: "om_events",
+			EventsTableName: "mf_events",
 			AsyncInsert:     false,
 			AsyncInsertWait: false,
 		},
@@ -181,14 +181,14 @@ func TestComplete(t *testing.T) {
 					},
 					DLQ: DLQConfiguration{
 						Enabled: true,
-						Topic:   "om_sys.billing_worker_dlq",
+						Topic:   "mf_sys.billing_worker_dlq",
 						AutoProvision: DLQAutoProvisionConfiguration{
 							Enabled:    true,
 							Partitions: 1,
 							Retention:  90 * 24 * time.Hour,
 						},
 					},
-					ConsumerGroupName: "om_billing_worker",
+					ConsumerGroupName: "mf_billing_worker",
 				},
 			},
 		},
@@ -200,7 +200,7 @@ func TestComplete(t *testing.T) {
 			Enabled: false,
 		},
 		Sink: SinkConfiguration{
-			GroupId:                 "openmeter-sink-worker",
+			GroupId:                 "meterforge-sink-worker",
 			MinCommitCount:          500,
 			MaxCommitWait:           30 * time.Second,
 			MaxPollTimeout:          100 * time.Millisecond,
@@ -208,7 +208,7 @@ func TestComplete(t *testing.T) {
 			FlushSuccessTimeout:     5 * time.Second,
 			DrainTimeout:            10 * time.Second,
 			NamespaceRefetchTimeout: 9 * time.Second,
-			NamespaceTopicRegexp:    "^om_test_([A-Za-z0-9]+(?:_[A-Za-z0-9]+)*)_events$",
+			NamespaceTopicRegexp:    "^mf_test_([A-Za-z0-9]+(?:_[A-Za-z0-9]+)*)_events$",
 			MeterRefetchInterval:    15 * time.Second,
 			Dedupe: DedupeConfiguration{
 				Enabled: true,
@@ -322,21 +322,21 @@ func TestComplete(t *testing.T) {
 		},
 		Events: EventsConfiguration{
 			SystemEvents: EventSubsystemConfiguration{
-				Topic: "om_sys.api_events",
+				Topic: "mf_sys.api_events",
 				AutoProvision: AutoProvisionConfiguration{
 					Enabled:    true,
 					Partitions: 4,
 				},
 			},
 			IngestEvents: EventSubsystemConfiguration{
-				Topic: "om_sys.ingest_events",
+				Topic: "mf_sys.ingest_events",
 				AutoProvision: AutoProvisionConfiguration{
 					Enabled:    true,
 					Partitions: 8,
 				},
 			},
 			BalanceWorkerEvents: EventSubsystemConfiguration{
-				Topic: "om_sys.balance_worker_events",
+				Topic: "mf_sys.balance_worker_events",
 				AutoProvision: AutoProvisionConfiguration{
 					Enabled:    true,
 					Partitions: 4,
@@ -354,14 +354,14 @@ func TestComplete(t *testing.T) {
 				},
 				DLQ: DLQConfiguration{
 					Enabled: true,
-					Topic:   "om_sys.balance_worker_dlq",
+					Topic:   "mf_sys.balance_worker_dlq",
 					AutoProvision: DLQAutoProvisionConfiguration{
 						Enabled:    true,
 						Partitions: 1,
 						Retention:  90 * 24 * time.Hour,
 					},
 				},
-				ConsumerGroupName: "om_balance_worker",
+				ConsumerGroupName: "mf_balance_worker",
 			},
 			StateStorage: BalanceWorkerStateStorageConfiguration{
 				HighWatermarkCache: BalanceWorkerHighWatermarkCacheConfiguration{
@@ -387,14 +387,14 @@ func TestComplete(t *testing.T) {
 				},
 				DLQ: DLQConfiguration{
 					Enabled: true,
-					Topic:   "om_sys.notification_service_dlq",
+					Topic:   "mf_sys.notification_service_dlq",
 					AutoProvision: DLQAutoProvisionConfiguration{
 						Enabled:    true,
 						Partitions: 1,
 						Retention:  90 * 24 * time.Hour,
 					},
 				},
-				ConsumerGroupName: "om_notification_service",
+				ConsumerGroupName: "mf_notification_service",
 			},
 			Webhook: WebhookConfiguration{
 				EventTypeRegistrationTimeout:     notificationwebhook.DefaultRegistrationTimeout,
@@ -462,7 +462,7 @@ func TestComplete(t *testing.T) {
 		ReservedEventTypes: []string{
 			`^reserved\..*$`,
 			`^_\..*$`,
-			`^openmeter\..*$`,
+			`^meterforge\..*$`,
 		},
 		TaxCode: TaxCodeConfiguration{
 			Seeds: []TaxCodeSeed{
@@ -487,7 +487,7 @@ func TestComplete(t *testing.T) {
 		FeatureGate: FeatureGateConfiguration{
 			Enabled: true,
 			Flags: featuregate.Flags{
-				featuregate.FeatureFlag("om_ff_credits_enabled"): "credits",
+				featuregate.FeatureFlag("mf_ff_credits_enabled"): "credits",
 			},
 		},
 	}

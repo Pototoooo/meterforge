@@ -7,12 +7,12 @@ import (
 	"github.com/google/wire"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
-	"github.com/openmeterio/openmeter/openmeter/subject"
-	"github.com/openmeterio/openmeter/openmeter/subject/adapter"
-	"github.com/openmeterio/openmeter/openmeter/subject/service"
-	subjecthooks "github.com/openmeterio/openmeter/openmeter/subject/service/hooks"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
+	"github.com/Pototoooo/meterforge/meterforge/subject"
+	"github.com/Pototoooo/meterforge/meterforge/subject/adapter"
+	"github.com/Pototoooo/meterforge/meterforge/subject/service"
+	subjecthooks "github.com/Pototoooo/meterforge/meterforge/subject/service/hooks"
 )
 
 var Subject = wire.NewSet(

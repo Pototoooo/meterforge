@@ -17,17 +17,17 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/client/go"
-	apiv3 "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/openmeter/meter"
+	api "github.com/Pototoooo/meterforge/api/client/go"
+	apiv3 "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
 )
 
 func initClient(t *testing.T) *api.ClientWithResponses {
 	t.Helper()
 
-	address := os.Getenv("OPENMETER_ADDRESS")
+	address := os.Getenv("METERFORGE_ADDRESS")
 	if address == "" {
-		t.Skip("OPENMETER_ADDRESS not set")
+		t.Skip("METERFORGE_ADDRESS not set")
 	}
 
 	client, err := api.NewClientWithResponses(address)
@@ -36,21 +36,21 @@ func initClient(t *testing.T) *api.ClientWithResponses {
 	return client
 }
 
-func openmeterAddress(t *testing.T) string {
+func meterforgeAddress(t *testing.T) string {
 	t.Helper()
 
-	address := os.Getenv("OPENMETER_ADDRESS")
+	address := os.Getenv("METERFORGE_ADDRESS")
 	if address == "" {
-		t.Skip("OPENMETER_ADDRESS not set")
+		t.Skip("METERFORGE_ADDRESS not set")
 	}
 
 	return strings.TrimRight(address, "/")
 }
 
-func openmeterV3Address(t *testing.T) string {
+func meterforgeV3Address(t *testing.T) string {
 	t.Helper()
 
-	return openmeterAddress(t) + "/api/v3"
+	return meterforgeAddress(t) + "/api/v3"
 }
 
 func createMeterV3(t *testing.T, address string, body apiv3.CreateMeterRequest) *apiv3.Meter {
@@ -62,7 +62,7 @@ func createMeterV3(t *testing.T, address string, body apiv3.CreateMeterRequest) 
 	req, err := http.NewRequestWithContext(
 		context.Background(),
 		http.MethodPost,
-		address+"/openmeter/meters",
+		address+"/meterforge/meters",
 		bytes.NewReader(payload),
 	)
 	require.NoError(t, err)
@@ -93,7 +93,7 @@ func queryMeterV3(t require.TestingT, address string, meterID string, body apiv3
 	req, err := http.NewRequestWithContext(
 		context.Background(),
 		http.MethodPost,
-		address+"/openmeter/meters/"+meterID+"/query",
+		address+"/meterforge/meters/"+meterID+"/query",
 		bytes.NewReader(payload),
 	)
 	require.NoError(t, err)
@@ -115,7 +115,7 @@ func queryMeterV3(t require.TestingT, address string, meterID string, body apiv3
 
 func TestQuickstart(t *testing.T) {
 	client := initClient(t)
-	v3Address := openmeterV3Address(t)
+	v3Address := meterforgeV3Address(t)
 	suffix := fmt.Sprintf("%d", time.Now().UnixNano())
 	v1MeterSlug := "quickstart_v1_" + suffix
 	v3MeterKey := "quickstart_v3_" + suffix

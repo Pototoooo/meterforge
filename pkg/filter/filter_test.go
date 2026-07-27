@@ -12,8 +12,8 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/openmeterio/openmeter/pkg/filter"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/filter"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 // newSelectBuilder returns an in-memory Ent dialect selector configured for

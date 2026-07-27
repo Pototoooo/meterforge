@@ -1,6 +1,6 @@
 package query
 
-import "github.com/openmeterio/openmeter/openmeter/meter"
+import "github.com/Pototoooo/meterforge/meterforge/meter"
 
 const (
 	DimensionSubject    = "subject"

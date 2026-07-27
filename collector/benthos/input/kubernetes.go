@@ -18,8 +18,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 
-	"github.com/openmeterio/openmeter/collector/benthos/internal/logging"
-	"github.com/openmeterio/openmeter/collector/benthos/services/leaderelection"
+	"github.com/Pototoooo/meterforge/collector/benthos/internal/logging"
+	"github.com/Pototoooo/meterforge/collector/benthos/services/leaderelection"
 )
 
 // TODO: add batching config and policy

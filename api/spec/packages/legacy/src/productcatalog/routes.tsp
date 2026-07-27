@@ -2,7 +2,7 @@ import "../rest.tsp";
 import "./subscriptionaddon.tsp";
 import "./errors.tsp";
 
-namespace OpenMeter;
+namespace MeterForge;
 
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;

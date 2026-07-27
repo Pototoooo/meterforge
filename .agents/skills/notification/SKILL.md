@@ -1,18 +1,18 @@
 ---
 name: notification
-description: Work with the OpenMeter notification package. Use when modifying notification event creation, delivery, reconciliation, rules, channels, webhooks, event payloads, or the Kafka consumer handlers. Trigger this skill whenever the task touches `openmeter/notification/...`, `cmd/notification-service/`, Svix integration, or notification-related tests.
+description: Work with the MeterForge notification package. Use when modifying notification event creation, delivery, reconciliation, rules, channels, webhooks, event payloads, or the Kafka consumer handlers. Trigger this skill whenever the task touches `meterforge/notification/...`, `cmd/notification-service/`, Svix integration, or notification-related tests.
 user-invocable: true
 allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
 ---
 
 # Notification
 
-Guidance for working with the OpenMeter notification package (`openmeter/notification/`).
+Guidance for working with the MeterForge notification package (`meterforge/notification/`).
 
 ## Package Layout
 
 ```
-openmeter/notification/
+meterforge/notification/
 ├── (root)              — Domain types, interfaces, payload union types, event type constants
 ├── service/            — Service implementation (business logic)
 ├── adapter/            — Ent ORM-backed Repository implementation (Postgres persistence)
@@ -42,7 +42,7 @@ openmeter/notification/
     └── utils.go           — Channel helpers, delivery status helpers
 ```
 
-HTTP API entry points: `openmeter/notification/httpdriver/`
+HTTP API entry points: `meterforge/notification/httpdriver/`
 
 DI wiring: `app/common/notification.go` — `NewNotificationService`, `NewNotificationEventHandler`, `NewNotificationWebhookHandler`
 
@@ -87,7 +87,7 @@ type EventPayload struct {
 
 Invoice payloads use `api.Invoice` (transformed eagerly in the consumer), NOT internal billing types. Entitlement payloads already use API types (`api.EntitlementMetered`, `api.Feature`, `api.Subject`, `api.Customer`).
 
-Reference: `openmeter/notification/eventpayload.go`, `openmeter/notification/invoice.go`
+Reference: `meterforge/notification/eventpayload.go`, `meterforge/notification/invoice.go`
 
 ### Delivery Status State Machine
 
@@ -99,7 +99,7 @@ Reference: `openmeter/notification/eventpayload.go`, `openmeter/notification/inv
 | `SUCCESS`   | Delivered successfully              | Terminal                                     |
 | `FAILED`    | Delivery failed                     | Terminal                                     |
 
-Reference: `openmeter/notification/deliverystatus.go`, `openmeter/notification/eventhandler/reconcile.go`
+Reference: `meterforge/notification/deliverystatus.go`, `meterforge/notification/eventhandler/reconcile.go`
 
 ## Service Interface
 
@@ -117,12 +117,12 @@ Every event mutating operation:
 2. Persists event + per-channel delivery statuses atomically via adapter
 3. Dispatches asynchronously via `EventHandler.Dispatch()`
 
-Reference: `openmeter/notification/service.go`, `openmeter/notification/service/event.go`
+Reference: `meterforge/notification/service.go`, `meterforge/notification/service/event.go`
 
 ## Event Flow (End-to-End)
 
 ```
-Kafka (om_sys.api_events)
+Kafka (mf_sys.api_events)
   ↓
 Consumer handler (consumer/)
   ├── Entitlement snapshots → balance threshold / reset path
@@ -167,7 +167,7 @@ Background Reconcile() loop (every 15s)
 
 **Important:** The consumer performs the billing → API type transformation. The rest of the notification package (`adapter/`, `httpdriver/`, `eventhandler/`) works exclusively with `api.Invoice`. This mirrors how entitlement events work.
 
-Reference: `openmeter/notification/consumer/invoice.go`
+Reference: `meterforge/notification/consumer/invoice.go`
 
 ## Event Handler & Reconciliation (`eventhandler/`)
 
@@ -196,7 +196,7 @@ For each non-terminal delivery status:
 1. Resend message via Svix
 2. Transition to SENDING
 
-Reference: `openmeter/notification/eventhandler/reconcile.go`, `openmeter/notification/eventhandler/webhook.go`
+Reference: `meterforge/notification/eventhandler/reconcile.go`, `meterforge/notification/eventhandler/webhook.go`
 
 ## Webhook Integration (`webhook/`)
 
@@ -218,7 +218,7 @@ Webhook error types (`webhook/errors.go`):
 - `UnrecoverableError` — permanent failure
 - `MessageAlreadyExistsError` — duplicate message (idempotent send)
 
-Reference: `openmeter/notification/webhook/webhook.go`, `openmeter/notification/webhook/svix/svix.go`
+Reference: `meterforge/notification/webhook/webhook.go`, `meterforge/notification/webhook/svix/svix.go`
 
 ## HTTP API (`httpdriver/`)
 
@@ -232,7 +232,7 @@ Handlers implement the oapi-codegen server interface:
 
 Mapping functions in `httpdriver/mapping.go` convert between domain types and API types. Invoice and entitlement payload mapping is a trivial pass-through since payloads already use API types.
 
-Reference: `openmeter/notification/httpdriver/handler.go`, `openmeter/notification/httpdriver/mapping.go`
+Reference: `meterforge/notification/httpdriver/handler.go`, `meterforge/notification/httpdriver/mapping.go`
 
 ## Adapter / Persistence (`adapter/`)
 
@@ -254,7 +254,7 @@ Ent ORM-backed implementation of `notification.Repository`:
 - For invoice types: guards `version == EventPayloadVersionCurrent` (rejects v0/unknown)
 - Second-pass: full unmarshal into `EventPayload`
 
-Reference: `openmeter/notification/adapter/entitymapping.go`
+Reference: `meterforge/notification/adapter/entitymapping.go`
 
 ### What IS and IS NOT Persisted
 
@@ -278,7 +278,7 @@ MaxChannelsPerWebhook  = 10
 DefaultPageSize = 100
 ```
 
-Reference: `openmeter/notification/defaults.go`
+Reference: `meterforge/notification/defaults.go`
 
 ## Standard Annotations (`annotations.go`)
 
@@ -319,7 +319,7 @@ The `cmd/notification-service/` standalone worker wires the full consumer + Kafk
 - **`notification_event` rows are never deleted.** Any migration or schema change must account for the full historical dataset. There is no natural expiry.
 - **The reconciler is invisible to rule-less events.** The `HasDeliveryStatusesWith` EXISTS filter in the adapter means events with no delivery status rows (e.g., future persistence-only events) never appear in reconciliation queries.
 - **Event payload versioning.** The `Version` field in `EventPayloadMeta` tracks the JSONB schema. The v0 → v1 migration for invoice payloads is complete; `eventPayloadFromJSON` rejects v0 invoice events. Non-invoice types pass through without version checks.
-- **Svix channel mapping.** Each notification channel maps to a Svix endpoint. Channel IDs are stored in Svix message metadata (`ChannelIDMetadataKey = "om-channel-id"`). A `NullChannel` (`"__null_channel"`) is used as a Svix filter placeholder when no specific channel is targeted.
+- **Svix channel mapping.** Each notification channel maps to a Svix endpoint. Channel IDs are stored in Svix message metadata (`ChannelIDMetadataKey = "mf-channel-id"`). A `NullChannel` (`"__null_channel"`) is used as a Svix filter placeholder when no specific channel is targeted.
 
 ## Testing
 
@@ -327,18 +327,18 @@ The `cmd/notification-service/` standalone worker wires the full consumer + Kafk
 
 ```bash
 # All notification tests
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./openmeter/notification/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./meterforge/notification/...
 
 # Adapter tests (including entity mapping unit tests)
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./openmeter/notification/adapter/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./meterforge/notification/adapter/...
 
 # HTTP driver mapping tests
-go test -v ./openmeter/notification/httpdriver/...
+go test -v ./meterforge/notification/httpdriver/...
 ```
 
 ### Test Event Generator (`internal/`)
 
-`TestEventGenerator` in `openmeter/notification/internal/rule.go` generates realistic test payloads for all event types. Used by the `TestRule` HTTP endpoint. For invoice events, it calls `billinghttp.MapEventInvoiceToAPI()` to produce an `InvoicePayload`.
+`TestEventGenerator` in `meterforge/notification/internal/rule.go` generates realistic test payloads for all event types. Used by the `TestRule` HTTP endpoint. For invoice events, it calls `billinghttp.MapEventInvoiceToAPI()` to produce an `InvoicePayload`.
 
 ### Adapter Entity Mapping Tests (`adapter/entitymapping_test.go`)
 

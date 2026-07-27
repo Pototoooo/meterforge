@@ -6,8 +6,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 // stringerValue implements fmt.Stringer for testing annotation conversion.
@@ -66,10 +66,10 @@ func TestToMetadataAnnotations(t *testing.T) {
 			wantAnnotations: nil,
 		},
 		{
-			name: "reserved openmeter prefix is rejected",
+			name: "reserved meterforge prefix is rejected",
 			labels: &api.Labels{
-				"openmeter_region": "us-east-1",
-				"openmeter_tier":   "standard",
+				"meterforge_region": "us-east-1",
+				"meterforge_tier":   "standard",
 			},
 			wantMetadata:    nil,
 			wantAnnotations: nil,
@@ -78,8 +78,8 @@ func TestToMetadataAnnotations(t *testing.T) {
 		{
 			name: "mixed metadata and reserved prefix",
 			labels: &api.Labels{
-				"env":              "production",
-				"openmeter_region": "us-east-1",
+				"env":               "production",
+				"meterforge_region": "us-east-1",
 			},
 			wantMetadata: models.Metadata{
 				"env": "production",
@@ -90,7 +90,7 @@ func TestToMetadataAnnotations(t *testing.T) {
 		{
 			name: "reserved prefix label is rejected",
 			labels: &api.Labels{
-				"openmeter_key": "value",
+				"meterforge_key": "value",
 			},
 			wantMetadata:    nil,
 			wantAnnotations: nil,
@@ -150,14 +150,14 @@ func TestFromMetadataAnnotations(t *testing.T) {
 				"region": "us-east-1",
 			},
 			wantLabels: &api.Labels{
-				"openmeter_region": "us-east-1",
+				"meterforge_region": "us-east-1",
 			},
 		},
 		{
 			name:     "annotation already has prefix is skipped due to reserved prefix validation",
 			metadata: nil,
 			annotations: models.Annotations{
-				"openmeter_region": "us-east-1",
+				"meterforge_region": "us-east-1",
 			},
 			wantLabels: &api.Labels{},
 		},
@@ -168,7 +168,7 @@ func TestFromMetadataAnnotations(t *testing.T) {
 				"tier": stringerValue{"standard"},
 			},
 			wantLabels: &api.Labels{
-				"openmeter_tier": "standard",
+				"meterforge_tier": "standard",
 			},
 		},
 		{
@@ -178,7 +178,7 @@ func TestFromMetadataAnnotations(t *testing.T) {
 				"tier": textMarshalerValue{"enterprise"},
 			},
 			wantLabels: &api.Labels{
-				"openmeter_tier": "enterprise",
+				"meterforge_tier": "enterprise",
 			},
 		},
 		{
@@ -208,7 +208,7 @@ func TestFromMetadataAnnotations(t *testing.T) {
 				"valid":    "ok",
 			},
 			wantLabels: &api.Labels{
-				"openmeter_valid": "ok",
+				"meterforge_valid": "ok",
 			},
 		},
 		{
@@ -220,8 +220,8 @@ func TestFromMetadataAnnotations(t *testing.T) {
 				"region": "us-east-1",
 			},
 			wantLabels: &api.Labels{
-				"env":              "production",
-				"openmeter_region": "us-east-1",
+				"env":               "production",
+				"meterforge_region": "us-east-1",
 			},
 		},
 	}

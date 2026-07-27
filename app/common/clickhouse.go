@@ -10,8 +10,8 @@ import (
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/pkg/framework/clickhouseotel"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/pkg/framework/clickhouseotel"
 )
 
 var ClickHouse = wire.NewSet(

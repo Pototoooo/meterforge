@@ -7,7 +7,7 @@ import "./types.tsp";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Query params for listing meters.
@@ -37,9 +37,9 @@ enum MeterOrderBy {
   Key: "key",
   Name: "name",
   Aggregation: "aggregation",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   CreatedAt: "createdAt",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   UpdatedAt: "updatedAt",
 }
 
@@ -126,7 +126,7 @@ interface MetersEndpoints {
     | NotFoundError
     | CommonErrors;
 
-  #suppress "@openmeter/api-spec-legacy/operation-summary" "Avoid duplicating the summary in OpenAPI yaml"
+  #suppress "@meterforge/api-spec-legacy/operation-summary" "Avoid duplicating the summary in OpenAPI yaml"
   @get
   @route("/{meterIdOrSlug}/query")
   @operationId("queryMeter")
@@ -163,7 +163,7 @@ interface MetersEndpoints {
     | NotFoundError
     | CommonErrors;
 
-  #suppress "@openmeter/api-spec-legacy/operation-summary" "Avoid duplicating the summary in OpenAPI yaml"
+  #suppress "@meterforge/api-spec-legacy/operation-summary" "Avoid duplicating the summary in OpenAPI yaml"
   @post
   @route("/{meterIdOrSlug}/query")
   @operationId("queryMeterPost")

@@ -8,8 +8,8 @@ import (
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/pkg/errorsx"
-	pkgkafka "github.com/openmeterio/openmeter/pkg/kafka"
+	"github.com/Pototoooo/meterforge/pkg/errorsx"
+	pkgkafka "github.com/Pototoooo/meterforge/pkg/kafka"
 )
 
 type IngestConfiguration struct {
@@ -113,7 +113,7 @@ func (c KafkaConfiguration) CreateKafkaConfig() kafka.ConfigMap {
 
 	// This is needed when using localhost brokers on OSX,
 	// since the OSX resolver will return the IPv6 addresses first.
-	// See: https://github.com/openmeterio/openmeter/issues/321
+	// See: https://github.com/Pototoooo/meterforge/issues/321
 	if c.BrokerAddressFamily != "" {
 		config["broker.address.family"] = c.BrokerAddressFamily
 	} else if strings.Contains(c.Broker, "localhost") || strings.Contains(c.Broker, "127.0.0.1") {
@@ -177,7 +177,7 @@ func ConfigureIngestKafkaConfiguration(v *viper.Viper, prefixes ...string) {
 // Configure configures some defaults in the Viper instance.
 func ConfigureIngest(v *viper.Viper) {
 	v.SetDefault("ingest.kafka.partitions", 1)
-	v.SetDefault("ingest.kafka.eventsTopicTemplate", "om_%s_events")
+	v.SetDefault("ingest.kafka.eventsTopicTemplate", "mf_%s_events")
 	v.SetDefault("ingest.kafka.namespaceDeletionEnabled", false)
 
 	ConfigureIngestKafkaConfiguration(v, "ingest")

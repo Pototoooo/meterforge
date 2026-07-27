@@ -11,11 +11,11 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/notification"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog/feature"
-	"github.com/openmeterio/openmeter/pkg/convert"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/notification"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog/feature"
+	"github.com/Pototoooo/meterforge/pkg/convert"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 func NewCreateRuleInput(namespace string, name string, channels ...string) notification.CreateRuleInput {

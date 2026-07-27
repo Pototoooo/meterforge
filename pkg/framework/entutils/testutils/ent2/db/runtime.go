@@ -5,8 +5,8 @@ package db
 import (
 	"time"
 
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent2/db/example2"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent2/schema"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent2/db/example2"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent2/schema"
 )
 
 // The init function reads all schema descriptors with runtime code

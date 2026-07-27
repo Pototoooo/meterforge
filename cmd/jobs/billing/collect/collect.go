@@ -6,9 +6,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/openmeterio/openmeter/cmd/jobs/internal"
-	billingworkercollect "github.com/openmeterio/openmeter/openmeter/billing/worker/collect"
-	"github.com/openmeterio/openmeter/openmeter/customer"
+	"github.com/Pototoooo/meterforge/cmd/jobs/internal"
+	billingworkercollect "github.com/Pototoooo/meterforge/meterforge/billing/worker/collect"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
 )
 
 var (

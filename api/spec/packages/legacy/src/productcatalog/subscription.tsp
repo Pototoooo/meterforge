@@ -12,7 +12,7 @@ import "../entitlements/main.tsp";
 
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Expanded subscription

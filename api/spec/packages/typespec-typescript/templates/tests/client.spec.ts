@@ -1,6 +1,6 @@
 import fetchMock from '@fetch-mock/vitest'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { OpenMeter, ServerList } from '../src/index.js'
+import { MeterForge, ServerList } from '../src/index.js'
 import { SDK_VERSION } from '../src/lib/version.js'
 
 const meter = {
@@ -43,29 +43,29 @@ const fetch = fetchMock.fetchHandler
 describe('base URL construction', () => {
   it('preserves the base path segment (/v3)', async () => {
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'k',
       fetch,
     })
     await sdk.meters.get({ meterId: 'm' })
-    expect(lastUrl()).toBe('https://eu.api.konghq.com/v3/openmeter/meters/m')
+    expect(lastUrl()).toBe('https://eu.api.konghq.com/v3/meterforge/meters/m')
   })
 
   it('accepts a URL object as baseUrl', async () => {
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: new URL('https://us.api.konghq.com/v3'),
       apiKey: 'k',
       fetch,
     })
     await sdk.meters.get({ meterId: 'm' })
-    expect(lastUrl()).toBe('https://us.api.konghq.com/v3/openmeter/meters/m')
+    expect(lastUrl()).toBe('https://us.api.konghq.com/v3/meterforge/meters/m')
   })
 
   it('sets the bearer auth header', async () => {
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'k',
       fetch,
@@ -78,19 +78,19 @@ describe('base URL construction', () => {
 describe('server-variable templating', () => {
   it('substitutes a region variable', async () => {
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: ServerList[0],
       serverVariables: { region: 'eu' },
       apiKey: 'k',
       fetch,
     })
     await sdk.meters.get({ meterId: 'm' })
-    expect(lastUrl()).toBe('https://eu.api.konghq.com/v3/openmeter/meters/m')
+    expect(lastUrl()).toBe('https://eu.api.konghq.com/v3/meterforge/meters/m')
   })
 
   it('throws when a required template variable is missing', () => {
     expect(
-      () => new OpenMeter({ baseUrl: ServerList[0], apiKey: 'k', fetch }),
+      () => new MeterForge({ baseUrl: ServerList[0], apiKey: 'k', fetch }),
     ).toThrow()
   })
 })
@@ -98,19 +98,19 @@ describe('server-variable templating', () => {
 describe('option clobbering is prevented', () => {
   it('ignores a user-supplied prefix that would redirect requests', async () => {
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'k',
       prefix: 'http://evil.test/',
       fetch,
     })
     await sdk.meters.get({ meterId: 'm' })
-    expect(lastUrl()).toBe('https://eu.api.konghq.com/v3/openmeter/meters/m')
+    expect(lastUrl()).toBe('https://eu.api.konghq.com/v3/meterforge/meters/m')
   })
 
   it('applies SDK auth after user beforeRequest hooks', async () => {
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'real-key',
       fetch,
@@ -134,18 +134,18 @@ describe('SDK telemetry headers', () => {
 
   it('sets a default User-Agent header', async () => {
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'k',
       fetch,
     })
     await sdk.meters.get({ meterId: 'm' })
-    expect(lastUserAgent()).toBe(`openmeter-node/${SDK_VERSION}`)
+    expect(lastUserAgent()).toBe(`meterforge-node/${SDK_VERSION}`)
   })
 
   it('does not overwrite a caller-provided User-Agent', async () => {
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'k',
       headers: { 'User-Agent': 'custom-agent/1.0' },
@@ -159,7 +159,7 @@ describe('SDK telemetry headers', () => {
     vi.stubGlobal('window', {})
     vi.stubGlobal('process', undefined)
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'k',
       fetch,
@@ -174,7 +174,7 @@ describe('SDK telemetry headers', () => {
     vi.stubGlobal('self', {})
     vi.stubGlobal('process', undefined)
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'k',
       fetch,
@@ -187,7 +187,7 @@ describe('SDK telemetry headers', () => {
     vi.stubGlobal('window', {})
     vi.stubGlobal('process', undefined)
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'k',
       headers: { 'User-Agent': 'custom-agent/1.0' },
@@ -200,7 +200,7 @@ describe('SDK telemetry headers', () => {
 
 describe('namespace composition', () => {
   it('memoizes namespace accessors', () => {
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'k',
       fetch,
@@ -210,13 +210,13 @@ describe('namespace composition', () => {
 
   it('routes namespace calls through the root transport', async () => {
     mockMeter()
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'k',
       fetch,
     })
     await sdk.meters.get({ meterId: 'm' })
-    expect(lastUrl()).toBe('https://eu.api.konghq.com/v3/openmeter/meters/m')
+    expect(lastUrl()).toBe('https://eu.api.konghq.com/v3/meterforge/meters/m')
     expect(lastAuth()).toBe('Bearer k')
   })
 })

@@ -284,7 +284,7 @@ function interfaceResource(interfaceName: string): string {
 }
 
 // The op we walk lives on an `*Endpoints` interface whose own namespace is
-// `OpenMeter`; the meaningful grouping is on the interface it `extends`. An
+// `MeterForge`; the meaningful grouping is on the interface it `extends`. An
 // endpoints interface can also pick single operations via `op is Source.op`
 // (no `extends`), in which case the grouping comes from the source operation's
 // own interface.

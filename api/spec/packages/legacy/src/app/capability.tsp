@@ -1,6 +1,6 @@
 import "../types.tsp";
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * App capability.

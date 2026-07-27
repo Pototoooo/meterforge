@@ -54,10 +54,10 @@ importers:
 
   packages/aip:
     devDependencies:
-      '@openmeter/typespec-go':
+      '@meterforge/typespec-go':
         specifier: workspace:*
         version: link:../typespec-go
-      '@openmeter/typespec-typescript':
+      '@meterforge/typespec-typescript':
         specifier: workspace:*
         version: link:../typespec-typescript
       '@redocly/cli':

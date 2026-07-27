@@ -6,10 +6,10 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	"github.com/openmeterio/openmeter/pkg/clock"
-	"github.com/openmeterio/openmeter/pkg/datetime"
-	"github.com/openmeterio/openmeter/pkg/timeutil"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	"github.com/Pototoooo/meterforge/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
+	"github.com/Pototoooo/meterforge/pkg/timeutil"
 )
 
 func TestNextAfter(t *testing.T) {

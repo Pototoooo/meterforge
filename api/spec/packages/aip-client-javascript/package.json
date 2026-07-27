@@ -1,9 +1,9 @@
 {
-  "name": "@openmeter/client",
+  "name": "@meterforge/client",
   "version": "1.0.0",
-  "description": "Official TypeScript SDK for the OpenMeter API — usage metering and billing",
+  "description": "Official TypeScript SDK for the MeterForge API — usage metering and billing",
   "keywords": [
-    "openmeter",
+    "meterforge",
     "metering",
     "billing",
     "usage-based-billing",
@@ -11,14 +11,13 @@
     "sdk",
     "api-client"
   ],
-  "license": "Apache-2.0",
-  "homepage": "https://openmeter.io",
+  "homepage": "https://github.com/Pototoooo/meterforge",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmeterio/openmeter.git",
+    "url": "git+https://github.com/Pototoooo/meterforge.git",
     "directory": "api/spec/packages/aip-client-javascript"
   },
-  "bugs": "https://github.com/openmeterio/openmeter/issues",
+  "bugs": "https://github.com/Pototoooo/meterforge/issues",
   "type": "module",
   "engines": {
     "node": ">=22"

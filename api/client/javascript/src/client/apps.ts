@@ -10,7 +10,7 @@ import { transformResponse } from './utils.js'
 
 /**
  * Apps
- * Manage integrations for extending OpenMeter's functionality.
+ * Manage integrations for extending MeterForge's functionality.
  */
 export class Apps {
   public marketplace: AppMarketplace
@@ -101,7 +101,7 @@ export class Apps {
 
 /**
  * App Marketplace
- * Available apps from the OpenMeter Marketplace.
+ * Available apps from the MeterForge Marketplace.
  */
 export class AppMarketplace {
   constructor(private client: Client<paths, `${string}/${string}`>) {}

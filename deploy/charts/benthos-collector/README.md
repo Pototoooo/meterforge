@@ -1,33 +1,33 @@
 # benthos-collector
 
-![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-benthos--collector-informational?style=flat-square)](https://artifacthub.io/packages/helm/openmeter/benthos-collector)
+![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-benthos--collector-informational?style=flat-square)](https://artifacthub.io/packages/helm/meterforge/benthos-collector)
 
-A Benthos-based collector for OpenMeter
+A Benthos-based collector for MeterForge
 
-**Homepage:** <https://openmeter.io>
+**Homepage:** <https://github.com/Pototoooo/meterforge>
 
 ## TL;DR;
 
 ```bash
-helm install --generate-name --wait oci://ghcr.io/openmeterio/helm-charts/benthos-collector
+helm install --generate-name --wait oci://ghcr.io/Pototoooo/helm-charts/meterforge-benthos-collector
 ```
 
 to install a specific version:
 
 ```bash
-helm install --generate-name --wait oci://ghcr.io/openmeterio/helm-charts/benthos-collector --version $VERSION
+helm install --generate-name --wait oci://ghcr.io/Pototoooo/helm-charts/meterforge-benthos-collector --version $VERSION
 ```
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| image.repository | string | `"ghcr.io/openmeterio/benthos-collector"` | Name of the image repository to pull the container image from. |
+| image.repository | string | `"ghcr.io/Pototoooo/meterforge-benthos-collector"` | Name of the image repository to pull the container image from. |
 | image.pullPolicy | string | `"IfNotPresent"` | [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node. |
 | image.tag | string | `""` | Image tag override for the default value (chart appVersion). |
 | replicaCount | int | `1` | Number of replicas of pods in the StatefulSet |
-| openmeter.url | string | `"https://openmeter.cloud"` | OpenMeter API URL |
-| openmeter.token | string | `""` | OpenMeter token |
+| meterforge.url | string | `"http://localhost:8888"` | MeterForge API URL |
+| meterforge.token | string | `""` | MeterForge token |
 | config | object | `{}` | Benthos configuration Takes precedence over `configFile` and `preset`. |
 | configFile | string | `""` | Use an existing config file mounted via `volumes` and `volumeMounts`. Takes precedence over `preset`. |
 | preset | string | `""` | Use one of the predefined presets. Note: Read the documentation for the specific preset (example) to learn about configuration via env vars. |

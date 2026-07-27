@@ -1,4 +1,4 @@
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Percentage discount.

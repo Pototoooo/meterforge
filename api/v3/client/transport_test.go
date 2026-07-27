@@ -1,6 +1,6 @@
-// Hand-written wire tests for the generated OpenMeter Go SDK. The generator's
+// Hand-written wire tests for the generated MeterForge Go SDK. The generator's
 // output cleaner preserves *_test.go files, so these survive regeneration.
-package openmeter_test
+package meterforge_test
 
 import (
 	"bytes"
@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	openmeter "github.com/openmeterio/openmeter/api/v3/client"
+	meterforge "github.com/Pototoooo/meterforge/api/v3/client"
 )
 
 const emptyPageBody = `{"data":[],"meta":{"page":{"number":1,"size":100,"total":0}}}`
@@ -68,14 +68,14 @@ func (rr *requestRecorder) last(t *testing.T) recordedRequest {
 
 // newTestClient starts an httptest server around handler and returns a client
 // pointed at it. The server is closed via t.Cleanup.
-func newTestClient(t *testing.T, handler http.Handler, opts ...openmeter.Option) *openmeter.Client {
+func newTestClient(t *testing.T, handler http.Handler, opts ...meterforge.Option) *meterforge.Client {
 	t.Helper()
 	srv := httptest.NewServer(handler)
 	t.Cleanup(srv.Close)
 
-	c, err := openmeter.New(srv.URL, opts...)
+	c, err := meterforge.New(srv.URL, opts...)
 	if err != nil {
-		t.Fatalf("openmeter.New(%q): %v", srv.URL, err)
+		t.Fatalf("meterforge.New(%q): %v", srv.URL, err)
 	}
 	return c
 }
@@ -85,14 +85,14 @@ func TestBaseURLJoining(t *testing.T) {
 
 	t.Run("host-only base", func(t *testing.T) {
 		rec := &requestRecorder{}
-		om := newTestClient(t, rec.handler(http.StatusOK, emptyPageBody))
+		mf := newTestClient(t, rec.handler(http.StatusOK, emptyPageBody))
 
-		if _, err := om.Meters.List(t.Context(), openmeter.MeterListParams{}); err != nil {
+		if _, err := mf.Meters.List(t.Context(), meterforge.MeterListParams{}); err != nil {
 			t.Fatalf("Meters.List: %v", err)
 		}
 
-		if got := rec.last(t).path; got != "/openmeter/meters" {
-			t.Errorf("request path = %q, want %q", got, "/openmeter/meters")
+		if got := rec.last(t).path; got != "/meterforge/meters" {
+			t.Errorf("request path = %q, want %q", got, "/meterforge/meters")
 		}
 	})
 
@@ -101,18 +101,18 @@ func TestBaseURLJoining(t *testing.T) {
 		srv := httptest.NewServer(rec.handler(http.StatusOK, "{}"))
 		t.Cleanup(srv.Close)
 
-		om, err := openmeter.New(srv.URL + "/api/v3?tenant=acme")
+		mf, err := meterforge.New(srv.URL + "/api/v3?tenant=acme")
 		if err != nil {
-			t.Fatalf("openmeter.New: %v", err)
+			t.Fatalf("meterforge.New: %v", err)
 		}
 
-		if _, err := om.Meters.Get(t.Context(), "m-1"); err != nil {
+		if _, err := mf.Meters.Get(t.Context(), "m-1"); err != nil {
 			t.Fatalf("Meters.Get: %v", err)
 		}
 
 		r := rec.last(t)
-		if r.path != "/api/v3/openmeter/meters/m-1" {
-			t.Errorf("request path = %q, want %q", r.path, "/api/v3/openmeter/meters/m-1")
+		if r.path != "/api/v3/meterforge/meters/m-1" {
+			t.Errorf("request path = %q, want %q", r.path, "/api/v3/meterforge/meters/m-1")
 		}
 		if got := r.query.Get("tenant"); got != "acme" {
 			t.Errorf("base query param tenant = %q, want %q", got, "acme")
@@ -126,13 +126,13 @@ func TestBaseURLJoining(t *testing.T) {
 
 		// The base URL carries both an unrelated param and a page[size] that the
 		// request-level params must override.
-		om, err := openmeter.New(srv.URL + "/api/v3?tenant=acme&page%5Bsize%5D=9")
+		mf, err := meterforge.New(srv.URL + "/api/v3?tenant=acme&page%5Bsize%5D=9")
 		if err != nil {
-			t.Fatalf("openmeter.New: %v", err)
+			t.Fatalf("meterforge.New: %v", err)
 		}
 
-		params := openmeter.MeterListParams{Page: &openmeter.PageParams{Size: openmeter.Int(5)}}
-		if _, err := om.Meters.List(t.Context(), params); err != nil {
+		params := meterforge.MeterListParams{Page: &meterforge.PageParams{Size: meterforge.Int(5)}}
+		if _, err := mf.Meters.List(t.Context(), params); err != nil {
 			t.Fatalf("Meters.List: %v", err)
 		}
 
@@ -154,9 +154,9 @@ func TestRequestHeaders(t *testing.T) {
 
 	t.Run("authorization and default user agent", func(t *testing.T) {
 		rec := &requestRecorder{}
-		om := newTestClient(t, rec.handler(http.StatusOK, "{}"), openmeter.WithToken("test-token"))
+		mf := newTestClient(t, rec.handler(http.StatusOK, "{}"), meterforge.WithToken("test-token"))
 
-		if _, err := om.Meters.Get(t.Context(), "m-1"); err != nil {
+		if _, err := mf.Meters.Get(t.Context(), "m-1"); err != nil {
 			t.Fatalf("Meters.Get: %v", err)
 		}
 
@@ -164,7 +164,7 @@ func TestRequestHeaders(t *testing.T) {
 		if got := r.header.Get("Authorization"); got != "Bearer test-token" {
 			t.Errorf("Authorization = %q, want %q", got, "Bearer test-token")
 		}
-		wantUA := "openmeter-go-sdk/" + openmeter.Version
+		wantUA := "meterforge-go-sdk/" + meterforge.Version
 		if got := r.header.Get("User-Agent"); got != wantUA {
 			t.Errorf("User-Agent = %q, want %q", got, wantUA)
 		}
@@ -175,9 +175,9 @@ func TestRequestHeaders(t *testing.T) {
 
 	t.Run("custom user agent", func(t *testing.T) {
 		rec := &requestRecorder{}
-		om := newTestClient(t, rec.handler(http.StatusOK, "{}"), openmeter.WithUserAgent("acme-billing/1.2"))
+		mf := newTestClient(t, rec.handler(http.StatusOK, "{}"), meterforge.WithUserAgent("acme-billing/1.2"))
 
-		if _, err := om.Meters.Get(t.Context(), "m-1"); err != nil {
+		if _, err := mf.Meters.Get(t.Context(), "m-1"); err != nil {
 			t.Fatalf("Meters.Get: %v", err)
 		}
 
@@ -188,9 +188,9 @@ func TestRequestHeaders(t *testing.T) {
 
 	t.Run("csv accept header", func(t *testing.T) {
 		rec := &requestRecorder{}
-		om := newTestClient(t, rec.handler(http.StatusOK, "from,to,value\n"))
+		mf := newTestClient(t, rec.handler(http.StatusOK, "from,to,value\n"))
 
-		if _, err := om.Meters.QueryCSV(t.Context(), "m-1", openmeter.MeterQueryRequest{}); err != nil {
+		if _, err := mf.Meters.QueryCSV(t.Context(), "m-1", meterforge.MeterQueryRequest{}); err != nil {
 			t.Fatalf("Meters.QueryCSV: %v", err)
 		}
 
@@ -207,40 +207,40 @@ func TestRequestHeaders(t *testing.T) {
 func TestIngestContentTypes(t *testing.T) {
 	t.Parallel()
 
-	event := openmeter.EventInput{ID: "evt-1", Source: "svc", Type: "request", Subject: "cust-1"}
+	event := meterforge.EventInput{ID: "evt-1", Source: "svc", Type: "request", Subject: "cust-1"}
 
 	cases := []struct {
 		name     string
-		send     func(ctx context.Context, om *openmeter.Client) error
+		send     func(ctx context.Context, mf *meterforge.Client) error
 		wantCT   string
 		wantLead byte
 	}{
 		{
 			name:     "single event uses cloudevents json",
-			send:     func(ctx context.Context, om *openmeter.Client) error { return om.Events.IngestEvent(ctx, event) },
+			send:     func(ctx context.Context, mf *meterforge.Client) error { return mf.Events.IngestEvent(ctx, event) },
 			wantCT:   "application/cloudevents+json",
 			wantLead: '{',
 		},
 		{
 			name: "batch uses cloudevents batch json",
-			send: func(ctx context.Context, om *openmeter.Client) error {
-				return om.Events.IngestEvents(ctx, []openmeter.EventInput{event})
+			send: func(ctx context.Context, mf *meterforge.Client) error {
+				return mf.Events.IngestEvents(ctx, []meterforge.EventInput{event})
 			},
 			wantCT:   "application/cloudevents-batch+json",
 			wantLead: '[',
 		},
 		{
 			name: "plain json single",
-			send: func(ctx context.Context, om *openmeter.Client) error {
-				return om.Events.IngestEventsJSON(ctx, openmeter.One(event))
+			send: func(ctx context.Context, mf *meterforge.Client) error {
+				return mf.Events.IngestEventsJSON(ctx, meterforge.One(event))
 			},
 			wantCT:   "application/json",
 			wantLead: '{',
 		},
 		{
 			name: "plain json many",
-			send: func(ctx context.Context, om *openmeter.Client) error {
-				return om.Events.IngestEventsJSON(ctx, openmeter.Many([]openmeter.EventInput{event}))
+			send: func(ctx context.Context, mf *meterforge.Client) error {
+				return mf.Events.IngestEventsJSON(ctx, meterforge.Many([]meterforge.EventInput{event}))
 			},
 			wantCT:   "application/json",
 			wantLead: '[',
@@ -252,9 +252,9 @@ func TestIngestContentTypes(t *testing.T) {
 			t.Parallel()
 
 			rec := &requestRecorder{}
-			om := newTestClient(t, rec.handler(http.StatusNoContent, ""))
+			mf := newTestClient(t, rec.handler(http.StatusNoContent, ""))
 
-			if err := tc.send(t.Context(), om); err != nil {
+			if err := tc.send(t.Context(), mf); err != nil {
 				t.Fatalf("ingest call: %v", err)
 			}
 
@@ -295,7 +295,7 @@ func (rec *contextDeadlineRecorder) snapshot() (time.Time, bool) {
 func TestDefaultRequestDeadline(t *testing.T) {
 	t.Parallel()
 
-	newDeadlineClient := func(t *testing.T) (*openmeter.Client, *contextDeadlineRecorder) {
+	newDeadlineClient := func(t *testing.T) (*meterforge.Client, *contextDeadlineRecorder) {
 		t.Helper()
 		rec := &contextDeadlineRecorder{}
 		srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -304,18 +304,18 @@ func TestDefaultRequestDeadline(t *testing.T) {
 		}))
 		t.Cleanup(srv.Close)
 
-		om, err := openmeter.New(srv.URL, openmeter.WithHTTPClient(&http.Client{Transport: rec}))
+		mf, err := meterforge.New(srv.URL, meterforge.WithHTTPClient(&http.Client{Transport: rec}))
 		if err != nil {
-			t.Fatalf("openmeter.New: %v", err)
+			t.Fatalf("meterforge.New: %v", err)
 		}
-		return om, rec
+		return mf, rec
 	}
 
 	t.Run("buffered call without caller deadline gets the default", func(t *testing.T) {
-		om, rec := newDeadlineClient(t)
+		mf, rec := newDeadlineClient(t)
 
 		before := time.Now()
-		if _, err := om.Meters.Get(t.Context(), "m-1"); err != nil {
+		if _, err := mf.Meters.Get(t.Context(), "m-1"); err != nil {
 			t.Fatalf("Meters.Get: %v", err)
 		}
 
@@ -329,7 +329,7 @@ func TestDefaultRequestDeadline(t *testing.T) {
 	})
 
 	t.Run("caller deadline beyond the default is honored unchanged", func(t *testing.T) {
-		om, rec := newDeadlineClient(t)
+		mf, rec := newDeadlineClient(t)
 
 		// A 90s caller deadline discriminates pass-through from re-wrapping: if
 		// the SDK wrongly layered its 30s default on top, the captured deadline
@@ -338,7 +338,7 @@ func TestDefaultRequestDeadline(t *testing.T) {
 		ctx, cancel := context.WithDeadline(t.Context(), want)
 		defer cancel()
 
-		if _, err := om.Meters.Get(ctx, "m-1"); err != nil {
+		if _, err := mf.Meters.Get(ctx, "m-1"); err != nil {
 			t.Fatalf("Meters.Get: %v", err)
 		}
 
@@ -352,9 +352,9 @@ func TestDefaultRequestDeadline(t *testing.T) {
 	})
 
 	t.Run("streaming call gets no default deadline", func(t *testing.T) {
-		om, rec := newDeadlineClient(t)
+		mf, rec := newDeadlineClient(t)
 
-		stream, err := om.Meters.QueryCSVStream(t.Context(), "m-1", openmeter.MeterQueryRequest{})
+		stream, err := mf.Meters.QueryCSVStream(t.Context(), "m-1", meterforge.MeterQueryRequest{})
 		if err != nil {
 			t.Fatalf("Meters.QueryCSVStream: %v", err)
 		}
@@ -372,12 +372,12 @@ func TestBufferedResponseCap(t *testing.T) {
 	const bufferedCap = 10 << 20
 
 	t.Run("response over the cap errors and points at streaming", func(t *testing.T) {
-		om := newTestClient(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		mf := newTestClient(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "text/csv")
 			_, _ = w.Write(bytes.Repeat([]byte("a"), bufferedCap+1))
 		}))
 
-		_, err := om.Meters.QueryCSV(t.Context(), "m-1", openmeter.MeterQueryRequest{})
+		_, err := mf.Meters.QueryCSV(t.Context(), "m-1", meterforge.MeterQueryRequest{})
 		if err == nil {
 			t.Fatal("QueryCSV returned nil error for a response over the buffered cap")
 		}
@@ -387,12 +387,12 @@ func TestBufferedResponseCap(t *testing.T) {
 	})
 
 	t.Run("response exactly at the cap is returned whole", func(t *testing.T) {
-		om := newTestClient(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		mf := newTestClient(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "text/csv")
 			_, _ = w.Write(bytes.Repeat([]byte("a"), bufferedCap))
 		}))
 
-		body, err := om.Meters.QueryCSV(t.Context(), "m-1", openmeter.MeterQueryRequest{})
+		body, err := mf.Meters.QueryCSV(t.Context(), "m-1", meterforge.MeterQueryRequest{})
 		if err != nil {
 			t.Fatalf("QueryCSV: %v", err)
 		}
@@ -408,13 +408,13 @@ func TestErrorBodyCap(t *testing.T) {
 	const errorBodyCap = 1 << 20
 	oversized := strings.Repeat("x", errorBodyCap+4096)
 
-	om := newTestClient(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	mf := newTestClient(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		_, _ = io.WriteString(w, oversized)
 	}))
 
-	_, err := om.Meters.Get(t.Context(), "m-1")
-	apiErr, ok := openmeter.AsAPIError(err)
+	_, err := mf.Meters.Get(t.Context(), "m-1")
+	apiErr, ok := meterforge.AsAPIError(err)
 	if !ok {
 		t.Fatalf("error %v is not an *APIError", err)
 	}
@@ -431,12 +431,12 @@ func TestStream(t *testing.T) {
 
 	t.Run("returns a live body readable past the buffered cap", func(t *testing.T) {
 		const size = (10 << 20) + 1
-		om := newTestClient(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		mf := newTestClient(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "text/csv")
 			_, _ = w.Write(bytes.Repeat([]byte("a"), size))
 		}))
 
-		stream, err := om.Meters.QueryCSVStream(t.Context(), "m-1", openmeter.MeterQueryRequest{})
+		stream, err := mf.Meters.QueryCSVStream(t.Context(), "m-1", meterforge.MeterQueryRequest{})
 		if err != nil {
 			t.Fatalf("QueryCSVStream: %v", err)
 		}
@@ -453,15 +453,15 @@ func TestStream(t *testing.T) {
 
 	t.Run("non-2xx stream response returns an APIError", func(t *testing.T) {
 		rec := &requestRecorder{}
-		om := newTestClient(t, rec.handler(http.StatusForbidden, `{"status":403,"title":"Forbidden","detail":"no access"}`))
+		mf := newTestClient(t, rec.handler(http.StatusForbidden, `{"status":403,"title":"Forbidden","detail":"no access"}`))
 
-		stream, err := om.Meters.QueryCSVStream(t.Context(), "m-1", openmeter.MeterQueryRequest{})
+		stream, err := mf.Meters.QueryCSVStream(t.Context(), "m-1", meterforge.MeterQueryRequest{})
 		if err == nil {
 			stream.Close()
 			t.Fatal("QueryCSVStream returned nil error for a 403 response")
 		}
 
-		apiErr, ok := openmeter.AsAPIError(err)
+		apiErr, ok := meterforge.AsAPIError(err)
 		if !ok {
 			t.Fatalf("error %v is not an *APIError", err)
 		}

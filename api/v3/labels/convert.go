@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"strings"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
-const AnnotationsPrefix = "openmeter_"
+const AnnotationsPrefix = "meterforge_"
 
 type MetadataAnnotations struct {
 	Metadata    models.Metadata

@@ -8,12 +8,12 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges/creditpurchase"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges/meta"
-	currenciestestutils "github.com/openmeterio/openmeter/openmeter/currencies/testutils/currency"
-	"github.com/openmeterio/openmeter/pkg/clock"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/creditpurchase"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/meta"
+	currenciestestutils "github.com/Pototoooo/meterforge/meterforge/currencies/testutils/currency"
+	"github.com/Pototoooo/meterforge/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 func TestToAPIBillingCreditGrantPromotional(t *testing.T) {

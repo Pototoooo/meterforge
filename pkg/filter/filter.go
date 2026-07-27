@@ -14,7 +14,7 @@ import (
 	"github.com/oklog/ulid/v2"
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 // Filter is a filter for a field.

@@ -11,14 +11,14 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/cmd/jobs/billing"
-	"github.com/openmeterio/openmeter/cmd/jobs/entitlement"
-	"github.com/openmeterio/openmeter/cmd/jobs/internal"
-	"github.com/openmeterio/openmeter/cmd/jobs/ledger"
-	"github.com/openmeterio/openmeter/cmd/jobs/llmcost"
-	"github.com/openmeterio/openmeter/cmd/jobs/migrate"
-	"github.com/openmeterio/openmeter/cmd/jobs/quickstart"
-	"github.com/openmeterio/openmeter/pkg/log"
+	"github.com/Pototoooo/meterforge/cmd/jobs/billing"
+	"github.com/Pototoooo/meterforge/cmd/jobs/entitlement"
+	"github.com/Pototoooo/meterforge/cmd/jobs/internal"
+	"github.com/Pototoooo/meterforge/cmd/jobs/ledger"
+	"github.com/Pototoooo/meterforge/cmd/jobs/llmcost"
+	"github.com/Pototoooo/meterforge/cmd/jobs/migrate"
+	"github.com/Pototoooo/meterforge/cmd/jobs/quickstart"
+	"github.com/Pototoooo/meterforge/pkg/log"
 )
 
 func main() {

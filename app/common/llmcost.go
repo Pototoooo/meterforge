@@ -7,11 +7,11 @@ import (
 
 	"github.com/google/wire"
 
-	entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
-	"github.com/openmeterio/openmeter/openmeter/llmcost"
-	llmcostadapter "github.com/openmeterio/openmeter/openmeter/llmcost/adapter"
-	llmcostservice "github.com/openmeterio/openmeter/openmeter/llmcost/service"
-	llmcostsync "github.com/openmeterio/openmeter/openmeter/llmcost/sync"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
+	"github.com/Pototoooo/meterforge/meterforge/llmcost"
+	llmcostadapter "github.com/Pototoooo/meterforge/meterforge/llmcost/adapter"
+	llmcostservice "github.com/Pototoooo/meterforge/meterforge/llmcost/service"
+	llmcostsync "github.com/Pototoooo/meterforge/meterforge/llmcost/sync"
 )
 
 var LLMCost = wire.NewSet(

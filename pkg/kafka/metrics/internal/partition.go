@@ -7,7 +7,7 @@ import (
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/metric"
 
-	"github.com/openmeterio/openmeter/pkg/kafka/metrics/stats"
+	"github.com/Pototoooo/meterforge/pkg/kafka/metrics/stats"
 )
 
 type PartitionMessageMetrics struct {

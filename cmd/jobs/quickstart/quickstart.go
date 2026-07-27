@@ -3,7 +3,7 @@ package quickstart
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/openmeterio/openmeter/cmd/jobs/billing/subscriptionsync"
+	"github.com/Pototoooo/meterforge/cmd/jobs/billing/subscriptionsync"
 )
 
 var Cmd = &cobra.Command{

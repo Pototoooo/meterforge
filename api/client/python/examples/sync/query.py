@@ -1,12 +1,12 @@
 from os import environ
 from typing import Optional
 
-from openmeter import Client
-from openmeter.models import MeterQueryResult, FilterString
+from meterforge import Client
+from meterforge.models import MeterQueryResult, FilterString
 from corehttp.exceptions import HttpResponseError
 
-ENDPOINT: str = environ.get("OPENMETER_ENDPOINT") or "https://openmeter.cloud"
-token: Optional[str] = environ.get("OPENMETER_TOKEN")
+ENDPOINT: str = environ.get("METERFORGE_ENDPOINT") or "http://localhost:8888"
+token: Optional[str] = environ.get("METERFORGE_TOKEN")
 
 client = Client(
     endpoint=ENDPOINT,

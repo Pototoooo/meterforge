@@ -11,8 +11,8 @@ import (
 	lru "github.com/hashicorp/golang-lru/v2"
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/operation"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/operation"
 )
 
 type Gate interface {
@@ -38,7 +38,7 @@ func (f FeatureFlag) String() string {
 }
 
 const (
-	CtxKeyCredits FeatureFlag = "om_ff_credits_enabled"
+	CtxKeyCredits FeatureFlag = "mf_ff_credits_enabled"
 )
 
 func ContextResolver() contextResolver {

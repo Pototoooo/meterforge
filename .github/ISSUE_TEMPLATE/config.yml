@@ -1,8 +1,8 @@
 blank_issues_enabled: true
 contact_links:
   - name: ❓ Ask a question
-    url: https://github.com/openmeterio/openmeter/discussions/new?category=q-a
-    about: Ask and discuss questions with other OpenMeter community members
+    url: https://github.com/Pototoooo/meterforge/discussions/new?category=q-a
+    about: Ask and discuss questions with other MeterForge community members
 
   - name: 💬 Discord
     url: https://discord.gg/nYH3ZQ3Xzq

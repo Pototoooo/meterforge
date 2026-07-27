@@ -11,7 +11,7 @@ namespace Customers;
 model Customer {
   ...Shared.Resource;
 
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Create, Lifecycle.Read)
   key: Shared.ExternalResourceKey;
 

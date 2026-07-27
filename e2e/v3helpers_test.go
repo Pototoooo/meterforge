@@ -18,7 +18,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	v3sdk "github.com/openmeterio/openmeter/api/v3/client"
+	v3sdk "github.com/Pototoooo/meterforge/api/v3/client"
 )
 
 // v3Client embeds the generated v3 SDK so tests call service methods
@@ -37,14 +37,14 @@ type v3Client struct {
 	baseURL  string
 }
 
-// newV3Client returns a client pointed at $OPENMETER_ADDRESS. Skips the test
+// newV3Client returns a client pointed at $METERFORGE_ADDRESS. Skips the test
 // when the variable is unset.
 func newV3Client(t testing.TB) *v3Client {
 	t.Helper()
 
-	address := os.Getenv("OPENMETER_ADDRESS")
+	address := os.Getenv("METERFORGE_ADDRESS")
 	if address == "" {
-		t.Skip("OPENMETER_ADDRESS not set")
+		t.Skip("METERFORGE_ADDRESS not set")
 	}
 
 	baseURL := strings.TrimRight(address, "/")
@@ -57,7 +57,7 @@ func newV3Client(t testing.TB) *v3Client {
 		t:        t,
 		Client:   sdk,
 		statuses: statuses,
-		baseURL:  baseURL + "/api/v3/openmeter",
+		baseURL:  baseURL + "/api/v3/meterforge",
 	}
 }
 

@@ -28,7 +28,7 @@ model CreditBalances {
 @friendlyName("CreditBalance")
 @summary("Credit balance")
 model CreditBalance {
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Read)
   currency: Currencies.CurrencyCode;
 

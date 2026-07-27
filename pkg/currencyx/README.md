@@ -1,6 +1,6 @@
 # currencyx
 
-`currencyx` contains OpenMeter's shared currency primitives. It keeps fiat
+`currencyx` contains MeterForge's shared currency primitives. It keeps fiat
 behavior compatible with GOBL/ISO currency definitions while allowing product
 and ledger code to pass configured custom currencies through the same
 `Currency` interface.

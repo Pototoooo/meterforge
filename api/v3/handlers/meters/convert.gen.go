@@ -4,9 +4,9 @@
 package meters
 
 import (
-	v3 "github.com/openmeterio/openmeter/api/v3"
-	response "github.com/openmeterio/openmeter/api/v3/response"
-	meter "github.com/openmeterio/openmeter/openmeter/meter"
+	v3 "github.com/Pototoooo/meterforge/api/v3"
+	response "github.com/Pototoooo/meterforge/api/v3/response"
+	meter "github.com/Pototoooo/meterforge/meterforge/meter"
 	"time"
 )
 

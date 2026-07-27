@@ -8,15 +8,15 @@ import (
 
 	"github.com/samber/lo"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	"github.com/openmeterio/openmeter/api/v3/filters"
-	"github.com/openmeterio/openmeter/api/v3/response"
-	"github.com/openmeterio/openmeter/openmeter/meterevent"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
-	pagination "github.com/openmeterio/openmeter/pkg/pagination/v2"
-	"github.com/openmeterio/openmeter/pkg/slicesx"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/api/v3/filters"
+	"github.com/Pototoooo/meterforge/api/v3/response"
+	"github.com/Pototoooo/meterforge/meterforge/meterevent"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
+	pagination "github.com/Pototoooo/meterforge/pkg/pagination/v2"
+	"github.com/Pototoooo/meterforge/pkg/slicesx"
 )
 
 const defaultListMeteringEventsPageSize = 20

@@ -3,7 +3,7 @@ package httptransport
 import (
 	"context"
 
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport/encoder"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport/encoder"
 )
 
 func (h *handler[Request, Response]) apply(options []HandlerOption) {

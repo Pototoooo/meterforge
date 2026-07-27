@@ -8,10 +8,10 @@ import (
 	"github.com/alpacahq/alpacadecimal"
 	"github.com/samber/lo"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	"github.com/openmeterio/openmeter/openmeter/llmcost"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/meterforge/llmcost"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 // providerDisplayNames maps canonical provider IDs to their formatted display names.

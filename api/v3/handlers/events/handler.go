@@ -3,9 +3,9 @@ package events
 import (
 	"context"
 
-	"github.com/openmeterio/openmeter/openmeter/ingest"
-	"github.com/openmeterio/openmeter/openmeter/meterevent"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/meterforge/ingest"
+	"github.com/Pototoooo/meterforge/meterforge/meterevent"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 type Handler interface {

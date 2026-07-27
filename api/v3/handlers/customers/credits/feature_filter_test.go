@@ -7,9 +7,9 @@ import (
 	"github.com/samber/mo"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges/creditpurchase"
-	"github.com/openmeterio/openmeter/openmeter/ledger/customerbalance"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/creditpurchase"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/customerbalance"
 )
 
 func TestFromAPICustomerCreditFeatureFilter(t *testing.T) {

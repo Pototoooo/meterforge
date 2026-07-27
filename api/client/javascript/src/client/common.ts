@@ -10,7 +10,7 @@ export type RequestOptions = Pick<RequestInit, 'signal'>
  */
 export class HTTPError extends Error {
   public name = 'HTTPError'
-  public client = 'OpenMeter'
+  public client = 'MeterForge'
 
   constructor(
     public message: string,

@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/openmeterio/openmeter/pkg/pagination"
+	"github.com/Pototoooo/meterforge/pkg/pagination"
 )
 
 func TestShouldFlattenPageInfoWhenMarshalling(t *testing.T) {

@@ -17,26 +17,26 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 
-	appsandbox "github.com/openmeterio/openmeter/openmeter/app/sandbox"
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	billingadapter "github.com/openmeterio/openmeter/openmeter/billing/adapter"
-	"github.com/openmeterio/openmeter/openmeter/billing/models/stddetailedline"
-	"github.com/openmeterio/openmeter/openmeter/billing/models/totals"
-	"github.com/openmeterio/openmeter/openmeter/billing/rating"
-	"github.com/openmeterio/openmeter/openmeter/billing/service/invoicecalc"
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog/feature"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	"github.com/openmeterio/openmeter/pkg/clock"
-	"github.com/openmeterio/openmeter/pkg/currencyx"
-	"github.com/openmeterio/openmeter/pkg/datetime"
-	"github.com/openmeterio/openmeter/pkg/filter"
-	"github.com/openmeterio/openmeter/pkg/models"
-	"github.com/openmeterio/openmeter/pkg/pagination"
-	"github.com/openmeterio/openmeter/pkg/timeutil"
+	appsandbox "github.com/Pototoooo/meterforge/meterforge/app/sandbox"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	billingadapter "github.com/Pototoooo/meterforge/meterforge/billing/adapter"
+	"github.com/Pototoooo/meterforge/meterforge/billing/models/stddetailedline"
+	"github.com/Pototoooo/meterforge/meterforge/billing/models/totals"
+	"github.com/Pototoooo/meterforge/meterforge/billing/rating"
+	"github.com/Pototoooo/meterforge/meterforge/billing/service/invoicecalc"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog/feature"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	"github.com/Pototoooo/meterforge/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
+	"github.com/Pototoooo/meterforge/pkg/filter"
+	"github.com/Pototoooo/meterforge/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/pagination"
+	"github.com/Pototoooo/meterforge/pkg/timeutil"
 )
 
 type InvoicingTestSuite struct {
@@ -1187,7 +1187,7 @@ func (s *InvoicingTestSuite) TestInvoicingFlowErrorHandling() {
 						Severity:  billing.ValidationIssueSeverityCritical,
 						Code:      "test2",
 						Message:   "validation error",
-						Component: billing.ValidationComponentOpenMeter,
+						Component: billing.ValidationComponentMeterForge,
 					},
 				}, invoice.ValidationIssues.RemoveMetaForCompare())
 
@@ -1242,7 +1242,7 @@ func (s *InvoicingTestSuite) TestInvoicingFlowErrorHandling() {
 						Severity:  billing.ValidationIssueSeverityCritical,
 						Code:      "test2",
 						Message:   "validation error",
-						Component: "openmeter",
+						Component: "meterforge",
 					},
 					calculationErrorIssue.ValidationIssue,
 				)
@@ -1286,7 +1286,7 @@ func (s *InvoicingTestSuite) TestInvoicingFlowErrorHandling() {
 						Severity:  billing.ValidationIssueSeverityCritical,
 						Code:      "test2",
 						Message:   "validation error",
-						Component: billing.ValidationComponentOpenMeter,
+						Component: billing.ValidationComponentMeterForge,
 					},
 				}, invoice.ValidationIssues.RemoveMetaForCompare())
 

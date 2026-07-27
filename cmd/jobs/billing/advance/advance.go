@@ -5,8 +5,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/openmeterio/openmeter/cmd/jobs/internal"
-	"github.com/openmeterio/openmeter/openmeter/billing"
+	"github.com/Pototoooo/meterforge/cmd/jobs/internal"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
 )
 
 var namespace string

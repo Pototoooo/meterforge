@@ -6,8 +6,8 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/openmeter/billing"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
 )
 
 func TestFromAPIBillingWorkflowSubscriptionEndProrationModeDefaults(t *testing.T) {

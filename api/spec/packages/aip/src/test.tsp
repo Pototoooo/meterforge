@@ -16,19 +16,19 @@ namespace Test;
  */
 @friendlyName("FieldFilters")
 model FieldFilters {
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "test model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "test model"
   boolean?: Common.BooleanFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "test model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "test model"
   numeric?: Common.NumericFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "test model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "test model"
   string?: Common.StringFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "test model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "test model"
   string_exact?: Common.StringFieldFilterExact;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "test model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "test model"
   ulid?: Common.ULIDFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "test model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "test model"
   datetime?: Common.DateTimeFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "test model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "test model"
   labels?: Common.LabelsFieldFilter;
 }
 

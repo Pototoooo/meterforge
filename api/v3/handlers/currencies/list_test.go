@@ -9,9 +9,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	v3 "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/openmeter/currencies"
-	"github.com/openmeterio/openmeter/pkg/pagination"
+	v3 "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/meterforge/currencies"
+	"github.com/Pototoooo/meterforge/pkg/pagination"
 )
 
 type listCurrenciesService struct {

@@ -1,6 +1,6 @@
 import fetchMock from '@fetch-mock/vitest'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { OpenMeter, type IngestedEvent, type Meter } from '../src/index.js'
+import { MeterForge, type IngestedEvent, type Meter } from '../src/index.js'
 import {
   PaginationLimitExceededError,
   paginateCursor,
@@ -13,7 +13,7 @@ beforeEach(() => {
 })
 
 function client() {
-  return new OpenMeter({
+  return new MeterForge({
     baseUrl: 'https://eu.api.konghq.com/v3',
     apiKey: 'k',
     fetch: fetchMock.fetchHandler,
@@ -368,19 +368,19 @@ describe('AsyncIterable<Item> type inference', () => {
   // call site required to get there.
   type ListAllItem<T> = T extends AsyncIterable<infer Item> ? Item : never
   type _MetersListAllYieldsMeter = [
-    ListAllItem<ReturnType<OpenMeter['meters']['listAll']>>,
+    ListAllItem<ReturnType<MeterForge['meters']['listAll']>>,
   ] extends [Meter]
-    ? [Meter] extends [ListAllItem<ReturnType<OpenMeter['meters']['listAll']>>]
+    ? [Meter] extends [ListAllItem<ReturnType<MeterForge['meters']['listAll']>>]
       ? true
       : { __error: 'meters.listAll yields something narrower than Meter' }
     : { __error: 'meters.listAll does not yield Meter' }
   const _metersListAllYieldsMeter: _MetersListAllYieldsMeter = true
 
   type _EventsListAllYieldsIngestedEvent = [
-    ListAllItem<ReturnType<OpenMeter['events']['listAll']>>,
+    ListAllItem<ReturnType<MeterForge['events']['listAll']>>,
   ] extends [IngestedEvent]
     ? [IngestedEvent] extends [
-        ListAllItem<ReturnType<OpenMeter['events']['listAll']>>,
+        ListAllItem<ReturnType<MeterForge['events']['listAll']>>,
       ]
       ? true
       : {

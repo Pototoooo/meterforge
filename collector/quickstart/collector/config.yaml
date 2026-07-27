@@ -11,6 +11,6 @@ metrics:
 #    grpc:
 #      - address: <host>:4317
 #    tags:
-#      application: openmeter-collector
+#      application: meterforge-collector
 #    sampling:
 #      enabled: false

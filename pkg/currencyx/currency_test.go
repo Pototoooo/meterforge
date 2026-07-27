@@ -6,8 +6,8 @@ import (
 	"github.com/alpacahq/alpacadecimal"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/pkg/currencyx"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 func TestRoundToPrecision(t *testing.T) {

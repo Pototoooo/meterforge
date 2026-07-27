@@ -1,5 +1,5 @@
 {
-  "name": "@openmeter/typespec-go",
+  "name": "@meterforge/typespec-go",
   "version": "0.0.1",
   "private": true,
   "type": "module",

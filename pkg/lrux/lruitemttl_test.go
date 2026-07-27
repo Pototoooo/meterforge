@@ -9,7 +9,7 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/clock"
 )
 
 func TestCacheWithItemTTLSanity(t *testing.T) {

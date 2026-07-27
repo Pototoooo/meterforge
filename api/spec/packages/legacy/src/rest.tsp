@@ -10,7 +10,7 @@ namespace TypeSpec.Rest.Resource {
     is UpdateableProperties<DefaultKeyVisibility<Resource, Lifecycle.Read>>;
 }
 
-namespace OpenMeter.Rest {
+namespace MeterForge.Rest {
   /**
    * Resource create operation model.
    * @template Resource The resource model to create.

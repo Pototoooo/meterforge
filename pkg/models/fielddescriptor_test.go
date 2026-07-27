@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/pkg/treex"
+	"github.com/Pototoooo/meterforge/pkg/treex"
 )
 
 func TestFieldSelector(t *testing.T) {

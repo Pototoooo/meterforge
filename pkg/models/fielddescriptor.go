@@ -6,7 +6,7 @@ import (
 
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/pkg/treex"
+	"github.com/Pototoooo/meterforge/pkg/treex"
 )
 
 type FieldDescriptor struct {

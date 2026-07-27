@@ -12,30 +12,30 @@ import (
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/app/common"
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/ent/db"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/notification"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog/feature"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
-	watermillkafka "github.com/openmeterio/openmeter/openmeter/watermill/driver/kafka"
-	"github.com/openmeterio/openmeter/openmeter/watermill/eventbus"
+	"github.com/Pototoooo/meterforge/app/common"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/ent/db"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/notification"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog/feature"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
+	watermillkafka "github.com/Pototoooo/meterforge/meterforge/watermill/driver/kafka"
+	"github.com/Pototoooo/meterforge/meterforge/watermill/eventbus"
 )
 
 type Application struct {
 	common.GlobalInitializer
 	common.Migrator
 
-	BrokerOptions      watermillkafka.BrokerOptions
-	EventPublisher     eventbus.Publisher
-	EntClient          *db.Client
-	FeatureConnector   feature.FeatureConnector
-	Logger             *slog.Logger
-	MessagePublisher   message.Publisher
-	Meter              metric.Meter
-	Tracer             trace.Tracer
-	Metadata           common.Metadata
+	BrokerOptions           watermillkafka.BrokerOptions
+	EventPublisher          eventbus.Publisher
+	EntClient               *db.Client
+	FeatureConnector        feature.FeatureConnector
+	Logger                  *slog.Logger
+	MessagePublisher        message.Publisher
+	Meter                   metric.Meter
+	Tracer                  trace.Tracer
+	Metadata                common.Metadata
 	MeterService            meter.Service
 	Notification            notification.Service
 	RuntimeMetricsCollector common.RuntimeMetricsCollector

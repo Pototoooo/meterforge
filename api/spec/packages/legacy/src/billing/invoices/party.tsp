@@ -8,7 +8,7 @@ using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /*
  * Omitted fields
@@ -68,7 +68,7 @@ model BillingParty {
 /**
  * BillingInvoiceCustomerExtendedDetails is a collection of fields that are used to extend the billing party details for invoices.
  *
- * These fields contain the OpenMeter specific details for the customer, that are not strictly required for the invoice itself.
+ * These fields contain the MeterForge specific details for the customer, that are not strictly required for the invoice itself.
  */
 @friendlyName("BillingInvoiceCustomerExtendedDetails")
 model BillingInvoiceCustomerExtendedDetails {

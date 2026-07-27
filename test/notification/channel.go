@@ -7,9 +7,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/notification"
-	webhooksecret "github.com/openmeterio/openmeter/openmeter/notification/webhook/secret"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/meterforge/notification"
+	webhooksecret "github.com/Pototoooo/meterforge/meterforge/notification/webhook/secret"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 func NewCreateChannelInput(namespace, name string) notification.CreateChannelInput {

@@ -36,44 +36,44 @@ RUN chmod +x entrypoint.sh
 # Build server binary (default)
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/go/cache \
-    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/openmeter ./cmd/server
+    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/meterforge ./cmd/server
 
-RUN xx-verify /usr/local/bin/openmeter
+RUN xx-verify /usr/local/bin/meterforge
 
 # Build sink-worker binary
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/go/cache \
-    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/openmeter-sink-worker ./cmd/sink-worker
+    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/meterforge-sink-worker ./cmd/sink-worker
 
-RUN xx-verify /usr/local/bin/openmeter-sink-worker
+RUN xx-verify /usr/local/bin/meterforge-sink-worker
 
 # Build balance-worker binary
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/go/cache \
-    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/openmeter-balance-worker ./cmd/balance-worker
+    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/meterforge-balance-worker ./cmd/balance-worker
 
-RUN xx-verify /usr/local/bin/openmeter-balance-worker
+RUN xx-verify /usr/local/bin/meterforge-balance-worker
 
 # Build notification-service binary
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/go/cache \
-    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/openmeter-notification-service ./cmd/notification-service
+    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/meterforge-notification-service ./cmd/notification-service
 
-RUN xx-verify /usr/local/bin/openmeter-notification-service
+RUN xx-verify /usr/local/bin/meterforge-notification-service
 
 # Build billing-worker binary
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/go/cache \
-    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/openmeter-billing-worker ./cmd/billing-worker
+    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/meterforge-billing-worker ./cmd/billing-worker
 
-RUN xx-verify /usr/local/bin/openmeter-billing-worker
+RUN xx-verify /usr/local/bin/meterforge-billing-worker
 
 # Build periodic jobs binary
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/go/cache \
-    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/openmeter-jobs ./cmd/jobs
+    xx-go build -ldflags "-linkmode external -extldflags \"-static\" -X main.version=${VERSION}" -tags musl -o /usr/local/bin/meterforge-jobs ./cmd/jobs
 
-RUN xx-verify /usr/local/bin/openmeter-jobs
+RUN xx-verify /usr/local/bin/meterforge-jobs
 
 FROM alpine:3.24.1@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
 
@@ -81,15 +81,15 @@ RUN apk add --update --no-cache ca-certificates tzdata bash
 
 SHELL ["/bin/bash", "-c"]
 
-COPY --link --from=builder /usr/local/bin/openmeter /usr/local/bin/
-COPY --link --from=builder /usr/local/bin/openmeter-sink-worker /usr/local/bin/
-COPY --link --from=builder /usr/local/bin/openmeter-balance-worker /usr/local/bin/
-COPY --link --from=builder /usr/local/bin/openmeter-notification-service /usr/local/bin/
-COPY --link --from=builder /usr/local/bin/openmeter-billing-worker /usr/local/bin/
-COPY --link --from=builder /usr/local/bin/openmeter-jobs /usr/local/bin/
-COPY --link --from=builder /src/go.* /usr/local/src/openmeter/
+COPY --link --from=builder /usr/local/bin/meterforge /usr/local/bin/
+COPY --link --from=builder /usr/local/bin/meterforge-sink-worker /usr/local/bin/
+COPY --link --from=builder /usr/local/bin/meterforge-balance-worker /usr/local/bin/
+COPY --link --from=builder /usr/local/bin/meterforge-notification-service /usr/local/bin/
+COPY --link --from=builder /usr/local/bin/meterforge-billing-worker /usr/local/bin/
+COPY --link --from=builder /usr/local/bin/meterforge-jobs /usr/local/bin/
+COPY --link --from=builder /src/go.* /usr/local/src/meterforge/
 COPY --link --from=builder /src/entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD openmeter
+CMD meterforge

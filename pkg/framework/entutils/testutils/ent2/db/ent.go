@@ -12,7 +12,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent2/db/example2"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent2/db/example2"
 )
 
 // ent aliases to avoid import conflicts in user's code.

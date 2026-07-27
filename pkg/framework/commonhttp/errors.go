@@ -8,7 +8,7 @@ import (
 
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 type ErrorWithHTTPStatusCode struct {
@@ -77,7 +77,7 @@ func HandleErrorIfTypeMatches[T error](ctx context.Context, statusCode int, err 
 
 type httpAttributeKey string
 
-const httpStatusCodeErrorAttribute httpAttributeKey = "openmeter.http.status_code"
+const httpStatusCodeErrorAttribute httpAttributeKey = "meterforge.http.status_code"
 
 func WithHTTPStatusCodeAttribute(code int) models.ValidationIssueOption {
 	return models.WithAttribute(httpStatusCodeErrorAttribute, code)

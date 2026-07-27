@@ -1,10 +1,10 @@
-// Hand-written wire tests for the generated OpenMeter Go SDK. The generator's
+// Hand-written wire tests for the generated MeterForge Go SDK. The generator's
 // output cleaner preserves *_test.go files, so these survive regeneration.
 //
-// This file is an internal (package openmeter) test so it can drive the
+// This file is an internal (package meterforge) test so it can drive the
 // unexported paginate/paginateCursor iterators directly; the maxPages guard in
 // particular would need thousands of HTTP round trips to exercise black-box.
-package openmeter
+package meterforge
 
 import (
 	"fmt"
@@ -301,7 +301,7 @@ func TestMetersListAllWalksPagesOverHTTP(t *testing.T) {
 	t.Parallel()
 
 	var hits atomic.Int32
-	om := newHTTPTestClient(t, func(w http.ResponseWriter, r *http.Request) {
+	mf := newHTTPTestClient(t, func(w http.ResponseWriter, r *http.Request) {
 		hits.Add(1)
 		if got := r.URL.Query().Get("page[size]"); got != "2" {
 			t.Errorf("page[size] = %q, want %q", got, "2")
@@ -320,7 +320,7 @@ func TestMetersListAllWalksPagesOverHTTP(t *testing.T) {
 
 	var keys []string
 	params := MeterListParams{Page: &PageParams{Size: Int(2)}}
-	for meter, err := range om.Meters.ListAll(t.Context(), params) {
+	for meter, err := range mf.Meters.ListAll(t.Context(), params) {
 		if err != nil {
 			t.Fatalf("ListAll: %v", err)
 		}
@@ -339,13 +339,13 @@ func TestMetersListAllEarlyBreakStopsRequests(t *testing.T) {
 	t.Parallel()
 
 	var hits atomic.Int32
-	om := newHTTPTestClient(t, func(w http.ResponseWriter, r *http.Request) {
+	mf := newHTTPTestClient(t, func(w http.ResponseWriter, r *http.Request) {
 		hits.Add(1)
 		w.Header().Set("Content-Type", "application/json")
 		_, _ = io.WriteString(w, `{"data":[{"key":"m1"},{"key":"m2"}],"meta":{"page":{"number":1,"size":2,"total":100}}}`)
 	})
 
-	for _, err := range om.Meters.ListAll(t.Context(), MeterListParams{Page: &PageParams{Size: Int(2)}}) {
+	for _, err := range mf.Meters.ListAll(t.Context(), MeterListParams{Page: &PageParams{Size: Int(2)}}) {
 		if err != nil {
 			t.Fatalf("ListAll: %v", err)
 		}
@@ -361,7 +361,7 @@ func TestEventsListAllFollowsNextCursorOverHTTP(t *testing.T) {
 	t.Parallel()
 
 	var hits atomic.Int32
-	om := newHTTPTestClient(t, func(w http.ResponseWriter, r *http.Request) {
+	mf := newHTTPTestClient(t, func(w http.ResponseWriter, r *http.Request) {
 		hits.Add(1)
 		if got := r.URL.Query().Get("page[before]"); got != "" {
 			t.Errorf("forward paging sent page[before]=%q, want none", got)
@@ -383,7 +383,7 @@ func TestEventsListAllFollowsNextCursorOverHTTP(t *testing.T) {
 
 	var ids []string
 	params := IngestedEventListParams{Page: &CursorPageParams{Size: Int(2)}}
-	for event, err := range om.Events.ListAll(t.Context(), params) {
+	for event, err := range mf.Events.ListAll(t.Context(), params) {
 		if err != nil {
 			t.Fatalf("ListAll: %v", err)
 		}
@@ -402,7 +402,7 @@ func TestEventsListAllFollowsPreviousCursorWithBefore(t *testing.T) {
 	t.Parallel()
 
 	var hits atomic.Int32
-	om := newHTTPTestClient(t, func(w http.ResponseWriter, r *http.Request) {
+	mf := newHTTPTestClient(t, func(w http.ResponseWriter, r *http.Request) {
 		hits.Add(1)
 		if got := r.URL.Query().Get("page[after]"); got != "" {
 			t.Errorf("backward paging sent page[after]=%q, want none", got)
@@ -421,7 +421,7 @@ func TestEventsListAllFollowsPreviousCursorWithBefore(t *testing.T) {
 
 	var ids []string
 	params := IngestedEventListParams{Page: &CursorPageParams{Before: String("cur9")}}
-	for event, err := range om.Events.ListAll(t.Context(), params) {
+	for event, err := range mf.Events.ListAll(t.Context(), params) {
 		if err != nil {
 			t.Fatalf("ListAll: %v", err)
 		}

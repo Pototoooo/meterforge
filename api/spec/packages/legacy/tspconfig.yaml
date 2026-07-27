@@ -11,4 +11,4 @@ options:
     emitter-output-dir: '{output-dir}/output'
 linter:
   extends:
-    - '@openmeter/api-spec-legacy/all'
+    - '@meterforge/api-spec-legacy/all'

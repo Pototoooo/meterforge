@@ -3,7 +3,7 @@ import "../rest.tsp";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 @route("/api/v1/billing/profiles")
 @tag("Billing")
@@ -506,7 +506,7 @@ model BillingWorkflowTaxSettings {
 
   /**
    * Enforce tax calculation when tax is supported by the app.
-   * When enabled, OpenMeter will not allow to create an invoice without tax calculation.
+   * When enabled, MeterForge will not allow to create an invoice without tax calculation.
    * Enforcement is different per apps, for example, Stripe app requires customer
    * to have a tax location when starting a paid subscription.
    */

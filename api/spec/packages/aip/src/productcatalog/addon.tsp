@@ -35,7 +35,7 @@ enum AddonInstanceType {
  * Add-on allows extending subscriptions with compatible plans with additional
  * ratecards.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "effective_from and effective_to are standard AIP temporal fields"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "effective_from and effective_to are standard AIP temporal fields"
 @friendlyName("Addon")
 model Addon {
   ...Shared.Resource;
@@ -45,7 +45,7 @@ model Addon {
    * reference the latest `active` version of the add-on and is unique with the
    * version number.
    */
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Read, Lifecycle.Create)
   @summary("Key")
   key: Shared.ResourceKey;

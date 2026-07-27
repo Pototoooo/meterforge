@@ -1,4 +1,4 @@
-# OpenMeter API Spec & SDK Generator
+# MeterForge API Spec & SDK Generator
 
 This workspace holds the TypeSpec API definitions and SDK generators. For
 repo-wide guidance see the root [AGENTS.md](../../AGENTS.md); this
@@ -65,11 +65,11 @@ directly, then run `make -C api/spec generate`.
 
 ### Grouping (reproduce this)
 
-The `OpenMeter` service surfaces every operation through an `*Endpoints`
+The `MeterForge` service surfaces every operation through an `*Endpoints`
 interface that `extends` the resource's interface in its **source** namespace
-(e.g. `OpenMeter.PlansEndpoints extends ProductCatalog.PlanOperations`). The op
+(e.g. `MeterForge.PlansEndpoints extends ProductCatalog.PlanOperations`). The op
 walked lives on the `*Endpoints` interface, so its own `namespace` is
-`OpenMeter` — the meaningful grouping is on `op.interface.sourceInterfaces[0]`.
+`MeterForge` — the meaningful grouping is on `op.interface.sourceInterfaces[0]`.
 
 Group by the **top of the source namespace chain** so multi-interface
 namespaces stay one client: `MetersEndpoints` + `MetersQueryEndpoints` →
@@ -77,7 +77,7 @@ namespaces stay one client: `MetersEndpoints` + `MetersQueryEndpoints` →
 `ProductCatalog` is the exception (in `SPLIT_BY_INTERFACE`): it splits by source
 interface → `plans`, `addons`, `planAddons`. Do NOT group by `@tag` (the tag is
 a display string like "Metering Events" → stutter) or by `op.namespace` (always
-`OpenMeter`).
+`MeterForge`).
 
 ### Nested sub-clients (reproduce this)
 
@@ -101,7 +101,7 @@ This nesting is **driven by the TypeSpec source structure, not API routes** — 
 nest a resource, wrap its `*Operations` interface in a sub-namespace
 (`namespace Charges { interface CustomerChargesOperations { … } }` inside a file
 that declares `namespace Customers;`), and update the `extends` reference in
-**both** `openmeter.tsp` and `konnect.tsp` to the nested path. Wrap ONLY the
+**both** `meterforge.tsp` and `konnect.tsp` to the nested path. Wrap ONLY the
 operation interface — leave models in the parent namespace so their schema names
 (and OpenAPI output) are unchanged. The method-name strip set includes the nest
 segments, so `create-credit-grant` under `credits.grants` → `create`.
@@ -146,15 +146,15 @@ renaming.
 
 ## Commands
 
-| Task                          | Command                                              |
-| ----------------------------- | ---------------------------------------------------- |
-| Build all TypeSpec emitters   | `pnpm run build`                                     |
-| Regenerate SDK from TypeSpec  | `pnpm --filter @openmeter/api-spec-aip run generate` |
-| Run the SDK conformance tests | `pnpm run test:sdk`                                  |
-| Install / refresh lockfile    | `pnpm install --config.confirmModulesPurge=false`    |
+| Task                          | Command                                               |
+| ----------------------------- | ----------------------------------------------------- |
+| Build all TypeSpec emitters   | `pnpm run build`                                      |
+| Regenerate SDK from TypeSpec  | `pnpm --filter @meterforge/api-spec-aip run generate` |
+| Run the SDK conformance tests | `pnpm run test:sdk`                                   |
+| Install / refresh lockfile    | `pnpm install --config.confirmModulesPurge=false`     |
 
-The emitters are bound by **package name** (`@openmeter/typespec-typescript`,
-`@openmeter/typespec-go`) in `packages/aip/tspconfig.yaml` (both the `emit:` list
+The emitters are bound by **package name** (`@meterforge/typespec-typescript`,
+`@meterforge/typespec-go`) in `packages/aip/tspconfig.yaml` (both the `emit:` list
 and the `options:` keys). The internal lib names in each `src/lib.ts` and their
 `…:` state keys are separate identities used for diagnostics/state and have no
 cross-package references.
@@ -407,7 +407,7 @@ depend on `.describe()` surviving into the runtime schemas.
   `encodeSort`, `querySerializer`), `toError`, and the `HTTPError` class.
 - **PER-NAMESPACE** (per resource/tag): one façade class that **composes** a
   `Client` (holds a reference — it does **not** `extends Client`) plus one
-  memoized lazy getter on the root `OpenMeter`.
+  memoized lazy getter on the root `MeterForge`.
 - **PER-OPERATION** (×~83): one standalone func = path/query/body assembly +
   `request(() => http(client).<verb>(…).json<R>())`, plus a one-line façade
   wrapper. The request/response type aliases and per-op `…Query` types live in
@@ -588,7 +588,7 @@ carries a JSDoc comment, built by `operationJsDoc` in `sdk-operations.ts`: the
 `@summary` decorator text (`SdkOperation.summary`, short one-liner) followed by
 the `@doc` description body (`SdkOperation.doc`, longer prose) when it differs
 from the summary, and always a final line naming the HTTP route
-(`POST /openmeter/meters`). The route line is unconditional, so every operation
+(`POST /meterforge/meters`). The route line is unconditional, so every operation
 gets a useful IDE hover even the rare one with neither a TypeSpec `@doc` nor a
 `@summary` — the generator never emits a hollow JSDoc block. Summary and
 description appear only when the TypeSpec source declares them; the generator
@@ -731,7 +731,7 @@ the `client.internal.*` surface) is the model. Constraints:
   in-memory compilation returns immediately, observing a partial output dir.
   Keep `writeOutput` awaited.
 
-`make -C api/spec test` runs `pnpm --filter @openmeter/typespec-typescript run
+`make -C api/spec test` runs `pnpm --filter @meterforge/typespec-typescript run
 check` (typecheck + these tests) alongside `test:sdk:coverage`, and the
 `aip-npm-release` workflow runs that target before publishing.
 
@@ -739,15 +739,15 @@ check` (typecheck + these tests) alongside `test:sdk:coverage`, and the
 
 ### Output and wiring
 
-- `typespec-go` emits a single-package Go SDK (`package openmeter`) into
+- `typespec-go` emits a single-package Go SDK (`package meterforge`) into
   `api/v3/client` at the **repo root** — not under `api/spec/packages/`. It is
-  a standalone nested Go module, `github.com/openmeterio/openmeter/api/v3/client`,
+  a standalone nested Go module, `github.com/Pototoooo/meterforge/api/v3/client`,
   with its own `go.mod`/`go.sum` (sole dependency:
   `github.com/oapi-codegen/nullable`). The root `go test ./...` never reaches
   it; use `make test-go-sdk` at the repo root.
-- Wiring lives in `packages/aip/tspconfig.yaml` under `@openmeter/typespec-go`:
+- Wiring lives in `packages/aip/tspconfig.yaml` under `@meterforge/typespec-go`:
   `emitter-output-dir: '{output-dir}/../../../v3/client'` plus the options
-  `module-path`, `package-name: 'openmeter'`, `include-services: ['OpenMeter']`,
+  `module-path`, `package-name: 'meterforge'`, `include-services: ['MeterForge']`,
   `strip-name-prefixes`, and `readme-note`. `sdk-version` is deliberately not
   set there, so day-to-day regeneration stamps the `0.0.0-dev` placeholder; the
   release process sets it (see Releases below). The full option surface is
@@ -766,7 +766,7 @@ check` (typecheck + these tests) alongside `test:sdk:coverage`, and the
   `go.sum` under a `typespec-go/runtime/` directory; that makes the emitter
   source tree look like a standalone Go package.
 - Every generated `.go` file carries the
-  `// Code generated by @openmeter/typespec-go. DO NOT EDIT.` header **before**
+  `// Code generated by @meterforge/typespec-go. DO NOT EDIT.` header **before**
   the package clause, and generation gofmt-formats the output (a runnable
   `gofmt` on PATH is a hard requirement of generation).
 
@@ -836,7 +836,7 @@ check` (typecheck + these tests) alongside `test:sdk:coverage`, and the
   suffixes are also accepted). `.github/workflows/release-go-sdk.yaml` gates
   the tag: it verifies the stamped `Version` constant matches the tag version,
   runs `make test-go-sdk`, and creates a GitHub release for visibility.
-- Release steps: set `sdk-version` under the `@openmeter/typespec-go` options
+- Release steps: set `sdk-version` under the `@meterforge/typespec-go` options
   in `packages/aip/tspconfig.yaml`, regenerate (`make gen-api`), commit the
   stamped output, then push the matching `api/v3/client/vX.Y.Z` tag.
 
@@ -846,8 +846,8 @@ Verify Go emitter changes with (first two from `api/spec`, third from the repo
 root):
 
 ```bash
-pnpm --filter @openmeter/typespec-go run check
-pnpm --filter @openmeter/api-spec-aip run generate   # or: make gen-api (repo root)
+pnpm --filter @meterforge/typespec-go run check
+pnpm --filter @meterforge/api-spec-aip run generate   # or: make gen-api (repo root)
 (cd api/v3/client && gofmt -l . && go build ./... && go vet ./... && go test ./...)
 ```
 

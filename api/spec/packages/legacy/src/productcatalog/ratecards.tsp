@@ -1,4 +1,4 @@
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * The type of the rate card.

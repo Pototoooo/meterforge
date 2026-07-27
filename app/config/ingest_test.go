@@ -7,7 +7,7 @@ import (
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 	"github.com/stretchr/testify/assert"
 
-	pkgkafka "github.com/openmeterio/openmeter/pkg/kafka"
+	pkgkafka "github.com/Pototoooo/meterforge/pkg/kafka"
 )
 
 func TestKafkaIngestConfiguration(t *testing.T) {

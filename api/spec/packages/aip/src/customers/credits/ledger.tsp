@@ -116,9 +116,9 @@ model CreditTransaction {
    */
   @visibility(Lifecycle.Read)
   available_balance: {
-    #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+    #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
     before: Shared.Numeric;
-    #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+    #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
     after: Shared.Numeric;
   };
 

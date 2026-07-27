@@ -12,9 +12,9 @@ import (
 	"entgo.io/ent/schema/mixin"
 	"github.com/oklog/ulid/v2"
 
-	"github.com/openmeterio/openmeter/pkg/clock"
-	"github.com/openmeterio/openmeter/pkg/convert"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/convert"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 // UniqueResourceMixin adds common fields

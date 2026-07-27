@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/openmeterio/openmeter/pkg/pagination"
+	"github.com/Pototoooo/meterforge/pkg/pagination"
 )
 
 // Paginate runs the query and returns a paginated response.

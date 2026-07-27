@@ -2,12 +2,12 @@ from os import environ
 from typing import Optional
 import asyncio
 
-from openmeter.aio import Client
-from openmeter.models import MeterQueryResult, FilterString
+from meterforge.aio import Client
+from meterforge.models import MeterQueryResult, FilterString
 from corehttp.exceptions import HttpResponseError
 
-ENDPOINT: str = environ.get("OPENMETER_ENDPOINT") or "https://openmeter.cloud"
-token: Optional[str] = environ.get("OPENMETER_TOKEN")
+ENDPOINT: str = environ.get("METERFORGE_ENDPOINT") or "http://localhost:8888"
+token: Optional[str] = environ.get("METERFORGE_TOKEN")
 
 
 async def main() -> None:

@@ -1,11 +1,11 @@
-# OpenMeter API specs
+# MeterForge API specs
 
 This workspace contains two TypeSpec packages that generate OpenAPI specs:
 
-| Package                        | Description                                                   | Output                                                  |
-| ------------------------------ | ------------------------------------------------------------- | ------------------------------------------------------- |
-| **Legacy** (`packages/legacy`) | OpenMeter API (v1-v2) and OpenMeter Cloud API                 | `openapi.OpenMeter.yaml`, `openapi.OpenMeterCloud.yaml` |
-| **AIP** (`packages/aip`)       | OpenMeter and Konnect metering & billing APIs (v3), AIP-style | `openapi.MeteringAndBilling.yaml` (OpenMeter + Konnect) |
+| Package                        | Description                                                    | Output                                                    |
+| ------------------------------ | -------------------------------------------------------------- | --------------------------------------------------------- |
+| **Legacy** (`packages/legacy`) | MeterForge API (v1-v2) and the legacy cloud-compatible surface | `openapi.MeterForge.yaml`, `openapi.MeterForgeCloud.yaml` |
+| **AIP** (`packages/aip`)       | MeterForge and Konnect metering & billing APIs (v3), AIP-style | `openapi.MeteringAndBilling.yaml` (MeterForge + Konnect)  |
 
 From the repo root, run `make gen-api` (or `make -C api/spec generate`) to build both packages and copy/bundle artifacts into `api/`.
 
@@ -13,7 +13,7 @@ From the repo root, run `make gen-api` (or `make -C api/spec generate`) to build
 
 ## Legacy API (`packages/legacy`)
 
-Legacy specs follow OpenMeter’s existing TypeSpec conventions. See [`packages/legacy/README.md`](packages/legacy/README.md) for patterns and guidelines.
+Legacy specs follow MeterForge’s existing TypeSpec conventions. See [`packages/legacy/README.md`](packages/legacy/README.md) for patterns and guidelines.
 
 ---
 
@@ -21,5 +21,5 @@ Legacy specs follow OpenMeter’s existing TypeSpec conventions. See [`packages/
 
 The AIP package defines v3 metering and billing APIs in line with [Kong’s AIP (API Improvement Proposals)](https://kong-aip.netlify.app/list/).
 
-- **OpenMeter** (`openmeter.tsp`): OpenMeter v3 API.
+- **MeterForge** (`meterforge.tsp`): MeterForge v3 API.
 - **Konnect** (`konnect.tsp`): Konnect metering & billing API, same surface with Konnect-specific auth and servers.

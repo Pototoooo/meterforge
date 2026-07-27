@@ -17,8 +17,8 @@ pipeline:
           "type": "kubernetes",
           "source": "kubernetes-api",
           "time": meta("schedule_time"),
-          "subject": this.metadata.annotations."openmeter.io/subject".or(this.metadata.name),
-          "data": this.metadata.annotations.filter(item -> item.key.has_prefix("data.openmeter.io/")).map_each_key(key -> key.trim_prefix("data.openmeter.io/")).assign({
+          "subject": this.metadata.annotations."github.com/Pototoooo/meterforge/subject".or(this.metadata.name),
+          "data": this.metadata.annotations.filter(item -> item.key.has_prefix("localhost:8888/")).map_each_key(key -> key.trim_prefix("localhost:8888/")).assign({
             "pod_name": this.metadata.name,
             "pod_namespace": this.metadata.namespace,
             "duration_seconds": $duration_seconds,
@@ -50,9 +50,9 @@ output:
       - check: ""
         continue: true
         output:
-          openmeter:
-            url: "${OPENMETER_URL:https://openmeter.cloud}"
-            token: "${OPENMETER_TOKEN:}"
+          meterforge:
+            url: "${METERFORGE_URL:http://localhost:8888}"
+            token: "${METERFORGE_TOKEN:}"
             batching:
               count: ${BATCH_SIZE:100}
               period: ${BATCH_PERIOD:1s}

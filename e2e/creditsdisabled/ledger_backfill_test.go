@@ -11,7 +11,7 @@ import (
 	"github.com/oklog/ulid/v2"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/ledger"
+	"github.com/Pototoooo/meterforge/meterforge/ledger"
 )
 
 func TestLedgerBackfillAccountsJob(t *testing.T) {
@@ -63,7 +63,7 @@ func TestLedgerBackfillAccountsJob(t *testing.T) {
 func ensureLocalComposeBackfillSupport(t *testing.T) {
 	t.Helper()
 
-	address := os.Getenv("OPENMETER_ADDRESS")
+	address := os.Getenv("METERFORGE_ADDRESS")
 	if !strings.Contains(address, "localhost:38888") && !strings.Contains(address, "127.0.0.1:38888") {
 		t.Skipf("ledger backfill e2e requires local compose stack at localhost:38888, got %q", address)
 	}
@@ -77,7 +77,7 @@ func ensureLocalComposeBackfillSupport(t *testing.T) {
 func initE2EPostgresPool(t *testing.T) *pgxpool.Pool {
 	t.Helper()
 
-	dsn := os.Getenv("OPENMETER_E2E_POSTGRES_URL")
+	dsn := os.Getenv("METERFORGE_E2E_POSTGRES_URL")
 	if dsn == "" {
 		dsn = "postgres://postgres:postgres@127.0.0.1:35432/postgres?sslmode=disable"
 	}
@@ -99,13 +99,13 @@ func runJobsBackfillAccounts(t *testing.T, args ...string) string {
 		"compose",
 		"-f", "docker-compose.infra.yaml",
 		"-f", "docker-compose.debug-ports.yaml",
-		"-f", "docker-compose.openmeter.yaml",
-		"-f", "docker-compose.openmeter-local.yaml",
+		"-f", "docker-compose.meterforge.yaml",
+		"-f", "docker-compose.meterforge-local.yaml",
 		"exec",
 		"-T",
-		"openmeter",
-		"openmeter-jobs",
-		"--config", "/etc/openmeter/config.yaml",
+		"meterforge",
+		"meterforge-jobs",
+		"--config", "/etc/meterforge/config.yaml",
 		"ledger",
 		"backfill-accounts",
 	}

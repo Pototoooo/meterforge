@@ -1,27 +1,27 @@
 <div align="center">
 
-![OpenMeter logo](assets/logo.png)
+![MeterForge logo](assets/meterforge-logo.svg)
 
-# OpenMeter
+# MeterForge
 
 The open-source metering and billing platform
 for AI, agentic and DevTool monetization.
 
-[Docs](https://openmeter.io/docs) |
-[Hosted](https://cloud.konghq.com/register?utm_campaign=metering_and_billing) |
-[Blog](https://openmeter.io/blog) |
+[Docs](docs/) |
+[Quickstart](quickstart/) |
+[Console](web/) |
 [Contributing](CONTRIBUTING.md)
 
-[![GitHub Release](https://img.shields.io/github/v/release/openmeterio/openmeter?style=flat-square)](https://github.com/openmeterio/openmeter/releases/latest)
-[![CI Status](https://img.shields.io/github/actions/workflow/status/openmeterio/openmeter/ci.yaml?style=flat-square)](https://github.com/openmeterio/openmeter/actions/workflows/ci.yaml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/openmeterio/openmeter?style=flat-square)](https://goreportcard.com/report/github.com/openmeterio/openmeter)
-![GitHub Stars](https://img.shields.io/github/stars/openmeterio/openmeter?style=flat-square)
+[![GitHub Release](https://img.shields.io/github/v/release/Pototoooo/meterforge?style=flat-square)](https://github.com/Pototoooo/meterforge/releases/latest)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/Pototoooo/meterforge/ci.yaml?style=flat-square)](https://github.com/Pototoooo/meterforge/actions/workflows/ci.yaml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Pototoooo/meterforge?style=flat-square)](https://goreportcard.com/report/github.com/Pototoooo/meterforge)
+![GitHub Stars](https://img.shields.io/github/stars/Pototoooo/meterforge?style=flat-square)
 
 </div>
 
 ---
 
-OpenMeter is a real-time metering and billing engine that
+MeterForge is a real-time metering and billing engine that
 helps you track usage, enforce limits, manage subscriptions,
 and automate invoicing — all in one platform. Ingest events
 via a simple API, define meters with flexible aggregations,
@@ -54,20 +54,13 @@ customer-facing dashboards.
 
 ## Getting Started
 
-### Cloud
-
-The fastest way to start.
-[Start for free](https://cloud.konghq.com/register?utm_campaign=metering_and_billing)
-and begin metering and billing in minutes —
-no infrastructure to manage.
-
 ### Self-Hosted
 
-Run OpenMeter locally with Docker Compose:
+Run MeterForge locally with Docker Compose:
 
 ```sh
-git clone git@github.com:openmeterio/openmeter.git
-cd openmeter/quickstart
+git clone git@github.com:Pototoooo/meterforge.git
+cd meterforge/quickstart
 docker compose up -d
 ```
 
@@ -98,24 +91,24 @@ See the full [quickstart guide](/quickstart) for more details.
 ### Deploy to Production
 
 Deploy to Kubernetes using our
-[Helm chart](https://openmeter.io/docs/deploy/kubernetes).
+[Helm chart](https://github.com/Pototoooo/meterforge/tree/main/docs/deploy/kubernetes).
 
 ## SDKs
 
 | Language             | Package                                                                        | Source                                             |
 |----------------------|--------------------------------------------------------------------------------|----------------------------------------------------|
-| Go                   | [openmeter](https://pkg.go.dev/github.com/openmeterio/openmeter/api/client/go) | [api/client/go](/api/client/go)                    |
-| JavaScript / Node.js | [@openmeter/sdk](https://www.npmjs.com/package/@openmeter/sdk)                 | [api/client/javascript](/api/client/javascript)    |
-| Python               | [openmeter](https://pypi.org/project/openmeter)                                | [api/client/python](/api/client/python)            |
+| Go                   | [meterforge](https://pkg.go.dev/github.com/Pototoooo/meterforge/api/client/go) | [api/client/go](/api/client/go)                    |
+| JavaScript / Node.js | [@meterforge/sdk](https://www.npmjs.com/package/@meterforge/sdk)                 | [api/client/javascript](/api/client/javascript)    |
+| Python               | [meterforge](https://pypi.org/project/meterforge)                                | [api/client/python](/api/client/python)            |
 
 Don't see your language? Use the
-[OpenAPI spec](https://github.com/openmeterio/openmeter/blob/main/api/openapi.yaml)
+[OpenAPI spec](https://github.com/Pototoooo/meterforge/blob/main/api/openapi.yaml)
 directly or
-[request an SDK](https://github.com/openmeterio/openmeter/issues/new?assignees=&labels=area%2Fapi%2Ckind%2Ffeature&projects=&template=feature_request.yaml).
+[request an SDK](https://github.com/Pototoooo/meterforge/issues/new?assignees=&labels=area%2Fapi%2Ckind%2Ffeature&projects=&template=feature_request.yaml).
 
 ## Architecture
 
-OpenMeter is built in Go with a stack optimized for
+MeterForge is built in Go with a stack optimized for
 high-volume event ingestion and real-time aggregation:
 
 | Component                | Role                                                     |
@@ -136,8 +129,8 @@ We'd love to have you involved:
   want to contribute code.
 - **[Code of Conduct](CODE_OF_CONDUCT.md)** — Our community
   guidelines.
-- **[Blog](https://openmeter.io/blog)** — Product updates
-  and engineering deep dives.
+- **[Project differences](PROJECT_DIFF.md)** — MeterForge-specific changes
+  relative to its upstream baseline.
 
 ## Development
 
@@ -152,9 +145,3 @@ make server   # Run the API server with hot reload
 make test     # Run tests
 make lint     # Run linters
 ```
-
-## License
-
-Licensed under [Apache 2.0](LICENSE).
-
-[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B38090%2Fgithub.com%2Fopenmeterio%2Fopenmeter.svg?type=large)](https://app.fossa.com/projects/custom%2B38090%2Fgithub.com%2Fopenmeterio%2Fopenmeter?ref=badge_large)

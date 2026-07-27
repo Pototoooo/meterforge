@@ -6,7 +6,7 @@ import (
 	"entgo.io/ent/dialect"
 	entDialectSQL "entgo.io/ent/dialect/sql"
 
-	entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
 )
 
 type EntPostgresDriver struct {

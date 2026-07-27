@@ -10,7 +10,7 @@ namespace Common;
 /**
  * Bad Request.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/BadRequest")
 @friendlyName("BadRequest")
@@ -26,7 +26,7 @@ model BadRequest extends BaseError {
 /**
  * Unauthorized.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/Unauthorized")
 @friendlyName("Unauthorized")
@@ -37,7 +37,7 @@ model Unauthorized extends BaseError {
 /**
  * Forbidden.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/Forbidden")
 @friendlyName("Forbidden")
@@ -48,7 +48,7 @@ model Forbidden extends BaseError {
 /**
  * Not Found.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/NotFound")
 @friendlyName("NotFound")
@@ -59,7 +59,7 @@ model NotFound extends BaseError {
 /**
  * Conflict.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/Conflict")
 @friendlyName("Conflict")
@@ -70,7 +70,7 @@ model Conflict extends BaseError {
 /**
  * Gone.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/Gone")
 @friendlyName("Gone")
@@ -81,7 +81,7 @@ model Gone extends BaseError {
 /**
  * Payload Too Large.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @friendlyName("PayloadTooLarge")
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/PayloadTooLarge")
@@ -93,7 +93,7 @@ model PayloadTooLarge extends BaseError {
 /**
  * Unsupported Media Type.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @friendlyName("UnsupportedMediaType")
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/UnsupportedMediaType")
@@ -105,7 +105,7 @@ model UnsupportedMediaType extends BaseError {
 /**
  * Unprocessable Content.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @friendlyName("UnprocessableContent")
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/UnprocessableContent")
@@ -117,7 +117,7 @@ model UnprocessableContent extends BaseError {
 /**
  * Too Many Requests.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @friendlyName("TooManyRequests")
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/TooManyRequests")
@@ -129,7 +129,7 @@ model TooManyRequests extends BaseError {
 /**
  * Internal Server Error.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/Internal")
 @friendlyName("Internal")
@@ -140,7 +140,7 @@ model Internal extends BaseError {
 /**
  * Not Implemented.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @friendlyName("NotImplemented")
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/NotImplemented")
@@ -152,7 +152,7 @@ model NotImplemented extends BaseError {
 /**
  * Not Available.
  */
-#suppress "@openmeter/api-spec-aip/composition-over-inheritance" "inheritance"
+#suppress "@meterforge/api-spec-aip/composition-over-inheritance" "inheritance"
 @error
 @useRef("../../../../common/definitions/errors.yaml#/components/responses/NotAvailable")
 @friendlyName("NotAvailable")

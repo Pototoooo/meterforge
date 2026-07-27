@@ -2,7 +2,7 @@ import "@typespec/http";
 import "../types.tsp";
 import "./ratecards.tsp";
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * A subscription add-on, represents concrete instances of an add-on for a given subscription.

@@ -12,7 +12,7 @@ import "../types.tsp";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Stripe specific APIs.
@@ -99,7 +99,7 @@ model StripeCustomerKey {
     options: #{ currency: "USD", successURL: "http://example.com" },
   },
   #{
-    title: "With existing OpenMeter customer by id",
+    title: "With existing MeterForge customer by id",
     description: "Create a checkout session with existing customer.",
   }
 )
@@ -109,7 +109,7 @@ model StripeCustomerKey {
     options: #{ currency: "USD", successURL: "http://example.com" },
   },
   #{
-    title: "With existing OpenMeter customer by key",
+    title: "With existing MeterForge customer by key",
     description: "Create a checkout session with existing customer.",
   }
 )
@@ -120,8 +120,8 @@ model StripeCustomerKey {
     options: #{ currency: "USD", successURL: "http://example.com" },
   },
   #{
-    title: "With existing OpenMeter and Stripe customer",
-    description: "Create a checkout session with existing openmeter and customer.",
+    title: "With existing MeterForge and Stripe customer",
+    description: "Create a checkout session with existing meterforge and customer.",
   }
 )
 @example(
@@ -172,7 +172,7 @@ model CreateStripeCheckoutSessionRequest {
   appId?: ULID;
 
   /**
-   * Provide a customer ID or key to use an existing OpenMeter customer.
+   * Provide a customer ID or key to use an existing MeterForge customer.
    * or provide a customer object to create a new customer.
    */
   customer:
@@ -182,8 +182,8 @@ model CreateStripeCheckoutSessionRequest {
 
   /**
    * Stripe customer ID.
-   * If not provided OpenMeter creates a new Stripe customer or
-   * uses the OpenMeter customer's default Stripe customer ID.
+   * If not provided MeterForge creates a new Stripe customer or
+   * uses the MeterForge customer's default Stripe customer ID.
    */
   stripeCustomerId?: string;
 
@@ -293,7 +293,7 @@ model CreateStripeCheckoutSessionRequestOptions {
 
   // TODO: Fields we haven't implemented yet.
   // Please open an issue or pull request if you need them:
-  // https://github.com/openmeterio/openmeter/issues
+  // https://github.com/Pototoooo/meterforge/issues
   // customFields: unknown;
   // paymentIntentData: unknown;
   // paymentMethodConfiguration: unknown;
@@ -505,7 +505,7 @@ enum CreateCheckoutSessionTaxIdCollectionRequired {
 @friendlyName("CreateStripeCheckoutSessionResult")
 model CreateStripeCheckoutSessionResult {
   /**
-   * The OpenMeter customer ID.
+   * The MeterForge customer ID.
    */
   customerId: ULID;
 

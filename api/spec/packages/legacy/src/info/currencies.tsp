@@ -1,7 +1,7 @@
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
- * Currency describes a currency supported by OpenMeter.
+ * Currency describes a currency supported by MeterForge.
  */
 @friendlyName("Currency")
 model Currency {

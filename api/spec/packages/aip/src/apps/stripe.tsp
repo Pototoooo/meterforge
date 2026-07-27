@@ -430,7 +430,7 @@ model CheckoutSessionCustomTextParams {
  * Contains all the information needed to redirect customers to the checkout or
  * initialize an embedded checkout flow.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "Field names match Stripe API response structure"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "Field names match Stripe API response structure"
 @friendlyName("BillingAppStripeCreateCheckoutSessionResult")
 model CreateStripeCheckoutSessionResult {
   /**

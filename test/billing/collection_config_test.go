@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	ombilling "github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/pkg/datetime"
+	ombilling "github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
 )
 
 func TestCollectionConfigValidate_Subscription_NoAnchoredDetailRequired(t *testing.T) {

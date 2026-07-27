@@ -9,8 +9,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	"github.com/openmeterio/openmeter/pkg/framework/pgdriver"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	"github.com/Pototoooo/meterforge/pkg/framework/pgdriver"
 )
 
 func newTestSessionLocker(t *testing.T, dbConn string, opts ...pgdriver.Option) *SessionLocker {

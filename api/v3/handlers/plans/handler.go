@@ -3,8 +3,8 @@ package plans
 import (
 	"context"
 
-	"github.com/openmeterio/openmeter/openmeter/productcatalog/plan"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog/plan"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 type Handler interface {

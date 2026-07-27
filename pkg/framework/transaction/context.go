@@ -6,7 +6,7 @@ import (
 
 type omTransactionContextKey string
 
-const contextKey omTransactionContextKey = "om_transaction_context_key"
+const contextKey omTransactionContextKey = "mf_transaction_context_key"
 
 func GetDriverFromContext(ctx context.Context) (Driver, error) {
 	tx, ok := ctx.Value(contextKey).(Driver)

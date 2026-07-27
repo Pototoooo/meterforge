@@ -67,48 +67,48 @@ using TypeSpec.OpenAPI;
 @useAuth(systemAccountAccessToken | personalAccessToken | konnectAccessToken)
 namespace MeteringAndBilling;
 
-@route("/openmeter/events")
+@route("/meterforge/events")
 @tag(Shared.EventsTag)
 interface EventsEndpoints extends Events.EventsOperations {}
 
-@route("/openmeter/meters")
+@route("/meterforge/meters")
 @tag(Shared.MetersTag)
 interface MetersEndpoints extends Meters.MetersOperations {}
 
-@route("/openmeter/meters/{meterId}/query")
+@route("/meterforge/meters/{meterId}/query")
 @tag(Shared.MetersTag)
 interface MetersQueryEndpoints extends Meters.MetersQueryOperations {}
 
-@route("/openmeter/customers")
+@route("/meterforge/customers")
 @tag(Shared.CustomersTag)
 interface CustomersEndpoints extends Customers.CustomersOperations {}
 
-@route("/openmeter/customers/{customerId}/billing")
+@route("/meterforge/customers/{customerId}/billing")
 @tag(Shared.CustomersTag)
 interface CustomerBillingEndpoints
   extends Customers.Billing.CustomerBillingOperations {}
 
-@route("/openmeter/customers/{customerId}/entitlement-access")
+@route("/meterforge/customers/{customerId}/entitlement-access")
 @tag(Shared.EntitlementsTag)
 interface CustomerEntitlementsEndpoints
   extends Entitlements.CustomerEntitlementsOperations {}
 
-@route("/openmeter/customers/{customerId}/credits/grants")
+@route("/meterforge/customers/{customerId}/credits/grants")
 @tag(Shared.CustomersTag)
 interface CustomerCreditGrantsEndpoints
   extends Customers.Credits.Grants.CustomerCreditGrantsOperations {}
 
-@route("/openmeter/customers/{customerId}/credits/balance")
+@route("/meterforge/customers/{customerId}/credits/balance")
 @tag(Shared.CustomersTag)
 interface CustomerCreditBalanceEndpoints
   extends Customers.Credits.Balance.CustomerCreditBalancesOperations {}
 
-@route("/openmeter/customers/{customerId}/credits/adjustments")
+@route("/meterforge/customers/{customerId}/credits/adjustments")
 @tag(Shared.CustomersTag)
 interface CustomerCreditAdjustmentsEndpoints
   extends Customers.Credits.Adjustments.CustomerCreditAdjustmentsOperations {}
 
-@route("/openmeter/customers/{customerId}/credits/grants/{creditGrantId}")
+@route("/meterforge/customers/{customerId}/credits/grants/{creditGrantId}")
 @tag(Shared.CustomersTag)
 interface CustomerCreditGrantEndpoints {
   @route("/void")
@@ -118,95 +118,95 @@ interface CustomerCreditGrantEndpoints {
   updateExternalSettlement is Customers.Credits.Grants.CustomerCreditGrantExternalSettlementOperations.updateExternalSettlement;
 }
 
-@route("/openmeter/customers/{customerId}/credits/transactions")
+@route("/meterforge/customers/{customerId}/credits/transactions")
 @tag(Shared.CustomersTag)
 interface CustomerCreditTransactionEndpoints
   extends Customers.Credits.Transactions.CustomerCreditTransactionOperations {}
 
-@route("/openmeter/customers/{customerId}/charges")
+@route("/meterforge/customers/{customerId}/charges")
 @tag(Shared.CustomersTag)
 interface CustomerChargesEndpoints
   extends Customers.Charges.CustomerChargesOperations {}
 
-@route("/openmeter/subscriptions")
+@route("/meterforge/subscriptions")
 @tag(Shared.SubscriptionsTag)
 interface SubscriptionsEndpoints
   extends Subscriptions.SubscriptionsOperations {}
 
-@route("/openmeter/subscriptions/{subscriptionId}/addons")
+@route("/meterforge/subscriptions/{subscriptionId}/addons")
 @tag(Shared.SubscriptionsTag)
 interface SubscriptionAddonEndpoints
   extends Subscriptions.SubscriptionAddonOperations {}
 
-@route("/openmeter/apps")
+@route("/meterforge/apps")
 @tag(Shared.AppsTag)
 interface AppsEndpoints extends Apps.AppsOperations {}
 
-@route("/openmeter/app-catalog")
+@route("/meterforge/app-catalog")
 @tag(Shared.AppsTag)
 interface AppCatalogEndpoints extends Apps.AppCatalogOperations {}
 
-@route("/openmeter/profiles")
+@route("/meterforge/profiles")
 @tag(Shared.BillingTag)
 interface BillingProfilesEndpoints extends Billing.BillingProfilesOperations {}
 
-@route("/openmeter/billing/invoices")
+@route("/meterforge/billing/invoices")
 @tag(Shared.BillingTag)
 interface BillingInvoicesEndpoints extends Invoices.InvoicesOperations {}
 
-@route("/openmeter/tax-codes")
+@route("/meterforge/tax-codes")
 @tag(Shared.TaxTag)
 interface TaxCodesEndpoints extends Tax.TaxCodesOperations {}
 
-@route("/openmeter/currencies")
+@route("/meterforge/currencies")
 @tag(Shared.CurrenciesTag)
 interface CurrenciesEndpoints extends Currencies.CurrenciesOperations {}
 
-@route("/openmeter/currencies/custom")
+@route("/meterforge/currencies/custom")
 @tag(Shared.CurrenciesTag)
 interface CurrenciesCustomEndpoints
   extends Currencies.CurrenciesCustomOperations {}
 
-@route("/openmeter/currencies/custom/{currencyId}/cost-bases")
+@route("/meterforge/currencies/custom/{currencyId}/cost-bases")
 @tag(Shared.CurrenciesTag)
 interface CurrenciesCustomCostBasesEndpoints
   extends Currencies.CurrenciesCustomCostBasesOperations {}
 
-@route("/openmeter/features")
+@route("/meterforge/features")
 @tag(Shared.FeaturesTag)
 interface FeaturesEndpoints extends Features.FeatureOperations {}
 
-@route("/openmeter/features/{featureId}/cost")
+@route("/meterforge/features/{featureId}/cost")
 @tag(Shared.FeaturesTag)
 interface FeatureCostEndpoints extends Features.FeatureCostOperations {}
 
-@route("/openmeter/llm-cost/prices")
+@route("/meterforge/llm-cost/prices")
 @tag(Shared.LLMCostTag)
 interface LLMCostPricesEndpoints extends LLMCost.LLMCostPricesOperations {}
 
-@route("/openmeter/llm-cost/overrides")
+@route("/meterforge/llm-cost/overrides")
 @tag(Shared.LLMCostTag)
 interface LLMCostOverridesEndpoints
   extends LLMCost.LLMCostOverridesOperations {}
 
-@route("/openmeter/plans")
+@route("/meterforge/plans")
 @tag(Shared.ProductCatalogTag)
 interface PlansEndpoints extends ProductCatalog.PlanOperations {}
 
-@route("/openmeter/addons")
+@route("/meterforge/addons")
 @tag(Shared.ProductCatalogTag)
 interface AddonsEndpoints extends ProductCatalog.AddonOperations {}
 
-@route("/openmeter/plans/{planId}/addons")
+@route("/meterforge/plans/{planId}/addons")
 @tag(Shared.ProductCatalogTag)
 interface PlanAddonEndpoints extends ProductCatalog.PlanAddonOperations {}
 
-@route("/openmeter/defaults/tax-codes")
+@route("/meterforge/defaults/tax-codes")
 @tag(Shared.DefaultsTag)
 interface OrganizationDefaultTaxCodesEndpoints
   extends Defaults.OrganizationDefaultTaxCodesOperations {}
 
-@route("/openmeter/governance")
+@route("/meterforge/governance")
 @tag(Shared.GovernanceTag)
 interface GovernanceEndpoints extends Governance.GovernanceOperations {}
 
@@ -214,7 +214,7 @@ interface GovernanceEndpoints extends Governance.GovernanceOperations {}
  * The system account access token is meant for automations and integrations that
  * are not directly associated with a human identity.
  */
-#suppress "@openmeter/api-spec-aip/casing" "Use existing values"
+#suppress "@meterforge/api-spec-aip/casing" "Use existing values"
 @friendlyName("systemAccountAccessToken")
 @useRef("../../../../common/definitions/security.yaml#/components/securitySchemes/systemAccountAccessToken")
 model systemAccountAccessToken {
@@ -225,7 +225,7 @@ model systemAccountAccessToken {
  * The personal access token is meant to be used as an alternative to basic-auth
  * when accessing Konnect via APIs.
  */
-#suppress "@openmeter/api-spec-aip/casing" "Use existing values"
+#suppress "@meterforge/api-spec-aip/casing" "Use existing values"
 @friendlyName("personalAccessToken")
 @useRef("../../../../common/definitions/security.yaml#/components/securitySchemes/personalAccessToken")
 model personalAccessToken {
@@ -236,7 +236,7 @@ model personalAccessToken {
  * The Konnect access token is meant to be used by the Konnect dashboard and the
  * decK CLI authenticate with.
  */
-#suppress "@openmeter/api-spec-aip/casing" "Use existing values"
+#suppress "@meterforge/api-spec-aip/casing" "Use existing values"
 @friendlyName("konnectAccessToken")
 @useRef("../../../../common/definitions/security.yaml#/components/securitySchemes/konnectAccessToken")
 model konnectAccessToken {

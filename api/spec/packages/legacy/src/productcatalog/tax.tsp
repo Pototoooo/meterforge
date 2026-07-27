@@ -1,4 +1,4 @@
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Set of provider specific tax configs.

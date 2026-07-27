@@ -6,10 +6,10 @@ import (
 
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog/feature"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport/encoder"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog/feature"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport/encoder"
 )
 
 // GenericErrorEncoder is an error encoder that encodes the error as a generic error.

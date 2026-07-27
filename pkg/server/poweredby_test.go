@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/pkg/server"
+	"github.com/Pototoooo/meterforge/pkg/server"
 )
 
 func TestNewPoweredByMiddleware(t *testing.T) {
@@ -23,5 +23,5 @@ func TestNewPoweredByMiddleware(t *testing.T) {
 	res := rec.Result()
 	defer res.Body.Close()
 
-	require.Equal(t, "OpenMeter by Kong, Inc.", res.Header.Get("X-Powered-By"))
+	require.Equal(t, "MeterForge", res.Header.Get("X-Powered-By"))
 }

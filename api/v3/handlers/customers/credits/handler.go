@@ -5,11 +5,11 @@ import (
 
 	"github.com/alpacahq/alpacadecimal"
 
-	"github.com/openmeterio/openmeter/openmeter/billing/creditgrant"
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	"github.com/openmeterio/openmeter/openmeter/ledger"
-	"github.com/openmeterio/openmeter/openmeter/ledger/customerbalance"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/meterforge/billing/creditgrant"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	"github.com/Pototoooo/meterforge/meterforge/ledger"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/customerbalance"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 type customerBalanceFacade interface {

@@ -5,9 +5,9 @@ package apps
 
 import (
 	"fmt"
-	v3 "github.com/openmeterio/openmeter/api/v3"
-	response "github.com/openmeterio/openmeter/api/v3/response"
-	app "github.com/openmeterio/openmeter/openmeter/app"
+	v3 "github.com/Pototoooo/meterforge/api/v3"
+	response "github.com/Pototoooo/meterforge/api/v3/response"
+	app "github.com/Pototoooo/meterforge/meterforge/app"
 )
 
 func init() {

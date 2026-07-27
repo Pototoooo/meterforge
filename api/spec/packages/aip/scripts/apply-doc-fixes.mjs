@@ -14,7 +14,7 @@ const pkg = JSON.parse(
 )
 
 // Derive the linter ruleset id from `package.json#name` (e.g.
-// `@openmeter/api-spec-aip/all`) so renaming the package doesn't break this.
+// `@meterforge/api-spec-aip/all`) so renaming the package doesn't break this.
 const RULE_ID = `${pkg.name}/${RULE_NAME}`
 const RULESET = `${pkg.name}/all`
 

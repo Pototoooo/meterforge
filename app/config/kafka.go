@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/viper"
 
-	pkgkafka "github.com/openmeterio/openmeter/pkg/kafka"
+	pkgkafka "github.com/Pototoooo/meterforge/pkg/kafka"
 )
 
 var _ pkgkafka.ConfigValidator = (*KafkaConfig)(nil)

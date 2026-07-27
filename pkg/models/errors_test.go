@@ -41,7 +41,7 @@ func TestErrorWrappers(t *testing.T) {
 		},
 		{
 			name: "component",
-			err: ErrorWithComponent("openmeter",
+			err: ErrorWithComponent("meterforge",
 				ErrorWithFieldPrefix(
 					NewFieldSelectorGroup(NewFieldSelector("plan").
 						WithExpression(NewMultiFieldAttrValue(
@@ -51,7 +51,7 @@ func TestErrorWrappers(t *testing.T) {
 					),
 					errors.New("critical error"),
 				)),
-			expectedErrString: `openmeter: plan[key=pro, version=1]: critical error`,
+			expectedErrString: `meterforge: plan[key=pro, version=1]: critical error`,
 		},
 	}
 

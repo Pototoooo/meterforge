@@ -4,7 +4,7 @@ import (
 	"github.com/oapi-codegen/nullable"
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/pkg/pagination/v2"
+	"github.com/Pototoooo/meterforge/pkg/pagination/v2"
 )
 
 // CursorMeta Pagination metadata.

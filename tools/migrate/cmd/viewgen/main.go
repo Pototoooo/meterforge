@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/openmeterio/openmeter/tools/migrate/viewgen"
+	"github.com/Pototoooo/meterforge/tools/migrate/viewgen"
 )
 
 func main() {
 	var (
-		schemaPath = flag.String("schema", "./openmeter/ent/schema", "path to the ent schema package")
+		schemaPath = flag.String("schema", "./meterforge/ent/schema", "path to the ent schema package")
 		outPath    = flag.String("out", viewgen.DefaultOutputPath, "output SQL file path")
 	)
 	flag.Parse()

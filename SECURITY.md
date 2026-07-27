@@ -1,20 +1,18 @@
 # Security Policies and Procedures
 
-This document outlines security procedures and general policies for OpenMeter.
+This document outlines security procedures and general policies for MeterForge.
 
 - [Reporting a vulnerability](#reporting-a-vulnerability)
 - [Disclosure policy](#disclosure-policy)
 
 ## Reporting a vulnerability
 
-The OpenMeter team and community take all security issues seriously. Thank you for improving the security of our projects.
+The MeterForge team and community take all security issues seriously. Thank you for improving the security of our projects.
 We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
 
-**Report security issues using GitHub's [vulnerability reporting feature](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability).**
+**Report security issues using GitHub's [private vulnerability reporting feature](https://github.com/Pototoooo/meterforge/security/advisories/new).**
 
-_Alternatively, you can send an email to `security@openmeter.io`._
-
-Somebody from the OpenMeter team will acknowledge your report within 48 hours,
+Somebody from the MeterForge team will acknowledge your report within 48 hours,
 and will follow up with a more detailed response after that indicating the next steps in handling your report.
 After the initial reply to your report, the team will endeavor to keep you informed of the progress towards a fix and full announcement,
 and may ask for additional information or guidance.

@@ -7,7 +7,7 @@ import (
 
 	"github.com/invopop/gobl/currency"
 
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 var (

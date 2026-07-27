@@ -7,7 +7,7 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/openmeter/taxcode"
+	"github.com/Pototoooo/meterforge/meterforge/taxcode"
 )
 
 type TaxCodeConfiguration struct {

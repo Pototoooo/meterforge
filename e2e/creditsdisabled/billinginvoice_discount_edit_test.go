@@ -13,8 +13,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/client/go"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/client/go"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 func TestInvoiceEditFlatFeeDiscountCreditThenInvoice(t *testing.T) {

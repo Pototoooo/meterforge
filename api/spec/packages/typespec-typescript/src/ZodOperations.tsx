@@ -98,7 +98,7 @@ export function isInternalOperation(program: Program, op: Operation): boolean {
 /**
  * Collect every HTTP operation in the program, de-duplicated by the underlying
  * TypeSpec `Operation` (the same operation surfaces under multiple service
- * namespaces — OpenMeter and MeteringAndBilling — and must not be emitted
+ * namespaces — MeterForge and MeteringAndBilling — and must not be emitted
  * twice). Operations marked x-internal or x-private are collected like any
  * other and later routed to the `client.internal.*` surface.
  */
@@ -112,7 +112,7 @@ export function collectHttpOperations(
       ? services.filter((s) => includeServices.includes(s.namespace.name))
       : services
   // The same logical endpoint is declared under multiple service namespaces
-  // (OpenMeter and MeteringAndBilling) as distinct `extends` instances, and
+  // (MeterForge and MeteringAndBilling) as distinct `extends` instances, and
   // `@sharedRoute` content-type variants share one id too. De-dupe by the
   // stable operation id and keep the first occurrence so each endpoint emits a
   // single set of schemas.

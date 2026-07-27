@@ -5,13 +5,13 @@ import (
 	"errors"
 	"fmt"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/labels"
-	"github.com/openmeterio/openmeter/api/v3/response"
-	"github.com/openmeterio/openmeter/openmeter/app"
-	appcustominvoicing "github.com/openmeterio/openmeter/openmeter/app/custominvoicing"
-	appsandbox "github.com/openmeterio/openmeter/openmeter/app/sandbox"
-	appstripe "github.com/openmeterio/openmeter/openmeter/app/stripe"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/labels"
+	"github.com/Pototoooo/meterforge/api/v3/response"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	appcustominvoicing "github.com/Pototoooo/meterforge/meterforge/app/custominvoicing"
+	appsandbox "github.com/Pototoooo/meterforge/meterforge/app/sandbox"
+	appstripe "github.com/Pototoooo/meterforge/meterforge/app/stripe"
 )
 
 // goverter:variables

@@ -2,7 +2,7 @@ import "@typespec/http";
 import "../types.tsp";
 import "./ratecards.tsp";
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * The status of the add-on defined by the effectiveFrom and effectiveTo properties.

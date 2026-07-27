@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/openmeterio/openmeter/pkg/datetime"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
 )
 
 const MAX_SAFE_ITERATIONS = 1_000_000

@@ -15,7 +15,7 @@ import (
 	"k8s.io/client-go/tools/leaderelection/resourcelock"
 	"sigs.k8s.io/controller-runtime/pkg/client/config"
 
-	"github.com/openmeterio/openmeter/collector/benthos/internal/logging"
+	"github.com/Pototoooo/meterforge/collector/benthos/internal/logging"
 )
 
 type genericKey string

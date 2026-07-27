@@ -2,8 +2,8 @@ from os import environ
 from typing import Optional
 import asyncio
 
-from openmeter.aio import Client
-from openmeter.models import (
+from meterforge.aio import Client
+from meterforge.models import (
     CustomerCreate,
     CustomerReplaceUpdate,
     CustomerUsageAttribution,
@@ -11,10 +11,10 @@ from openmeter.models import (
 )
 from corehttp.exceptions import HttpResponseError
 
-ENDPOINT: str = environ.get("OPENMETER_ENDPOINT") or "https://openmeter.cloud"
-token: Optional[str] = environ.get("OPENMETER_TOKEN")
-customer_key: str = environ.get("OPENMETER_CUSTOMER_KEY") or "acme-corp-1"
-subject_key: str = environ.get("OPENMETER_SUBJECT_KEY") or "acme-user-1"
+ENDPOINT: str = environ.get("METERFORGE_ENDPOINT") or "http://localhost:8888"
+token: Optional[str] = environ.get("METERFORGE_TOKEN")
+customer_key: str = environ.get("METERFORGE_CUSTOMER_KEY") or "acme-corp-1"
+subject_key: str = environ.get("METERFORGE_SUBJECT_KEY") or "acme-user-1"
 
 
 async def main() -> None:

@@ -9,7 +9,7 @@ import "../types.tsp";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Marketplace API.
@@ -109,7 +109,7 @@ model MarketplaceInstallResponse {
 /**
  * Marketplace OAuth2 install request.
  */
-#suppress "@openmeter/api-spec-legacy/casing" "Valid casing"
+#suppress "@meterforge/api-spec-legacy/casing" "Valid casing"
 @friendlyName("MarketplaceOAuth2InstallAuthorizeRequest")
 model MarketplaceOAuth2InstallAuthorizeRequest {
   ...OAuth2.AuthorizationCodeGrantParams;

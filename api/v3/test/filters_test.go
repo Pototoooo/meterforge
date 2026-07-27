@@ -15,9 +15,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/api/v3/filters"
-	"github.com/openmeterio/openmeter/api/v3/oasmiddleware"
-	apiv3test "github.com/openmeterio/openmeter/api/v3/test"
+	"github.com/Pototoooo/meterforge/api/v3/filters"
+	"github.com/Pototoooo/meterforge/api/v3/oasmiddleware"
+	apiv3test "github.com/Pototoooo/meterforge/api/v3/test"
 )
 
 // fieldFiltersTarget mirrors the FieldFilters schema in openapi.Test.yaml so

@@ -5,10 +5,10 @@ import (
 
 	"github.com/google/wire"
 
-	entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
-	"github.com/openmeterio/openmeter/openmeter/secret"
-	secretadapter "github.com/openmeterio/openmeter/openmeter/secret/adapter"
-	secretservice "github.com/openmeterio/openmeter/openmeter/secret/service"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
+	"github.com/Pototoooo/meterforge/meterforge/secret"
+	secretadapter "github.com/Pototoooo/meterforge/meterforge/secret/adapter"
+	secretservice "github.com/Pototoooo/meterforge/meterforge/secret/service"
 )
 
 var Secret = wire.NewSet(

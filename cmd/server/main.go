@@ -16,23 +16,23 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/app/common"
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/debug"
-	"github.com/openmeterio/openmeter/openmeter/ingest/kafkaingest"
-	"github.com/openmeterio/openmeter/openmeter/namespace"
-	"github.com/openmeterio/openmeter/openmeter/namespace/namespacedriver"
-	"github.com/openmeterio/openmeter/openmeter/server"
-	"github.com/openmeterio/openmeter/openmeter/server/router"
-	"github.com/openmeterio/openmeter/pkg/errorsx"
-	"github.com/openmeterio/openmeter/pkg/log"
-	pkgserver "github.com/openmeterio/openmeter/pkg/server"
+	"github.com/Pototoooo/meterforge/app/common"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/debug"
+	"github.com/Pototoooo/meterforge/meterforge/ingest/kafkaingest"
+	"github.com/Pototoooo/meterforge/meterforge/namespace"
+	"github.com/Pototoooo/meterforge/meterforge/namespace/namespacedriver"
+	"github.com/Pototoooo/meterforge/meterforge/server"
+	"github.com/Pototoooo/meterforge/meterforge/server/router"
+	"github.com/Pototoooo/meterforge/pkg/errorsx"
+	"github.com/Pototoooo/meterforge/pkg/log"
+	pkgserver "github.com/Pototoooo/meterforge/pkg/server"
 )
 
 func main() {
 	defer log.PanicLogger(log.WithExit)
 
-	v, flags := viper.NewWithOptions(viper.WithDecodeHook(config.DecodeHook())), pflag.NewFlagSet("OpenMeter", pflag.ExitOnError)
+	v, flags := viper.NewWithOptions(viper.WithDecodeHook(config.DecodeHook())), pflag.NewFlagSet("MeterForge", pflag.ExitOnError)
 	ctx := context.Background()
 
 	config.SetViperDefaults(v, flags)
@@ -92,7 +92,7 @@ func main() {
 
 	logger := app.Logger
 
-	logger.Info("starting OpenMeter server", "config", map[string]string{
+	logger.Info("starting MeterForge server", "config", map[string]string{
 		"address":             conf.Address,
 		"telemetry.address":   conf.Telemetry.Address,
 		"ingest.kafka.broker": conf.Ingest.Kafka.Broker,

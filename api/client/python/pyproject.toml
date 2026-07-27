@@ -1,14 +1,13 @@
 [tool.poetry]
-name = "openmeter"
+name = "meterforge"
 version = "0.0.0"
-description = "Client for OpenMeter: Real-Time and Scalable Usage Metering"
-authors = ["Andras Toth <4157749+tothandras@users.noreply.github.com>"]
-license = "Apache-2.0"
+description = "Client for MeterForge: Real-Time and Scalable Usage Metering"
+authors = ["Pototoooo <272981873+Pototoooo@users.noreply.github.com>"]
 readme = "README.md"
-repository = "https://github.com/openmeter/openmeter"
-homepage = "https://openmeter.io"
+repository = "https://github.com/Pototoooo/meterforge"
+homepage = "https://github.com/Pototoooo/meterforge"
 keywords = [
-    "openmeter",
+    "meterforge",
     "api",
     "client",
     "usage",

@@ -10,14 +10,14 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/pkg/log"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/pkg/log"
 )
 
 func main() {
 	defer log.PanicLogger(log.WithExit)
 
-	v, flags := viper.NewWithOptions(viper.WithDecodeHook(config.DecodeHook())), pflag.NewFlagSet("OpenMeter", pflag.ExitOnError)
+	v, flags := viper.NewWithOptions(viper.WithDecodeHook(config.DecodeHook())), pflag.NewFlagSet("MeterForge", pflag.ExitOnError)
 	ctx := context.Background()
 
 	config.SetViperDefaults(v, flags)

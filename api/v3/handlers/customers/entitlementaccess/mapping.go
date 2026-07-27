@@ -3,11 +3,11 @@ package customersentitlement
 import (
 	"errors"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/openmeter/entitlement"
-	booleanentitlement "github.com/openmeterio/openmeter/openmeter/entitlement/boolean"
-	meteredentitlement "github.com/openmeterio/openmeter/openmeter/entitlement/metered"
-	staticentitlement "github.com/openmeterio/openmeter/openmeter/entitlement/static"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/meterforge/entitlement"
+	booleanentitlement "github.com/Pototoooo/meterforge/meterforge/entitlement/boolean"
+	meteredentitlement "github.com/Pototoooo/meterforge/meterforge/entitlement/metered"
+	staticentitlement "github.com/Pototoooo/meterforge/meterforge/entitlement/static"
 )
 
 // mapEntitlementValueToAPI maps an entitlement value to an API entitlement access result.

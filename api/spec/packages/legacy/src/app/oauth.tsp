@@ -5,7 +5,7 @@ using TypeSpec.Http;
 namespace OAuth2;
 
 /**
- * Response from the client app (OpenMeter backend) to start the OAuth2 flow.
+ * Response from the client app (MeterForge backend) to start the OAuth2 flow.
  *
  */
 @friendlyName("ClientAppStartResponse")
@@ -120,7 +120,7 @@ model AuthorizationCodeGrantErrorParams {
    * Optional human-readable text providing additional information,
    * used to assist the client developer in understanding the error that occurred.
    */
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   @query
   error_description?: string;
 
@@ -129,7 +129,7 @@ model AuthorizationCodeGrantErrorParams {
    * information about the error, used to provide the client
    * developer with additional information about the error
    */
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   @query
   error_uri?: string;
 }

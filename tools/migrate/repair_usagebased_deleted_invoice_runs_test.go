@@ -15,7 +15,7 @@ func TestRepairUsageBasedDeletedInvoiceRunsMigration(t *testing.T) {
 	require.Contains(t, up, "BEGIN;")
 	require.Contains(t, up, "COMMIT;")
 	require.NotContains(t, up, "c.intent_deleted_at = now()")
-	require.NotContains(t, up, "om_func_generate_ulid()")
+	require.NotContains(t, up, "mf_func_generate_ulid()")
 
 	namespace := "default"
 	now := time.Date(2026, 7, 3, 15, 40, 11, 0, time.UTC)

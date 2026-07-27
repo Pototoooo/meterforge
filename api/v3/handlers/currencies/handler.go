@@ -3,8 +3,8 @@ package currencies
 import (
 	"context"
 
-	"github.com/openmeterio/openmeter/openmeter/currencies"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/meterforge/currencies"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 type Handler interface {

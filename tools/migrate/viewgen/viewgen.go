@@ -14,7 +14,7 @@ import (
 	"entgo.io/ent/entc/load"
 	"github.com/go-openapi/inflect"
 
-	"github.com/openmeterio/openmeter/pkg/strcase"
+	"github.com/Pototoooo/meterforge/pkg/strcase"
 )
 
 const DefaultOutputPath = "./tools/migrate/views.sql"

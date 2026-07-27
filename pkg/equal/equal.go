@@ -1,7 +1,7 @@
 package equal
 
 import (
-	"github.com/openmeterio/openmeter/pkg/hasher"
+	"github.com/Pototoooo/meterforge/pkg/hasher"
 )
 
 // Equaler is an interface that can be used to compare two objects.

@@ -3,7 +3,7 @@ import { type Options } from 'ky'
 export const ServerList = [
   'https://{region}.api.konghq.com/v3',
   'http://localhost:{port}/api/v3',
-  'https://openmeter.cloud/api/v3',
+  'http://localhost:8888/api/v3',
 ] as const
 
 export const Regions = ['in', 'me', 'au', 'eu', 'us'] as const

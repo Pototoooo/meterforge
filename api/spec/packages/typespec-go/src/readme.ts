@@ -43,10 +43,10 @@ function tocEntry(heading: string, depth: number): string {
 
 function header(note?: string): string {
   const lines = [
-    '# OpenMeter Go SDK',
+    '# MeterForge Go SDK',
     '',
-    'Go client for the OpenMeter API — usage metering and billing for',
-    'AI and DevTool companies. This package is generated from the OpenMeter',
+    'Go client for the MeterForge API — usage metering and billing for',
+    'AI and DevTool companies. This package is generated from the MeterForge',
     'TypeSpec definitions and ships typed request and response models.',
   ]
   if (note) {
@@ -98,14 +98,14 @@ function initialization(modulePath: string, packageName: string): string {
     '',
     'func main() {',
     `\tom, err := ${packageName}.New(`,
-    '\t\t"https://openmeter.cloud/api/v3",',
-    `\t\t${packageName}.WithToken(os.Getenv("OPENMETER_API_KEY")),`,
+    '\t\t"http://localhost:8888/api/v3",',
+    `\t\t${packageName}.WithToken(os.Getenv("METERFORGE_API_KEY")),`,
     '\t)',
     '\tif err != nil {',
     '\t\tlog.Fatal(err)',
     '\t}',
     '',
-    '\t_ = om',
+    '\t_ = mf',
     '}',
     '```',
     '',
@@ -134,15 +134,15 @@ function usage(modulePath: string, packageName: string): string {
     '',
     'func main() {',
     `\tom, err := ${packageName}.New(`,
-    '\t\t"https://openmeter.cloud/api/v3",',
-    `\t\t${packageName}.WithToken(os.Getenv("OPENMETER_API_KEY")),`,
+    '\t\t"http://localhost:8888/api/v3",',
+    `\t\t${packageName}.WithToken(os.Getenv("METERFORGE_API_KEY")),`,
     '\t)',
     '\tif err != nil {',
     '\t\tlog.Fatal(err)',
     '\t}',
     '',
     '\tctx := context.Background()',
-    `\tmeter, err := om.Meters.Create(ctx, ${packageName}.CreateMeterRequest{`,
+    `\tmeter, err := mf.Meters.Create(ctx, ${packageName}.CreateMeterRequest{`,
     '\t\tName:          "Tokens",',
     '\t\tKey:           "tokens",',
     `\t\tAggregation:   ${packageName}.MeterAggregationSum,`,
@@ -153,7 +153,7 @@ function usage(modulePath: string, packageName: string): string {
     '\t\tlog.Fatal(err)',
     '\t}',
     '',
-    `\tmeters, err := om.Meters.List(ctx, ${packageName}.MeterListParams{})`,
+    `\tmeters, err := mf.Meters.List(ctx, ${packageName}.MeterListParams{})`,
     '\tif err != nil {',
     '\t\tlog.Fatal(err)',
     '\t}',
@@ -169,7 +169,7 @@ function usage(modulePath: string, packageName: string): string {
 }
 
 function callPath(service: ReadmeService, methodName: string): string {
-  return ['om', service.root, ...service.nestPath, methodName].join('.')
+  return ['mf', service.root, ...service.nestPath, methodName].join('.')
 }
 
 // Mirrors GoResource's isTextResponse: text responses grow a Stream method
@@ -257,12 +257,12 @@ function errorHandling(modulePath: string, packageName: string): string {
     ')',
     '',
     'func main() {',
-    `\tom, err := ${packageName}.New("https://openmeter.cloud/api/v3", ${packageName}.WithToken("om_..."))`,
+    `\tom, err := ${packageName}.New("http://localhost:8888/api/v3", ${packageName}.WithToken("mf_..."))`,
     '\tif err != nil {',
     '\t\tlog.Fatal(err)',
     '\t}',
     '',
-    '\t_, err = om.Meters.Get(context.Background(), "unknown")',
+    '\t_, err = mf.Meters.Get(context.Background(), "unknown")',
     '\tif err != nil {',
     `\t\tvar apiErr *${packageName}.APIError`,
     '\t\tif errors.As(err, &apiErr) {',
@@ -296,14 +296,14 @@ function paginationAndStreaming(packageName: string): string {
     'sorted.',
     '',
     '```go',
-    `for meter, err := range om.Meters.ListAll(ctx, ${packageName}.MeterListParams{}) {`,
+    `for meter, err := range mf.Meters.ListAll(ctx, ${packageName}.MeterListParams{}) {`,
     '\tif err != nil {',
     '\t\tlog.Fatal(err)',
     '\t}',
     '\tlog.Println(meter.Key)',
     '}',
     '',
-    `stream, err := om.Meters.QueryCSVStream(ctx, "meter-id", ${packageName}.MeterQueryRequest{})`,
+    `stream, err := mf.Meters.QueryCSVStream(ctx, "meter-id", ${packageName}.MeterQueryRequest{})`,
     'if err != nil {',
     '\tlog.Fatal(err)',
     '}',

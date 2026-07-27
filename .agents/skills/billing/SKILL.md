@@ -1,31 +1,31 @@
 ---
 name: billing
-description: Work with the OpenMeter billing package. Use this skill whenever touching invoice lifecycle, billing profiles, customer overrides, invoice line items, gathering invoices, standard invoices, the invoice state machine, billing validation issues, billing-subscription sync, the billing worker, invoice calculation, rating/pricing engine, or tax config on billing objects. Also use when writing or debugging billing integration tests (BaseSuite, SubscriptionMixin), billing adapter (Ent queries), billing HTTP handlers, or the subscription→billing sync algorithm. Trigger this skill for any file under `openmeter/billing/`, `openmeter/billing/worker/`, `openmeter/billing/service/`, `openmeter/billing/adapter/`, `openmeter/billing/rating/`, `test/billing/`, or `cmd/billing-worker/`.
+description: Work with the MeterForge billing package. Use this skill whenever touching invoice lifecycle, billing profiles, customer overrides, invoice line items, gathering invoices, standard invoices, the invoice state machine, billing validation issues, billing-subscription sync, the billing worker, invoice calculation, rating/pricing engine, or tax config on billing objects. Also use when writing or debugging billing integration tests (BaseSuite, SubscriptionMixin), billing adapter (Ent queries), billing HTTP handlers, or the subscription→billing sync algorithm. Trigger this skill for any file under `meterforge/billing/`, `meterforge/billing/worker/`, `meterforge/billing/service/`, `meterforge/billing/adapter/`, `meterforge/billing/rating/`, `test/billing/`, or `cmd/billing-worker/`.
 user-invocable: true
 allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
 ---
 
 # Billing
 
-Guidance for working with the OpenMeter billing package (`openmeter/billing/`).
+Guidance for working with the MeterForge billing package (`meterforge/billing/`).
 
-The charges subpackage has its own `/charges` skill — use it when touching `openmeter/billing/charges/`. This skill covers everything else in billing.
+The charges subpackage has its own `/charges` skill — use it when touching `meterforge/billing/charges/`. This skill covers everything else in billing.
 
 ## Package Map
 
 ```
-openmeter/billing/           # Domain types + service/adapter interfaces (no business logic here)
-openmeter/billing/service/   # Service implementation + invoice state machine
-openmeter/billing/adapter/   # Ent ORM persistence layer
-openmeter/billing/httpdriver/ # HTTP handlers
-openmeter/billing/rating/    # Pricing calculation engine (tiered, graduated, flat, dynamic)
-openmeter/billing/models/totals/ # Shared Totals struct
-openmeter/billing/validators/ # Subscription/customer pre-action hook validators
-openmeter/billing/worker/    # Watermill event handlers + cron jobs
-openmeter/billing/worker/subscriptionsync/ # Subscription→billing sync algorithm
-openmeter/billing/worker/advance/  # Batch auto-advance cron
-openmeter/billing/worker/collect/  # Gathering invoice collection cron
-openmeter/billing/worker/asyncadvance/ # Event-driven advance handler
+meterforge/billing/           # Domain types + service/adapter interfaces (no business logic here)
+meterforge/billing/service/   # Service implementation + invoice state machine
+meterforge/billing/adapter/   # Ent ORM persistence layer
+meterforge/billing/httpdriver/ # HTTP handlers
+meterforge/billing/rating/    # Pricing calculation engine (tiered, graduated, flat, dynamic)
+meterforge/billing/models/totals/ # Shared Totals struct
+meterforge/billing/validators/ # Subscription/customer pre-action hook validators
+meterforge/billing/worker/    # Watermill event handlers + cron jobs
+meterforge/billing/worker/subscriptionsync/ # Subscription→billing sync algorithm
+meterforge/billing/worker/advance/  # Batch auto-advance cron
+meterforge/billing/worker/collect/  # Gathering invoice collection cron
+meterforge/billing/worker/asyncadvance/ # Event-driven advance handler
 test/billing/                # Shared test suite base (BaseSuite, SubscriptionMixin)
 ```
 
@@ -74,7 +74,7 @@ The adapter's `diffInvoiceLines` then compares each line's current state against
 
 ### Shared Detailed-Line Base
 
-The invoice-agnostic detailed-line domain shape lives in `openmeter/billing/models/stddetailedline`.
+The invoice-agnostic detailed-line domain shape lives in `meterforge/billing/models/stddetailedline`.
 
 Rules:
 - keep shared detailed-line fields on `stddetailedline.Base`
@@ -178,7 +178,7 @@ DeleteInProgress → DeleteSyncing → Deleted (TriggerFailed → DeleteFailed)
 
 ## Line Engine Lifecycle
 
-The billing line-engine contract lives in `openmeter/billing/lineengine.go`. Billing owns the orchestration and grouping; each engine owns only the behavior for the lines assigned to its discriminator.
+The billing line-engine contract lives in `meterforge/billing/lineengine.go`. Billing owns the orchestration and grouping; each engine owns only the behavior for the lines assigned to its discriminator.
 
 **Registered engine types**:
 - `invoicing` — the default billing-owned engine for generic invoice behavior
@@ -276,7 +276,7 @@ For legacy progressively billed split-line group members, API update validation 
 - `HandleInvoiceTrigger` must therefore call `AdvanceUntilStateStable` after `FireAndActivate`, otherwise invoices remain stuck in `payment_processing.booking_*`
 
 **When adding a new line engine or hook**:
-1. Extend `billing.LineEngine` in `openmeter/billing/lineengine.go`
+1. Extend `billing.LineEngine` in `meterforge/billing/lineengine.go`
 2. Add no-op implementations to every concrete engine that already satisfies the interface
 3. Wire the billing invocation point in either `gatheringinvoicependinglines.go` or `stdinvoicestate.go`
 4. Decide whether failures must be retryable; if yes, add dedicated intermediary invoice states instead of attaching `OnActive` to a stable/final state
@@ -350,7 +350,7 @@ Present on:
 
 ### TaxCode Dual-Write (profile / customer override)
 
-`BillingWorkflowConfig` and `BillingCustomerOverride` both carry two sets of tax columns (via `TaxMixin` in `openmeter/ent/schema/taxcode.go`):
+`BillingWorkflowConfig` and `BillingCustomerOverride` both carry two sets of tax columns (via `TaxMixin` in `meterforge/ent/schema/taxcode.go`):
 
 | Column | Type | Purpose |
 |---|---|---|
@@ -460,7 +460,7 @@ For charge-backed subscription sync state, subscription sync owns the base/sourc
 
 ## Rating / Pricing Engine
 
-Located in `openmeter/billing/rating/`. Pricing types:
+Located in `meterforge/billing/rating/`. Pricing types:
 - `flat` — flat rate (generates a single `DetailedLine`)
 - `unit` — per-unit pricing
 - `tieredvolume` — tiered volume

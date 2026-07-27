@@ -1,15 +1,15 @@
-module github.com/openmeterio/openmeter/collector
+module github.com/Pototoooo/meterforge/collector
 
 go 1.26.4
 
-replace github.com/openmeterio/openmeter => ../
+replace github.com/Pototoooo/meterforge => ../
 
 require (
 	github.com/go-co-op/gocron/v2 v2.22.0
 	github.com/go-logr/logr v1.4.3
 	github.com/go-resty/resty/v2 v2.17.2
 	github.com/golang-jwt/jwt/v5 v5.3.1
-	github.com/openmeterio/openmeter v0.0.0
+	github.com/Pototoooo/meterforge v0.0.0
 	github.com/prometheus/client_golang v1.23.2
 	github.com/prometheus/common v0.70.0
 	github.com/redpanda-data/benthos/v4 v4.76.0

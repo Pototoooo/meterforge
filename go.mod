@@ -1,4 +1,4 @@
-module github.com/openmeterio/openmeter
+module github.com/Pototoooo/meterforge
 
 go 1.25.6
 

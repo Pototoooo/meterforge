@@ -52,7 +52,7 @@ model MeterQueryFilters {
 /**
  * A meter query request.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "keep the request flat"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "keep the request flat"
 @friendlyName("MeterQueryRequest")
 @example(#{
   from: Shared.DateTime.fromISO("2023-01-01T00:00:00Z"),
@@ -137,7 +137,7 @@ model MeterQueryResult {
 /**
  * A row in the result of a meter query.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "keep the row flat"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "keep the row flat"
 @friendlyName("MeterQueryRow")
 @example(#{
   value: "12.3456",

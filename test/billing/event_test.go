@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/openmeterio/openmeter/openmeter/billing"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
 )
 
 type InvoicingEventTestSuite struct {

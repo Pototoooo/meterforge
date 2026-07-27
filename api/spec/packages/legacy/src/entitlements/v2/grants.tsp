@@ -7,7 +7,7 @@ import "../..";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 @route("/api/v2/grants")
 @tag("Entitlements")

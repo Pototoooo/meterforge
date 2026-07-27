@@ -20,6 +20,6 @@ Each resource is versioned individually. Mixing `/v1/users` and `/v2/runtime-gro
 - Internal APIs: `/{service-prefix}/v{major}/{resource}`
 - **Nested versions are forbidden** — you must not have both `v1` and `v2` in the same path, e.g., `/v1/foo/{id}/v2/bar/{id}` is invalid.
 
-## OpenMeter specifics
+## MeterForge specifics
 
-OpenMeter v3 APIs live under `/api/v3/openmeter/<resource>`. The `api/v3/` prefix is fixed for the AIP package.
+MeterForge v3 APIs live under `/api/v3/meterforge/<resource>`. The `api/v3/` prefix is fixed for the AIP package.

@@ -8,15 +8,15 @@ import (
 
 	"github.com/samber/mo"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges/creditpurchase"
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	"github.com/openmeterio/openmeter/openmeter/ledger/customerbalance"
-	"github.com/openmeterio/openmeter/pkg/clock"
-	"github.com/openmeterio/openmeter/pkg/currencyx"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/creditpurchase"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/customerbalance"
+	"github.com/Pototoooo/meterforge/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 type (

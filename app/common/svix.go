@@ -11,7 +11,7 @@ import (
 	semconv "go.opentelemetry.io/otel/semconv/v1.37.0"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/app/config"
+	"github.com/Pototoooo/meterforge/app/config"
 )
 
 func NewSvixAPIClient(

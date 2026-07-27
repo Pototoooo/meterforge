@@ -1,8 +1,8 @@
 from os import environ
 from typing import Optional
 
-from openmeter import Client
-from openmeter.models import (
+from meterforge import Client
+from meterforge.models import (
     Metadata,
     PlanSubscriptionCreate,
     PlanReferenceInput,
@@ -10,10 +10,10 @@ from openmeter.models import (
 )
 from corehttp.exceptions import HttpResponseError
 
-ENDPOINT: str = environ.get("OPENMETER_ENDPOINT") or "https://openmeter.cloud"
-token: Optional[str] = environ.get("OPENMETER_TOKEN")
-customer_key: str = environ.get("OPENMETER_CUSTOMER_KEY") or "acme-corp-1"
-plan_key: str = environ.get("OPENMETER_PLAN_KEY") or "free"
+ENDPOINT: str = environ.get("METERFORGE_ENDPOINT") or "http://localhost:8888"
+token: Optional[str] = environ.get("METERFORGE_TOKEN")
+customer_key: str = environ.get("METERFORGE_CUSTOMER_KEY") or "acme-corp-1"
+plan_key: str = environ.get("METERFORGE_PLAN_KEY") or "free"
 
 client = Client(
     endpoint=ENDPOINT,

@@ -1,8 +1,8 @@
 version: 3
 
 project:
-  id: github.com/openmeterio/openmeter
-  url: https://github.com/openmeterio/openmeter
+  id: github.com/Pototoooo/meterforge
+  url: https://github.com/Pototoooo/meterforge
 
 paths:
   exclude:

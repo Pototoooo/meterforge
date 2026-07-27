@@ -7,10 +7,10 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
-	"github.com/openmeterio/openmeter/pkg/sortx"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
+	"github.com/Pototoooo/meterforge/pkg/sortx"
 )
 
 func TestFromAPICustomerIDFilter(t *testing.T) {

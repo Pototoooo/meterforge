@@ -8,11 +8,11 @@ import (
 	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/openmeter/dedupe"
-	"github.com/openmeterio/openmeter/openmeter/dedupe/memorydedupe"
-	"github.com/openmeterio/openmeter/openmeter/dedupe/redisdedupe"
-	"github.com/openmeterio/openmeter/pkg/errorsx"
-	"github.com/openmeterio/openmeter/pkg/redis"
+	"github.com/Pototoooo/meterforge/meterforge/dedupe"
+	"github.com/Pototoooo/meterforge/meterforge/dedupe/memorydedupe"
+	"github.com/Pototoooo/meterforge/meterforge/dedupe/redisdedupe"
+	"github.com/Pototoooo/meterforge/pkg/errorsx"
+	"github.com/Pototoooo/meterforge/pkg/redis"
 )
 
 // Requires [mapstructurex.MapDecoderHookFunc] to be high up in the decode hook chain.

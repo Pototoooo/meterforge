@@ -3,8 +3,8 @@ package entutils
 import (
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/pkg/pagination"
-	"github.com/openmeterio/openmeter/pkg/slicesx"
+	"github.com/Pototoooo/meterforge/pkg/pagination"
+	"github.com/Pototoooo/meterforge/pkg/slicesx"
 )
 
 func MapPaged[I, O any](paged pagination.Result[I], mapper func(I) O) pagination.Result[O] {

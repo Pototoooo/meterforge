@@ -3,8 +3,8 @@ package http
 import (
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/api"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/api"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 func FromMetadata(metadata models.Metadata) *api.Metadata {

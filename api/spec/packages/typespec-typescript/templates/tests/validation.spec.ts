@@ -203,7 +203,7 @@ describe('strict path validation uses generated path schemas', () => {
     expect(result.ok).toBe(true)
     expect(fetchMock.callHistory.calls()).toHaveLength(1)
     expect(fetchMock.callHistory.lastCall()!.url).toContain(
-      '/openmeter/meters/not-a-ulid',
+      '/meterforge/meters/not-a-ulid',
     )
   })
 })

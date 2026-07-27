@@ -6,7 +6,7 @@ namespace Subscriptions;
 /**
  * Addon purchased with a subscription.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "active_from and active_to should not be grouped"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "active_from and active_to should not be grouped"
 @friendlyName("SubscriptionAddon")
 model SubscriptionAddon {
   ...OmitProperties<Shared.Resource, "name" | "description">;

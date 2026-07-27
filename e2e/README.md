@@ -1,12 +1,12 @@
 # E2E Tests & Benchmarks
 
-End-to-end tests and benchmarks that run against a **live OpenMeter stack** over HTTP.
-Both skip unless `OPENMETER_ADDRESS` is set.
+End-to-end tests and benchmarks that run against a **live MeterForge stack** over HTTP.
+Both skip unless `METERFORGE_ADDRESS` is set.
 
 ## Run the local stack
 
 ```sh
-make env-local-up      # build + start openmeter + infra (docker compose)
+make env-local-up      # build + start meterforge + infra (docker compose)
 make env-local-down    # tear down
 ```
 
@@ -16,7 +16,7 @@ changes need only `make env-local-up` (force-recreate), not a full down/up. Logs
 
 ## Benchmarks
 
-`BenchmarkGovernanceQuery` measures `POST /api/v3/openmeter/governance/query` latency
+`BenchmarkGovernanceQuery` measures `POST /api/v3/meterforge/governance/query` latency
 across a customers × features grid. Seeds boolean entitlements (no usage events).
 
 ```sh
@@ -28,7 +28,7 @@ Overridable vars (defaults shown):
 
 | Var                 | Default                  | Purpose                                      |
 |---------------------|--------------------------|----------------------------------------------|
-| `OPENMETER_ADDRESS` | `http://localhost:38888` | target server                                |
+| `METERFORGE_ADDRESS` | `http://localhost:38888` | target server                                |
 | `BENCHTIME`         | `20x`                    | iterations per sub-benchmark                 |
 | `COUNT`             | `1`                      | repeat count (use >1 for benchstat variance) |
 
@@ -46,7 +46,7 @@ benchstat baseline.txt after.txt       # delta + p-value
 
 ## Traces (optional)
 
-OpenMeter runs in a container, so OTLP must target the **host**, not container loopback.
+MeterForge runs in a container, so OTLP must target the **host**, not container loopback.
 Point the OTLP exporters in `e2e/config.yaml` at `host.docker.internal:4317` and run a
 collector on the host (e.g. `grafana/otel-lgtm`). Then query per-size latency percentiles
 in Grafana (Tempo, TraceQL metrics):

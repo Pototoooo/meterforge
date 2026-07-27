@@ -4,9 +4,9 @@
 package taxcodes
 
 import (
-	v3 "github.com/openmeterio/openmeter/api/v3"
-	taxcode "github.com/openmeterio/openmeter/openmeter/taxcode"
-	models "github.com/openmeterio/openmeter/pkg/models"
+	v3 "github.com/Pototoooo/meterforge/api/v3"
+	taxcode "github.com/Pototoooo/meterforge/meterforge/taxcode"
+	models "github.com/Pototoooo/meterforge/pkg/models"
 	"time"
 )
 

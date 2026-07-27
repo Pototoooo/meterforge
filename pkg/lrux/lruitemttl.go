@@ -7,7 +7,7 @@ import (
 
 	lru "github.com/hashicorp/golang-lru/v2"
 
-	"github.com/openmeterio/openmeter/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/clock"
 )
 
 // CacheWithItemTTL is a cache that fetches items with an optional TTL

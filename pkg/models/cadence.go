@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/openmeterio/openmeter/pkg/timeutil"
+	"github.com/Pototoooo/meterforge/pkg/timeutil"
 )
 
 // Cadenced represents a model with active from and to dates.

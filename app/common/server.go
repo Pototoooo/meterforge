@@ -7,9 +7,9 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/server"
-	pkgserver "github.com/openmeterio/openmeter/pkg/server"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/server"
+	pkgserver "github.com/Pototoooo/meterforge/pkg/server"
 )
 
 var Server = wire.NewSet(

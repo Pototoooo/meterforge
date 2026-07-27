@@ -5,18 +5,18 @@ import (
 
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/billing/creditgrant"
-	creditgrantservice "github.com/openmeterio/openmeter/openmeter/billing/creditgrant/service"
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
-	enttx "github.com/openmeterio/openmeter/openmeter/ent/tx"
-	"github.com/openmeterio/openmeter/openmeter/ledger"
-	ledgeraccount "github.com/openmeterio/openmeter/openmeter/ledger/account"
-	ledgerbreakage "github.com/openmeterio/openmeter/openmeter/ledger/breakage"
-	"github.com/openmeterio/openmeter/openmeter/ledger/creditvoid"
-	creditvoidadapter "github.com/openmeterio/openmeter/openmeter/ledger/creditvoid/adapter"
-	"github.com/openmeterio/openmeter/openmeter/ledger/transactions"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/billing/creditgrant"
+	creditgrantservice "github.com/Pototoooo/meterforge/meterforge/billing/creditgrant/service"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
+	enttx "github.com/Pototoooo/meterforge/meterforge/ent/tx"
+	"github.com/Pototoooo/meterforge/meterforge/ledger"
+	ledgeraccount "github.com/Pototoooo/meterforge/meterforge/ledger/account"
+	ledgerbreakage "github.com/Pototoooo/meterforge/meterforge/ledger/breakage"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/creditvoid"
+	creditvoidadapter "github.com/Pototoooo/meterforge/meterforge/ledger/creditvoid/adapter"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/transactions"
 )
 
 var CreditGrant = wire.NewSet(

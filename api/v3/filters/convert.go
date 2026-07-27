@@ -6,10 +6,10 @@ import (
 
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/pkg/convert"
-	"github.com/openmeterio/openmeter/pkg/expand"
-	"github.com/openmeterio/openmeter/pkg/filter"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/convert"
+	"github.com/Pototoooo/meterforge/pkg/expand"
+	"github.com/Pototoooo/meterforge/pkg/filter"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 // FromAPIFilterString converts an API FilterString to filter.FilterString.

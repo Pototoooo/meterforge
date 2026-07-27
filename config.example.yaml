@@ -7,7 +7,7 @@ telemetry:
     exporters:
       # file:
       #   enabled: true
-      #   filepath: "./openmeter.log"
+      #   filepath: "./meterforge.log"
       #   prettyprint: true  # optional
 
 termination:
@@ -122,13 +122,13 @@ events:
   enabled: false
 # systemEvents:
 #   enabled: true
-#   topic: om_sys.api_events
+#   topic: mf_sys.api_events
 #   autoProvision:
 #     enabled: true
 #     partitions: 4
 # ingestEvents:
 #   enabled: true
-#   topic: om_sys.ingest_events
+#   topic: mf_sys.ingest_events
 #   autoProvision:
 #     enabled: true
 #     partitions: 8

@@ -1,6 +1,6 @@
 # Architecture
 
-OpenMeter separates high-volume usage data from transactional application state.
+MeterForge separates high-volume usage data from transactional application state.
 The following diagram shows the primary runtime components and data flows; it omits observability and deployment-specific infrastructure.
 The diagram requests the ELK layout engine; renderers without it installed (such as github.com) fall back to the default dagre layout with the same content.
 
@@ -16,7 +16,7 @@ flowchart LR
         webhookConsumers["Webhook consumers"]
     end
 
-    subgraph runtime["OpenMeter runtime"]
+    subgraph runtime["MeterForge runtime"]
         api["API server<br/>ingest, management, queries,<br/>and webhook delivery"]
         sink["Sink worker<br/>validate, deduplicate, and persist usage"]
         balance["Balance worker<br/>entitlements and credit balances"]

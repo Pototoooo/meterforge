@@ -1,9 +1,9 @@
 import { createTypeSpecLibrary, JSONSchemaType } from '@typespec/compiler'
 
 export interface GoEmitterOptions {
-  /** Go module path of the generated SDK, e.g. github.com/openmeterio/openmeter/sdk/go/openmeter. */
+  /** Go module path of the generated SDK, e.g. github.com/Pototoooo/meterforge/sdk/go/meterforge. */
   'module-path': string
-  /** Go package name for the flat single-package SDK, e.g. "openmeter". */
+  /** Go package name for the flat single-package SDK, e.g. "meterforge". */
   'package-name': string
   /** Markdown inserted after the README intro, e.g. a GitHub alert callout. */
   'readme-note'?: string

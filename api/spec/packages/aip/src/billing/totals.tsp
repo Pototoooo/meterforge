@@ -5,7 +5,7 @@ namespace Billing;
 /**
  * Totals contains the summaries of all calculations for a billing resource.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "taxes_* totals are intentionally kept flat for API compatibility"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "taxes_* totals are intentionally kept flat for API compatibility"
 @friendlyName("BillingTotals")
 model BillingTotals {
   /**

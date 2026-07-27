@@ -13,7 +13,7 @@ Reference: https://kong-aip.netlify.app/aip/132/
 
 AIP-132 requires a default sort order: _"Multiple requests to retrieve the same list must result in the same ordering of items."_ Pick a field that is both stable and unique enough to produce a total order.
 
-**OpenMeter convention** (not AIP-132 itself): prefer `name asc`, `created_at asc`, or `updated_at desc` as the default. Avoid UUIDs as the sort key — they are unique but randomly ordered, which makes the default sort feel arbitrary to clients. Always pair a non-unique sort column (like `name`) with a tie-breaker (like `id`) to preserve determinism.
+**MeterForge convention** (not AIP-132 itself): prefer `name asc`, `created_at asc`, or `updated_at desc` as the default. Avoid UUIDs as the sort key — they are unique but randomly ordered, which makes the default sort feel arbitrary to clients. Always pair a non-unique sort column (like `name`) with a tie-breaker (like `id`) to preserve determinism.
 
 ## `sort` query parameter
 

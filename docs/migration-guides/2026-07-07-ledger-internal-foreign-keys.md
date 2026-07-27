@@ -6,7 +6,7 @@ The migration creates these constraints as `NOT VALID`. New writes are checked i
 
 ## Migration Steps
 
-First, apply OpenMeter migrations as usual.
+First, apply MeterForge migrations as usual.
 
 After the migration has been applied, validate the new constraints manually:
 

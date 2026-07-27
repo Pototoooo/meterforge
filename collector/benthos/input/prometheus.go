@@ -14,7 +14,7 @@ import (
 	"github.com/redpanda-data/benthos/v4/public/service"
 	"github.com/robfig/cron/v3"
 
-	"github.com/openmeterio/openmeter/collector/benthos/services/leaderelection"
+	"github.com/Pototoooo/meterforge/collector/benthos/services/leaderelection"
 )
 
 const (

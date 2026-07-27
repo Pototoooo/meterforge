@@ -8,7 +8,7 @@ test-local: ## Run quickstart tests against a local stack with debug ports expos
 
 	curl --retry 10 --retry-max-time 120 --retry-all-errors http://localhost:40000/healthz
 
-	OPENMETER_ADDRESS=http://localhost:48888 go test -count=1 -v ./...
+	METERFORGE_ADDRESS=http://localhost:48888 go test -count=1 -v ./...
 
 	$(MAKE) env-local-down
 

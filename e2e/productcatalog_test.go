@@ -12,8 +12,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"golang.org/x/sync/semaphore"
 
-	api "github.com/openmeterio/openmeter/api/client/go"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/client/go"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 const (

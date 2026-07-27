@@ -7,10 +7,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	ledgeraccountdb "github.com/openmeterio/openmeter/openmeter/ent/db/ledgeraccount"
-	"github.com/openmeterio/openmeter/openmeter/ledger"
-	ledgertestutils "github.com/openmeterio/openmeter/openmeter/ledger/testutils"
-	"github.com/openmeterio/openmeter/openmeter/testutils"
+	ledgeraccountdb "github.com/Pototoooo/meterforge/meterforge/ent/db/ledgeraccount"
+	"github.com/Pototoooo/meterforge/meterforge/ledger"
+	ledgertestutils "github.com/Pototoooo/meterforge/meterforge/ledger/testutils"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
 )
 
 func TestLedgerNamespaceHandlerIsSafeForRepeatedCreateNamespaceCalls(t *testing.T) {

@@ -22,21 +22,21 @@ generate: ## Generate OpenAPI spec
 	# Strip Go codegen vendor extensions from the v3 MeteringAndBilling output
 	@FILE="packages/aip/output/definitions/metering-and-billing/v3/openapi.MeteringAndBilling.yaml"; \
 	yq -i 'del(.. | select(has("x-go-type"))["x-go-type"], .. | select(has("x-go-type-import"))["x-go-type-import"])' "$$FILE"
-	pnpm --filter @openmeter/api-spec-aip exec openapi bundle output/definitions/metering-and-billing/v3/openapi.OpenMeter.yaml -o ../../../v3/openapi.yaml
-	cp packages/legacy/output/openapi.OpenMeter.yaml ../openapi.yaml
-	cp packages/legacy/output/openapi.OpenMeterCloud.yaml ../openapi.cloud.yaml
+	pnpm --filter @meterforge/api-spec-aip exec openapi bundle output/definitions/metering-and-billing/v3/openapi.MeterForge.yaml -o ../../../v3/openapi.yaml
+	cp packages/legacy/output/openapi.MeterForge.yaml ../openapi.yaml
+	cp packages/legacy/output/openapi.MeterForgeCloud.yaml ../openapi.cloud.yaml
 	cp packages/aip/output/definitions/metering-and-billing/v3/openapi.Test.yaml ../v3/test/openapi.test.yaml
 
 .PHONY: test
 test: ## Run AIP TypeScript SDK and emitter tests
 	$(call print-target)
 	pnpm --frozen-lockfile install
-	pnpm --filter @openmeter/api-spec-aip run test
+	pnpm --filter @meterforge/api-spec-aip run test
 	pnpm run test:sdk:coverage
-	pnpm --filter @openmeter/typespec-typescript run check
+	pnpm --filter @meterforge/typespec-typescript run check
 
 .PHONY: publish-aip-sdk
-publish-aip-sdk: ## Publish the AIP TypeScript SDK (@openmeter/client) to npm
+publish-aip-sdk: ## Publish the AIP TypeScript SDK (@meterforge/client) to npm
 	$(call print-target)
 	@if [ -z "$$AIP_SDK_RELEASE_VERSION" ]; then \
 		echo "ERROR: AIP_SDK_RELEASE_VERSION is required"; \
@@ -56,7 +56,7 @@ publish-aip-sdk: ## Publish the AIP TypeScript SDK (@openmeter/client) to npm
 		pnpm version "$${AIP_SDK_RELEASE_VERSION}" --no-git-tag-version && \
 		node -e "const fs=require('node:fs');const p='src/lib/version.ts';const v=process.env.AIP_SDK_RELEASE_VERSION;const src=fs.readFileSync(p,'utf8');const out=src.replace(/SDK_VERSION = '[^']*'/, \"SDK_VERSION = '\" + v + \"'\");if(out===src){throw new Error('SDK_VERSION pattern not found in '+p)}fs.writeFileSync(p, out)" && \
 		CACHE_BUSTER="$$(date --rfc-3339=seconds)" pnpm publish --no-git-checks --access public --tag "$${AIP_SDK_RELEASE_TAG}"
-	@echo "✅ Published $${AIP_SDK_RELEASE_TAG} AIP TypeScript SDK (@openmeter/client) version $${AIP_SDK_RELEASE_VERSION} with tag $${AIP_SDK_RELEASE_TAG}"
+	@echo "✅ Published $${AIP_SDK_RELEASE_TAG} AIP TypeScript SDK (@meterforge/client) version $${AIP_SDK_RELEASE_VERSION} with tag $${AIP_SDK_RELEASE_TAG}"
 
 .PHONY: lint
 lint: ## Lint OpenAPI spec

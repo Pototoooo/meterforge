@@ -7,15 +7,15 @@ import (
 
 	"github.com/samber/lo"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	"github.com/openmeterio/openmeter/api/v3/request"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog"
-	plansubscription "github.com/openmeterio/openmeter/openmeter/productcatalog/subscription"
-	subscriptionworkflow "github.com/openmeterio/openmeter/openmeter/subscription/workflow"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
-	models "github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/api/v3/request"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog"
+	plansubscription "github.com/Pototoooo/meterforge/meterforge/productcatalog/subscription"
+	subscriptionworkflow "github.com/Pototoooo/meterforge/meterforge/subscription/workflow"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
+	models "github.com/Pototoooo/meterforge/pkg/models"
 )
 
 type (

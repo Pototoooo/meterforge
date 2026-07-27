@@ -196,13 +196,13 @@ func (c ClickhousePoolMetricsConfig) Validate() error {
 
 // ConfigureAggregation configures some defaults in the Viper instance.
 func ConfigureAggregation(v *viper.Viper) {
-	v.SetDefault("aggregation.eventsTableName", "om_events")
+	v.SetDefault("aggregation.eventsTableName", "mf_events")
 	v.SetDefault("aggregation.asyncInsert", false)
 	v.SetDefault("aggregation.asyncInsertWait", false)
 
 	v.SetDefault("aggregation.clickhouse.address", "127.0.0.1:9000")
 	v.SetDefault("aggregation.clickhouse.tls", false)
-	v.SetDefault("aggregation.clickhouse.database", "openmeter")
+	v.SetDefault("aggregation.clickhouse.database", "meterforge")
 	v.SetDefault("aggregation.clickhouse.username", "default")
 	v.SetDefault("aggregation.clickhouse.password", "default")
 	v.SetDefault("aggregation.clickhouse.tracing", false)

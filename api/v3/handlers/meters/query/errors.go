@@ -3,8 +3,8 @@ package query
 import (
 	"net/http"
 
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 const ErrCodeInvalidWindowSize models.ErrorCode = "invalid_window_size"

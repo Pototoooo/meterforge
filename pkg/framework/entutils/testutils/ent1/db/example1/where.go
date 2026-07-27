@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent1/db/predicate"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent1/db/predicate"
 )
 
 // ID filters vertices based on their ID field.

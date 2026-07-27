@@ -8,9 +8,9 @@ import (
 
 	"entgo.io/ent/entc"
 	"entgo.io/ent/entc/gen"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/entcursor"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/entexpose"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/entpaginate"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/entcursor"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/entexpose"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/entpaginate"
 )
 
 func main() {
@@ -24,7 +24,7 @@ func main() {
 			},
 			Target:  "./db",
 			Schema:  "./schema",
-			Package: "github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent1/db",
+			Package: "github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent1/db",
 		},
 		entc.Extensions(entcursor.New(), entexpose.New(), entpaginate.New()),
 	)

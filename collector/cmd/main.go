@@ -9,10 +9,10 @@ import (
 	"github.com/redpanda-data/benthos/v4/public/service"
 	_ "github.com/redpanda-data/connect/public/bundle/free/v4"
 
-	_ "github.com/openmeterio/openmeter/collector/benthos/bloblang" // import bloblang plugins
-	_ "github.com/openmeterio/openmeter/collector/benthos/input"    // import input plugins
-	_ "github.com/openmeterio/openmeter/collector/benthos/output"   // import output plugins
-	"github.com/openmeterio/openmeter/collector/benthos/services/leaderelection"
+	_ "github.com/Pototoooo/meterforge/collector/benthos/bloblang" // import bloblang plugins
+	_ "github.com/Pototoooo/meterforge/collector/benthos/input"    // import input plugins
+	_ "github.com/Pototoooo/meterforge/collector/benthos/output"   // import output plugins
+	"github.com/Pototoooo/meterforge/collector/benthos/services/leaderelection"
 )
 
 func main() {

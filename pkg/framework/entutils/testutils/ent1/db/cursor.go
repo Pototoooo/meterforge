@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/openmeterio/openmeter/pkg/pagination/v2"
+	"github.com/Pototoooo/meterforge/pkg/pagination/v2"
 	"github.com/samber/lo"
 )
 

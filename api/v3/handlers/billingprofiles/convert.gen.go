@@ -5,11 +5,11 @@ package billingprofiles
 
 import (
 	"fmt"
-	v3 "github.com/openmeterio/openmeter/api/v3"
-	app "github.com/openmeterio/openmeter/openmeter/app"
-	billing "github.com/openmeterio/openmeter/openmeter/billing"
-	productcatalog "github.com/openmeterio/openmeter/openmeter/productcatalog"
-	models "github.com/openmeterio/openmeter/pkg/models"
+	v3 "github.com/Pototoooo/meterforge/api/v3"
+	app "github.com/Pototoooo/meterforge/meterforge/app"
+	billing "github.com/Pototoooo/meterforge/meterforge/billing"
+	productcatalog "github.com/Pototoooo/meterforge/meterforge/productcatalog"
+	models "github.com/Pototoooo/meterforge/pkg/models"
 	"time"
 )
 

@@ -61,18 +61,18 @@ aggregation:
     tls: true
     username: default
     password: default
-    database: openmeter
+    database: meterforge
 
     retry:
       enabled: true
 
 sink:
-  groupId: openmeter-sink-worker
+  groupId: meterforge-sink-worker
   minCommitCount: 500
   maxCommitWait: 30s
   namespaceRefetch: 15s
   namespaceRefetchTimeout: 9s
-  namespaceTopicRegexp: "^om_test_([A-Za-z0-9]+(?:_[A-Za-z0-9]+)*)_events$"
+  namespaceTopicRegexp: "^mf_test_([A-Za-z0-9]+(?:_[A-Za-z0-9]+)*)_events$"
   dedupe:
     enabled: true
     driver: redis
@@ -145,7 +145,7 @@ meters:
 reservedEventTypes:
   - ^reserved\..*$
   - ^_\..*$
-  - ^openmeter\..*$
+  - ^meterforge\..*$
 
 notification:
   enabled: true
@@ -182,7 +182,7 @@ taxcode:
 featureGate:
   enabled: true
   flags:
-    om_ff_credits_enabled: "credits"
+    mf_ff_credits_enabled: "credits"
 
 server:
   readHeaderTimeout: 10s

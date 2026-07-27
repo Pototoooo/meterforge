@@ -2,7 +2,7 @@ import "@typespec/openapi3";
 
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * A filter for a string field.
@@ -109,7 +109,7 @@ model FilterString {
 /**
  * A filter for a ID (ULID) field allowing only equality or inclusion.
  */
-#suppress "@openmeter/api-spec-legacy/casing" "ID"
+#suppress "@meterforge/api-spec-legacy/casing" "ID"
 @friendlyName("FilterIDExact")
 model FilterIDExact {
   /**

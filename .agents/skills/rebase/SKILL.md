@@ -1,6 +1,6 @@
 ---
 name: rebase
-description: Rebase an OpenMeter branch onto another branch and handle repo-specific gotchas like sequential migrations, atlas.sum conflicts, Ent regeneration, and targeted verification.
+description: Rebase an MeterForge branch onto another branch and handle repo-specific gotchas like sequential migrations, atlas.sum conflicts, Ent regeneration, and targeted verification.
 user-invocable: true
 argument-hint: "[target branch or rebase situation]"
 allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
@@ -8,7 +8,7 @@ allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
 
 # Rebase Gotchas
 
-Use this skill when rebasing an OpenMeter branch, especially onto `origin/main`, and there may be migration, Ent, or generated-code conflicts.
+Use this skill when rebasing an MeterForge branch, especially onto `origin/main`, and there may be migration, Ent, or generated-code conflicts.
 
 ## Before rebasing
 
@@ -43,7 +43,7 @@ In practice, regenerating first resolves or clarifies most conflicts much faster
 
 ## Migration conflicts
 
-OpenMeter migrations must stay sequential by timestamp.
+MeterForge migrations must stay sequential by timestamp.
 
 If a rebased commit introduces a migration that is now older than migrations already on the target branch:
 
@@ -80,8 +80,8 @@ Then stage `atlas.sum`. Do not hand-edit checksum entries unless there is no oth
 
 ## Ent and generated code
 
-- `openmeter/ent/schema/*.go` is the source of truth.
-- Never hand-edit `openmeter/ent/db/`.
+- `meterforge/ent/schema/*.go` is the source of truth.
+- Never hand-edit `meterforge/ent/db/`.
 - After schema-related rebased changes, run `make generate` before regenerating migrations.
 - If generated files conflict, prefer regeneration over manual merge edits when possible.
 
@@ -108,7 +108,7 @@ Before continuing or finishing the rebase, run the smallest relevant test slice 
 For ledger work, the usual check is:
 
 ```bash
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic ./openmeter/ledger/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic ./meterforge/ledger/...
 ```
 
 If there is a known pre-existing failure, call it out explicitly and separate it from any new regression introduced by the rebase.

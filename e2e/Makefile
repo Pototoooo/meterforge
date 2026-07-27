@@ -1,44 +1,44 @@
 # A Self-Documenting Makefile: http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 
-# Address of a running OpenMeter to benchmark against. Defaults to the local stack
-# (env-local-up). Override on the CLI: make bench-governance OPENMETER_ADDRESS=...
-OPENMETER_ADDRESS ?= http://localhost:38888
+# Address of a running MeterForge to benchmark against. Defaults to the local stack
+# (env-local-up). Override on the CLI: make bench-governance METERFORGE_ADDRESS=...
+METERFORGE_ADDRESS ?= http://localhost:38888
 # Iterations per sub-benchmark. Each governance query is sequential; "20x" fixes the
 # count so runs are comparable. Bump for tighter means, or use COUNT for variance.
 BENCHTIME ?= 20x
 # Number of times to repeat the whole benchmark (feed >1 into benchstat for variance).
 COUNT ?= 1
-OPENMETER_E2E_EXTRA_COMPOSE_FILES ?=
+METERFORGE_E2E_EXTRA_COMPOSE_FILES ?=
 
 .PHONY: bench-governance
 bench-governance: ## Benchmark governance query latency (1x1 baseline + 10/50/100 diagonal)
 	$(call print-target)
-	TZ=UTC OPENMETER_ADDRESS=$(OPENMETER_ADDRESS) \
+	TZ=UTC METERFORGE_ADDRESS=$(METERFORGE_ADDRESS) \
 		go test -run='^$$' -bench='^BenchmarkGovernanceQuery$$' -benchmem -benchtime=$(BENCHTIME) -count=$(COUNT) ./...
 
 .PHONY: bench-governance-matrix
 bench-governance-matrix: ## Benchmark governance query latency (full 3x3 customers x features matrix)
 	$(call print-target)
-	TZ=UTC OPENMETER_ADDRESS=$(OPENMETER_ADDRESS) GOV_BENCH_FULL_MATRIX=1 \
+	TZ=UTC METERFORGE_ADDRESS=$(METERFORGE_ADDRESS) GOV_BENCH_FULL_MATRIX=1 \
 		go test -run='^$$' -bench='^BenchmarkGovernanceQuery$$' -benchmem -benchtime=$(BENCHTIME) -count=$(COUNT) ./...
 
 .PHONY: test-local
-test-local: ## Run tests against local openmeter
+test-local: ## Run tests against local meterforge
 	$(call print-target)
 	$(MAKE) test-local-base
 	$(MAKE) test-local-credits-disabled
 
 .PHONY: test-local-credits-disabled
-test-local-credits-disabled: ## Run credits-disabled e2e tests against local openmeter
+test-local-credits-disabled: ## Run credits-disabled e2e tests against local meterforge
 	$(call print-target)
 	$(MAKE) env-local-down
 	set -e; trap '$(MAKE) env-local-down' EXIT; \
-		OPENMETER_E2E_EXTRA_COMPOSE_FILES="-f docker-compose.credits-disabled.yaml" $(MAKE) env-local-up; \
+		METERFORGE_E2E_EXTRA_COMPOSE_FILES="-f docker-compose.credits-disabled.yaml" $(MAKE) env-local-up; \
 		$(MAKE) wait-local; \
 		$(MAKE) test-credits-disabled
 
 .PHONY: test-local-base
-test-local-base: ## Run default e2e tests against local openmeter
+test-local-base: ## Run default e2e tests against local meterforge
 	$(call print-target)
 	$(MAKE) env-local-down
 	set -e; trap '$(MAKE) env-local-down' EXIT; \
@@ -49,12 +49,12 @@ test-local-base: ## Run default e2e tests against local openmeter
 .PHONY: test-credits-disabled
 test-credits-disabled: ## Run e2e tests that require credits.enabled=false
 	$(call print-target)
-	TZ=UTC OPENMETER_ADDRESS=$(OPENMETER_ADDRESS) go test -count=1 -v ./creditsdisabled
+	TZ=UTC METERFORGE_ADDRESS=$(METERFORGE_ADDRESS) go test -count=1 -v ./creditsdisabled
 
 .PHONY: test-base
 test-base: ## Run the default e2e test package
 	$(call print-target)
-	TZ=UTC OPENMETER_ADDRESS=$(OPENMETER_ADDRESS) go test -count=1 -v ./
+	TZ=UTC METERFORGE_ADDRESS=$(METERFORGE_ADDRESS) go test -count=1 -v ./
 
 .PHONY: wait-local
 wait-local:
@@ -68,8 +68,8 @@ env-local-down:
 	docker compose \
 		-f docker-compose.infra.yaml \
 		-f docker-compose.debug-ports.yaml \
-		-f docker-compose.openmeter.yaml \
-		-f docker-compose.openmeter-local.yaml \
+		-f docker-compose.meterforge.yaml \
+		-f docker-compose.meterforge-local.yaml \
 		down
 
 .PHONY: env-local-up
@@ -78,9 +78,9 @@ env-local-up:
 	docker compose \
 		-f docker-compose.infra.yaml \
 		-f docker-compose.debug-ports.yaml \
-		-f docker-compose.openmeter.yaml \
-		-f docker-compose.openmeter-local.yaml \
-		$(OPENMETER_E2E_EXTRA_COMPOSE_FILES) \
+		-f docker-compose.meterforge.yaml \
+		-f docker-compose.meterforge-local.yaml \
+		$(METERFORGE_E2E_EXTRA_COMPOSE_FILES) \
 		up -d --build --force-recreate
 
 .PHONY: help

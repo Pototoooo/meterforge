@@ -13,8 +13,8 @@ poetry install
 Run any example with environment variables:
 
 ```sh
-OPENMETER_ENDPOINT=https://openmeter.cloud \
-OPENMETER_TOKEN=om_xxx \
+METERFORGE_ENDPOINT=http://localhost:8888 \
+METERFORGE_TOKEN=mf_xxx \
 poetry run python ./sync/ingest.py
 ```
 

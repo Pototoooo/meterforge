@@ -4,7 +4,7 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * A Problem Details object (RFC 7807).
@@ -14,7 +14,7 @@ namespace OpenMeter;
 @extension("x-go-type", "models.StatusProblem")
 @extension(
   "x-go-type-import",
-  #{ path: "github.com/openmeterio/openmeter/pkg/models" }
+  #{ path: "github.com/Pototoooo/meterforge/pkg/models" }
 )
 @friendlyName("UnexpectedProblemResponse")
 model Error {

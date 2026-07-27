@@ -12,15 +12,15 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/openmeter/ent/db/billinginvoice"
-	"github.com/openmeterio/openmeter/openmeter/ent/db/billinginvoiceline"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog/feature"
-	"github.com/openmeterio/openmeter/pkg/currencyx"
-	"github.com/openmeterio/openmeter/pkg/models"
-	"github.com/openmeterio/openmeter/pkg/timeutil"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/meterforge/ent/db/billinginvoice"
+	"github.com/Pototoooo/meterforge/meterforge/ent/db/billinginvoiceline"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog/feature"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/timeutil"
 )
 
 type DiscountsTestSuite struct {

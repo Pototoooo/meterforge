@@ -3,7 +3,7 @@ namespace Billing;
 /**
  * Set of provider specific tax configs.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "tax_code_id is deprecated"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "tax_code_id is deprecated"
 @friendlyName("BillingTaxConfig")
 model TaxConfig {
   /**

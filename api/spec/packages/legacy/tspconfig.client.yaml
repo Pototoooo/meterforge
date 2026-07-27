@@ -9,13 +9,11 @@ output-dir: '{base-dir}'
 options:
   '@typespec/http-client-python':
     emitter-output-dir: '{client-dir}/python'
-    package-name: openmeter
+    package-name: meterforge
     generation-subdir: _generated
-    namespace: openmeter
+    namespace: meterforge
     package-version: '0.0.0'
     generate-packaging-files: false
-    license:
-      name: Apache 2.0
 linter:
   extends:
-    - '@openmeter/api-spec-legacy/all'
+    - '@meterforge/api-spec-legacy/all'

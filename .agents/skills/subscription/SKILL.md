@@ -1,18 +1,18 @@
 ---
 name: subscription
-description: Work with the OpenMeter subscription package. Use when modifying subscription creation, editing, cancellation, plan changes, addons, the sync algorithm, patch system, spec model, workflow layer, or subscription-related tests. Trigger this skill whenever the task touches `openmeter/subscription/...`, subscription views, billing cadences, or the relationship between subscriptions, plans, entitlements, and addons.
+description: Work with the MeterForge subscription package. Use when modifying subscription creation, editing, cancellation, plan changes, addons, the sync algorithm, patch system, spec model, workflow layer, or subscription-related tests. Trigger this skill whenever the task touches `meterforge/subscription/...`, subscription views, billing cadences, or the relationship between subscriptions, plans, entitlements, and addons.
 user-invocable: true
 allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
 ---
 
 # Subscription
 
-Guidance for working with the OpenMeter subscription package (`openmeter/subscription/`).
+Guidance for working with the MeterForge subscription package (`meterforge/subscription/`).
 
 ## Package Layout
 
 ```
-openmeter/subscription/
+meterforge/subscription/
 ├── (root)              — Domain types, interfaces, patch system, spec model
 ├── service/            — Service implementation + sync algorithm
 ├── repo/               — Ent ORM-backed repositories
@@ -29,7 +29,7 @@ openmeter/subscription/
 └── testutils/          — Full integration test wiring, builders, mocks, comparison helpers
 ```
 
-The public HTTP entry points live in `openmeter/productcatalog/subscription/http/`. The `PlanSubscriptionService` in `openmeter/productcatalog/subscription/service/` wraps the workflow service to add plan resolution, `StartingPhase`, `Migrate`, and `Change`.
+The public HTTP entry points live in `meterforge/productcatalog/subscription/http/`. The `PlanSubscriptionService` in `meterforge/productcatalog/subscription/service/` wraps the workflow service to add plan resolution, `StartingPhase`, `Migrate`, and `Change`.
 
 DI wiring: `app/common/subscription.go` → `NewSubscriptionServices` assembles all repos, adapters, services, hooks, and returns `SubscriptionServiceWithWorkflow`.
 
@@ -132,7 +132,7 @@ Patches are applied via `SubscriptionSpec.ApplyMany(patches, actx)`. Addons also
 
 ## Workflow Layer
 
-`workflow.Service` (`openmeter/subscription/workflow/`) provides higher-level operations:
+`workflow.Service` (`meterforge/subscription/workflow/`) provides higher-level operations:
 
 - **`CreateFromPlan`** — resolves timing, builds `SubscriptionSpec` from a `Plan`, calls `Service.Create`.
 - **`EditRunning`** — validates no addons are on the subscription (edit is blocked if any exist), applies patches to current spec, calls `Service.Update`. Sets `OwnerSubscriptionSubSystem` and `UniquePatchID` annotations on added items.
@@ -214,11 +214,11 @@ Each service method calls `CanTransitionOrErr` before proceeding.
 
 ## Plan Bridge
 
-`openmeter/productcatalog/subscription/` wraps the workflow service:
+`meterforge/productcatalog/subscription/` wraps the workflow service:
 - `PlanSubscriptionService.Create` — plan resolution + `StartingPhase` support (zeroes out earlier phases)
 - `Migrate` — switches to a different version of the same plan
 - `Change` — switches to a different plan entirely
-- HTTP handlers: `openmeter/productcatalog/subscription/http/`
+- HTTP handlers: `meterforge/productcatalog/subscription/http/`
 
 The subscription package does NOT import the plan package directly — it uses the `Plan`, `PlanPhase`, `PlanRateCard` interfaces defined in `subscription/plan.go`.
 
@@ -294,16 +294,16 @@ The `createPlanWithAddon` helper (available in addon service tests) creates feat
 
 ```bash
 # All subscription tests
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./openmeter/subscription/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./meterforge/subscription/...
 
 # Service integration tests only
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./openmeter/subscription/service/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./meterforge/subscription/service/...
 
 # Addon service tests
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./openmeter/subscription/addon/service/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./meterforge/subscription/addon/service/...
 
 # Patch unit tests (no Postgres needed)
-go test -v ./openmeter/subscription/patch/...
+go test -v ./meterforge/subscription/patch/...
 ```
 
 ## Editing Checklist

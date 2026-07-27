@@ -3,7 +3,7 @@ package operation_test
 import (
 	"context"
 
-	"github.com/openmeterio/openmeter/pkg/framework/operation"
+	"github.com/Pototoooo/meterforge/pkg/framework/operation"
 )
 
 func mw1[Request any, Response any](next operation.Operation[Request, Response]) operation.Operation[Request, Response] {

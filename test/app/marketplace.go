@@ -7,10 +7,10 @@ import (
 	"github.com/oklog/ulid/v2"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/app"
-	appstripe "github.com/openmeterio/openmeter/openmeter/app/stripe"
-	"github.com/openmeterio/openmeter/pkg/models"
-	"github.com/openmeterio/openmeter/pkg/pagination"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	appstripe "github.com/Pototoooo/meterforge/meterforge/app/stripe"
+	"github.com/Pototoooo/meterforge/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/pagination"
 )
 
 var TestType = app.AppTypeStripe

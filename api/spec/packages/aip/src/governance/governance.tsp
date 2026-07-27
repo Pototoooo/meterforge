@@ -50,11 +50,11 @@ model GovernanceQueryRequest {
   @summary("Include credits")
   include_credits?: boolean = false;
 
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "-"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "-"
   @summary("Customer")
   customer: GovernanceQueryRequestCustomers;
 
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "-"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "-"
   @summary("Feature")
   feature?: GovernanceQueryRequestFeatures;
 }

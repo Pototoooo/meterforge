@@ -1,8 +1,8 @@
 # Legacy API (`packages/legacy`)
 
-This package defines OpenMeter v1-v2 APIs and OpenMeter Cloud API using TypeSpec, following OpenMeter's existing conventions.
+This package defines MeterForge v1-v2 APIs and its legacy cloud-compatible surface using TypeSpec, following MeterForge's existing conventions.
 
-**Outputs:** `openapi.OpenMeter.yaml`, `openapi.OpenMeterCloud.yaml`
+**Outputs:** `openapi.MeterForge.yaml`, `openapi.MeterForgeCloud.yaml`
 
 ---
 

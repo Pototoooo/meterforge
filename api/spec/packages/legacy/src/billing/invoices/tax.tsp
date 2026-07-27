@@ -6,7 +6,7 @@ using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * TaxConfig stores the configuration for a tax line relative to an invoice line.

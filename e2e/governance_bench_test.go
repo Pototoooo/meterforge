@@ -10,13 +10,13 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/client/go"
-	v3sdk "github.com/openmeterio/openmeter/api/v3/client"
+	api "github.com/Pototoooo/meterforge/api/client/go"
+	v3sdk "github.com/Pototoooo/meterforge/api/v3/client"
 )
 
 // BenchmarkGovernanceQuery measures end-to-end latency of
-// POST /api/v3/openmeter/governance/query against a running stack
-// (OPENMETER_ADDRESS). It is a benchmark, so it only runs under `go test -bench`;
+// POST /api/v3/meterforge/governance/query against a running stack
+// (METERFORGE_ADDRESS). It is a benchmark, so it only runs under `go test -bench`;
 // a plain `go test ./e2e/...` skips it entirely.
 //
 // What it is good for: a realistic baseline and a before/after signal for
@@ -38,7 +38,7 @@ import (
 // Seeding is heavy (100x100 = ~10k entitlement creates over HTTP) and runs once
 // per sub-benchmark, outside the timed loop.
 func BenchmarkGovernanceQuery(b *testing.B) {
-	client := initClient(b) // skips when OPENMETER_ADDRESS is unset
+	client := initClient(b) // skips when METERFORGE_ADDRESS is unset
 	v3 := newV3Client(b)
 
 	type size struct {

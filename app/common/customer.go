@@ -7,17 +7,17 @@ import (
 	"github.com/google/wire"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	customeradapter "github.com/openmeterio/openmeter/openmeter/customer/adapter"
-	customerservice "github.com/openmeterio/openmeter/openmeter/customer/service"
-	customerservicehooks "github.com/openmeterio/openmeter/openmeter/customer/service/hooks"
-	entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
-	ledgerresolvers "github.com/openmeterio/openmeter/openmeter/ledger/resolvers"
-	"github.com/openmeterio/openmeter/openmeter/registry"
-	"github.com/openmeterio/openmeter/openmeter/subject"
-	"github.com/openmeterio/openmeter/openmeter/watermill/eventbus"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	customeradapter "github.com/Pototoooo/meterforge/meterforge/customer/adapter"
+	customerservice "github.com/Pototoooo/meterforge/meterforge/customer/service"
+	customerservicehooks "github.com/Pototoooo/meterforge/meterforge/customer/service/hooks"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
+	ledgerresolvers "github.com/Pototoooo/meterforge/meterforge/ledger/resolvers"
+	"github.com/Pototoooo/meterforge/meterforge/registry"
+	"github.com/Pototoooo/meterforge/meterforge/subject"
+	"github.com/Pototoooo/meterforge/meterforge/watermill/eventbus"
 )
 
 var Customer = wire.NewSet(

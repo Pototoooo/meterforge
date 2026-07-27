@@ -16,4 +16,4 @@ import "./alignment.tsp";
 import "./addon.tsp";
 import "./planaddon.tsp";
 
-namespace OpenMeter;
+namespace MeterForge;

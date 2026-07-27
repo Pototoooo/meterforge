@@ -6,15 +6,15 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/client/go"
+	api "github.com/Pototoooo/meterforge/api/client/go"
 )
 
 func initClient(t testing.TB) *api.ClientWithResponses {
 	t.Helper()
 
-	address := os.Getenv("OPENMETER_ADDRESS")
+	address := os.Getenv("METERFORGE_ADDRESS")
 	if address == "" {
-		t.Skip("OPENMETER_ADDRESS not set")
+		t.Skip("METERFORGE_ADDRESS not set")
 	}
 
 	client, err := api.NewClientWithResponses(address)

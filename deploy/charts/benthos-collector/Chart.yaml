@@ -3,13 +3,13 @@ type: application
 name: benthos-collector
 version: 0.0.0
 appVersion: "latest"
-description: "A Benthos-based collector for OpenMeter"
-icon: https://openmeter.io/favicon.svg
+description: "A Benthos-based collector for MeterForge"
+icon: https://github.com/Pototoooo/meterforge/favicon.svg
 keywords:
   - metering
   - usage
   - billing
   - aggregation
-home: https://openmeter.io
+home: https://github.com/Pototoooo/meterforge
 sources:
-  - https://github.com/openmeterio/openmeter
+  - https://github.com/Pototoooo/meterforge

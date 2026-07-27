@@ -9,16 +9,16 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	v3sdk "github.com/openmeterio/openmeter/api/v3/client"
+	v3sdk "github.com/Pototoooo/meterforge/api/v3/client"
 )
 
-// TestV3AppCatalogList exercises GET /api/v3/openmeter/apps/catalog. The
+// TestV3AppCatalogList exercises GET /api/v3/meterforge/apps/catalog. The
 // catalog lists app types available to install, not installed app instances,
 // so its contents are stable across environments regardless of config: all
 // three app factories (sandbox, stripe, custom invoicing) register their
 // marketplace listing unconditionally in app/common (see
-// openmeter/app/sandbox/marketplace.go, openmeter/app/stripe/marketplace.go,
-// openmeter/app/custominvoicing/factory.go) — a Stripe API key is only
+// meterforge/app/sandbox/marketplace.go, meterforge/app/stripe/marketplace.go,
+// meterforge/app/custominvoicing/factory.go) — a Stripe API key is only
 // required to install a Stripe app instance, not for it to appear here.
 func TestV3AppCatalogList(t *testing.T) {
 	c := newV3Client(t)
@@ -42,7 +42,7 @@ func TestV3AppCatalogList(t *testing.T) {
 		})
 		require.True(t, ok, "sandbox app missing from catalog: %+v", page.Data)
 		assert.Equal(t, "Sandbox", sandbox.Name)
-		assert.Equal(t, "Sandbox can be used to test OpenMeter without external connections.", sandbox.Description)
+		assert.Equal(t, "Sandbox can be used to test MeterForge without external connections.", sandbox.Description)
 
 		stripe, ok := lo.Find(page.Data, func(item v3sdk.AppCatalogItem) bool {
 			return item.Type == v3sdk.AppTypeStripe

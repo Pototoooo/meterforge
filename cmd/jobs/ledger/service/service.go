@@ -6,10 +6,10 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	"github.com/openmeterio/openmeter/openmeter/ledger"
-	"github.com/openmeterio/openmeter/pkg/models"
-	paginationv2 "github.com/openmeterio/openmeter/pkg/pagination/v2"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	"github.com/Pototoooo/meterforge/meterforge/ledger"
+	"github.com/Pototoooo/meterforge/pkg/models"
+	paginationv2 "github.com/Pototoooo/meterforge/pkg/pagination/v2"
 )
 
 const DefaultCustomerPageSize = 100

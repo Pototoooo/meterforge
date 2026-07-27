@@ -5,13 +5,13 @@ import (
 	"github.com/rickb777/period"
 	"github.com/samber/lo"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/labels"
-	"github.com/openmeterio/openmeter/openmeter/app"
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog"
-	"github.com/openmeterio/openmeter/pkg/datetime"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/labels"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 // goverter:variables

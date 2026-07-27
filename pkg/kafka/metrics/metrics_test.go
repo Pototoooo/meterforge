@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/otel/metric/noop"
 
-	"github.com/openmeterio/openmeter/pkg/kafka/metrics/stats"
+	"github.com/Pototoooo/meterforge/pkg/kafka/metrics/stats"
 )
 
 //go:embed stats/testdata/stats.json

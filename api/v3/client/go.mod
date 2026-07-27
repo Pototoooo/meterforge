@@ -1,4 +1,4 @@
-module github.com/openmeterio/openmeter/api/v3/client
+module github.com/Pototoooo/meterforge/api/v3/client
 
 go 1.24
 

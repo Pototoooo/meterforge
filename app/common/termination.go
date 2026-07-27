@@ -11,7 +11,7 @@ import (
 	health "github.com/AppsFlyer/go-sundheit"
 	"github.com/oklog/run"
 
-	"github.com/openmeterio/openmeter/app/config"
+	"github.com/Pototoooo/meterforge/app/config"
 )
 
 type TerminationState = string

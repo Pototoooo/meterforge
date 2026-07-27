@@ -7,7 +7,7 @@ telemetry:
     exporters:
       file:
         enabled: true
-        filepath: "/var/log/openmeter/openmeter.log"
+        filepath: "/var/log/meterforge/meterforge.log"
         prettyprint: true
 
 ingest:

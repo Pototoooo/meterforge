@@ -7,11 +7,11 @@ import (
 	"github.com/alpacahq/alpacadecimal"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/openmeter/ledger"
-	"github.com/openmeterio/openmeter/openmeter/ledger/customerbalance"
-	"github.com/openmeterio/openmeter/pkg/currencyx"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/meterforge/ledger"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/customerbalance"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 func TestFromAPIBillingCreditTransactionType_Funded(t *testing.T) {

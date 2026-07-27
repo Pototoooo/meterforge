@@ -13,12 +13,12 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/client/go"
-	v3sdk "github.com/openmeterio/openmeter/api/v3/client"
-	"github.com/openmeterio/openmeter/openmeter/billing"
+	api "github.com/Pototoooo/meterforge/api/client/go"
+	v3sdk "github.com/Pototoooo/meterforge/api/v3/client"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
 )
 
-// TestV3GetBillingInvoice exercises GET /api/v3/openmeter/billing/invoices/{invoiceId}.
+// TestV3GetBillingInvoice exercises GET /api/v3/meterforge/billing/invoices/{invoiceId}.
 //
 // Flow:
 //   - Create a customer (v3)
@@ -254,7 +254,7 @@ func formatLogJSON(v any) string {
 	return string(out)
 }
 
-// TestV3ListBillingInvoices exercises GET /api/v3/openmeter/billing/invoices.
+// TestV3ListBillingInvoices exercises GET /api/v3/meterforge/billing/invoices.
 //
 // Flow:
 //   - Create a customer (v3)
@@ -516,7 +516,7 @@ func TestV3ListBillingInvoices(t *testing.T) {
 	})
 }
 
-// TestV3UpdateBillingInvoice exercises PUT /api/v3/openmeter/billing/invoices/{invoiceId}.
+// TestV3UpdateBillingInvoice exercises PUT /api/v3/meterforge/billing/invoices/{invoiceId}.
 //
 // Flow:
 //   - Create a customer (v3)
@@ -976,7 +976,7 @@ func newFlatUpdateLine(name string, period v3sdk.ClosedPeriod, amount string) v3
 	}
 }
 
-// TestV3DeleteBillingInvoice exercises DELETE /api/v3/openmeter/billing/invoices/{invoiceId}.
+// TestV3DeleteBillingInvoice exercises DELETE /api/v3/meterforge/billing/invoices/{invoiceId}.
 // Flow:
 //   - Create a customer (v3)
 //   - Create a meter, feature, plan, and subscription (v3)
@@ -1191,7 +1191,7 @@ func TestV3DeleteBillingInvoice(t *testing.T) {
 	})
 }
 
-// TestV3AdvanceBillingInvoice exercises POST /api/v3/openmeter/billing/invoices/{invoiceId}/advance
+// TestV3AdvanceBillingInvoice exercises POST /api/v3/meterforge/billing/invoices/{invoiceId}/advance
 // Flow:
 //   - Create a customer (v3)
 //   - Create a standard invoice with draft status (v1)
@@ -1385,7 +1385,7 @@ func invoicePendingLinesNow(t *testing.T, v1 *api.ClientWithResponses, customerI
 	return (*invoiceResp.JSON201)[0]
 }
 
-// TestV3ApproveBillingInvoice exercises POST /api/v3/openmeter/billing/invoices/{invoiceId}/approve
+// TestV3ApproveBillingInvoice exercises POST /api/v3/meterforge/billing/invoices/{invoiceId}/approve
 // Flow:
 //   - Create a customer (v3)
 //   - Create a standard invoice with draft status (v1)
@@ -1562,7 +1562,7 @@ func TestV3ApproveBillingInvoice(t *testing.T) {
 	})
 }
 
-// TestV3RetryBillingInvoice exercises POST /api/v3/openmeter/billing/invoices/{invoiceId}/retry
+// TestV3RetryBillingInvoice exercises POST /api/v3/meterforge/billing/invoices/{invoiceId}/retry
 // Flow:
 //   - Create a customer (v3)
 //   - Create a standard invoice with draft status (v1)
@@ -1657,7 +1657,7 @@ func TestV3RetryBillingInvoice(t *testing.T) {
 	})
 }
 
-// TestV3SnapshotQuantitiesBillingInvoice exercises POST /api/v3/openmeter/billing/invoices/{invoiceId}/snapshot-quantities
+// TestV3SnapshotQuantitiesBillingInvoice exercises POST /api/v3/meterforge/billing/invoices/{invoiceId}/snapshot-quantities
 // Flow:
 //   - Create a customer (v3)
 //   - Create a standard invoice with a usage-based line resting in draft.waiting_for_collection (v1)

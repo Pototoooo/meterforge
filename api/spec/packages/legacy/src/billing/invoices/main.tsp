@@ -21,4 +21,4 @@ using TypeSpec.Rest;
 using TypeSpec.OpenAPI;
 using TypeSpec.Versioning;
 
-namespace OpenMeter;
+namespace MeterForge;

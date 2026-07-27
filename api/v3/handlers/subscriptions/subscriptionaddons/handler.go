@@ -3,10 +3,10 @@ package subscriptionaddons
 import (
 	"context"
 
-	"github.com/openmeterio/openmeter/openmeter/subscription"
-	subscriptionaddon "github.com/openmeterio/openmeter/openmeter/subscription/addon"
-	subscriptionworkflow "github.com/openmeterio/openmeter/openmeter/subscription/workflow"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/meterforge/subscription"
+	subscriptionaddon "github.com/Pototoooo/meterforge/meterforge/subscription/addon"
+	subscriptionworkflow "github.com/Pototoooo/meterforge/meterforge/subscription/workflow"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 type Handler interface {

@@ -1,6 +1,6 @@
 package internal
 
-import "github.com/openmeterio/openmeter/app/config"
+import "github.com/Pototoooo/meterforge/app/config"
 
 //nolint:gochecknoglobals
 var (

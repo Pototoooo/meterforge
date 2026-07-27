@@ -9,7 +9,7 @@ import "../types.tsp";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 /**
  * Customer Stripe API.
  */

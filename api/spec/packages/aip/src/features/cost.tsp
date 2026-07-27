@@ -18,7 +18,7 @@ model FeatureCostQueryRow {
    * The computed cost amount (usage × unit cost). Null when pricing is not available
    * for the given combination of dimensions.
    */
-  #suppress "@openmeter/api-spec-aip/no-nullable" "cost is nullable"
+  #suppress "@meterforge/api-spec-aip/no-nullable" "cost is nullable"
   cost: Shared.Numeric | null;
 
   /**

@@ -8,7 +8,7 @@ import (
 	"github.com/alpacahq/alpacadecimal"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
 )
 
 func TestAllocateByWeight(t *testing.T) {

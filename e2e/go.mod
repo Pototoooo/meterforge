@@ -1,18 +1,18 @@
-module github.com/openmeterio/openmeter/e2e
+module github.com/Pototoooo/meterforge/e2e
 
 go 1.25.6
 
-replace github.com/openmeterio/openmeter => ../
+replace github.com/Pototoooo/meterforge => ../
 
-replace github.com/openmeterio/openmeter/api/v3/client => ../api/v3/client
+replace github.com/Pototoooo/meterforge/api/v3/client => ../api/v3/client
 
 require (
 	github.com/brianvoe/gofakeit/v6 v6.28.0
 	github.com/cloudevents/sdk-go/v2 v2.16.2
 	github.com/jackc/pgx/v5 v5.10.0
 	github.com/oklog/ulid/v2 v2.1.1
-	github.com/openmeterio/openmeter v0.0.0-00010101000000-000000000000
-	github.com/openmeterio/openmeter/api/v3/client v0.0.0
+	github.com/Pototoooo/meterforge v0.0.0-00010101000000-000000000000
+	github.com/Pototoooo/meterforge/api/v3/client v0.0.0
 	github.com/samber/lo v1.53.0
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/sync v0.22.0

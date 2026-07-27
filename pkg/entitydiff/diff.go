@@ -5,7 +5,7 @@ import (
 
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/pkg/equal"
+	"github.com/Pototoooo/meterforge/pkg/equal"
 )
 
 type Entity interface {

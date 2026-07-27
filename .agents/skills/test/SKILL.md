@@ -1,6 +1,6 @@
 ---
 name: test
-description: Write tests for OpenMeter services following project conventions. Use when creating unit tests, integration tests, or service tests.
+description: Write tests for MeterForge services following project conventions. Use when creating unit tests, integration tests, or service tests.
 user-invocable: true
 argument-hint: "[description of what to test]"
 allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
@@ -8,15 +8,15 @@ allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
 
 # Testing
 
-You are helping the user write tests for OpenMeter following established conventions.
+You are helping the user write tests for MeterForge following established conventions.
 
 ## Test Types & File Locations
 
 | Type | Purpose | Location | DB Required |
 |------|---------|----------|-------------|
-| Unit tests | Validation, pure functions | `openmeter/<domain>/<domain>_test.go` | No |
-| Integration tests | Adapter against real Postgres | `openmeter/<domain>/adapter/*_test.go` | Yes |
-| Service tests | Full stack via TestEnv | `openmeter/<domain>/service/*_test.go` | Yes |
+| Unit tests | Validation, pure functions | `meterforge/<domain>/<domain>_test.go` | No |
+| Integration tests | Adapter against real Postgres | `meterforge/<domain>/adapter/*_test.go` | Yes |
+| Service tests | Full stack via TestEnv | `meterforge/<domain>/service/*_test.go` | Yes |
 
 ## Running Tests
 
@@ -35,7 +35,7 @@ Prefer direct command execution. Do not wrap test commands in `sh -lc`, `bash -l
 For running a specific test directly:
 
 ```bash
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic ./openmeter/<domain>/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic ./meterforge/<domain>/...
 ```
 
 When a Postgres-backed test fails, the suite output often includes a `testdbconf:` URL for the per-test database. Use that URL with `psql` to inspect the failed test state before rerunning, because the database is still useful for RCA. Quote the connection string if it contains query parameters, for example:
@@ -46,7 +46,7 @@ psql 'postgres://pgtdbuser:pgtdbpass@127.0.0.1:5432/testdb_tpl_...?sslmode=disab
 
 ## Key Test Utilities
 
-From `openmeter/testutils/`:
+From `meterforge/testutils/`:
 
 | Utility | Usage |
 |---------|-------|
@@ -54,7 +54,7 @@ From `openmeter/testutils/`:
 | `testutils.NewDiscardLogger(t)` | Silent logger for tests |
 | `testutils.NewLogger(t)` | Default slog logger for tests |
 
-From `openmeter/watermill/eventbus/`:
+From `meterforge/watermill/eventbus/`:
 
 | Utility | Usage |
 |---------|-------|
@@ -64,7 +64,7 @@ From `openmeter/watermill/eventbus/`:
 
 For service/integration tests, create a `testutils/` package with a `TestEnv` that wires up the full stack.
 
-Reference: `openmeter/customer/testutils/env.go`
+Reference: `meterforge/customer/testutils/env.go`
 
 ```go
 package testutils
@@ -78,9 +78,9 @@ import (
     "<domain>"
     <domain>adapter "<domain>/adapter"
     <domain>service "<domain>/service"
-    entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
-    "github.com/openmeterio/openmeter/openmeter/testutils"
-    "github.com/openmeterio/openmeter/openmeter/watermill/eventbus"
+    entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
+    "github.com/Pototoooo/meterforge/meterforge/testutils"
+    "github.com/Pototoooo/meterforge/meterforge/watermill/eventbus"
 )
 
 type TestEnv struct {

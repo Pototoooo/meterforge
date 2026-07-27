@@ -1,6 +1,6 @@
 # Subject-Customer Consolidation
 
-OpenMeter has always separated usage owners (subjects) from billing
+MeterForge has always separated usage owners (subjects) from billing
 entities (customers). This design stays, but now you can assign multiple
 subjects to a customer.
 
@@ -18,7 +18,7 @@ Customers now replace subjects as the primary entity. Mapping subjects
 to customers is optional and does not affect the ingest API or the
 `subject` field in usage events.
 
-If the subject is a Customer ID or Key, OpenMeter automatically
+If the subject is a Customer ID or Key, MeterForge automatically
 attributes usage to that customer. Custom subjects can still be created
 and linked to customers when needed.
 
@@ -33,13 +33,13 @@ and linked to customers when needed.
 Mandatory subject-customer mapping via `usageAttribution` property before the change.
 
 ```ts
-const customer = await openmeter.customers.create({
+const customer = await meterforge.customers.create({
   name: 'ACME, Inc.',
   key: 'my-identifier',
   usageAttribution: { subjects: ['my-identifier'] },
 });
 
-await openmeter.events.ingest({
+await meterforge.events.ingest({
   type: 'prompt',
   // customer.usageAttribution.subjects
   subject: 'my-identifier',
@@ -53,13 +53,13 @@ Optional definition of `usageAttribution` property on customer and
 automatic usage attribution when usage event uses Customer ID or Key.
 
 ```ts
-const customer = await openmeter.customers.create({
+const customer = await meterforge.customers.create({
   name: 'ACME, Inc.',
   key: 'my-identifier',
   // optional: usageAttribution
 });
 
-await openmeter.events.ingest({
+await meterforge.events.ingest({
   type: 'prompt',
   // customer.id, customer.key, or usageAttribution.subjects
   subject: 'my-identifier',
@@ -77,20 +77,20 @@ after the migration period.
 #### Before (subject-level)
 
 ```ts
-const entitlement = await openmeter.subjects.createEntitlement('my-identifier', { … });
+const entitlement = await meterforge.subjects.createEntitlement('my-identifier', { … });
 ```
 
 #### After (customer-level)
 
 ```ts
-const entitlement = await openmeter.customers.createEntitlement('my-identifier', { … });
+const entitlement = await meterforge.customers.createEntitlement('my-identifier', { … });
 ```
 
 ### ✏️ 3. Defining subjects on a customer becomes optional
 
 The `usageAttribution` field on customers is now optional to set.
 
-→ OpenMeter will automatically attribute usage by customer ID or Key.
+→ MeterForge will automatically attribute usage by customer ID or Key.
 
 ### 👥 4. Assigning multiple subjects to a customer
 
@@ -98,7 +98,7 @@ You can now assign multiple subjects to a single customer. This is
 useful when multiple consumers need to be billed together.
 
 ```ts
-const customer = await openmeter.customers.create({
+const customer = await meterforge.customers.create({
   name: 'ACME, Inc.',
   key: 'my-identifier',
   usageAttribution: {
@@ -134,7 +134,7 @@ Who should act? Anyone calling /subjects APIs or relying on subject-level entitl
 
 ### What is a subject?
 
-A subject is any entity that generates metered usage in OpenMeter — for
+A subject is any entity that generates metered usage in MeterForge — for
 example, a customer, user, server, service, or device. Subjects exist
 only in the context of usage events and metering, representing the
 consumers of your service.
@@ -154,7 +154,7 @@ as soon as possible.
 ### Will you create customers for my subjects automatically?
 
 Yes. All subjects not assigned to customers will be turned into
-customers on OpenMeter Cloud. These customers remain in sync with
+customers on MeterForge Cloud. These customers remain in sync with
 the subjects they were created from.
 
 ### Can I assign multiple subjects to the same customer?

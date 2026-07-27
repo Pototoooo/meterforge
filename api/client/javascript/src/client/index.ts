@@ -26,7 +26,7 @@ export * from './common.js'
 export * from './schemas.js'
 
 /**
- * OpenMeter Config
+ * MeterForge Config
  */
 export type Config = Pick<
   ClientOptions,
@@ -37,15 +37,15 @@ export type Config = Pick<
         apiKey?: string
       }
     | {
-        baseUrl: 'https://openmeter.cloud'
+        baseUrl: 'http://localhost:8888'
         apiKey: string
       }
   )
 
 /**
- * OpenMeter Client
+ * MeterForge Client
  */
-export class OpenMeter {
+export class MeterForge {
   public client: Client<paths, `${string}/${string}`>
 
   public addons: Addons

@@ -3,7 +3,7 @@ package config
 import (
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/pkg/featuregate"
+	"github.com/Pototoooo/meterforge/pkg/featuregate"
 )
 
 type FeatureGateConfiguration struct {

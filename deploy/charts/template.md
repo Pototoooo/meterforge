@@ -15,20 +15,20 @@
 {{- end -}}
 
 {{- define "chart.artifactHubBadge" -}}
-[![artifact hub](https://img.shields.io/badge/artifact%20hub-{{ .Name | replace "-" "--" }}-informational?style=flat-square)](https://artifacthub.io/packages/helm/openmeter/{{ .Name }})
+[![artifact hub](https://img.shields.io/badge/artifact%20hub-{{ .Name | replace "-" "--" }}-informational?style=flat-square)](https://artifacthub.io/packages/helm/meterforge/{{ .Name }})
 {{- end -}}
 
 {{- define "tldr" -}}
 ## TL;DR;
 
 ```bash
-helm install --generate-name --wait oci://ghcr.io/openmeterio/helm-charts/{{ .Name }}
+helm install --generate-name --wait oci://ghcr.io/Pototoooo/helm-charts/{{ .Name }}
 ```
 
 to install a specific version:
 
 ```bash
-helm install --generate-name --wait oci://ghcr.io/openmeterio/helm-charts/{{ .Name }} --version $VERSION
+helm install --generate-name --wait oci://ghcr.io/Pototoooo/helm-charts/{{ .Name }} --version $VERSION
 ```
 {{- end -}}
 

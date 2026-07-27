@@ -7,17 +7,17 @@ import (
 
 	"github.com/samber/lo"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	"github.com/openmeterio/openmeter/api/v3/filters"
-	"github.com/openmeterio/openmeter/api/v3/response"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges/creditpurchase"
-	"github.com/openmeterio/openmeter/openmeter/billing/creditgrant"
-	"github.com/openmeterio/openmeter/pkg/currencyx"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
-	"github.com/openmeterio/openmeter/pkg/pagination"
-	"github.com/openmeterio/openmeter/pkg/slicesx"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/api/v3/filters"
+	"github.com/Pototoooo/meterforge/api/v3/response"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/creditpurchase"
+	"github.com/Pototoooo/meterforge/meterforge/billing/creditgrant"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/pkg/pagination"
+	"github.com/Pototoooo/meterforge/pkg/slicesx"
 )
 
 type (

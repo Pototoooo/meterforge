@@ -8,10 +8,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent1/db"
-	db_example "github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent1/db/example1"
-	pagination "github.com/openmeterio/openmeter/pkg/pagination/v2"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent1/db"
+	db_example "github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent1/db/example1"
+	pagination "github.com/Pototoooo/meterforge/pkg/pagination/v2"
 )
 
 func TestCursor(t *testing.T) {

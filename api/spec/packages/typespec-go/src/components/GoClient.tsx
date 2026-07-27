@@ -74,16 +74,16 @@ export function GoClient({ clientRefkey, resources }: GoClientProps) {
       >
         {ay.code`
           if baseURL == "" {
-            return nil, ${go.std.fmt.Errorf}("openmeter: baseURL is required")
+            return nil, ${go.std.fmt.Errorf}("meterforge: baseURL is required")
           }
 
           u, err := ${url.Parse}(baseURL)
           if err != nil {
-            return nil, ${go.std.fmt.Errorf}("openmeter: invalid baseURL %q: %w", baseURL, err)
+            return nil, ${go.std.fmt.Errorf}("meterforge: invalid baseURL %q: %w", baseURL, err)
           }
 
           if u.Scheme == "" || u.Host == "" {
-            return nil, ${go.std.fmt.Errorf}("openmeter: baseURL %q must be absolute (scheme and host)", baseURL)
+            return nil, ${go.std.fmt.Errorf}("meterforge: baseURL %q must be absolute (scheme and host)", baseURL)
           }
 
           c := &Client{

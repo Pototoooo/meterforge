@@ -34,12 +34,12 @@ func TestValidationIssue_JSON(t *testing.T) {
 				message:   "error message",
 				field:     NewFieldSelectorGroup(NewFieldSelector("field_name")),
 				code:      "invalid_param",
-				component: "openmeter",
+				component: "meterforge",
 				severity:  ErrorSeverityCritical,
 			},
 			expectedJSON: `{
 				"code":"invalid_param",
-				"component":"openmeter",
+				"component":"meterforge",
 				"message":"error message",
 				"field":"$.field_name",
 				"severity":"critical"
@@ -53,7 +53,7 @@ func TestValidationIssue_JSON(t *testing.T) {
 					NewFieldAttrValue("key", "value"),
 				)),
 				code:      "invalid_param",
-				component: "openmeter",
+				component: "meterforge",
 				severity:  ErrorSeverityWarning,
 				attributes: Attributes{
 					"attr1": "value1",
@@ -61,7 +61,7 @@ func TestValidationIssue_JSON(t *testing.T) {
 			},
 			expectedJSON: `{
 				"code":"invalid_param",
-				"component":"openmeter",
+				"component":"meterforge",
 				"message":"error message",
 				"field":"$.field_name[?(@.key=='value')]",
 				"severity":"warning",

@@ -15,10 +15,10 @@ export type Config = Pick<
 }
 
 /**
- * OpenMeter Portal Client
+ * MeterForge Portal Client
  * Access to the customer portal.
  */
-export class OpenMeter {
+export class MeterForge {
   private client: Client<paths, `${string}/${string}`>
 
   constructor(config: Config) {

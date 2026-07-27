@@ -8,11 +8,11 @@ import (
 	"github.com/google/wire"
 	"go.opentelemetry.io/otel/metric"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/ingest/kafkaingest"
-	"github.com/openmeterio/openmeter/openmeter/ingest/kafkaingest/topicresolver"
-	pkgkafka "github.com/openmeterio/openmeter/pkg/kafka"
-	kafkametrics "github.com/openmeterio/openmeter/pkg/kafka/metrics"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/ingest/kafkaingest"
+	"github.com/Pototoooo/meterforge/meterforge/ingest/kafkaingest/topicresolver"
+	pkgkafka "github.com/Pototoooo/meterforge/pkg/kafka"
+	kafkametrics "github.com/Pototoooo/meterforge/pkg/kafka/metrics"
 )
 
 var Kafka = wire.NewSet(

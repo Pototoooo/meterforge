@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent2/db/example2"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent2/db/example2"
 )
 
 // Example2 is the model entity for the Example2 schema.

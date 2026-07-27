@@ -9,12 +9,12 @@ import (
 	"log"
 	"reflect"
 
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent1/db/migrate"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent1/db/migrate"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent1/db/example1"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent1/db/example1"
 
 	stdsql "database/sql"
 )

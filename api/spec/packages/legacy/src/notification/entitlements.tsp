@@ -5,7 +5,7 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Payload for notification event with `entitlements.balance.threshold` type.

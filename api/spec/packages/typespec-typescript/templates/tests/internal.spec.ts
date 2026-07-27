@@ -1,6 +1,6 @@
 import fetchMock from '@fetch-mock/vitest'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { OpenMeter } from '../src/index.js'
+import { MeterForge } from '../src/index.js'
 
 beforeEach(() => {
   fetchMock.mockReset()
@@ -8,8 +8,8 @@ beforeEach(() => {
 
 const fetch = fetchMock.fetchHandler
 
-function client(): OpenMeter {
-  return new OpenMeter({
+function client(): MeterForge {
+  return new MeterForge({
     baseUrl: 'https://eu.api.konghq.com/v3',
     apiKey: 'k',
     fetch,
@@ -54,7 +54,7 @@ describe('internal sub-client', () => {
       },
     })
     expect(lastUrl()).toBe(
-      'https://eu.api.konghq.com/v3/openmeter/subscriptions/01ARZ3NDEKTSV4RRFFQ69G5FAV/addons',
+      'https://eu.api.konghq.com/v3/meterforge/subscriptions/01ARZ3NDEKTSV4RRFFQ69G5FAV/addons',
     )
   })
 
@@ -64,6 +64,6 @@ describe('internal sub-client', () => {
       headers: { 'Content-Type': 'application/json' },
     })
     await client().internal.currencies.list()
-    expect(lastUrl()).toBe('https://eu.api.konghq.com/v3/openmeter/currencies')
+    expect(lastUrl()).toBe('https://eu.api.konghq.com/v3/meterforge/currencies')
   })
 })

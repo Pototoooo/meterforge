@@ -2,7 +2,7 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/openapi3";
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * InvoiceLineCreditAllocation represents a credit amount allocated to the line before taxes are applied.

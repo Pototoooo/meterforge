@@ -22,6 +22,16 @@ down: ## Stop the dependencies via docker compose
 	$(call print-target)
 	docker compose down --remove-orphans --volumes
 
+.PHONY: console-dev
+console-dev: ## Run the local Metering & Billing console (requires Node from .nvmrc)
+	$(call print-target)
+	pnpm -C web dev
+
+.PHONY: console-build
+console-build: ## Build the local Metering & Billing console
+	$(call print-target)
+	pnpm -C web build
+
 .PHONY: patch-oapi-templates
 patch-oapi-templates: ## Patch oapi-codegen chi-middleware template with custom filter parsing
 	$(call print-target)
@@ -58,11 +68,11 @@ migrate-check: migrate-check-schema migrate-check-diff migrate-check-lint migrat
 .PHONY: migrate-check-schema
 migrate-check-schema: ## Ensure ent schema is in sync with generated code
 	$(call print-target)
-	go generate -x ./openmeter/ent/...
-	@if ! git diff --quiet -- openmeter/ent || [ -n "$$(git ls-files --others --exclude-standard -- openmeter/ent)" ]; then \
-		git --no-pager diff -- openmeter/ent; \
-		git ls-files --others --exclude-standard -- openmeter/ent; \
-		echo "!!! schema is not in sync with generated code — run 'go generate ./openmeter/ent/...' and commit the changes !!!"; \
+	go generate -x ./meterforge/ent/...
+	@if ! git diff --quiet -- meterforge/ent || [ -n "$$(git ls-files --others --exclude-standard -- meterforge/ent)" ]; then \
+		git --no-pager diff -- meterforge/ent; \
+		git ls-files --others --exclude-standard -- meterforge/ent; \
+		echo "!!! schema is not in sync with generated code — run 'go generate ./meterforge/ent/...' and commit the changes !!!"; \
 		exit 1; \
 	fi
 
@@ -274,11 +284,11 @@ lint-openapi: ## Lint OpenAPI spec
 .PHONY: lint-helm
 lint-helm: ## Lint Helm charts
 	$(call print-target)
-	helm lint deploy/charts/openmeter
+	helm lint deploy/charts/meterforge
 	helm lint deploy/charts/benthos-collector
 
 # Package a helm chart for release.
-# Usage: make package-helm-chart CHART=openmeter VERSION=v1.2.3
+# Usage: make package-helm-chart CHART=meterforge VERSION=v1.2.3
 #   Produces build/helm/<CHART>-<version-without-v>.tgz
 .PHONY: package-helm-chart
 package-helm-chart: ## Package a helm chart for release (set CHART and VERSION)
@@ -304,7 +314,7 @@ lint-go: ## Lint Go code
 	cd e2e && golangci-lint run -v ./...
 
 .PHONY: lint-go-fast
-lint-go-fast: ## Lint Go bug-finding checks (set GO_LINT_PATH=./openmeter/ledger/...)
+lint-go-fast: ## Lint Go bug-finding checks (set GO_LINT_PATH=./meterforge/ledger/...)
 	$(call print-target)
 	golangci-lint run -v --config .golangci-fast.yaml $(GO_LINT_PATH)
 
@@ -338,7 +348,7 @@ mod: ## go mod tidy
 	go mod tidy -C e2e
 
 .PHONY: seed
-seed: ## Seed OpenMeter with test data
+seed: ## Seed MeterForge with test data
 	$(call print-target)
 	benthos -c etc/seed/seed.yaml
 

@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/pkg/errorsx"
+	"github.com/Pototoooo/meterforge/pkg/errorsx"
 )
 
 type BillingWorkerConfiguration struct {
@@ -23,8 +23,8 @@ func (c BillingWorkerConfiguration) Validate() error {
 }
 
 func ConfigureBillingWorker(v *viper.Viper) {
-	v.SetDefault("billing.worker.dlq.topic", "om_sys.billing_worker_dlq")
-	v.SetDefault("billing.worker.consumerGroupName", "om_billing_worker")
+	v.SetDefault("billing.worker.dlq.topic", "mf_sys.billing_worker_dlq")
+	v.SetDefault("billing.worker.consumerGroupName", "mf_billing_worker")
 
 	ConfigureConsumer(v, "billing.worker")
 }

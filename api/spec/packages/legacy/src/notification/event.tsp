@@ -5,20 +5,20 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Type of the notification event.
  */
 @friendlyName("NotificationEventType")
 enum NotificationEventType {
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   entitlementsBalanceThreshold: "entitlements.balance.threshold",
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   entitlementsReset: "entitlements.reset",
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   invoiceCreated: "invoice.created",
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   invoiceUpdated: "invoice.updated",
 }
 
@@ -245,9 +245,9 @@ model NotificationEvent {
  */
 @friendlyName("NotificationEventOrderBy")
 enum NotificationEventOrderBy {
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   id: "id",
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   createdAt: "createdAt",
 }
 
@@ -337,6 +337,6 @@ interface NotificationEventsEndpoints {
     | {
         @statusCode _: 202;
       }
-    | OpenMeter.NotFoundError
-    | OpenMeter.CommonErrors;
+    | MeterForge.NotFoundError
+    | MeterForge.CommonErrors;
 }

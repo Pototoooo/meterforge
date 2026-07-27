@@ -9,19 +9,35 @@
 Clone the repository:
 
 ```sh
-git clone git@github.com:openmeterio/openmeter.git
-cd openmeter/quickstart
+git clone git@github.com:Pototoooo/meterforge.git
+cd meterforge/quickstart
 ```
 
-## 1. Launch OpenMeter
+## 1. Launch MeterForge
 
-Launch OpenMeter and its dependencies via:
+Launch MeterForge and its dependencies via:
 
 ```sh
 docker compose up -d
 ```
 
+Open the local Metering & Billing console at:
+
+<http://localhost:3000>
+
+The console follows MeterForge's core workflow:
+
+1. Create or inspect a meter.
+2. Create a feature and publish a plan.
+3. Create a customer and start a subscription.
+4. Send usage events and query the aggregated usage.
+5. Inspect the resulting entitlement balance and invoice.
+
 ## 2. Ingest usage event(s)
+
+Before running the examples, open **Billing → New Customer** in the console and
+set its Usage Attribution subject to `customer-1`. MeterForge keeps unmatched
+subjects in the event stream as invalid events and does not aggregate them.
 
 Ingest usage events in [CloudEvents](https://cloudevents.io/) format:
 
@@ -150,7 +166,7 @@ curl 'http://localhost:48888/api/v1/meters/api_requests_total/query?subject=cust
 In this example we will meter LLM token usage, groupped by AI model and prompt type.
 You can think about it how OpenAI [charges](https://openai.com/pricing) by tokens for ChatGPT.
 
-Configure how OpenMeter should process your usage events in this new `tokens_total` meter.
+Configure how MeterForge should process your usage events in this new `tokens_total` meter.
 
 ```yaml
 # ...

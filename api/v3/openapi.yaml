@@ -1,61 +1,47 @@
 openapi: 3.0.0
 info:
-  title: OpenMeter and Konnect Metering & Billing API
+  title: MeterForge API
   version: 0.0.1
   description: |-
-    OpenMeter is a cloud native usage metering and billing service. The API allows
+    MeterForge is a cloud-native usage metering and billing service. The API allows
     you to ingest events, query meter usage, and manage resources.
 servers:
   - url: http://localhost:{port}/api/v3
-    description: Local
+    description: Local development
     variables:
       port:
         default: '8888'
-  - url: https://{region}.api.konghq.com/v3
-    description: Production region
-    variables:
-      region:
-        default: us
-        enum:
-          - us
-          - eu
-          - au
-          - me
-          - in
-  - url: https://openmeter.cloud/api/v3
-    description: OpenMeter Cloud
-    variables: {}
 tags:
-  - name: OpenMeter Governance
+  - name: MeterForge Governance
     description: Governance evaluation of customers to check their feature access.
-  - name: OpenMeter Defaults
+  - name: MeterForge Defaults
     description: Organization-level default configuration.
-  - name: OpenMeter Product Catalog
+  - name: MeterForge Product Catalog
     description: Product catalog manages plans, add-ons, and their associations for subscription-based billing.
-  - name: OpenMeter LLM Cost
+  - name: MeterForge LLM Cost
     description: LLM cost database providing normalized pricing data for language models across providers. Prices are synced from multiple external sources and auto-confirmed when they agree.
-  - name: OpenMeter Features
+  - name: MeterForge Features
     description: Features represent product capabilities backed by meters, with optional per-unit cost configuration.
-  - name: OpenMeter Tax
+  - name: MeterForge Tax
     description: Tax codes are used to calculate taxes for customers.
-  - name: OpenMeter Currencies
+  - name: MeterForge Currencies
     description: Currencies and cost bases for customers.
-  - name: OpenMeter Billing Settings
+  - name: MeterForge Billing Settings
     description: Billing settings manages the billing profiles and invoices for customers.
-  - name: OpenMeter Apps
+  - name: MeterForge Apps
     description: Apps enable you to extend and customize billing and usage workflows by integrating with external systems and services. Apps can automate and enhance your billing ecosystem by supporting capabilities such as synchronizing usage data with third-party platforms, calculating taxes, generating and delivering invoices, handling payment collection, and other billing-related tasks.
-  - name: OpenMeter Entitlements
+  - name: MeterForge Entitlements
     description: Entitlements are used to control access to features for customers.
-  - name: OpenMeter Subscriptions
+  - name: MeterForge Subscriptions
     description: Subscriptions are used to track usage of your product or service. Subscriptions can be individuals or organizations that can subscribe to plans and have access to features.
-  - name: OpenMeter Customers
+  - name: MeterForge Customers
     description: Customers are used to track usage of your product or service. Customers can be individuals or organizations that can subscribe to plans and have access to features.
   - name: Metering Events
     description: Metering events are used to track usage of your product or service. Events are processed asynchronously by the meters, so they may not be immediately available for querying.
   - name: Meters
     description: Meters specify how to aggregate events for billing and analytics purposes. Meters can be configured with multiple aggregation methods and groupings. Multiple meters can be created for the same event type, enabling flexible metering scenarios.
 paths:
-  /openmeter/addons:
+  /meterforge/addons:
     get:
       operationId: list-addons
       summary: List add-ons
@@ -101,7 +87,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
     post:
       operationId: create-addon
@@ -121,7 +107,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       requestBody:
         required: true
         content:
@@ -129,7 +115,7 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateAddonRequest'
       x-unstable: true
-  /openmeter/addons/{addonId}:
+  /meterforge/addons/{addonId}:
     put:
       operationId: update-addon
       summary: Update add-on
@@ -158,7 +144,7 @@ paths:
         '410':
           $ref: '#/components/responses/Gone'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       requestBody:
         required: true
         content:
@@ -194,7 +180,7 @@ paths:
         '410':
           $ref: '#/components/responses/Gone'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
     delete:
       operationId: delete-addon
@@ -218,9 +204,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
-  /openmeter/addons/{addonId}/archive:
+  /meterforge/addons/{addonId}/archive:
     post:
       operationId: archive-addon
       summary: Archive add-on version
@@ -247,9 +233,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
-  /openmeter/addons/{addonId}/publish:
+  /meterforge/addons/{addonId}/publish:
     post:
       operationId: publish-addon
       summary: Publish add-on version
@@ -276,9 +262,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
-  /openmeter/app-catalog:
+  /meterforge/app-catalog:
     get:
       operationId: list-app-catalog
       summary: List app catalog
@@ -299,11 +285,11 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Apps
+        - MeterForge Apps
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/app-catalog/install:
+  /meterforge/app-catalog/install:
     post:
       operationId: install-app
       summary: Install app from the catalog
@@ -322,7 +308,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Apps
+        - MeterForge Apps
       requestBody:
         required: true
         content:
@@ -332,7 +318,7 @@ paths:
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/app-catalog/{appType}:
+  /meterforge/app-catalog/{appType}:
     get:
       operationId: get-app-catalog-item
       summary: Get app catalog item by type
@@ -359,11 +345,11 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Apps
+        - MeterForge Apps
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/apps:
+  /meterforge/apps:
     get:
       operationId: list-apps
       summary: List apps
@@ -384,11 +370,11 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Apps
+        - MeterForge Apps
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/apps/{appId}:
+  /meterforge/apps/{appId}:
     get:
       operationId: get-app
       summary: Get app
@@ -415,7 +401,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Apps
+        - MeterForge Apps
       x-private: true
       x-internal: true
       x-unstable: true
@@ -441,11 +427,11 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Apps
+        - MeterForge Apps
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/billing/invoices:
+  /meterforge/billing/invoices:
     get:
       operationId: list-invoices
       summary: List billing invoices
@@ -501,11 +487,11 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/billing/invoices/{invoiceId}:
+  /meterforge/billing/invoices/{invoiceId}:
     get:
       operationId: get-invoice
       summary: Get a billing invoice
@@ -536,7 +522,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
       x-private: true
       x-internal: true
       x-unstable: true
@@ -573,7 +559,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
       requestBody:
         required: true
         content:
@@ -609,11 +595,11 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/billing/invoices/{invoiceId}/advance:
+  /meterforge/billing/invoices/{invoiceId}/advance:
     post:
       operationId: advance-invoice
       summary: Advance billing invoice's next status
@@ -645,11 +631,11 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/billing/invoices/{invoiceId}/approve:
+  /meterforge/billing/invoices/{invoiceId}/approve:
     post:
       operationId: approve-invoice
       summary: Send the invoice to the customer
@@ -687,11 +673,11 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/billing/invoices/{invoiceId}/retry:
+  /meterforge/billing/invoices/{invoiceId}/retry:
     post:
       operationId: retry-invoice
       summary: Retry advancing the invoice after a failed attempt
@@ -724,11 +710,11 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/billing/invoices/{invoiceId}/snapshot-quantities:
+  /meterforge/billing/invoices/{invoiceId}/snapshot-quantities:
     post:
       operationId: snapshot-quantities-invoice
       summary: Snapshot quantities for usage based line items
@@ -764,11 +750,11 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/currencies:
+  /meterforge/currencies:
     get:
       operationId: list-currencies
       summary: List currencies
@@ -814,10 +800,10 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Currencies
+        - MeterForge Currencies
       x-internal: true
       x-unstable: true
-  /openmeter/currencies/custom:
+  /meterforge/currencies/custom:
     post:
       operationId: create-custom-currency
       summary: Create custom currency
@@ -838,7 +824,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Currencies
+        - MeterForge Currencies
       requestBody:
         required: true
         content:
@@ -847,7 +833,7 @@ paths:
               $ref: '#/components/schemas/CreateCurrencyCustomRequest'
       x-internal: true
       x-unstable: true
-  /openmeter/currencies/custom/{currencyId}:
+  /meterforge/currencies/custom/{currencyId}:
     get:
       operationId: get-custom-currency
       summary: Get custom currency
@@ -872,10 +858,10 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Currencies
+        - MeterForge Currencies
       x-internal: true
       x-unstable: true
-  /openmeter/currencies/custom/{currencyId}/cost-bases:
+  /meterforge/currencies/custom/{currencyId}/cost-bases:
     get:
       operationId: list-cost-bases
       summary: List cost bases
@@ -916,7 +902,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Currencies
+        - MeterForge Currencies
       x-internal: true
       x-unstable: true
     post:
@@ -943,7 +929,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Currencies
+        - MeterForge Currencies
       requestBody:
         required: true
         content:
@@ -952,7 +938,7 @@ paths:
               $ref: '#/components/schemas/CreateCostBasisRequest'
       x-internal: true
       x-unstable: true
-  /openmeter/customers:
+  /meterforge/customers:
     post:
       operationId: create-customer
       summary: Create customer
@@ -970,7 +956,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       requestBody:
         required: true
         content:
@@ -1022,8 +1008,8 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Customers
-  /openmeter/customers/{customerId}:
+        - MeterForge Customers
+  /meterforge/customers/{customerId}:
     get:
       operationId: get-customer
       summary: Get customer
@@ -1049,7 +1035,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
     put:
       operationId: upsert-customer
       summary: Upsert customer
@@ -1077,7 +1063,7 @@ paths:
         '410':
           $ref: '#/components/responses/Gone'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       requestBody:
         required: true
         content:
@@ -1105,8 +1091,8 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Customers
-  /openmeter/customers/{customerId}/billing:
+        - MeterForge Customers
+  /meterforge/customers/{customerId}/billing:
     get:
       operationId: get-customer-billing
       summary: Get customer billing data
@@ -1132,7 +1118,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
     put:
       operationId: update-customer-billing
       summary: Update customer billing data
@@ -1160,14 +1146,14 @@ paths:
         '410':
           $ref: '#/components/responses/Gone'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/UpsertCustomerBillingDataRequest'
-  /openmeter/customers/{customerId}/billing/app-data:
+  /meterforge/customers/{customerId}/billing/app-data:
     put:
       operationId: update-customer-billing-app-data
       summary: Update customer billing app data
@@ -1195,14 +1181,14 @@ paths:
         '410':
           $ref: '#/components/responses/Gone'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/UpsertAppCustomerDataRequest'
-  /openmeter/customers/{customerId}/billing/stripe/checkout-sessions:
+  /meterforge/customers/{customerId}/billing/stripe/checkout-sessions:
     post:
       operationId: create-customer-stripe-checkout-session
       summary: Create Stripe Checkout Session
@@ -1242,14 +1228,14 @@ paths:
         '410':
           $ref: '#/components/responses/Gone'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/BillingCustomerStripeCreateCheckoutSessionRequest'
-  /openmeter/customers/{customerId}/billing/stripe/portal-sessions:
+  /meterforge/customers/{customerId}/billing/stripe/portal-sessions:
     post:
       operationId: create-customer-stripe-portal-session
       summary: Create Stripe customer portal session
@@ -1284,14 +1270,14 @@ paths:
         '410':
           $ref: '#/components/responses/Gone'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/BillingCustomerStripeCreateCustomerPortalSessionRequest'
-  /openmeter/customers/{customerId}/charges:
+  /meterforge/customers/{customerId}/charges:
     get:
       operationId: list-customer-charges
       summary: List customer charges
@@ -1364,7 +1350,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       x-unstable: true
     post:
       operationId: create-customer-charges
@@ -1390,7 +1376,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       requestBody:
         required: true
         content:
@@ -1398,7 +1384,7 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateChargeRequest'
       x-unstable: true
-  /openmeter/customers/{customerId}/credits/adjustments:
+  /meterforge/customers/{customerId}/credits/adjustments:
     post:
       operationId: create-credit-adjustment
       summary: Create a credit adjustment
@@ -1431,7 +1417,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       requestBody:
         required: true
         content:
@@ -1439,7 +1425,7 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateCreditAdjustmentRequest'
       x-unstable: true
-  /openmeter/customers/{customerId}/credits/balance:
+  /meterforge/customers/{customerId}/credits/balance:
     get:
       operationId: get-customer-credit-balance
       summary: Get a customer's credit balance
@@ -1483,9 +1469,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       x-unstable: true
-  /openmeter/customers/{customerId}/credits/grants:
+  /meterforge/customers/{customerId}/credits/grants:
     post:
       operationId: create-credit-grant
       summary: Create a new credit grant
@@ -1516,7 +1502,7 @@ paths:
         '409':
           $ref: '#/components/responses/Conflict'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       requestBody:
         required: true
         content:
@@ -1558,9 +1544,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       x-unstable: true
-  /openmeter/customers/{customerId}/credits/grants/{creditGrantId}:
+  /meterforge/customers/{customerId}/credits/grants/{creditGrantId}:
     get:
       operationId: get-credit-grant
       summary: Get a credit grant
@@ -1592,9 +1578,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       x-unstable: true
-  /openmeter/customers/{customerId}/credits/grants/{creditGrantId}/settlement/external:
+  /meterforge/customers/{customerId}/credits/grants/{creditGrantId}/settlement/external:
     post:
       operationId: update-credit-grant-external-settlement
       summary: Update credit grant external settlement status
@@ -1630,7 +1616,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       requestBody:
         required: true
         content:
@@ -1638,7 +1624,7 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateCreditGrantExternalSettlementRequest'
       x-unstable: true
-  /openmeter/customers/{customerId}/credits/grants/{creditGrantId}/void:
+  /meterforge/customers/{customerId}/credits/grants/{creditGrantId}/void:
     post:
       operationId: void-credit-grant
       summary: Void credit grant
@@ -1681,7 +1667,7 @@ paths:
         '409':
           $ref: '#/components/responses/Conflict'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       requestBody:
         required: false
         content:
@@ -1689,7 +1675,7 @@ paths:
             schema:
               $ref: '#/components/schemas/VoidCreditGrantRequest'
       x-unstable: true
-  /openmeter/customers/{customerId}/credits/transactions:
+  /meterforge/customers/{customerId}/credits/transactions:
     get:
       operationId: list-credit-transactions
       summary: List credit transactions
@@ -1729,9 +1715,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Customers
+        - MeterForge Customers
       x-unstable: true
-  /openmeter/customers/{customerId}/entitlement-access:
+  /meterforge/customers/{customerId}/entitlement-access:
     get:
       operationId: list-customer-entitlement-access
       summary: List customer entitlement access
@@ -1757,8 +1743,8 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Entitlements
-  /openmeter/defaults/tax-codes:
+        - MeterForge Entitlements
+  /meterforge/defaults/tax-codes:
     get:
       operationId: get-organization-default-tax-codes
       summary: Get organization default tax codes
@@ -1778,7 +1764,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Defaults
+        - MeterForge Defaults
       x-unstable: true
     put:
       operationId: update-organization-default-tax-codes
@@ -1799,7 +1785,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Defaults
+        - MeterForge Defaults
       requestBody:
         required: true
         content:
@@ -1807,7 +1793,7 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateOrganizationDefaultTaxCodesRequest'
       x-unstable: true
-  /openmeter/events:
+  /meterforge/events:
     get:
       operationId: list-metering-events
       summary: List metering events
@@ -1890,7 +1876,7 @@ paths:
                 - type: array
                   items:
                     $ref: '#/components/schemas/MeteringEvent'
-  /openmeter/features:
+  /meterforge/features:
     get:
       operationId: list-features
       summary: List features
@@ -1939,7 +1925,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Features
+        - MeterForge Features
     post:
       operationId: create-feature
       summary: Create feature
@@ -1958,14 +1944,14 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Features
+        - MeterForge Features
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateFeatureRequest'
-  /openmeter/features/{featureId}:
+  /meterforge/features/{featureId}:
     get:
       operationId: get-feature
       summary: Get feature
@@ -1994,7 +1980,7 @@ paths:
         '410':
           $ref: '#/components/responses/Gone'
       tags:
-        - OpenMeter Features
+        - MeterForge Features
     patch:
       operationId: update-feature
       summary: Update feature
@@ -2021,7 +2007,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Features
+        - MeterForge Features
       requestBody:
         required: true
         content:
@@ -2050,8 +2036,8 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Features
-  /openmeter/features/{featureId}/cost/query:
+        - MeterForge Features
+  /meterforge/features/{featureId}/cost/query:
     post:
       operationId: query-feature-cost
       summary: Query feature cost
@@ -2078,7 +2064,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Features
+        - MeterForge Features
       requestBody:
         required: false
         content:
@@ -2086,7 +2072,7 @@ paths:
             schema:
               $ref: '#/components/schemas/MeterQueryRequest'
       x-unstable: true
-  /openmeter/governance/query:
+  /meterforge/governance/query:
     post:
       operationId: query-governance-access
       summary: Query governance access
@@ -2115,7 +2101,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Governance
+        - MeterForge Governance
       requestBody:
         required: true
         content:
@@ -2125,7 +2111,7 @@ paths:
       x-private: true
       x-internal: true
       x-unstable: true
-  /openmeter/llm-cost/overrides:
+  /meterforge/llm-cost/overrides:
     get:
       operationId: list-llm-cost-overrides
       summary: List LLM cost overrides
@@ -2152,7 +2138,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter LLM Cost
+        - MeterForge LLM Cost
       x-unstable: true
     post:
       operationId: create-llm-cost-override
@@ -2172,7 +2158,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter LLM Cost
+        - MeterForge LLM Cost
       requestBody:
         required: true
         content:
@@ -2180,7 +2166,7 @@ paths:
             schema:
               $ref: '#/components/schemas/LLMCostOverrideCreate'
       x-unstable: true
-  /openmeter/llm-cost/overrides/{priceId}:
+  /meterforge/llm-cost/overrides/{priceId}:
     delete:
       operationId: delete-llm-cost-override
       summary: Delete LLM cost override
@@ -2203,9 +2189,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter LLM Cost
+        - MeterForge LLM Cost
       x-unstable: true
-  /openmeter/llm-cost/prices:
+  /meterforge/llm-cost/prices:
     get:
       operationId: list-llm-cost-prices
       summary: List LLM cost prices
@@ -2251,9 +2237,9 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter LLM Cost
+        - MeterForge LLM Cost
       x-unstable: true
-  /openmeter/llm-cost/prices/{priceId}:
+  /meterforge/llm-cost/prices/{priceId}:
     get:
       operationId: get-llm-cost-price
       summary: Get LLM cost price
@@ -2282,9 +2268,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter LLM Cost
+        - MeterForge LLM Cost
       x-unstable: true
-  /openmeter/meters:
+  /meterforge/meters:
     post:
       operationId: create-meter
       summary: Create meter
@@ -2359,7 +2345,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
       tags:
         - Meters
-  /openmeter/meters/{meterId}:
+  /meterforge/meters/{meterId}:
     get:
       operationId: get-meter
       summary: Get meter
@@ -2443,7 +2429,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Meters
-  /openmeter/meters/{meterId}/query:
+  /meterforge/meters/{meterId}/query:
     post:
       operationId: query-meter
       parameters:
@@ -2506,7 +2492,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MeterQueryRequest'
-  /openmeter/plans:
+  /meterforge/plans:
     get:
       operationId: list-plans
       summary: List plans
@@ -2549,7 +2535,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
     post:
       operationId: create-plan
@@ -2569,7 +2555,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       requestBody:
         required: true
         content:
@@ -2577,7 +2563,7 @@ paths:
             schema:
               $ref: '#/components/schemas/CreatePlanRequest'
       x-unstable: true
-  /openmeter/plans/{planId}:
+  /meterforge/plans/{planId}:
     put:
       operationId: update-plan
       summary: Update plan
@@ -2606,7 +2592,7 @@ paths:
         '410':
           $ref: '#/components/responses/Gone'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       requestBody:
         required: true
         content:
@@ -2642,7 +2628,7 @@ paths:
         '410':
           $ref: '#/components/responses/Gone'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
     delete:
       operationId: delete-plan
@@ -2666,9 +2652,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
-  /openmeter/plans/{planId}/addons:
+  /meterforge/plans/{planId}/addons:
     get:
       operationId: list-plan-addons
       summary: List add-ons for plan
@@ -2696,7 +2682,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
     post:
       operationId: create-plan-addon
@@ -2724,7 +2710,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       requestBody:
         required: true
         content:
@@ -2732,7 +2718,7 @@ paths:
             schema:
               $ref: '#/components/schemas/CreatePlanAddonRequest'
       x-unstable: true
-  /openmeter/plans/{planId}/addons/{planAddonId}:
+  /meterforge/plans/{planId}/addons/{planAddonId}:
     get:
       operationId: get-plan-addon
       summary: Get add-on association for plan
@@ -2764,7 +2750,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
     put:
       operationId: update-plan-addon
@@ -2797,7 +2783,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       requestBody:
         required: true
         content:
@@ -2832,9 +2818,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
-  /openmeter/plans/{planId}/archive:
+  /meterforge/plans/{planId}/archive:
     post:
       operationId: archive-plan
       summary: Archive plan version
@@ -2861,9 +2847,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
-  /openmeter/plans/{planId}/publish:
+  /meterforge/plans/{planId}/publish:
     post:
       operationId: publish-plan
       summary: Publish plan version
@@ -2890,9 +2876,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Product Catalog
+        - MeterForge Product Catalog
       x-unstable: true
-  /openmeter/profiles:
+  /meterforge/profiles:
     get:
       operationId: list-billing-profiles
       summary: List billing profiles
@@ -2913,7 +2899,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
     post:
       operationId: create-billing-profile
       summary: Create a new billing profile
@@ -2938,14 +2924,14 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateBillingProfileRequest'
-  /openmeter/profiles/{id}:
+  /meterforge/profiles/{id}:
     get:
       operationId: get-billing-profile
       summary: Get a billing profile
@@ -2972,7 +2958,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
     put:
       operationId: update-billing-profile
       summary: Update a billing profile
@@ -2999,7 +2985,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Billing Settings
+        - MeterForge Billing Settings
       requestBody:
         required: true
         content:
@@ -3035,8 +3021,8 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Billing Settings
-  /openmeter/subscriptions:
+        - MeterForge Billing Settings
+  /meterforge/subscriptions:
     post:
       operationId: create-subscription
       summary: Create subscription
@@ -3058,7 +3044,7 @@ paths:
         '409':
           $ref: '#/components/responses/Conflict'
       tags:
-        - OpenMeter Subscriptions
+        - MeterForge Subscriptions
       requestBody:
         required: true
         content:
@@ -3109,8 +3095,8 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Subscriptions
-  /openmeter/subscriptions/{subscriptionId}:
+        - MeterForge Subscriptions
+  /meterforge/subscriptions/{subscriptionId}:
     get:
       operationId: get-subscription
       summary: Get subscription
@@ -3136,8 +3122,8 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Subscriptions
-  /openmeter/subscriptions/{subscriptionId}/addons:
+        - MeterForge Subscriptions
+  /meterforge/subscriptions/{subscriptionId}/addons:
     post:
       operationId: create-subscription-addon
       summary: Create a new subscription add-on
@@ -3166,7 +3152,7 @@ paths:
         '409':
           $ref: '#/components/responses/Conflict'
       tags:
-        - OpenMeter Subscriptions
+        - MeterForge Subscriptions
       requestBody:
         required: true
         content:
@@ -3219,9 +3205,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Subscriptions
+        - MeterForge Subscriptions
       x-unstable: true
-  /openmeter/subscriptions/{subscriptionId}/addons/{subscriptionAddonId}:
+  /meterforge/subscriptions/{subscriptionId}/addons/{subscriptionAddonId}:
     get:
       operationId: get-subscription-addon
       summary: Get add-on association for subscription
@@ -3253,9 +3239,9 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Subscriptions
+        - MeterForge Subscriptions
       x-unstable: true
-  /openmeter/subscriptions/{subscriptionId}/cancel:
+  /meterforge/subscriptions/{subscriptionId}/cancel:
     post:
       operationId: cancel-subscription
       summary: Cancel subscription
@@ -3286,14 +3272,14 @@ paths:
         '409':
           $ref: '#/components/responses/Conflict'
       tags:
-        - OpenMeter Subscriptions
+        - MeterForge Subscriptions
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/BillingSubscriptionCancel'
-  /openmeter/subscriptions/{subscriptionId}/change:
+  /meterforge/subscriptions/{subscriptionId}/change:
     post:
       operationId: change-subscription
       summary: Change subscription
@@ -3324,14 +3310,14 @@ paths:
         '409':
           $ref: '#/components/responses/Conflict'
       tags:
-        - OpenMeter Subscriptions
+        - MeterForge Subscriptions
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/BillingSubscriptionChange'
-  /openmeter/subscriptions/{subscriptionId}/unschedule-cancelation:
+  /meterforge/subscriptions/{subscriptionId}/unschedule-cancelation:
     post:
       operationId: unschedule-cancelation
       summary: Unschedule subscription cancelation
@@ -3360,8 +3346,8 @@ paths:
         '409':
           $ref: '#/components/responses/Conflict'
       tags:
-        - OpenMeter Subscriptions
-  /openmeter/tax-codes:
+        - MeterForge Subscriptions
+  /meterforge/tax-codes:
     post:
       operationId: create-tax-code
       summary: Create tax code
@@ -3379,7 +3365,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Tax
+        - MeterForge Tax
       requestBody:
         required: true
         content:
@@ -3414,9 +3400,9 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - OpenMeter Tax
+        - MeterForge Tax
       x-unstable: true
-  /openmeter/tax-codes/{taxCodeId}:
+  /meterforge/tax-codes/{taxCodeId}:
     get:
       operationId: get-tax-code
       summary: Get tax code
@@ -3442,7 +3428,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Tax
+        - MeterForge Tax
       x-unstable: true
     put:
       operationId: upsert-tax-code
@@ -3471,7 +3457,7 @@ paths:
         '410':
           $ref: '#/components/responses/Gone'
       tags:
-        - OpenMeter Tax
+        - MeterForge Tax
       requestBody:
         required: true
         content:
@@ -3500,7 +3486,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - OpenMeter Tax
+        - MeterForge Tax
       x-unstable: true
 components:
   parameters:
@@ -4011,7 +3997,7 @@ components:
         External Invoicing app enables integration with third-party invoicing or payment
         system.
 
-        The app supports a bi-directional synchronization pattern where OpenMeter
+        The app supports a bi-directional synchronization pattern where MeterForge
         Billing manages the invoice lifecycle while the external system handles invoice
         presentation and payment collection.
 
@@ -4763,7 +4749,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/BillingLifecycleController'
           description: |-
-            Indicates whether the charge lifecycle is controlled by OpenMeter or manually
+            Indicates whether the charge lifecycle is controlled by MeterForge or manually
             overridden by the API user.
           title: Lifecycle controller
           readOnly: true
@@ -5101,7 +5087,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/BillingLifecycleController'
           description: |-
-            Indicates whether the charge lifecycle is controlled by OpenMeter or manually
+            Indicates whether the charge lifecycle is controlled by MeterForge or manually
             overridden by the API user.
           title: Lifecycle controller
           readOnly: true
@@ -7017,7 +7003,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/BillingLifecycleController'
           description: |-
-            Indicates whether this line item's lifecycle is controlled by OpenMeter or
+            Indicates whether this line item's lifecycle is controlled by MeterForge or
             manually overridden by the API user.
           title: Lifecycle controller
           readOnly: true
@@ -7294,12 +7280,12 @@ components:
         - system
         - manual
       description: |-
-        Identifies whether a resource lifecycle is controlled by OpenMeter or manually
+        Identifies whether a resource lifecycle is controlled by MeterForge or manually
         overridden by the API user.
 
         Values:
 
-        - `system`: The resource lifecycle is controlled by OpenMeter.
+        - `system`: The resource lifecycle is controlled by MeterForge.
         - `manual`: The resource lifecycle was manually overridden by the API user.
       title: Lifecycle controller
     BillingParty:
@@ -10137,7 +10123,7 @@ components:
         optional; provide exactly one to specify the comparison.
       title: DateTime Field Filter
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/api/v3/filters
+        path: github.com/Pototoooo/meterforge/api/v3/filters
       x-go-type: filters.FilterDateTime
     ExternalResourceKey:
       type: string
@@ -11807,7 +11793,7 @@ components:
         Filters on the given string field value by either exact or fuzzy match. All
         properties are optional; provide exactly one to specify the comparison.
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/api/v3/filters
+        path: github.com/Pototoooo/meterforge/api/v3/filters
       x-go-type: filters.FilterString
     StringFieldFilterExact:
       anyOf:
@@ -11831,7 +11817,7 @@ components:
         optional; provide exactly one to specify the comparison.
       title: String Field Filter Exact
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/api/v3/filters
+        path: github.com/Pototoooo/meterforge/api/v3/filters
       x-go-type: filters.FilterStringExact
     SubscriptionAddon:
       type: object
@@ -12063,7 +12049,7 @@ components:
         optional; provide exactly one to specify the comparison.
       title: ULID Field Filter
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/api/v3/filters
+        path: github.com/Pototoooo/meterforge/api/v3/filters
       x-go-type: filters.FilterULID
     UpdateAddress:
       type: object

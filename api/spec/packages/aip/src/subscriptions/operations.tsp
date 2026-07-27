@@ -58,18 +58,18 @@ model SubscriptionChangeResponse {
 /**
  * Filter options for listing subscriptions.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "plan_id and plan_key should not be grouped"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "plan_id and plan_key should not be grouped"
 @friendlyName("ListSubscriptionsParamsFilter")
 model ListSubscriptionsParamsFilter {
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   id?: Common.ULIDFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   customer_id?: Common.ULIDFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   status?: Common.StringFieldFilterExact;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   plan_id?: Common.ULIDFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   plan_key?: Common.StringFieldFilterExact;
 }
 

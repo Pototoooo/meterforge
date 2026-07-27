@@ -1,29 +1,29 @@
 'use client'
 
 import { createContext, useContext } from 'react'
-import type { OpenMeter } from '../portal/index.js'
+import type { MeterForge } from '../portal/index.js'
 
 export * from '../portal/index.js'
 
-export const OpenMeterContext = createContext<OpenMeter | null>(null)
+export const MeterForgeContext = createContext<MeterForge | null>(null)
 
-export type OpenMeterProviderProps = {
+export type MeterForgeProviderProps = {
   children?: React.ReactNode
-  value: OpenMeter | null
+  value: MeterForge | null
 }
 
-export function OpenMeterProvider({ children, value }: OpenMeterProviderProps) {
+export function MeterForgeProvider({ children, value }: MeterForgeProviderProps) {
   return (
-    <OpenMeterContext.Provider value={value}>
+    <MeterForgeContext.Provider value={value}>
       {children}
-    </OpenMeterContext.Provider>
+    </MeterForgeContext.Provider>
   )
 }
 
-export function useOpenMeter() {
-  const context = useContext(OpenMeterContext)
+export function useMeterForge() {
+  const context = useContext(MeterForgeContext)
   if (typeof context === 'undefined') {
-    throw new Error('useOpenMeter must be used within a OpenMeterProvider')
+    throw new Error('useMeterForge must be used within a MeterForgeProvider')
   }
 
   return context

@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stripe/stripe-go/v80"
 
-	stripeclient "github.com/openmeterio/openmeter/openmeter/app/stripe/client"
+	stripeclient "github.com/Pototoooo/meterforge/meterforge/app/stripe/client"
 )
 
 type StripeClientMock struct {

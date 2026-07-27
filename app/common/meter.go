@@ -10,14 +10,14 @@ import (
 	"github.com/google/wire"
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/app/config"
-	entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/meter/adapter"
-	"github.com/openmeterio/openmeter/openmeter/meter/service"
-	"github.com/openmeterio/openmeter/openmeter/namespace"
-	"github.com/openmeterio/openmeter/openmeter/watermill/eventbus"
-	"github.com/openmeterio/openmeter/pkg/filter"
+	"github.com/Pototoooo/meterforge/app/config"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/meter/adapter"
+	"github.com/Pototoooo/meterforge/meterforge/meter/service"
+	"github.com/Pototoooo/meterforge/meterforge/namespace"
+	"github.com/Pototoooo/meterforge/meterforge/watermill/eventbus"
+	"github.com/Pototoooo/meterforge/pkg/filter"
 )
 
 type MeterConfigInitializer = func(ctx context.Context) error

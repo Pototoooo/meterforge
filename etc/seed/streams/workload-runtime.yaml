@@ -43,11 +43,11 @@ output:
         continue: true
         output:
           http_client:
-            url: ${OPENMETER_BASE_URL:http://127.0.0.1:8888}/api/v1/events
+            url: ${METERFORGE_BASE_URL:http://127.0.0.1:8888}/api/v1/events
             verb: POST
             headers:
               Content-Type: application/cloudevents+json
-              Authorization: "Bearer ${OPENMETER_TOKEN:}"
+              Authorization: "Bearer ${METERFORGE_TOKEN:}"
             max_in_flight: 256
 
       - check: '"${SEEDER_LOG:false}" == "true"'

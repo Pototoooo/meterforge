@@ -5,10 +5,10 @@ import (
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	"github.com/openmeterio/openmeter/openmeter/governance"
-	governanceservice "github.com/openmeterio/openmeter/openmeter/governance/service"
-	"github.com/openmeterio/openmeter/openmeter/registry"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	"github.com/Pototoooo/meterforge/meterforge/governance"
+	governanceservice "github.com/Pototoooo/meterforge/meterforge/governance/service"
+	"github.com/Pototoooo/meterforge/meterforge/registry"
 )
 
 var Governance = wire.NewSet(

@@ -6,10 +6,10 @@ import (
 
 	"github.com/samber/lo"
 
-	v3 "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	"github.com/openmeterio/openmeter/openmeter/currencies"
-	"github.com/openmeterio/openmeter/pkg/currencyx"
+	v3 "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/meterforge/currencies"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
 )
 
 func FromAPICurrencySortField(ctx context.Context, field string) (currencies.OrderBy, error) {

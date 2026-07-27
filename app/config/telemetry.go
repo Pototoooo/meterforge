@@ -30,7 +30,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/openmeterio/openmeter/pkg/errorsx"
+	"github.com/Pototoooo/meterforge/pkg/errorsx"
 )
 
 type OTLPExporterTelemetryConfig struct {

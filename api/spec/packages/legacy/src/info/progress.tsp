@@ -1,4 +1,4 @@
-namespace OpenMeter;
+namespace MeterForge;
 
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;

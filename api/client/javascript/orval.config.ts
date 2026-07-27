@@ -1,7 +1,7 @@
 import { defineConfig } from 'orval'
 
 export default defineConfig({
-  openmeter: {
+  meterforge: {
     input: {
       target: '../../openapi.cloud.yaml',
     },

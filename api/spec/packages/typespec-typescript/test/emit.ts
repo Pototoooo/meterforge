@@ -10,11 +10,11 @@ const Tester = createTester(packageRoot, {
   libraries: [
     '@typespec/http',
     '@typespec/openapi',
-    '@openmeter/typespec-typescript',
+    '@meterforge/typespec-typescript',
   ],
 })
 
 /** Compiles a fixture spec and returns the emitted SDK files keyed by path. */
-export const EmitterTester = Tester.emit('@openmeter/typespec-typescript', {
+export const EmitterTester = Tester.emit('@meterforge/typespec-typescript', {
   'package-name': '@test/client',
 })

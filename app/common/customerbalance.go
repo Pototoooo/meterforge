@@ -3,12 +3,12 @@ package common
 import (
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/ledger"
-	ledgeraccount "github.com/openmeterio/openmeter/openmeter/ledger/account"
-	ledgerbreakage "github.com/openmeterio/openmeter/openmeter/ledger/breakage"
-	"github.com/openmeterio/openmeter/openmeter/ledger/creditvoid"
-	"github.com/openmeterio/openmeter/openmeter/ledger/customerbalance"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/ledger"
+	ledgeraccount "github.com/Pototoooo/meterforge/meterforge/ledger/account"
+	ledgerbreakage "github.com/Pototoooo/meterforge/meterforge/ledger/breakage"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/creditvoid"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/customerbalance"
 )
 
 var CustomerBalance = wire.NewSet(

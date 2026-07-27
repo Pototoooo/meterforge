@@ -23,14 +23,14 @@ gh pr edit 3986 --body-file /tmp/body.md  # FAILS with Projects classic error
 
 Use the REST API directly:
 ```bash
-gh api repos/openmeterio/openmeter/pulls/3986 -X PATCH -F "body=@/tmp/body.md" --jq '.html_url'
+gh api repos/Pototoooo/meterforge/pulls/3986 -X PATCH -F "body=@/tmp/body.md" --jq '.html_url'
 ```
 
 ### Create PR
 
 Instead of `gh pr create`, use:
 ```bash
-gh api repos/openmeterio/openmeter/pulls -X POST \
+gh api repos/Pototoooo/meterforge/pulls -X POST \
   -f title="PR title" \
   -f head="branch-name" \
   -f base="main" \
@@ -42,13 +42,13 @@ gh api repos/openmeterio/openmeter/pulls -X POST \
 
 ```bash
 # Review comments (inline code comments)
-gh api repos/openmeterio/openmeter/pulls/3986/comments --jq '.[] | {id, path, line, body, user: .user.login}'
+gh api repos/Pototoooo/meterforge/pulls/3986/comments --jq '.[] | {id, path, line, body, user: .user.login}'
 
 # Issue-level comments
 gh pr view 3986 --comments --json comments --jq '.comments[] | {author: .author.login, body: .body}'
 
 # Reviews
-gh api repos/openmeterio/openmeter/pulls/3986/reviews --jq '.[] | {id, user: .user.login, state, body}'
+gh api repos/Pototoooo/meterforge/pulls/3986/reviews --jq '.[] | {id, user: .user.login, state, body}'
 ```
 
 ### General pattern

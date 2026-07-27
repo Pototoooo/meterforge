@@ -10,32 +10,32 @@ import (
 	metricnoop "go.opentelemetry.io/otel/metric/noop"
 	"go.opentelemetry.io/otel/trace/noop"
 
-	"github.com/openmeterio/openmeter/openmeter/app"
-	appadapter "github.com/openmeterio/openmeter/openmeter/app/adapter"
-	appsandbox "github.com/openmeterio/openmeter/openmeter/app/sandbox"
-	appservice "github.com/openmeterio/openmeter/openmeter/app/service"
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	billingadapter "github.com/openmeterio/openmeter/openmeter/billing/adapter"
-	billingratingservice "github.com/openmeterio/openmeter/openmeter/billing/rating/service"
-	billingsequenceadapter "github.com/openmeterio/openmeter/openmeter/billing/sequence/adapter"
-	billingsequenceservice "github.com/openmeterio/openmeter/openmeter/billing/sequence/service"
-	billingservice "github.com/openmeterio/openmeter/openmeter/billing/service"
-	"github.com/openmeterio/openmeter/openmeter/billing/service/invoicecalc"
-	"github.com/openmeterio/openmeter/openmeter/billing/worker/subscriptionsync"
-	subscriptionsyncadapter "github.com/openmeterio/openmeter/openmeter/billing/worker/subscriptionsync/adapter"
-	subscriptionsyncservice "github.com/openmeterio/openmeter/openmeter/billing/worker/subscriptionsync/service"
-	pcsubscription "github.com/openmeterio/openmeter/openmeter/productcatalog/subscription"
-	pcsubscriptionservice "github.com/openmeterio/openmeter/openmeter/productcatalog/subscription/service"
-	subscription "github.com/openmeterio/openmeter/openmeter/subscription"
-	subscriptiontestutils "github.com/openmeterio/openmeter/openmeter/subscription/testutils"
-	subscriptionworkflow "github.com/openmeterio/openmeter/openmeter/subscription/workflow"
-	taxcodeadapter "github.com/openmeterio/openmeter/openmeter/taxcode/adapter"
-	taxcodeservice "github.com/openmeterio/openmeter/openmeter/taxcode/service"
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	"github.com/openmeterio/openmeter/openmeter/watermill/eventbus"
-	"github.com/openmeterio/openmeter/pkg/datetime"
-	"github.com/openmeterio/openmeter/pkg/featuregate"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	appadapter "github.com/Pototoooo/meterforge/meterforge/app/adapter"
+	appsandbox "github.com/Pototoooo/meterforge/meterforge/app/sandbox"
+	appservice "github.com/Pototoooo/meterforge/meterforge/app/service"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	billingadapter "github.com/Pototoooo/meterforge/meterforge/billing/adapter"
+	billingratingservice "github.com/Pototoooo/meterforge/meterforge/billing/rating/service"
+	billingsequenceadapter "github.com/Pototoooo/meterforge/meterforge/billing/sequence/adapter"
+	billingsequenceservice "github.com/Pototoooo/meterforge/meterforge/billing/sequence/service"
+	billingservice "github.com/Pototoooo/meterforge/meterforge/billing/service"
+	"github.com/Pototoooo/meterforge/meterforge/billing/service/invoicecalc"
+	"github.com/Pototoooo/meterforge/meterforge/billing/worker/subscriptionsync"
+	subscriptionsyncadapter "github.com/Pototoooo/meterforge/meterforge/billing/worker/subscriptionsync/adapter"
+	subscriptionsyncservice "github.com/Pototoooo/meterforge/meterforge/billing/worker/subscriptionsync/service"
+	pcsubscription "github.com/Pototoooo/meterforge/meterforge/productcatalog/subscription"
+	pcsubscriptionservice "github.com/Pototoooo/meterforge/meterforge/productcatalog/subscription/service"
+	subscription "github.com/Pototoooo/meterforge/meterforge/subscription"
+	subscriptiontestutils "github.com/Pototoooo/meterforge/meterforge/subscription/testutils"
+	subscriptionworkflow "github.com/Pototoooo/meterforge/meterforge/subscription/workflow"
+	taxcodeadapter "github.com/Pototoooo/meterforge/meterforge/taxcode/adapter"
+	taxcodeservice "github.com/Pototoooo/meterforge/meterforge/taxcode/service"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	"github.com/Pototoooo/meterforge/meterforge/watermill/eventbus"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
+	"github.com/Pototoooo/meterforge/pkg/featuregate"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 type testDeps struct {
@@ -150,7 +150,7 @@ func setup(t *testing.T, _ setupConfig) testDeps {
 	})
 	require.NoError(t, err)
 
-	// OpenMeter sandbox (registration as side-effect)
+	// MeterForge sandbox (registration as side-effect)
 	_, err = appsandbox.NewMockableFactory(t, appsandbox.Config{
 		AppService:      appService,
 		SequenceService: billingSequenceService,

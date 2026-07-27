@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/pkg/datetime"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
 )
 
 type EntitlementsConfiguration struct {

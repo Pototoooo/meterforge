@@ -1,27 +1,27 @@
-// Hand-written query-serialization tests for the generated OpenMeter Go SDK.
+// Hand-written query-serialization tests for the generated MeterForge Go SDK.
 // The generator's output cleaner preserves *_test.go files, so these survive
 // regeneration. The recorder harness lives in transport_test.go.
-package openmeter_test
+package meterforge_test
 
 import (
 	"net/http"
 	"testing"
 	"time"
 
-	openmeter "github.com/openmeterio/openmeter/api/v3/client"
+	meterforge "github.com/Pototoooo/meterforge/api/v3/client"
 )
 
 func TestFilterQuerySerialization(t *testing.T) {
 	t.Parallel()
 
 	rec := &requestRecorder{}
-	om := newTestClient(t, rec.handler(http.StatusOK, emptyPageBody))
+	mf := newTestClient(t, rec.handler(http.StatusOK, emptyPageBody))
 
-	params := openmeter.MeterListParams{Filter: &openmeter.MeterFilter{
-		Key:  &openmeter.StringFilter{Oeq: []string{"tokens", "requests"}},
-		Name: &openmeter.StringFilter{Contains: openmeter.String("gpt")},
+	params := meterforge.MeterListParams{Filter: &meterforge.MeterFilter{
+		Key:  &meterforge.StringFilter{Oeq: []string{"tokens", "requests"}},
+		Name: &meterforge.StringFilter{Contains: meterforge.String("gpt")},
 	}}
-	if _, err := om.Meters.List(t.Context(), params); err != nil {
+	if _, err := mf.Meters.List(t.Context(), params); err != nil {
 		t.Fatalf("Meters.List: %v", err)
 	}
 
@@ -38,11 +38,11 @@ func TestScalarQueryParamSerialization(t *testing.T) {
 	t.Parallel()
 
 	rec := &requestRecorder{}
-	om := newTestClient(t, rec.handler(http.StatusOK, "{}"))
+	mf := newTestClient(t, rec.handler(http.StatusOK, "{}"))
 
 	timestamp := time.Date(2026, 5, 11, 10, 30, 0, 0, time.UTC)
-	params := openmeter.GetCustomerCreditBalanceParams{Timestamp: openmeter.Time(timestamp)}
-	if _, err := om.Customers.Credits.Balance.Get(t.Context(), "cus-1", params); err != nil {
+	params := meterforge.GetCustomerCreditBalanceParams{Timestamp: meterforge.Time(timestamp)}
+	if _, err := mf.Customers.Credits.Balance.Get(t.Context(), "cus-1", params); err != nil {
 		t.Fatalf("Customers.Credits.Balance.Get: %v", err)
 	}
 

@@ -1,7 +1,7 @@
 import "./app.tsp";
 import "../types.tsp";
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * CustomerAppData

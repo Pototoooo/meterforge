@@ -1,6 +1,6 @@
 # Subscription → Billing Sync Algorithm
 
-Primary location: `openmeter/billing/worker/subscriptionsync/`
+Primary location: `meterforge/billing/worker/subscriptionsync/`
 
 ## Entry Points
 

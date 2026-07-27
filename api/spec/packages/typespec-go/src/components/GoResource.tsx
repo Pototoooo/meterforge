@@ -717,7 +717,7 @@ function pathCode(operation: GoOperation): ay.Children {
   const guards: ay.Children[] = operation.pathParams.map(
     (parameter) =>
       ay.code`if ${localName(parameter.name)} == "" {
-          return ${errPrefix}${go.std.fmt.Errorf}("openmeter: %s must not be empty: %w", ${JSON.stringify(localName(parameter.name))}, ErrEmptyID)
+          return ${errPrefix}${go.std.fmt.Errorf}("meterforge: %s must not be empty: %w", ${JSON.stringify(localName(parameter.name))}, ErrEmptyID)
         }`,
   )
   const substitutions: ay.Children[] = operation.pathParams.map(

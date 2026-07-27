@@ -1,0 +1,131 @@
+package service
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/creditpurchase"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/lineage"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/models/ledgertransaction"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/models/payment"
+	"github.com/Pototoooo/meterforge/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/framework/transaction"
+)
+
+func (s *service) PostInvoiceDraftCreated(ctx context.Context, charge creditpurchase.Charge, lineWithHeader billing.StandardLineWithInvoiceHeader) error {
+	return transaction.RunWithNoValue(ctx, s.adapter, func(ctx context.Context) error {
+		ledgerTransactionGroupReference, err := s.handler.OnCreditPurchaseInitiated(ctx, charge)
+		if err != nil {
+			return err
+		}
+
+		if _, err := s.adapter.CreateCreditGrant(ctx, charge.GetChargeID(), creditpurchase.CreateCreditGrantInput{
+			TransactionGroupID: ledgerTransactionGroupReference.TransactionGroupID,
+			GrantedAt:          clock.Now(),
+		}); err != nil {
+			return err
+		}
+
+		if ledgerTransactionGroupReference.TransactionGroupID != "" {
+			if err := s.lineage.BackfillAdvanceLineageSegments(ctx, lineage.BackfillAdvanceLineageSegmentsInput{
+				Namespace:                 charge.Namespace,
+				CustomerID:                charge.Intent.CustomerID,
+				Currency:                  charge.Intent.Currency,
+				Amount:                    charge.Intent.CreditAmount,
+				BackingTransactionGroupID: ledgerTransactionGroupReference.TransactionGroupID,
+				FeatureFilters:            charge.Intent.FeatureFilters.Normalize(),
+			}); err != nil {
+				return err
+			}
+		}
+
+		charge.Status = creditpurchase.StatusActive
+
+		_, err = s.adapter.UpdateCharge(ctx, charge.ChargeBase)
+		return err
+	})
+}
+
+// PostInvoicePaymentAuthorized is called when the invoice is approved/issued.
+// It's invoked from the billing service's PostUpdate hook, already within a transaction.
+func (s *service) PostInvoicePaymentAuthorized(ctx context.Context, charge creditpurchase.Charge, lineWithHeader billing.StandardLineWithInvoiceHeader) error {
+	if charge.Realizations.InvoiceSettlement != nil {
+		return fmt.Errorf("invoice settlement already authorized - settlement already exists: %s", charge.Realizations.InvoiceSettlement.InvoiceID)
+	}
+
+	eventAt := clock.Now()
+	ledgerTransactionGroupReference, err := s.handler.OnCreditPurchasePaymentAuthorized(ctx, creditpurchase.PaymentEventInput{
+		Charge:  charge,
+		EventAt: eventAt,
+	})
+	if err != nil {
+		return err
+	}
+
+	newPaymentSettlement := payment.InvoicedCreate{
+		Namespace: charge.Namespace,
+		Base: payment.Base{
+			ServicePeriod: charge.Intent.ServicePeriod,
+			Amount:        charge.Intent.CreditAmount,
+			Authorized: &ledgertransaction.TimedGroupReference{
+				GroupReference: ledgerTransactionGroupReference,
+				Time:           eventAt,
+			},
+			Status: payment.StatusAuthorized,
+		},
+		InvoiceID: lineWithHeader.Invoice.ID,
+		LineID:    lineWithHeader.Line.ID,
+	}
+
+	_, err = s.adapter.CreateInvoicedPayment(ctx, charge.GetChargeID(), newPaymentSettlement)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// PostInvoicePaymentSettled is called when the invoice is paid.
+// It's invoked from the billing service's PostUpdate hook, already within a transaction.
+func (s *service) PostInvoicePaymentSettled(ctx context.Context, charge creditpurchase.Charge, lineWithHeader billing.StandardLineWithInvoiceHeader) error {
+	// Idempotency check: if already settled, skip processing
+	if charge.Realizations.InvoiceSettlement == nil {
+		return fmt.Errorf("invoice settlement not found")
+	}
+
+	if charge.Realizations.InvoiceSettlement.Settled != nil {
+		return fmt.Errorf("invoice settlement already settled")
+	}
+
+	paymentSettlement := *charge.Realizations.InvoiceSettlement
+
+	eventAt := clock.Now()
+	ledgerTransactionGroupReference, err := s.handler.OnCreditPurchasePaymentSettled(ctx, creditpurchase.PaymentEventInput{
+		Charge:  charge,
+		EventAt: eventAt,
+	})
+	if err != nil {
+		return err
+	}
+
+	paymentSettlement.Settled = &ledgertransaction.TimedGroupReference{
+		GroupReference: ledgerTransactionGroupReference,
+		Time:           eventAt,
+	}
+
+	paymentSettlement.Status = payment.StatusSettled
+
+	if _, err := s.adapter.UpdateInvoicedPayment(ctx, paymentSettlement); err != nil {
+		return err
+	}
+
+	// Update charge status to final
+	charge.Status = creditpurchase.StatusFinal
+
+	if _, err := s.adapter.UpdateCharge(ctx, charge.ChargeBase); err != nil {
+		return err
+	}
+
+	return nil
+}

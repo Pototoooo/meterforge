@@ -18,8 +18,8 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/openmeterio/openmeter/collector/benthos/internal/message"
-	"github.com/openmeterio/openmeter/collector/benthos/internal/shutdown"
+	"github.com/Pototoooo/meterforge/collector/benthos/internal/message"
+	"github.com/Pototoooo/meterforge/collector/benthos/internal/shutdown"
 )
 
 // TODO: add batching config and policy

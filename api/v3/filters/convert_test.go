@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/pkg/filter"
+	"github.com/Pototoooo/meterforge/pkg/filter"
 )
 
 func TestConvertFilterString(t *testing.T) {

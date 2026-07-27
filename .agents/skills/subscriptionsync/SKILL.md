@@ -1,11 +1,11 @@
 ---
 name: subscriptionsync
-description: Work with the subscription sync bridge in `openmeter/billing/worker/subscriptionsync/...`. Use when modifying how subscription target state is reconciled into billing artifacts such as invoice lines, split-line groups, or charges; when changing persisted-state loading, reconciler patch routing, or subscription sync tests; and when reasoning about the bridge between subscription views and billing state.
+description: Work with the subscription sync bridge in `meterforge/billing/worker/subscriptionsync/...`. Use when modifying how subscription target state is reconciled into billing artifacts such as invoice lines, split-line groups, or charges; when changing persisted-state loading, reconciler patch routing, or subscription sync tests; and when reasoning about the bridge between subscription views and billing state.
 ---
 
 # Subscription Sync
 
-Guidance for working with `openmeter/billing/worker/subscriptionsync/`.
+Guidance for working with `meterforge/billing/worker/subscriptionsync/`.
 
 ## What This Package Is
 
@@ -22,7 +22,7 @@ It does not own subscription editing rules and it does not own billing primitive
 ## Package Layout
 
 ```
-openmeter/billing/worker/subscriptionsync/
+meterforge/billing/worker/subscriptionsync/
 ├── service/                         # orchestration entrypoint used by the worker
 │   ├── service.go                   # Service struct, Config, FeatureFlags, constructor
 │   ├── sync.go                      # internal sync orchestration for SyncByID/SyncByView entrypoints
@@ -202,10 +202,10 @@ Test suite hierarchy:
 
 Use `setupChargesService(config)` on `SuiteBase` to rebuild the sync service with a charge-capable stack (replaces the default no-charges service).
 
-When a billing sync test needs to exercise deleted-subscription cleanup, prefer the public ID entrypoint (`SyncByID` / `SyncByIDAndInvoiceCustomer`) so the service owns the `IncludeDeleted` lookup. Subscription-domain coverage for deleted scheduled replacements belongs under `openmeter/subscription/service/sync_test.go`; keep billing-package tests focused on billing artifacts.
+When a billing sync test needs to exercise deleted-subscription cleanup, prefer the public ID entrypoint (`SyncByID` / `SyncByIDAndInvoiceCustomer`) so the service owns the `IncludeDeleted` lookup. Subscription-domain coverage for deleted scheduled replacements belongs under `meterforge/subscription/service/sync_test.go`; keep billing-package tests focused on billing artifacts.
 
 For charge-backed sync tests:
-- prefer `openmeter/billing/charges/testutils.NewMockHandlers()`
+- prefer `meterforge/billing/charges/testutils.NewMockHandlers()`
 - these mocks are intentionally minimal but valid enough for charge creation/advancement
 - do not query charge tables directly from sync tests; use `Charges.ListCharges(...)` with `SubscriptionIDs` and `ChargeTypes` filters to assert the end state through the public charges stack
 - when asserting charge subscription phase IDs, derive the expected phase from the child unique reference ID and the loaded subscription view instead of hardcoding phase IDs in scenario data
@@ -246,8 +246,8 @@ When changing this package, the usual verification commands are:
 ```bash
 nix develop --impure .#ci -c go vet ./...
 nix develop --impure .#ci -c make lint-go
-nix develop --impure .#ci -c env POSTGRES_HOST=127.0.0.1 go test -count=1 -tags dynamic ./openmeter/billing/worker/subscriptionsync/...
+nix develop --impure .#ci -c env POSTGRES_HOST=127.0.0.1 go test -count=1 -tags dynamic ./meterforge/billing/worker/subscriptionsync/...
 nix develop --impure .#ci -c env POSTGRES_HOST=127.0.0.1 go test -count=1 -tags dynamic ./test/billing
 ```
 
-If the change touches charges provisioning behavior, also verify the relevant `openmeter/billing/charges/...` packages or suites.
+If the change touches charges provisioning behavior, also verify the relevant `meterforge/billing/charges/...` packages or suites.

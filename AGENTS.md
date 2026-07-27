@@ -1,11 +1,11 @@
-# OpenMeter
+# MeterForge
 
-OpenMeter is a usage metering and billing platform for AI and DevTool companies, built in Go.
+MeterForge is a usage metering and billing platform for AI and DevTool companies, built in Go.
 
 ## Quick Reference
 
 Use the `Makefile` for all common tasks. A `justfile` also exists but is seldom used.
-OpenMeter is a metering and billing platform with usage based pricing and access control.
+MeterForge is a metering and billing platform with usage based pricing and access control.
 
 ## Tips for working with the codebase
 
@@ -46,23 +46,23 @@ The committed `.nvmrc` is the GitHub Actions source of truth for Node-based jobs
 
 **Entry points:** `cmd/server`, `cmd/billing-worker`, `cmd/balance-worker`, `cmd/sink-worker`, `cmd/notification-service`, `cmd/jobs`
 
-Core business logic is in `openmeter/`, shared utilities in `pkg/`, API layer in `api/`.
+Core business logic is in `meterforge/`, shared utilities in `pkg/`, API layer in `api/`.
 
 **Stack:** Go + PostgreSQL (Ent ORM) + Kafka + ClickHouse. API defined in TypeSpec, generated to OpenAPI.
 
-Domain packages under `openmeter/` follow a layered service/adapter pattern. See the `/service` skill for full details.
+Domain packages under `meterforge/` follow a layered service/adapter pattern. See the `/service` skill for full details.
 
 `cmd/server/main.go` now migrates the database before creating the default namespace. Register namespace handlers before `initNamespace(...)` if they must provision the default namespace during startup.
 
-**Module layout:** the repo is three separate Go modules. The root module (`github.com/openmeterio/openmeter`) holds all production code (`cmd/`, `openmeter/`, `pkg/`, etc.). `api/v3/client` is the standalone, publishable v3 Go SDK module. `e2e/` is a third, never-published, test-only module that imports both — it pins itself to the working tree of each via `replace github.com/openmeterio/openmeter => ../` and `replace .../api/v3/client => ../api/v3/client`, so e2e always tests local code regardless of what's tagged. The root module must never `require` the SDK module: a `require` on an untagged nested module resolves to an unresolvable `v0.0.0` for anyone outside this repo (the `replace` directive that makes it resolve locally is invisible downstream), so any code that needs the SDK — today, only `e2e/` — has to live in its own module rather than the root one. Because of this, root `go build ./...` / `go test ./...` / `go vet ./...` no longer see `e2e/` at all; use `make etoe` (runs it against a live server) or `go test -C e2e ./...` / `go vet -C e2e ./...` (compiles it standalone, no server needed) instead. `make lint-go` and `make mod` already cover all three modules. For editor/gopls support across all three, run `go work init . ./api/v3/client ./e2e` locally — `go.work`/`go.work.sum` are gitignored and must never be committed.
+**Module layout:** the repo is three separate Go modules. The root module (`github.com/Pototoooo/meterforge`) holds all production code (`cmd/`, `meterforge/`, `pkg/`, etc.). `api/v3/client` is the standalone, publishable v3 Go SDK module. `e2e/` is a third, never-published, test-only module that imports both — it pins itself to the working tree of each via `replace github.com/Pototoooo/meterforge => ../` and `replace .../api/v3/client => ../api/v3/client`, so e2e always tests local code regardless of what's tagged. The root module must never `require` the SDK module: a `require` on an untagged nested module resolves to an unresolvable `v0.0.0` for anyone outside this repo (the `replace` directive that makes it resolve locally is invisible downstream), so any code that needs the SDK — today, only `e2e/` — has to live in its own module rather than the root one. Because of this, root `go build ./...` / `go test ./...` / `go vet ./...` no longer see `e2e/` at all; use `make etoe` (runs it against a live server) or `go test -C e2e ./...` / `go vet -C e2e ./...` (compiles it standalone, no server needed) instead. `make lint-go` and `make mod` already cover all three modules. For editor/gopls support across all three, run `go work init . ./api/v3/client ./e2e` locally — `go.work`/`go.work.sum` are gitignored and must never be committed.
 
 ### Project Layout
 
 ```
 cmd/                    # Service entrypoints
-openmeter/              # Core business logic (billing, customer, entitlement, meter, etc.)
-openmeter/ent/schema/   # Ent entity definitions (source of truth for DB schema)
-openmeter/ent/db/       # Generated ent code (DO NOT EDIT)
+meterforge/              # Core business logic (billing, customer, entitlement, meter, etc.)
+meterforge/ent/schema/   # Ent entity definitions (source of truth for DB schema)
+meterforge/ent/db/       # Generated ent code (DO NOT EDIT)
 api/                    # API specs, generated code, SDKs
 api/spec/               # TypeSpec API definitions (source of truth for API)
 pkg/                    # Shared utility packages
@@ -81,10 +81,10 @@ All generated files have `// Code generated by X, DO NOT EDIT.` headers — neve
 |---|---|---|
 | `api/openapi.yaml`, `api/openapi.cloud.yaml` | TypeSpec in `api/spec/` | `make gen-api` |
 | `api/client/javascript/`, `api/client/go/` | OpenAPI spec | `make gen-api` |
-| `api/v3/client/` (v3 Go SDK, standalone module) | TypeSpec in `api/spec/` via `@openmeter/typespec-go` | `make gen-api` |
+| `api/v3/client/` (v3 Go SDK, standalone module) | TypeSpec in `api/spec/` via `@meterforge/typespec-go` | `make gen-api` |
 | `api/api.gen.go`, `api/v3/api.gen.go` | OpenAPI spec via oapi-codegen | `make gen-api` |
 | `api/client/go/client.gen.go` | OpenAPI spec | `make gen-api` |
-| `**/ent/db/` | Ent schema in `openmeter/ent/schema/` | `make generate` |
+| `**/ent/db/` | Ent schema in `meterforge/ent/schema/` | `make generate` |
 | `**/wire_gen.go` | Wire providers in `**/wire.go` | `make generate` |
 | `**/convert.gen.go` | Goverter converter interfaces (`**/convert.go`) | `make generate` |
 | `billing/derived.gen.go` | Goderive annotations | `make generate` |
@@ -96,9 +96,9 @@ All generated files have `// Code generated by X, DO NOT EDIT.` headers — neve
 2. Run `make gen-api` to regenerate OpenAPI spec and SDKs
 3. Run `make generate` to regenerate Go server/client code
 
-The TypeSpec JS client emitted from `api/spec/packages/aip` now lands in `api/spec/packages/aip-client-javascript/`. The emitter regenerates `src/`, `README.md`, and five conformance test files (`tests/client.spec.ts`, `tests/meters.spec.ts`, `tests/errors.spec.ts`, `tests/nesting.spec.ts`, `tests/internal.spec.ts`); every regenerated file carries a `Code generated by @openmeter/typespec-typescript. DO NOT EDIT.` header — treat files without that header as hand-written. `package.json` is **stable, hand-maintained, and committed** (the emitter's `writeOutput` only writes the paths it lists, so the manifest survives regeneration). The test suite is vitest + `@fetch-mock/vitest`; keep hand-written tests and helpers in `tests/` (never `src/`), and put test-runner dependencies/scripts in the `api/spec/package.json` workspace root rather than the client package manifest. Static publish metadata (`name`, `license`, `homepage`, `repository`) lives directly in the client `package.json`; only the per-release `version` is injected at publish time. Operations marked `x-internal` or `x-private` in the TypeSpec source are emitted but quarantined under `client.internal.<group>.<method>` (`src/sdk/internal.ts`, an `Internal` aggregate with `Internal<Group>` facade classes; internal ops share their group's `funcs/` and `models/operations/` modules, a group whose ops are all internal gets no public facade, and the `Internal` class is deliberately not re-exported from the package root — the name belongs to the Internal Server Error model). Removing an operation from the spec leaves stale generated files behind — the emitter never deletes outputs, so `git rm` them (and `rm` the gitignored `*.assert.ts` companions, which `git rm` cannot clean up on collaborators' checkouts).
+The TypeSpec JS client emitted from `api/spec/packages/aip` now lands in `api/spec/packages/aip-client-javascript/`. The emitter regenerates `src/`, `README.md`, and five conformance test files (`tests/client.spec.ts`, `tests/meters.spec.ts`, `tests/errors.spec.ts`, `tests/nesting.spec.ts`, `tests/internal.spec.ts`); every regenerated file carries a `Code generated by @meterforge/typespec-typescript. DO NOT EDIT.` header — treat files without that header as hand-written. `package.json` is **stable, hand-maintained, and committed** (the emitter's `writeOutput` only writes the paths it lists, so the manifest survives regeneration). The test suite is vitest + `@fetch-mock/vitest`; keep hand-written tests and helpers in `tests/` (never `src/`), and put test-runner dependencies/scripts in the `api/spec/package.json` workspace root rather than the client package manifest. Static publish metadata (`name`, `license`, `homepage`, `repository`) lives directly in the client `package.json`; only the per-release `version` is injected at publish time. Operations marked `x-internal` or `x-private` in the TypeSpec source are emitted but quarantined under `client.internal.<group>.<method>` (`src/sdk/internal.ts`, an `Internal` aggregate with `Internal<Group>` facade classes; internal ops share their group's `funcs/` and `models/operations/` modules, a group whose ops are all internal gets no public facade, and the `Internal` class is deliberately not re-exported from the package root — the name belongs to the Internal Server Error model). Removing an operation from the spec leaves stale generated files behind — the emitter never deletes outputs, so `git rm` them (and `rm` the gitignored `*.assert.ts` companions, which `git rm` cannot clean up on collaborators' checkouts).
 
-The emitted `api/spec/packages/aip-client-javascript/src/sdk/sdk.ts` exposes aggregated sub-client getters on the `OpenMeter` class (e.g. `events`, `meters`, `customers`, `entitlements`, `subscriptions`, `billing`, `features`, `plans`, `addons`, `planAddons`, `tax`, `defaults`). Access operations through those getters, e.g. `sdk.meters.list()`, `sdk.customers.create(...)`, `sdk.plans.create(...)`. These grouped-client methods throw `HTTPError` on failure; the same operations are also available as tree-shakeable standalone functions under `src/funcs/` that return a `Result` instead of throwing.
+The emitted `api/spec/packages/aip-client-javascript/src/sdk/sdk.ts` exposes aggregated sub-client getters on the `MeterForge` class (e.g. `events`, `meters`, `customers`, `entitlements`, `subscriptions`, `billing`, `features`, `plans`, `addons`, `planAddons`, `tax`, `defaults`). Access operations through those getters, e.g. `sdk.meters.list()`, `sdk.customers.create(...)`, `sdk.plans.create(...)`. These grouped-client methods throw `HTTPError` on failure; the same operations are also available as tree-shakeable standalone functions under `src/funcs/` that return a `Result` instead of throwing.
 
 **Workflow for changing Go types/DI:**
 
@@ -109,34 +109,34 @@ The emitted `api/spec/packages/aip-client-javascript/src/sdk/sdk.ts` exposes agg
 
 Uses [ent](https://entgo.io) for schema definition and [Atlas](https://atlasgo.io/) for migration generation. Migrations are in `tools/migrate/migrations/` using golang-migrate format.
 
-**Schema files:** `openmeter/ent/schema/*.go`
+**Schema files:** `meterforge/ent/schema/*.go`
 
 **Workflow for schema changes:**
 
-1. Edit the ent schema in `openmeter/ent/schema/`
-2. Run `make generate` to regenerate ent code in `openmeter/ent/db/`
+1. Edit the ent schema in `meterforge/ent/schema/`
+2. Run `make generate` to regenerate ent code in `meterforge/ent/db/`
 3. Generate migration: `atlas migrate --env local diff <migration-name>`
    - This creates timestamped `.up.sql` / `.down.sql` files in `tools/migrate/migrations/`
    - Also updates `tools/migrate/migrations/atlas.sum`
 4. Versioned migrations run automatically on startup when `postgres.autoMigrate` is set to `migration`; runtime Ent migration is not supported
 
-**Ent view caveat:** in this repo's current Ent/Atlas setup, schemas declared with `ent.View` can generate query code under `openmeter/ent/db/`, but they do not appear in `openmeter/ent/db/migrate/schema.go` or the generated `migrate.Tables` list. If `atlas migrate --env local diff ...` reports no changes for a new view, verify whether the view exists in generated migration metadata before debugging Atlas; view DDL may need an explicit SQL migration until generator support is added.
+**Ent view caveat:** in this repo's current Ent/Atlas setup, schemas declared with `ent.View` can generate query code under `meterforge/ent/db/`, but they do not appear in `meterforge/ent/db/migrate/schema.go` or the generated `migrate.Tables` list. If `atlas migrate --env local diff ...` reports no changes for a new view, verify whether the view exists in generated migration metadata before debugging Atlas; view DDL may need an explicit SQL migration until generator support is added.
 
-**Atlas config:** `atlas.hcl` — schema source is `ent://openmeter/ent/schema`, migrations dir is `file://tools/migrate/migrations`.
+**Atlas config:** `atlas.hcl` — schema source is `ent://meterforge/ent/schema`, migrations dir is `file://tools/migrate/migrations`.
 
 **Local Postgres:** `postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable`
 
-Runtime Ent schema migration is not supported. `postgres.autoMigrate: ent` must fail validation; use `migration`, `migration-job`, or `false`. `openmeter-jobs migrate adopt-ent` contains a frozen compatibility bridge for databases created by Ent before migration baseline `20260709134422`; it stops at that baseline, after which `openmeter-jobs migrate` performs the normal target-version upgrade. Keep the frozen descriptors and reconciliation scripts under `tools/migrate/legacyent` independent from current Ent generation so later schema changes cannot alter the adoption baseline. Ent and Atlas can derive different names for equivalent indexes and constraints, so reconciliation must preserve the canonical Atlas names and `TestLegacyEntAdoptionSchemaParity` must continue comparing the adopted database with a from-scratch Atlas database.
+Runtime Ent schema migration is not supported. `postgres.autoMigrate: ent` must fail validation; use `migration`, `migration-job`, or `false`. `meterforge-jobs migrate adopt-ent` contains a frozen compatibility bridge for databases created by Ent before migration baseline `20260709134422`; it stops at that baseline, after which `meterforge-jobs migrate` performs the normal target-version upgrade. Keep the frozen descriptors and reconciliation scripts under `tools/migrate/legacyent` independent from current Ent generation so later schema changes cannot alter the adoption baseline. Ent and Atlas can derive different names for equivalent indexes and constraints, so reconciliation must preserve the canonical Atlas names and `TestLegacyEntAdoptionSchemaParity` must continue comparing the adopted database with a from-scratch Atlas database.
 
 ## Testing
 
 Tests require PostgreSQL running locally. Start it with `docker compose up -d postgres`.
 
-Keep domain test helpers under `openmeter/.../testutils` independent from `app/common`. Build test dependencies from the underlying package constructors (repos, adapters, services, `lockr`) instead of importing the application wiring layer, or unrelated wiring additions can create test-only import cycles.
+Keep domain test helpers under `meterforge/.../testutils` independent from `app/common`. Build test dependencies from the underlying package constructors (repos, adapters, services, `lockr`) instead of importing the application wiring layer, or unrelated wiring additions can create test-only import cycles.
 
 For usage-based billing lifecycle tests, prefer driving behavior through `charges.Service.Create`, `AdvanceCharges`, and `ApplyPatches` rather than calling lower-level charge adapters directly. To model late-arriving or newly visible usage, use `MockStreamingConnector` events with explicit `StoredAt` values (or `SetSimpleEvents`) so the test exercises the real stored-at cutoff logic in finalization.
 
-For OpenMeter Go tests that touch the database, explicitly set `POSTGRES_HOST=127.0.0.1`. Without it, many suites will skip during setup even if PostgreSQL is running and the repo environment is otherwise loaded correctly.
+For MeterForge Go tests that touch the database, explicitly set `POSTGRES_HOST=127.0.0.1`. Without it, many suites will skip during setup even if PostgreSQL is running and the repo environment is otherwise loaded correctly.
 
 Use the repo's Nix CI dev shell when `go`, `gofmt`, or other toolchain binaries are missing from the ambient shell. The CI and local-compatible invocation pattern is:
 
@@ -176,9 +176,9 @@ After each meaningful test-related change, run focused `go vet` and focused `go 
 Examples:
 
 ```bash
-nix develop --impure .#ci -c gofmt -w openmeter/ledger/historical/entry.go
+nix develop --impure .#ci -c gofmt -w meterforge/ledger/historical/entry.go
 nix develop --impure .#ci -c make lint-go
-nix develop --impure .#ci -c env POSTGRES_HOST=127.0.0.1 go test -tags=dynamic ./openmeter/ledger/historical/...
+nix develop --impure .#ci -c env POSTGRES_HOST=127.0.0.1 go test -tags=dynamic ./meterforge/ledger/historical/...
 ```
 
 | Command | Description |
@@ -192,10 +192,10 @@ nix develop --impure .#ci -c env POSTGRES_HOST=127.0.0.1 go test -tags=dynamic .
 **Running a single package directly:**
 
 ```bash
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./openmeter/billing/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./meterforge/billing/...
 ```
 
-Key flags: `-tags=dynamic` (required for confluent-kafka-go), `-p 128 -parallel 16` (used by Make). Set `POSTGRES_HOST=127.0.0.1` or tests requiring Postgres will be skipped. `e2e/` is its own module and its import graph never reaches confluent-kafka-go, so `-tags=dynamic` is not needed there — `go test -C e2e ./...` (or `TZ=UTC OPENMETER_ADDRESS=... go test -C e2e ./...`) is enough.
+Key flags: `-tags=dynamic` (required for confluent-kafka-go), `-p 128 -parallel 16` (used by Make). Set `POSTGRES_HOST=127.0.0.1` or tests requiring Postgres will be skipped. `e2e/` is its own module and its import graph never reaches confluent-kafka-go, so `-tags=dynamic` is not needed there — `go test -C e2e ./...` (or `TZ=UTC METERFORGE_ADDRESS=... go test -C e2e ./...`) is enough.
 
 See the `/test` skill for testing patterns, TestEnv setup, and examples.
 
@@ -238,7 +238,7 @@ For TypeSpec-specific coding constraints, update `api/spec/AGENTS.md` instead of
 - Do not introduce `context.Background()` or `context.TODO()` to sidestep missing context propagation in application code. Either propagate the caller's context through the full call path, or remove the unused `context.Context` parameter from the API if the operation is purely local and does not need cancellation, deadlines, or request-scoped values.
 - Never use `panic` in non-test code paths. If a new failure mode is possible, change the function signature to return an error and propagate it explicitly.
 - In production constructors and initialization, do not use `slog.Default()` as a fallback dependency. Require a `*slog.Logger` in config/provider inputs and inject it explicitly.
-- Prefer standard library `slices` and `maps` helpers for common collection operations, and use `github.com/samber/lo` when it makes pointer literals or collection transformations clearer than local wrappers or hand-written loops. See the `/samber-lo` skill for common OpenMeter use cases and caveats. Do not add local wrappers such as `ptr`, `loPtr`, `must`, or `loMust` when standard helpers or `lo` already cover the need.
+- Prefer standard library `slices` and `maps` helpers for common collection operations, and use `github.com/samber/lo` when it makes pointer literals or collection transformations clearer than local wrappers or hand-written loops. See the `/samber-lo` skill for common MeterForge use cases and caveats. Do not add local wrappers such as `ptr`, `loPtr`, `must`, or `loMust` when standard helpers or `lo` already cover the need.
 - Use repo helper packages when they capture a common pattern better than ad hoc closures. For example, use `pkg/slicesx` for existing slice helpers (but prefer `samber/lo` and `slices` system packages if they fit), and use `pkg/syncx.OnceValues` for lazy context-aware database lookups that may be needed by multiple callbacks but should execute at most once.
 - Keep helper functions honest and narrow. If a production helper is only called once and is just a short guard or a few straightforward lines, inline it unless the name carries meaningful domain semantics. Do not add helpers for trivial single-use struct literals, do not hide aggregate mutation inside construction helpers, and return the domain value a helper actually builds rather than a broader wrapper needed by one caller.
 - For files and functions that convert between domain, API, and DB representations, use the `/go-types-conversion` skill. In prose, prefer `map` / `mapped` terminology for domain representation translation and avoid `project` / `projected` for that meaning; function names must still follow the skill's `FromAPI...`, `ToAPI...`, `FromDB...`, and `ToDB...` conventions.

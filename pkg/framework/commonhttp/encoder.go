@@ -10,8 +10,8 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport/encoder"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport/encoder"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 // GetMediaType returns the media type of the request.

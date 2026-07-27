@@ -6,9 +6,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/app/common"
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/pkg/featuregate"
+	"github.com/Pototoooo/meterforge/app/common"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/pkg/featuregate"
 )
 
 // alwaysFalseGate is a Gate that always returns false for any flag evaluation.
@@ -21,7 +21,7 @@ func (alwaysFalseGate) EvaluateBool(_, _ string, _ bool) (bool, error) {
 func TestNewFeatureGateChecker_DisabledUsesNoop(t *testing.T) {
 	checker := common.NewFeatureGateChecker(alwaysFalseGate{}, config.FeatureGateConfiguration{
 		Enabled: false,
-		Flags:   featuregate.Flags{featuregate.FeatureFlag("om_ff_credits_enabled"): "credits-flag"},
+		Flags:   featuregate.Flags{featuregate.FeatureFlag("mf_ff_credits_enabled"): "credits-flag"},
 	}, config.CreditsConfiguration{Enabled: true})
 	require.NotNil(t, checker)
 
@@ -34,7 +34,7 @@ func TestNewFeatureGateChecker_DisabledUsesNoop(t *testing.T) {
 func TestNewFeatureGateChecker_EnabledUsesRealGate(t *testing.T) {
 	checker := common.NewFeatureGateChecker(alwaysFalseGate{}, config.FeatureGateConfiguration{
 		Enabled: true,
-		Flags:   featuregate.Flags{featuregate.FeatureFlag("om_ff_credits_enabled"): "credits-flag"},
+		Flags:   featuregate.Flags{featuregate.FeatureFlag("mf_ff_credits_enabled"): "credits-flag"},
 	}, config.CreditsConfiguration{Enabled: true})
 	require.NotNil(t, checker)
 

@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/pkg/errorsx"
+	"github.com/Pototoooo/meterforge/pkg/errorsx"
 )
 
 type BalanceWorkerConfiguration struct {
@@ -67,8 +67,8 @@ func (c BalanceWorkerHighWatermarkCacheConfiguration) Validate() error {
 
 func ConfigureBalanceWorker(v *viper.Viper) {
 	ConfigureConsumer(v, "balanceWorker")
-	v.SetDefault("balanceWorker.dlq.topic", "om_sys.balance_worker_dlq")
-	v.SetDefault("balanceWorker.consumerGroupName", "om_balance_worker")
+	v.SetDefault("balanceWorker.dlq.topic", "mf_sys.balance_worker_dlq")
+	v.SetDefault("balanceWorker.consumerGroupName", "mf_balance_worker")
 
 	v.SetDefault("balanceWorker.stateStorage.highWatermarkCache.lruCacheSize", 100_000)
 }

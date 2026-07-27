@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent2/db"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent2/db"
 )
 
 // The Example2Func type is an adapter to allow the use of ordinary

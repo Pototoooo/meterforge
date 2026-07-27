@@ -1,7 +1,7 @@
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * InvoicesEndpoints is a collection of endpoints that allow invoice operations without prior

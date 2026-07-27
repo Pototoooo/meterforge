@@ -10,11 +10,11 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils"
-	db1 "github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent1/db"
-	db2 "github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent2/db"
-	"github.com/openmeterio/openmeter/pkg/framework/transaction"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils"
+	db1 "github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent1/db"
+	db2 "github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent2/db"
+	"github.com/Pototoooo/meterforge/pkg/framework/transaction"
 )
 
 // db1Adapter and db2Adapter implement the generic SomeDB interface as DB adapters

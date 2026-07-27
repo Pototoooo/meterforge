@@ -6,8 +6,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/openmeterio/openmeter/cmd/jobs/internal"
-	"github.com/openmeterio/openmeter/openmeter/billing/worker/subscriptionsync/reconciler"
+	"github.com/Pototoooo/meterforge/cmd/jobs/internal"
+	"github.com/Pototoooo/meterforge/meterforge/billing/worker/subscriptionsync/reconciler"
 )
 
 const (

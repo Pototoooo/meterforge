@@ -3,7 +3,7 @@ package strcase_test
 import (
 	"testing"
 
-	"github.com/openmeterio/openmeter/pkg/strcase"
+	"github.com/Pototoooo/meterforge/pkg/strcase"
 )
 
 func TestSnakeToCamel(t *testing.T) {

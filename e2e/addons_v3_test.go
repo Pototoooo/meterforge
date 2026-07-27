@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	v3sdk "github.com/openmeterio/openmeter/api/v3/client"
+	v3sdk "github.com/Pototoooo/meterforge/api/v3/client"
 )
 
 func TestV3Addon(t *testing.T) {
@@ -307,7 +307,7 @@ func TestV3AddonFeatureReferenceResolution(t *testing.T) {
 // Payment-term × price compatibility.
 //
 // The "unit + in_advance → 400 rate_card_only_flat_price_allowed" row is
-// dropped: the validator constant exists in openmeter/productcatalog/errors.go
+// dropped: the validator constant exists in meterforge/productcatalog/errors.go
 // but has no call sites, so the server accepts unit + in_advance and returns
 // 201. Re-enable once the validator is wired.
 func TestV3AddonPaymentTermPriceCompatibility(t *testing.T) {

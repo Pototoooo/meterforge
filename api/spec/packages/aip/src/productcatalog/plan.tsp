@@ -22,7 +22,7 @@ enum PlanStatus {
 /**
  * Plans provide a template for subscriptions.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "effective_from and effective_to are standard AIP temporal fields"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "effective_from and effective_to are standard AIP temporal fields"
 @friendlyName("BillingPlan")
 model Plan {
   ...Shared.Resource;
@@ -32,7 +32,7 @@ model Plan {
    * reference the latest `active` version of the plan and is unique with the version
    * number.
    */
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Read, Lifecycle.Create)
   @summary("Key")
   key: Shared.ResourceKey;

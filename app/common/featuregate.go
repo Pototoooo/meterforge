@@ -3,8 +3,8 @@ package common
 import (
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/pkg/featuregate"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/pkg/featuregate"
 )
 
 var FeatureGateChecker = wire.NewSet(

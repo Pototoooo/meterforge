@@ -6,9 +6,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/notification"
-	"github.com/openmeterio/openmeter/pkg/models"
-	"github.com/openmeterio/openmeter/pkg/pagination"
+	"github.com/Pototoooo/meterforge/meterforge/notification"
+	"github.com/Pototoooo/meterforge/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/pagination"
 )
 
 type RepositoryTestSuite struct {

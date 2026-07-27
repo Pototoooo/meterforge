@@ -134,7 +134,7 @@ interface MetersQueryOperations {
     | Common.NotFound
     | Common.ErrorResponses;
 
-  #suppress "@openmeter/api-spec-aip/operation-summary" "Avoid duplicating the summary in OpenAPI yaml"
+  #suppress "@meterforge/api-spec-aip/operation-summary" "Avoid duplicating the summary in OpenAPI yaml"
   @opExample(
     #{
       returnType: #{

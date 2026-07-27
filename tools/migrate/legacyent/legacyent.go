@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	// BaselineCommit is the OpenMeter commit whose generated Ent schema is frozen in this package.
+	// BaselineCommit is the MeterForge commit whose generated Ent schema is frozen in this package.
 	BaselineCommit = "12ab7b082035f2f93972c7f98973c5502107c157"
 	// BaselineVersion is the latest versioned migration represented by the frozen Ent schema.
 	BaselineVersion uint = 20260709134422

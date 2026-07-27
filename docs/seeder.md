@@ -1,6 +1,6 @@
-# Seeding OpenMeter with sample data
+# Seeding MeterForge with sample data
 
-It's often useful to seed OpenMeter with test data during development.
+It's often useful to seed MeterForge with test data during development.
 
 We use [Benthos](https://www.benthos.dev) as a seeder (even though it's not built for this purpose, it works just fine).
 

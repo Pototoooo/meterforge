@@ -4,11 +4,11 @@ package taxcodes
 import (
 	"errors"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/labels"
-	"github.com/openmeterio/openmeter/openmeter/app"
-	"github.com/openmeterio/openmeter/openmeter/taxcode"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/labels"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	"github.com/Pototoooo/meterforge/meterforge/taxcode"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 // goverter:variables

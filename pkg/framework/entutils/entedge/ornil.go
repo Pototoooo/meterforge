@@ -1,6 +1,6 @@
 package entedge
 
-import "github.com/openmeterio/openmeter/openmeter/ent/db"
+import "github.com/Pototoooo/meterforge/meterforge/ent/db"
 
 func OrNilIfNotFound[T any](edgeValue *T, err error) (*T, error) {
 	if err != nil {

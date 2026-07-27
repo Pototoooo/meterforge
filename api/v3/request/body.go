@@ -6,7 +6,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
 )
 
 func ParseBody(r *http.Request, payload any) error {

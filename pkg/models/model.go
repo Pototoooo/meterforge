@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/openmeterio/openmeter/pkg/clock"
-	"github.com/openmeterio/openmeter/pkg/equal"
+	"github.com/Pototoooo/meterforge/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/equal"
 )
 
 type ManagedUniqueResource struct {

@@ -9,14 +9,14 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/oasmiddleware"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/oasmiddleware"
 )
 
 // TestValidateResponse_Violation proves that the ValidateResponse middleware fires its
 // error hook when a handler returns a response body that violates the OpenAPI spec.
 //
-// GET /openmeter/addons requires a 200 body with both "data" and "meta" fields.
+// GET /meterforge/addons requires a 200 body with both "data" and "meta" fields.
 // Returning {} omits both required fields and must trigger a violation.
 func TestValidateResponse_Violation(t *testing.T) {
 	swagger, err := api.GetSwagger()
@@ -42,7 +42,7 @@ func TestValidateResponse_Violation(t *testing.T) {
 		_, _ = w.Write([]byte(`{}`))
 	})
 
-	req := httptest.NewRequest(http.MethodGet, "/openmeter/addons", nil)
+	req := httptest.NewRequest(http.MethodGet, "/meterforge/addons", nil)
 	rec := httptest.NewRecorder()
 
 	mw(badHandler).ServeHTTP(rec, req)
@@ -76,7 +76,7 @@ func TestValidateResponse_Clean(t *testing.T) {
 		_, _ = w.Write([]byte(`{"data":[],"meta":{"page":{"number":0,"size":100,"total":0}}}`))
 	})
 
-	req := httptest.NewRequest(http.MethodGet, "/openmeter/addons", nil)
+	req := httptest.NewRequest(http.MethodGet, "/meterforge/addons", nil)
 	rec := httptest.NewRecorder()
 
 	mw(goodHandler).ServeHTTP(rec, req)
@@ -120,13 +120,13 @@ func TestValidateResponse_RouteFilterSkipsValidation(t *testing.T) {
 		_, _ = w.Write([]byte(`{}`))
 	})
 
-	req := httptest.NewRequest(http.MethodGet, "/openmeter/addons", nil)
+	req := httptest.NewRequest(http.MethodGet, "/meterforge/addons", nil)
 	rec := httptest.NewRecorder()
 
 	mw(badHandler).ServeHTTP(rec, req)
 
 	require.NotNil(t, filteredRoute, "RouteFilterHook should have been invoked with the matched route")
-	assert.Equal(t, "/openmeter/addons", filteredRoute.Path)
+	assert.Equal(t, "/meterforge/addons", filteredRoute.Path)
 	assert.NoError(t, gotErr, "validation error hook must not fire when the filter returns false")
 	assert.Equal(t, http.StatusOK, rec.Code, "client response should still be served")
 	assert.Equal(t, `{}`, rec.Body.String(), "client response body should still be served")

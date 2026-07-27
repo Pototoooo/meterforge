@@ -7,9 +7,9 @@ import (
 	"log/slog"
 	"strings"
 
-	"github.com/openmeterio/openmeter/openmeter/ent/db"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils"
-	"github.com/openmeterio/openmeter/pkg/framework/transaction"
+	"github.com/Pototoooo/meterforge/meterforge/ent/db"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils"
+	"github.com/Pototoooo/meterforge/pkg/framework/transaction"
 )
 
 type LockerConfig struct {

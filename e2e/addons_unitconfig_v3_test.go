@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/client/go"
-	v3sdk "github.com/openmeterio/openmeter/api/v3/client"
+	api "github.com/Pototoooo/meterforge/api/client/go"
+	v3sdk "github.com/Pototoooo/meterforge/api/v3/client"
 )
 
 // newMeteredFeature creates a SUM meter and a feature backed by it, returning

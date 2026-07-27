@@ -600,7 +600,7 @@ export function sdkRootFile(tags: string[], hasInternal: boolean): string {
   return [
     imports,
     ``,
-    `export class OpenMeter extends Client {`,
+    `export class MeterForge extends Client {`,
     members.join('\n\n'),
     `}`,
     ``,
@@ -657,7 +657,7 @@ export function indexFile(
   ].join('\n')
 
   return [
-    `export { OpenMeter } from './sdk/sdk.js'`,
+    `export { MeterForge } from './sdk/sdk.js'`,
     namespaceExports,
     `export { Client } from './core.js'`,
     `export { HTTPError } from './models/errors.js'`,

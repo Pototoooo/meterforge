@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/pkg/errorsx"
+	"github.com/Pototoooo/meterforge/pkg/errorsx"
 )
 
 type SinkConfiguration struct {
@@ -154,7 +154,7 @@ func ConfigureSink(v *viper.Viper) {
 
 	// Sink
 	// FIXME(chrisgacsal): remove as it is deprecated by moving Kafka specific configuration to dedicated config params.
-	v.SetDefault("sink.groupId", "openmeter-sink-worker")
+	v.SetDefault("sink.groupId", "meterforge-sink-worker")
 	v.SetDefault("sink.minCommitCount", 500)
 	v.SetDefault("sink.maxCommitWait", "2s")
 	v.SetDefault("sink.maxPollTimeout", "100ms")
@@ -163,7 +163,7 @@ func ConfigureSink(v *viper.Viper) {
 	v.SetDefault("sink.drainTimeout", "10s")
 	v.SetDefault("sink.ingestNotifications.maxEventsInBatch", 50)
 	v.SetDefault("sink.namespaceRefetchTimeout", "10s")
-	v.SetDefault("sink.namespaceTopicRegexp", "^om_([A-Za-z0-9]+(?:_[A-Za-z0-9]+)*)_events$")
+	v.SetDefault("sink.namespaceTopicRegexp", "^mf_([A-Za-z0-9]+(?:_[A-Za-z0-9]+)*)_events$")
 	v.SetDefault("sink.meterRefetchInterval", "15s")
 	v.SetDefault("sink.logDroppedEvents", false)
 
@@ -176,5 +176,5 @@ func ConfigureSink(v *viper.Viper) {
 	ConfigureKafkaConfiguration(v, "sink")
 
 	// Override Kafka configuration defaults
-	v.SetDefault("sink.kafka.consumerGroupId", "openmeter-sink-worker")
+	v.SetDefault("sink.kafka.consumerGroupId", "meterforge-sink-worker")
 }

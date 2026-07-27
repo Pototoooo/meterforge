@@ -8,10 +8,10 @@ package main
 
 import (
 	"context"
-	"github.com/openmeterio/openmeter/app/common"
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/watermill/driver/kafka"
-	"github.com/openmeterio/openmeter/openmeter/watermill/router"
+	"github.com/Pototoooo/meterforge/app/common"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/watermill/driver/kafka"
+	"github.com/Pototoooo/meterforge/meterforge/watermill/router"
 	"log/slog"
 )
 

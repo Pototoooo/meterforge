@@ -4,7 +4,7 @@ import type { operations, paths } from './schemas.js'
 import { transformResponse } from './utils.js'
 
 /**
- * Info utilities for OpenMeter
+ * Info utilities for MeterForge
  */
 export class Info {
   constructor(private client: Client<paths, `${string}/${string}`>) {}

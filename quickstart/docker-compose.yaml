@@ -1,14 +1,14 @@
 # please use port numbers in the 40000 range so that it doesn't conflict with the main dev environment
-x-openmeter-worker-healthcheck: &openmeter-worker-healthcheck
+x-meterforge-worker-healthcheck: &meterforge-worker-healthcheck
   test: ["CMD", "wget", "--spider", "http://localhost:10000/healthz"]
   interval: 5s
   timeout: 3s
   retries: 30
 
 services:
-  openmeter:
-    image: ghcr.io/openmeterio/openmeter:latest
-    command: openmeter --address 0.0.0.0:8888 --config /etc/openmeter/config.yaml
+  meterforge:
+    image: ghcr.io/Pototoooo/meterforge:latest
+    command: meterforge --address 0.0.0.0:8888 --config /etc/meterforge/config.yaml
     restart: always
     pull_policy: always
     depends_on:
@@ -21,16 +21,32 @@ services:
     ports:
       - "127.0.0.1:48888:8888"
     volumes:
-      - ./config.yaml:/etc/openmeter/config.yaml
+      - ./config.yaml:/etc/meterforge/config.yaml
     healthcheck:
-      test: ["CMD", "wget", "--spider", "http://openmeter:8888/api/v1/debug/metrics"]
+      test: ["CMD", "wget", "--spider", "http://meterforge:8888/api/v1/debug/metrics"]
       interval: 5s
       timeout: 3s
       retries: 30
 
+  console:
+    build:
+      context: ..
+      dockerfile: web/Dockerfile
+    restart: always
+    depends_on:
+      meterforge:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3000:8080"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://127.0.0.1:8080/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
   sink-worker:
-    image: ghcr.io/openmeterio/openmeter:latest
-    command: openmeter-sink-worker --config /etc/openmeter/config.yaml
+    image: ghcr.io/Pototoooo/meterforge:latest
+    command: meterforge-sink-worker --config /etc/meterforge/config.yaml
     restart: always
     pull_policy: always
     depends_on:
@@ -38,19 +54,19 @@ services:
         condition: service_healthy
       clickhouse:
         condition: service_healthy
-      openmeter:
+      meterforge:
         condition: service_healthy
       redis:
         condition: service_healthy
     ports:
       - "127.0.0.1:40000:10000"
     volumes:
-      - ./config.yaml:/etc/openmeter/config.yaml
-    healthcheck: *openmeter-worker-healthcheck
+      - ./config.yaml:/etc/meterforge/config.yaml
+    healthcheck: *meterforge-worker-healthcheck
 
   balance-worker:
-    image: ghcr.io/openmeterio/openmeter:latest
-    command: openmeter-balance-worker --config /etc/openmeter/config.yaml
+    image: ghcr.io/Pototoooo/meterforge:latest
+    command: meterforge-balance-worker --config /etc/meterforge/config.yaml
     restart: always
     pull_policy: always
     depends_on:
@@ -58,19 +74,19 @@ services:
         condition: service_healthy
       clickhouse:
         condition: service_healthy
-      openmeter:
+      meterforge:
         condition: service_healthy
       redis:
         condition: service_healthy
     ports:
       - "127.0.0.1:40001:10000"
     volumes:
-      - ./config.yaml:/etc/openmeter/config.yaml
-    healthcheck: *openmeter-worker-healthcheck
+      - ./config.yaml:/etc/meterforge/config.yaml
+    healthcheck: *meterforge-worker-healthcheck
 
   notification-service:
-    image: ghcr.io/openmeterio/openmeter:latest
-    command: openmeter-notification-service --config /etc/openmeter/config.yaml
+    image: ghcr.io/Pototoooo/meterforge:latest
+    command: meterforge-notification-service --config /etc/meterforge/config.yaml
     restart: always
     pull_policy: always
     depends_on:
@@ -78,17 +94,17 @@ services:
         condition: service_healthy
       clickhouse:
         condition: service_healthy
-      openmeter:
+      meterforge:
         condition: service_healthy
     ports:
       - "127.0.0.1:40002:10000"
     volumes:
-      - ./config.yaml:/etc/openmeter/config.yaml
-    healthcheck: *openmeter-worker-healthcheck
+      - ./config.yaml:/etc/meterforge/config.yaml
+    healthcheck: *meterforge-worker-healthcheck
 
   billing-worker:
-    image: ghcr.io/openmeterio/openmeter:latest
-    command: openmeter-billing-worker --config /etc/openmeter/config.yaml
+    image: ghcr.io/Pototoooo/meterforge:latest
+    command: meterforge-billing-worker --config /etc/meterforge/config.yaml
     restart: always
     pull_policy: always
     depends_on:
@@ -96,21 +112,21 @@ services:
         condition: service_healthy
       clickhouse:
         condition: service_healthy
-      openmeter:
+      meterforge:
         condition: service_healthy
     ports:
       - "127.0.0.1:40003:10000"
     volumes:
-      - ./config.yaml:/etc/openmeter/config.yaml
-    healthcheck: *openmeter-worker-healthcheck
+      - ./config.yaml:/etc/meterforge/config.yaml
+    healthcheck: *meterforge-worker-healthcheck
 
-  openmeter-jobs:
-    image: ghcr.io/openmeterio/openmeter:latest
-    command: openmeter-jobs --config /etc/openmeter/config.yaml quickstart cron
+  meterforge-jobs:
+    image: ghcr.io/Pototoooo/meterforge:latest
+    command: meterforge-jobs --config /etc/meterforge/config.yaml quickstart cron
     restart: always
     pull_policy: never
     depends_on:
-      openmeter:
+      meterforge:
         condition: service_healthy
       kafka:
         condition: service_healthy
@@ -119,7 +135,7 @@ services:
       postgres:
         condition: service_healthy
     volumes:
-      - ./config.yaml:/etc/openmeter/config.yaml
+      - ./config.yaml:/etc/meterforge/config.yaml
 
   kafka:
     extends:

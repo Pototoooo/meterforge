@@ -45,7 +45,7 @@ env "ci" {
 
 locals {
     // Define the directory where the schema definition resides.
-    schema_src = "ent://openmeter/ent/schema"
+    schema_src = "ent://meterforge/ent/schema"
     // Define the initial migration timestamp
     init_migration_ts = "20240826120919"
     // Define the directory where the migrations are stored.
@@ -58,7 +58,7 @@ locals {
 
     migration_exlude = [
       "distributed_locks[type=table]",
-      "om_migration_backup_*[type=table]",
+      "mf_migration_backup_*[type=table]",
     ]
 }
 

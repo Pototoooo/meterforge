@@ -1,5 +1,5 @@
 services:
-  openmeter:
+  meterforge:
     environment:
       CREDITS_ENABLED: "false"
       CREDITS_ENABLECREDITTHENINVOICE: "false"

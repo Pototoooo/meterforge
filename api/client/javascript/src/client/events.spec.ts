@@ -1,18 +1,18 @@
 import fetchMock from '@fetch-mock/vitest'
 import { beforeEach, describe, expect, it } from 'vitest'
 import type { Event } from './index.js'
-import { OpenMeter } from './index.js'
+import { MeterForge } from './index.js'
 
 interface Context {
   baseUrl: string
-  client: OpenMeter
+  client: MeterForge
 }
 
 describe('Events', () => {
   beforeEach<Context>((ctx) => {
     fetchMock.mockReset()
-    const baseUrl = 'http://openmeter-mock.local'
-    const client = new OpenMeter({
+    const baseUrl = 'http://meterforge-mock.local'
+    const client = new MeterForge({
       baseUrl,
       fetch: fetchMock.fetchHandler,
     })
@@ -46,7 +46,7 @@ describe('Events', () => {
         body: [
           {
             ...event,
-            source: '@openmeter/sdk',
+            source: '@meterforge/sdk',
             specversion: '1.0',
             subject: 'customer_id',
             time: event.time?.toISOString(),

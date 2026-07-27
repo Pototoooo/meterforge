@@ -1,4 +1,4 @@
-# Reusable workflow: publish @openmeter/client (the AIP TypeScript SDK) to npm
+# Reusable workflow: publish @meterforge/client (the AIP TypeScript SDK) to npm
 # via OIDC Trusted Publishing.
 #
 # npm validates the top-level (caller) workflow filename for trusted publishing,
@@ -26,7 +26,7 @@ permissions:
 
 jobs:
   publish:
-    name: Publish @openmeter/client
+    name: Publish @meterforge/client
     # npm trusted publishing with provenance currently requires a GitHub-hosted runner.
     runs-on: ubuntu-latest
     environment: prod

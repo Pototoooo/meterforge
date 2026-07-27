@@ -2,10 +2,10 @@
 package customersbilling
 
 import (
-	apilegacy "github.com/openmeterio/openmeter/api"
-	api "github.com/openmeterio/openmeter/api/v3"
-	appstripe "github.com/openmeterio/openmeter/openmeter/app/stripe"
-	"github.com/openmeterio/openmeter/openmeter/customer"
+	apilegacy "github.com/Pototoooo/meterforge/api"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	appstripe "github.com/Pototoooo/meterforge/meterforge/app/stripe"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
 )
 
 // goverter:variables

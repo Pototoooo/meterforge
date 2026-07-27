@@ -6,9 +6,9 @@ import (
 
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/progressmanager"
-	"github.com/openmeterio/openmeter/openmeter/progressmanager/adapter"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/progressmanager"
+	"github.com/Pototoooo/meterforge/meterforge/progressmanager/adapter"
 )
 
 var ProgressManager = wire.NewSet(

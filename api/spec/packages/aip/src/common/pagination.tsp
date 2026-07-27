@@ -33,7 +33,7 @@ model CursorPaginationQueryPage {
  */
 @friendlyName("CursorPaginationQuery")
 model CursorPaginationQuery {
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "-"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "-"
   @query(#{ explode: true, style: "deepObject" })
   page?: CursorPaginationQueryPage;
 }
@@ -81,14 +81,14 @@ model CursorMetaPage {
   /**
    * URI to the next page.
    */
-  #suppress "@openmeter/api-spec-aip/no-nullable" "the server returns null when there is no next page"
+  #suppress "@meterforge/api-spec-aip/no-nullable" "the server returns null when there is no next page"
   @format("uri")
   next: string | null;
 
   /**
    * URI to the previous page.
    */
-  #suppress "@openmeter/api-spec-aip/no-nullable" "the server returns null when there is no previous page"
+  #suppress "@meterforge/api-spec-aip/no-nullable" "the server returns null when there is no previous page"
   @format("uri")
   previous: string | null;
 

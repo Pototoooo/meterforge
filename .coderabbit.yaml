@@ -33,13 +33,13 @@ reviews:
         Do not post actionable comments for known gaps that are already captured by nearby TODO comments in the changed code. Treat those as intentionally documented follow-up work unless the current diff makes the TODO incorrect, stale, or materially worse.
 
         Avoid outside-diff comments unless they identify a concrete correctness issue introduced by this PR and not already documented in the nearby code. Do not turn existing TODOs or future roadmap items into review findings.
-    - path: "openmeter/billing/charges/flatfee/**"
+    - path: "meterforge/billing/charges/flatfee/**"
       instructions: |
         Do not flag `AdvanceAfter` usage in flat-fee charge metadata updates as unsupported. Flat-fee charges participate in lifecycle scheduling through shared charge metadata.
 
         Only flag `AdvanceAfter` if the specific code path demonstrably persists an invalid value or violates an explicit flat-fee domain invariant in the current diff.
 
-    - path: "openmeter/billing/charges/**/service/*.go"
+    - path: "meterforge/billing/charges/**/service/*.go"
       instructions: |
         For charge state-machine handlers in this path, do not claim that an in-memory mutation is not persisted until you trace the full patch execution and persistence flow in the current code.
 

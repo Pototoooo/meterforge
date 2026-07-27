@@ -1,5 +1,5 @@
 input:
-  inproc: openmeter
+  inproc: meterforge
 
 buffer:
   sqlite:
@@ -8,9 +8,9 @@ buffer:
       - split: {}
 
 output:
-  openmeter:
-    url: "${OPENMETER_URL:https://openmeter.cloud}"
-    token: "${OPENMETER_TOKEN:}"
+  meterforge:
+    url: "${METERFORGE_URL:http://localhost:8888}"
+    token: "${METERFORGE_TOKEN:}"
     batching:
       count: ${BATCH_SIZE:1}
       period: ${BATCH_PERIOD:30s}

@@ -9,12 +9,12 @@ import (
 
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/app/common"
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/ledger"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/namespace"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
+	"github.com/Pototoooo/meterforge/app/common"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/ledger"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/namespace"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
 )
 
 type Application struct {

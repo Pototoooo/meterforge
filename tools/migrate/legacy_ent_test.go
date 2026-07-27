@@ -5,9 +5,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	"github.com/openmeterio/openmeter/tools/migrate"
-	"github.com/openmeterio/openmeter/tools/migrate/legacyent"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	"github.com/Pototoooo/meterforge/tools/migrate"
+	"github.com/Pototoooo/meterforge/tools/migrate/legacyent"
 )
 
 func TestLegacyEntReconciliationIsRerunnable(t *testing.T) {
@@ -53,7 +53,7 @@ func TestAdoptLegacyEnt(t *testing.T) {
 	require.NoError(t, legacyent.MigrateToBaseline(t.Context(), db.PGDriver.DB()))
 	require.NoError(t, migrate.AdoptLegacyEnt(t.Context(), db.PGDriver.DB(), db.URL, testutils.NewLogger(t)))
 
-	migrator, err := migrate.New(migrate.MigrateOptions{ConnectionString: db.URL, Migrations: migrate.OMMigrationsConfig, Logger: testutils.NewLogger(t)})
+	migrator, err := migrate.New(migrate.MigrateOptions{ConnectionString: db.URL, Migrations: migrate.MFMigrationsConfig, Logger: testutils.NewLogger(t)})
 	require.NoError(t, err)
 	defer migrator.CloseOrLogError()
 
@@ -76,7 +76,7 @@ func TestMigrateFromLegacyEntBaselineToLatest(t *testing.T) {
 	require.NoError(t, legacyent.MigrateToBaseline(t.Context(), db.PGDriver.DB()))
 	require.NoError(t, legacyent.Reconcile(t.Context(), db.PGDriver.DB()))
 
-	migrator, err := migrate.New(migrate.MigrateOptions{ConnectionString: db.URL, Migrations: migrate.OMMigrationsConfig, Logger: testutils.NewLogger(t)})
+	migrator, err := migrate.New(migrate.MigrateOptions{ConnectionString: db.URL, Migrations: migrate.MFMigrationsConfig, Logger: testutils.NewLogger(t)})
 	require.NoError(t, err)
 	defer migrator.CloseOrLogError()
 	require.NoError(t, migrator.Force(legacyent.BaselineVersion))
@@ -101,7 +101,7 @@ func TestAdoptLegacyEntRejectsVersionedDatabase(t *testing.T) {
 	db := testutils.InitPostgresDB(t, testutils.PostgresDBStateEmpty)
 	defer db.Close(t)
 
-	migrator, err := migrate.New(migrate.MigrateOptions{ConnectionString: db.URL, Migrations: migrate.OMMigrationsConfig, Logger: testutils.NewLogger(t)})
+	migrator, err := migrate.New(migrate.MigrateOptions{ConnectionString: db.URL, Migrations: migrate.MFMigrationsConfig, Logger: testutils.NewLogger(t)})
 	require.NoError(t, err)
 	require.NoError(t, migrator.Migrate(20240826120919))
 	migrator.CloseOrLogError()
@@ -126,11 +126,11 @@ func TestAdoptLegacyEntRejectsEmptyDatabase(t *testing.T) {
 
 func TestAdoptLegacyEntRejectsUnknownUnversionedDatabase(t *testing.T) {
 	// given:
-	// - a non-empty unversioned database that is not recognizable as OpenMeter
+	// - a non-empty unversioned database that is not recognizable as MeterForge
 	// when:
 	// - the migration job inspects it
 	// then:
-	// - it refuses to claim the OpenMeter baseline
+	// - it refuses to claim the MeterForge baseline
 	db := testutils.InitPostgresDB(t, testutils.PostgresDBStateEmpty)
 	defer db.Close(t)
 
@@ -138,5 +138,5 @@ func TestAdoptLegacyEntRejectsUnknownUnversionedDatabase(t *testing.T) {
 	require.NoError(t, err)
 
 	err = migrate.AdoptLegacyEnt(t.Context(), db.PGDriver.DB(), db.URL, testutils.NewLogger(t))
-	require.ErrorContains(t, err, "neither empty nor a recognized Ent-managed OpenMeter database")
+	require.ErrorContains(t, err, "neither empty nor a recognized Ent-managed MeterForge database")
 }

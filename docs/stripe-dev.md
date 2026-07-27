@@ -6,7 +6,7 @@ This guide assumes that you have the secret key available (starts with `sk_test`
 
 You have the stripe cli installed on your computer.
 
-Before executing the following commands, please make sure that you are specifying the `--stripe-disable-webhook-registration` command line argument to the `Server` component (see (.vscode/launch.json)[../.vscode/launch.json]). This is required as OpenMeter would create a new webhook for your service on the stripe side. We are going to rely on the stripe cli instead, so that we don't clutter the test account's webhook list.
+Before executing the following commands, please make sure that you are specifying the `--stripe-disable-webhook-registration` command line argument to the `Server` component (see (.vscode/launch.json)[../.vscode/launch.json]). This is required as MeterForge would create a new webhook for your service on the stripe side. We are going to rely on the stripe cli instead, so that we don't clutter the test account's webhook list.
 
 ## Setting up stripe
 

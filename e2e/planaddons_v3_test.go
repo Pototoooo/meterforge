@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	v3sdk "github.com/openmeterio/openmeter/api/v3/client"
+	v3sdk "github.com/Pototoooo/meterforge/api/v3/client"
 )
 
 // Plan-addon attach lifecycle: build a draft plan with two phases + a published

@@ -6,7 +6,7 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Order by options for grants.
@@ -14,9 +14,9 @@ namespace OpenMeter;
 @friendlyName("GrantOrderBy")
 enum GrantOrderBy {
   ID: "id",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   CreatedAt: "createdAt",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   UpdatedAt: "updatedAt",
 }
 
@@ -211,15 +211,15 @@ model GrantCreateInput {
  */
 @friendlyName("ExpirationDuration")
 enum ExpirationDuration {
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   HOUR: "HOUR",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   DAY: "DAY",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   WEEK: "WEEK",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   MONTH: "MONTH",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   YEAR: "YEAR",
 }
 

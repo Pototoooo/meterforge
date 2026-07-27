@@ -3,7 +3,7 @@ package entutils
 import (
 	"entgo.io/ent/dialect/sql"
 
-	"github.com/openmeterio/openmeter/pkg/slicesx"
+	"github.com/Pototoooo/meterforge/pkg/slicesx"
 )
 
 // JSONBIn returns a function that filters the given JSONB field by the given key and value

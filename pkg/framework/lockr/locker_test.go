@@ -10,13 +10,13 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/ent/db"
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/entdriver"
-	"github.com/openmeterio/openmeter/pkg/framework/lockr"
-	"github.com/openmeterio/openmeter/pkg/framework/pgdriver"
-	"github.com/openmeterio/openmeter/pkg/framework/transaction"
+	"github.com/Pototoooo/meterforge/meterforge/ent/db"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/entdriver"
+	"github.com/Pototoooo/meterforge/pkg/framework/lockr"
+	"github.com/Pototoooo/meterforge/pkg/framework/pgdriver"
+	"github.com/Pototoooo/meterforge/pkg/framework/transaction"
 )
 
 // Lets set up a dummy tx creator

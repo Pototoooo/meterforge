@@ -10,11 +10,11 @@ import (
 	semconv "go.opentelemetry.io/otel/semconv/v1.27.0"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/pkg/contextx"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/operation"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport/encoder"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/contextx"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/operation"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport/encoder"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 var defaultHandlerOptions = []HandlerOption{
@@ -24,7 +24,7 @@ var defaultHandlerOptions = []HandlerOption{
 // tracer reads the globally configured TracerProvider (set during telemetry init).
 // Used to start an application-level span named after the handler operation, as a
 // child of the otelhttp server span.
-var tracer = otel.Tracer("github.com/openmeterio/openmeter/pkg/framework/transport/httptransport")
+var tracer = otel.Tracer("github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport")
 
 // operationSpansEnabled is a global toggle for the per-operation child span. It is off
 // by default — the span is added to every operation request, so enabling it across the

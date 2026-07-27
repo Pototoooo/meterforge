@@ -101,7 +101,7 @@ model CurrencyBase<T extends CurrencyType> {
 model CurrencyFiat {
   ...CurrencyBase<CurrencyType.Fiat>;
 
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Read)
   code: Shared.CurrencyCode;
 }
@@ -122,11 +122,11 @@ scalar CurrencyCodeCustom extends string;
 model CurrencyCustom {
   ...CurrencyBase<CurrencyType.Custom>;
 
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Read)
   id: Shared.ULID;
 
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   @visibility(Lifecycle.Create, Lifecycle.Read)
   code: CurrencyCodeCustom;
 

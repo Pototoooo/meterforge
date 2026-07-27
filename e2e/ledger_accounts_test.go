@@ -9,7 +9,7 @@ import (
 	"github.com/oklog/ulid/v2"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/ledger"
+	"github.com/Pototoooo/meterforge/meterforge/ledger"
 )
 
 func TestNewCustomerHasLedgerAccounts(t *testing.T) {
@@ -41,11 +41,11 @@ func TestNewCustomerHasLedgerAccounts(t *testing.T) {
 func initE2EPostgresPool(t *testing.T) *pgxpool.Pool {
 	t.Helper()
 
-	dsn := os.Getenv("OPENMETER_E2E_POSTGRES_URL")
+	dsn := os.Getenv("METERFORGE_E2E_POSTGRES_URL")
 	if dsn == "" {
-		address := os.Getenv("OPENMETER_ADDRESS")
+		address := os.Getenv("METERFORGE_ADDRESS")
 		if !strings.Contains(address, "localhost:38888") && !strings.Contains(address, "127.0.0.1:38888") {
-			t.Skipf("ledger account e2e requires OPENMETER_E2E_POSTGRES_URL or local compose stack at localhost:38888, got %q", address)
+			t.Skipf("ledger account e2e requires METERFORGE_E2E_POSTGRES_URL or local compose stack at localhost:38888, got %q", address)
 		}
 
 		dsn = "postgres://postgres:postgres@127.0.0.1:35432/postgres?sslmode=disable"

@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent/dialect"
 
-	"github.com/openmeterio/openmeter/pkg/framework/transaction"
+	"github.com/Pototoooo/meterforge/pkg/framework/transaction"
 )
 
 type RawEntConfig struct {

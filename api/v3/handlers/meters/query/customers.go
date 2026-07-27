@@ -7,8 +7,8 @@ import (
 
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
 )
 
 // CustomerResolverFunc resolves customer IDs to streaming.Customer instances.

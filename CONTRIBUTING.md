@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to OpenMeter!
+Thanks for your interest in contributing to MeterForge!
 
 Here are a few general guidelines on contributing and reporting bugs that we ask you to review.
 Following these guidelines helps to communicate that you respect the time of the contributors managing and developing this open source project.
@@ -48,6 +48,6 @@ Here is what you can do:
 
 - Help ensure that existing issues follows the recommendations from the _[Reporting Issues](#reporting-issues)_ section,
   providing feedback to the issue's author on what might be missing.
-- Review and update the existing content of our [documentation](https://openmeter.io) with up-to-date instructions and code samples.
+- Review and update the existing content of our [documentation](https://github.com/Pototoooo/meterforge) with up-to-date instructions and code samples.
 - Review existing pull requests, and testing patches against real existing applications.
 - Write a test, or add a missing test case to an existing test.

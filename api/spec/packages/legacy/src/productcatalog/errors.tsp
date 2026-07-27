@@ -3,7 +3,7 @@ import "../types.tsp";
 import "../errors.tsp";
 import "./ratecards.tsp";
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Common errors for the product catalog API.

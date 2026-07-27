@@ -1,4 +1,4 @@
-package openmeter
+package meterforge
 
 import (
 	"context"
@@ -12,7 +12,7 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/openmeterio/openmeter/openmeter/meter"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
 )
 
 func TestIngest(t *testing.T) {
@@ -29,10 +29,10 @@ func TestIngest(t *testing.T) {
 	defer server.Close()
 
 	// Create a client with the mock server
-	om, err := NewClientWithResponses(server.URL)
+	mf, err := NewClientWithResponses(server.URL)
 	assert.NoError(t, err)
 
-	resp, err := om.IngestEventWithResponse(ctx, mockEvent())
+	resp, err := mf.IngestEventWithResponse(ctx, mockEvent())
 	assert.NoError(t, err)
 
 	assert.Equal(t, http.StatusOK, resp.StatusCode())
@@ -52,10 +52,10 @@ func TestIngestBatch(t *testing.T) {
 	defer server.Close()
 
 	// Create a client with the mock server
-	om, err := NewClientWithResponses(server.URL)
+	mf, err := NewClientWithResponses(server.URL)
 	assert.NoError(t, err)
 
-	resp, err := om.IngestEventBatchWithResponse(ctx, []cloudevents.Event{mockEvent()})
+	resp, err := mf.IngestEventBatchWithResponse(ctx, []cloudevents.Event{mockEvent()})
 	assert.NoError(t, err)
 
 	assert.Equal(t, http.StatusOK, resp.StatusCode())
@@ -80,10 +80,10 @@ func TetsListEvents(t *testing.T) {
 	defer server.Close()
 
 	// Create a client with the mock server
-	om, err := NewClientWithResponses(server.URL)
+	mf, err := NewClientWithResponses(server.URL)
 	assert.NoError(t, err)
 
-	resp, err := om.ListEventsWithResponse(ctx, &ListEventsParams{})
+	resp, err := mf.ListEventsWithResponse(ctx, &ListEventsParams{})
 	assert.NoError(t, err)
 
 	assert.Equal(t, http.StatusOK, resp.StatusCode())
@@ -105,10 +105,10 @@ func TestAuth(t *testing.T) {
 	defer server.Close()
 
 	// Create a client with the mock server
-	om, err := NewAuthClientWithResponses(server.URL, "test-api-token")
+	mf, err := NewAuthClientWithResponses(server.URL, "test-api-token")
 	assert.NoError(t, err)
 
-	resp, err := om.IngestEventWithResponse(ctx, mockEvent())
+	resp, err := mf.IngestEventWithResponse(ctx, mockEvent())
 	assert.NoError(t, err)
 
 	assert.Equal(t, http.StatusOK, resp.StatusCode())
@@ -139,10 +139,10 @@ func TestGetMeter(t *testing.T) {
 	defer server.Close()
 
 	// Create a client with the mock server
-	om, err := NewClientWithResponses(server.URL)
+	mf, err := NewClientWithResponses(server.URL)
 	assert.NoError(t, err)
 
-	resp, err := om.GetMeterWithResponse(ctx, "meter-1")
+	resp, err := mf.GetMeterWithResponse(ctx, "meter-1")
 	assert.NoError(t, err)
 
 	assert.Equal(t, http.StatusOK, resp.StatusCode())
@@ -183,10 +183,10 @@ func TestListMeters(t *testing.T) {
 	defer server.Close()
 
 	// Create a client with the mock server
-	om, err := NewClientWithResponses(server.URL)
+	mf, err := NewClientWithResponses(server.URL)
 	assert.NoError(t, err)
 
-	resp, err := om.ListMetersWithResponse(ctx, &ListMetersParams{})
+	resp, err := mf.ListMetersWithResponse(ctx, &ListMetersParams{})
 	assert.NoError(t, err)
 
 	assert.Equal(t, http.StatusOK, resp.StatusCode())
@@ -221,12 +221,12 @@ func TestMeterQuery(t *testing.T) {
 	defer server.Close()
 
 	// Create a client with the mock server
-	om, err := NewClientWithResponses(server.URL)
+	mf, err := NewClientWithResponses(server.URL)
 	assert.NoError(t, err)
 
 	subjectFilter := []string{"customer-1"}
 
-	resp, err := om.QueryMeterWithResponse(ctx, "meter-1", &QueryMeterParams{
+	resp, err := mf.QueryMeterWithResponse(ctx, "meter-1", &QueryMeterParams{
 		Subject: &subjectFilter,
 	})
 	assert.NoError(t, err)
@@ -263,10 +263,10 @@ func TestListSubjects(t *testing.T) {
 	defer server.Close()
 
 	// Create a client with the mock server
-	om, err := NewClientWithResponses(server.URL)
+	mf, err := NewClientWithResponses(server.URL)
 	assert.NoError(t, err)
 
-	resp, err := om.ListSubjectsWithResponse(ctx)
+	resp, err := mf.ListSubjectsWithResponse(ctx)
 	assert.NoError(t, err)
 
 	assert.Equal(t, http.StatusOK, resp.StatusCode())
@@ -295,10 +295,10 @@ func TestUpsertSubject(t *testing.T) {
 	defer server.Close()
 
 	// Create a client with the mock server
-	om, err := NewClientWithResponses(server.URL)
+	mf, err := NewClientWithResponses(server.URL)
 	assert.NoError(t, err)
 
-	resp, err := om.UpsertSubjectWithResponse(ctx, []SubjectUpsert{
+	resp, err := mf.UpsertSubjectWithResponse(ctx, []SubjectUpsert{
 		{
 			Key:         "customer-1",
 			DisplayName: lo.ToPtr("Customer 1"),

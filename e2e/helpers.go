@@ -9,7 +9,7 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/client/go"
+	api "github.com/Pototoooo/meterforge/api/client/go"
 )
 
 // This will not be needed once we get rid of subjects. Cloud middleware already handles subject / customer creation.

@@ -36,5 +36,5 @@ When a caller lacks access to a resource:
 
 ## See also
 
-- `rules/openmeter-error-types.md` — OpenMeter `Common.*` types that wire AIP-193 onto operations, including OpenMeter-only status codes (410, 413, 422).
+- `rules/meterforge-error-types.md` — MeterForge `Common.*` types that wire AIP-193 onto operations, including MeterForge-only status codes (410, 413, 422).
 - `rules/inline-errors.md` — inline errors returned **inside** a 2xx response body (partial successes, pre-flight validation on draft resources). AIP-193 itself only covers transport-level error responses.

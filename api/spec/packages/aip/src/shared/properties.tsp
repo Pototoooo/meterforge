@@ -124,9 +124,9 @@ scalar Numeric extends string;
  */
 @friendlyName("CurrencyAmount")
 model CurrencyAmount {
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   amount: Shared.Numeric;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   currency: Shared.CurrencyCode;
 }
 

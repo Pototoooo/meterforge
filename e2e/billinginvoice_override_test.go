@@ -14,8 +14,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/client/go"
-	v3sdk "github.com/openmeterio/openmeter/api/v3/client"
+	api "github.com/Pototoooo/meterforge/api/client/go"
+	v3sdk "github.com/Pototoooo/meterforge/api/v3/client"
 )
 
 func TestInvoiceEditFlatFeeManualOverrides(t *testing.T) {
@@ -103,7 +103,7 @@ func TestInvoiceEditFlatFeeManualOverrides(t *testing.T) {
 		// when:
 		// - the customer subscribes in credit-then-invoice mode
 		// then:
-		// - all subscription-created charges are controlled by OpenMeter
+		// - all subscription-created charges are controlled by MeterForge
 		require.NotNil(t, plan)
 
 		createdCustomer, err := c.Customers.Create(t.Context(), v3sdk.CreateCustomerRequest{

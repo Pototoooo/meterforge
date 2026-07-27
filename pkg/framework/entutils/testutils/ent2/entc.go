@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent/entc"
 	"entgo.io/ent/entc/gen"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/entexpose"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/entexpose"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 			},
 			Target:  "./db",
 			Schema:  "./schema",
-			Package: "github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent2/db",
+			Package: "github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent2/db",
 		},
 		entc.Extensions(entexpose.New()),
 	)

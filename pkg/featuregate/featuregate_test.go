@@ -9,9 +9,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/pkg/featuregate"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/operation"
+	"github.com/Pototoooo/meterforge/pkg/featuregate"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/operation"
 )
 
 // stubGate is a controllable Gate implementation for testing.
@@ -36,7 +36,7 @@ func TestFlags_Validate(t *testing.T) {
 	}{
 		{
 			name:    "valid key",
-			flags:   featuregate.Flags{featuregate.FeatureFlag("om_ff_credits_enabled"): "my-flag"},
+			flags:   featuregate.Flags{featuregate.FeatureFlag("mf_ff_credits_enabled"): "my-flag"},
 			wantErr: false,
 		},
 		{
@@ -164,7 +164,7 @@ func TestFeatureGateChecker_Validate(t *testing.T) {
 func TestNewMiddleware(t *testing.T) {
 	t.Parallel()
 
-	creditsKey := featuregate.FeatureFlag("om_ff_credits_enabled")
+	creditsKey := featuregate.FeatureFlag("mf_ff_credits_enabled")
 	flags := featuregate.Flags{creditsKey: "credits-flag"}
 
 	t.Run("populates context with flag value", func(t *testing.T) {
@@ -233,7 +233,7 @@ func TestNewMiddleware(t *testing.T) {
 func TestContextResolver_Credits(t *testing.T) {
 	t.Parallel()
 
-	creditsKey := featuregate.FeatureFlag("om_ff_credits_enabled")
+	creditsKey := featuregate.FeatureFlag("mf_ff_credits_enabled")
 
 	t.Run("no value in context", func(t *testing.T) {
 		val := featuregate.ContextResolver().Credits(context.Background())

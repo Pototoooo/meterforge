@@ -5,9 +5,9 @@ import (
 
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/namespace"
-	"github.com/openmeterio/openmeter/openmeter/namespace/namespacedriver"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/namespace"
+	"github.com/Pototoooo/meterforge/meterforge/namespace/namespacedriver"
 )
 
 var Namespace = wire.NewSet(

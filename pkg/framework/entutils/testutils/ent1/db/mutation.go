@@ -11,8 +11,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent1/db/example1"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent1/db/predicate"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent1/db/example1"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent1/db/predicate"
 )
 
 const (

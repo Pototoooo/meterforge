@@ -4,7 +4,7 @@ import "net/http"
 
 const (
 	poweredByHeader = "X-Powered-By"
-	poweredByValue  = "OpenMeter by Kong, Inc."
+	poweredByValue  = "MeterForge"
 )
 
 // NewPoweredByMiddleware returns a middleware that adds the X-Powered-By header

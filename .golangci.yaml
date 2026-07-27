@@ -55,10 +55,10 @@ formatters:
       sections:
         - standard
         - default
-        - prefix(github.com/openmeterio/openmeter)
+        - prefix(github.com/Pototoooo/meterforge)
     goimports:
       local-prefixes:
-        - github.com/openmeterio/openmeter
+        - github.com/Pototoooo/meterforge
   exclusions:
     generated: lax
     paths:

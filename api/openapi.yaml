@@ -1,13 +1,10 @@
 openapi: 3.0.0
 info:
-  title: OpenMeter API
+  title: MeterForge API
   version: 1.0.0
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
   description: |-
-    OpenMeter is a cloud native usage metering service.
-    The OpenMeter API allows you to ingest events, query meter usage, and manage resources.
+    MeterForge is a cloud native usage metering service.
+    The MeterForge API allows you to ingest events, query meter usage, and manage resources.
 tags:
   - name: Subscriptions
     description: With Subscriptions, you can easily start, cancel, and manage customer subscriptions. For example, provisioning them on a specific plan or assigning custom rate cards.
@@ -19,9 +16,9 @@ tags:
   - name: Product Catalog
     description: 'Configure and manage your product plans, pricing tiers, and subscription offerings. '
   - name: Portal
-    description: With the Consumer Portal, you can build in-app user-facing dashboards where your users can track their usage in real-time. Subject scoped portal tokens can be generated on your behalf to allow restricted access to the OpenMeter API.
+    description: With the Consumer Portal, you can build in-app user-facing dashboards where your users can track their usage in real-time. Subject scoped portal tokens can be generated on your behalf to allow restricted access to the MeterForge API.
   - name: Notifications
-    description: Notifications provide automated triggers when specific entitlement balances and usage thresholds are reached, ensuring that your customers and sales teams are always informed. Notify customers and internal teams when specific conditions are met, like reaching 75%, 100%, and 150% of their monthly usage allowance. [Read more](https://openmeter.io/docs/guides/notifications/overview).
+    description: Notifications provide automated triggers when specific entitlement balances and usage thresholds are reached, ensuring that your customers and sales teams are always informed. Notify customers and internal teams when specific conditions are met, like reaching 75%, 100%, and 150% of their monthly usage allowance. [Read more](https://github.com/Pototoooo/meterforge/tree/main/docs/guides/notifications/overview).
   - name: Meters
     description: Meters specify how to aggregate events for billing and analytics purposes. Meters can be configured with multiple aggregation methods and groupings. Multiple meters can be created for the same event type, enabling flexible metering scenarios.
   - name: Lookup Information
@@ -41,7 +38,7 @@ tags:
   - name: 'App: Stripe'
     description: Support for Stripe billing.
   - name: Apps
-    description: "Manage integrations for extending OpenMeter's functionality. "
+    description: "Manage integrations for extending MeterForge's functionality. "
 paths:
   /api/v1/addons:
     get:
@@ -8864,7 +8861,7 @@ paths:
       operationId: createEntitlement
       summary: Create a subject entitlement
       description: |-
-        OpenMeter has three types of entitlements: metered, boolean, and static. The type property determines the type of entitlement. The underlying feature has to be compatible with the entitlement type specified in the request (e.g., a metered entitlement needs a feature associated with a meter).
+        MeterForge has three types of entitlements: metered, boolean, and static. The type property determines the type of entitlement. The underlying feature has to be compatible with the entitlement type specified in the request (e.g., a metered entitlement needs a feature associated with a meter).
 
         - Boolean entitlements define static feature access, e.g. "Can use SSO authentication".
         - Static entitlements let you pass along a configuration while granting access, e.g. "Using this feature with X Y settings" (passed in the config).
@@ -10791,7 +10788,7 @@ paths:
       operationId: createCustomerEntitlementV2
       summary: Create a customer entitlement
       description: |-
-        OpenMeter has three types of entitlements: metered, boolean, and static. The type property determines the type of entitlement. The underlying feature has to be compatible with the entitlement type specified in the request (e.g., a metered entitlement needs a feature associated with a meter).
+        MeterForge has three types of entitlements: metered, boolean, and static. The type property determines the type of entitlement. The underlying feature has to be compatible with the entitlement type specified in the request (e.g., a metered entitlement needs a feature associated with a meter).
 
         - Boolean entitlements define static feature access, e.g. "Can use SSO authentication".
         - Static entitlements let you pass along a configuration while granting access, e.g. "Using this feature with X Y settings" (passed in the config).
@@ -13664,7 +13661,7 @@ components:
       description: |-
         BillingInvoiceCustomerExtendedDetails is a collection of fields that are used to extend the billing party details for invoices.
 
-        These fields contain the OpenMeter specific details for the customer, that are not strictly required for the invoice itself.
+        These fields contain the MeterForge specific details for the customer, that are not strictly required for the invoice itself.
     BillingParty:
       type: object
       properties:
@@ -14371,7 +14368,7 @@ components:
           type: boolean
           description: |-
             Enforce tax calculation when tax is supported by the app.
-            When enabled, OpenMeter will not allow to create an invoice without tax calculation.
+            When enabled, MeterForge will not allow to create an invoice without tax calculation.
             Enforcement is different per apps, for example, Stripe app requires customer
             to have a tax location when starting a paid subscription.
           default: false
@@ -14423,7 +14420,7 @@ components:
         url:
           type: string
           description: The URL to start the OAuth2 authorization code grant flow.
-      description: Response from the client app (OpenMeter backend) to start the OAuth2 flow.
+      description: Response from the client app (MeterForge backend) to start the OAuth2 flow.
     CollectionMethod:
       type: string
       enum:
@@ -14572,14 +14569,14 @@ components:
             - $ref: '#/components/schemas/CustomerKey'
             - $ref: '#/components/schemas/CustomerCreate'
           description: |-
-            Provide a customer ID or key to use an existing OpenMeter customer.
+            Provide a customer ID or key to use an existing MeterForge customer.
             or provide a customer object to create a new customer.
         stripeCustomerId:
           type: string
           description: |-
             Stripe customer ID.
-            If not provided OpenMeter creates a new Stripe customer or
-            uses the OpenMeter customer's default Stripe customer ID.
+            If not provided MeterForge creates a new Stripe customer or
+            uses the MeterForge customer's default Stripe customer ID.
         options:
           allOf:
             - $ref: '#/components/schemas/CreateStripeCheckoutSessionRequestOptions'
@@ -14698,7 +14695,7 @@ components:
         customerId:
           type: string
           pattern: ^[0-7][0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{25}$
-          description: The OpenMeter customer ID.
+          description: The MeterForge customer ID.
           example: 01G65Z755AFWAKHE12NY0CQ9FH
         stripeCustomerId:
           type: string
@@ -14844,7 +14841,7 @@ components:
           type: integer
           format: uint32
           description: Subunit of the currency.
-      description: Currency describes a currency supported by OpenMeter.
+      description: Currency describes a currency supported by MeterForge.
     CurrencyCode:
       type: string
       minLength: 3
@@ -17584,7 +17581,7 @@ components:
           description: Only available for static entitlements. The JSON parsable config of the entitlement.
           example: '{ key: "value" }'
           readOnly: true
-      description: Entitlements are the core of OpenMeter access management. They define access to features for subjects. Entitlements can be metered, boolean, or static.
+      description: Entitlements are the core of MeterForge access management. They define access to features for subjects. Entitlements can be metered, boolean, or static.
     EntitlementValueV2:
       type: object
       required:
@@ -19033,7 +19030,7 @@ components:
         managedBy:
           allOf:
             - $ref: '#/components/schemas/InvoiceLineManagedBy'
-          description: managedBy specifies if the line is manually added via the api or managed by OpenMeter.
+          description: managedBy specifies if the line is manually added via the api or managed by MeterForge.
           readOnly: true
         status:
           allOf:
@@ -19042,7 +19039,7 @@ components:
             Status of the line.
 
             External calls always create valid lines, other line types are managed by the
-            billing engine of OpenMeter.
+            billing engine of MeterForge.
           readOnly: true
         discounts:
           allOf:
@@ -19341,7 +19338,7 @@ components:
         managedBy:
           allOf:
             - $ref: '#/components/schemas/InvoiceLineManagedBy'
-          description: managedBy specifies if the line is manually added via the api or managed by OpenMeter.
+          description: managedBy specifies if the line is manually added via the api or managed by MeterForge.
           readOnly: true
         status:
           allOf:
@@ -19350,7 +19347,7 @@ components:
             Status of the line.
 
             External calls always create valid lines, other line types are managed by the
-            billing engine of OpenMeter.
+            billing engine of MeterForge.
           readOnly: true
         discounts:
           allOf:
@@ -19620,7 +19617,7 @@ components:
         managedBy:
           allOf:
             - $ref: '#/components/schemas/InvoiceLineManagedBy'
-          description: managedBy specifies if the line is manually added via the api or managed by OpenMeter.
+          description: managedBy specifies if the line is manually added via the api or managed by MeterForge.
           readOnly: true
         status:
           allOf:
@@ -19629,7 +19626,7 @@ components:
             Status of the line.
 
             External calls always create valid lines, other line types are managed by the
-            billing engine of OpenMeter.
+            billing engine of MeterForge.
           readOnly: true
         discounts:
           allOf:
@@ -22758,7 +22755,7 @@ components:
 
         50% is represented as 50
       example: 50
-      x-go-package: github.com/openmeterio/openmeter/pkg/models
+      x-go-package: github.com/Pototoooo/meterforge/pkg/models
       x-go-type: models.Percentage
     Period:
       type: object
@@ -23495,7 +23492,7 @@ components:
         token:
           type: string
           description: The token is only returned at creation.
-          example: om_portal_IAnD3PpWW2A2Wr8m9jfzeHlGX8xmCXwG.y5q4S-AWqFu6qjfaFz0zQq4Ez28RsnyVwJffX5qxMvo
+          example: mf_portal_IAnD3PpWW2A2Wr8m9jfzeHlGX8xmCXwG.y5q4S-AWqFu6qjfaFz0zQq4Ez28RsnyVwJffX5qxMvo
           readOnly: true
         allowedMeterSlugs:
           type: array
@@ -24113,10 +24110,10 @@ components:
             - sandbox
           description: The app's type is Sandbox.
       description: |-
-        Sandbox app can be used for testing OpenMeter features.
+        Sandbox app can be used for testing MeterForge features.
 
         The app is not creating anything in external systems, thus it is safe to use for
-        verifying OpenMeter features.
+        verifying MeterForge features.
     SandboxAppReplaceUpdate:
       type: object
       required:
@@ -26186,7 +26183,7 @@ components:
         A Problem Details object (RFC 7807).
         Additional properties specific to the problem type may be present.
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/pkg/models
+        path: github.com/Pototoooo/meterforge/pkg/models
       x-go-type: models.StatusProblem
     UnitPrice:
       type: object

@@ -4,7 +4,7 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 @route("/api/v1/debug")
 @tag("Debug")
@@ -26,10 +26,10 @@ interface DebugEndpoints {
 
         @body
         @example("""
-          # HELP openmeter_events Number of ingested events
-          # TYPE openmeter_events counter
-          openmeter_events_total{subject="customer-1"} 12345.0
-          openmeter_events_total{subject="customer-1",error="true"} 1.0
+          # HELP meterforge_events Number of ingested events
+          # TYPE meterforge_events counter
+          meterforge_events_total{subject="customer-1"} 12345.0
+          meterforge_events_total{subject="customer-1",error="true"} 1.0
           """)
         body: string;
       }

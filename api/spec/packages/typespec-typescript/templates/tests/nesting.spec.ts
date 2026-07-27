@@ -1,6 +1,6 @@
 import fetchMock from '@fetch-mock/vitest'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { OpenMeter } from '../src/index.js'
+import { MeterForge } from '../src/index.js'
 
 beforeEach(() => {
   fetchMock.mockReset()
@@ -18,7 +18,7 @@ describe('nested sub-clients', () => {
       body: { data: [], meta: { page: { number: 1, size: 10, total: 0 } } },
       headers: { 'Content-Type': 'application/json' },
     })
-    const sdk = new OpenMeter({
+    const sdk = new MeterForge({
       baseUrl: 'https://eu.api.konghq.com/v3',
       apiKey: 'k',
       fetch,
@@ -27,7 +27,7 @@ describe('nested sub-clients', () => {
       customerId: '01ARZ3NDEKTSV4RRFFQ69G5FAV',
     })
     expect(lastUrl()).toBe(
-      'https://eu.api.konghq.com/v3/openmeter/customers/01ARZ3NDEKTSV4RRFFQ69G5FAV/charges',
+      'https://eu.api.konghq.com/v3/meterforge/customers/01ARZ3NDEKTSV4RRFFQ69G5FAV/charges',
     )
   })
 })

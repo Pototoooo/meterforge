@@ -8,14 +8,14 @@ allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
 
 # Package Refactoring
 
-You are helping the user refactor existing `openmeter/` packages toward the standard service/adapter pattern described in the `/service` skill.
+You are helping the user refactor existing `meterforge/` packages toward the standard service/adapter pattern described in the `/service` skill.
 
 ## Target Pattern
 
 See the `/service` skill for the full target pattern. In summary, every feature package should have:
 
 ```text
-openmeter/<domain>/
+meterforge/<domain>/
 ├── service.go          # Service interface definition
 ├── adapter.go          # Adapter interface definition
 ├── <domain>.go         # Domain types and models

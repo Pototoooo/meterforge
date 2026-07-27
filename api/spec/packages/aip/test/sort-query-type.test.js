@@ -28,7 +28,7 @@ describe('sortQueryTypeRule', () => {
     ruleTester = createLinterRuleTester(
       runner,
       sortQueryTypeRule,
-      '@openmeter/api-spec-aip',
+      '@meterforge/api-spec-aip',
     )
   })
 
@@ -42,7 +42,7 @@ describe('sortQueryTypeRule', () => {
     await ruleTester
       .expect(`${preamble}\nop list(@query sort?: string): void;`)
       .toEmitDiagnostics({
-        code: '@openmeter/api-spec-aip/sort-query-type',
+        code: '@meterforge/api-spec-aip/sort-query-type',
         message: 'Query parameters named `sort` must use `Common.SortQuery`.',
       })
   })
@@ -57,7 +57,7 @@ describe('sortQueryTypeRule', () => {
       `,
       )
       .toEmitDiagnostics({
-        code: '@openmeter/api-spec-aip/sort-query-type',
+        code: '@meterforge/api-spec-aip/sort-query-type',
         message: 'Query parameters named `sort` must use `Common.SortQuery`.',
       })
   })
@@ -71,7 +71,7 @@ describe('sortQueryTypeRule', () => {
       `,
       )
       .toEmitDiagnostics({
-        code: '@openmeter/api-spec-aip/sort-query-type',
+        code: '@meterforge/api-spec-aip/sort-query-type',
         message: 'Query parameters named `sort` must use `Common.SortQuery`.',
       })
   })

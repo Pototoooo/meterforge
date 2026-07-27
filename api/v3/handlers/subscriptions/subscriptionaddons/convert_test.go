@@ -8,12 +8,12 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	apiv3 "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/openmeter/subscription"
-	subscriptionaddon "github.com/openmeterio/openmeter/openmeter/subscription/addon"
-	"github.com/openmeterio/openmeter/pkg/clock"
-	"github.com/openmeterio/openmeter/pkg/models"
-	"github.com/openmeterio/openmeter/pkg/timeutil"
+	apiv3 "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/meterforge/subscription"
+	subscriptionaddon "github.com/Pototoooo/meterforge/meterforge/subscription/addon"
+	"github.com/Pototoooo/meterforge/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/timeutil"
 )
 
 func TestFromAPICreateSubscriptionAddonRequest(t *testing.T) {

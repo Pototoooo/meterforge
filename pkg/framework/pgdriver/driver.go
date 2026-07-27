@@ -13,7 +13,7 @@ import (
 	semconv "go.opentelemetry.io/otel/semconv/v1.27.0"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/pkg/pgxpoolobserver"
+	"github.com/Pototoooo/meterforge/pkg/pgxpoolobserver"
 )
 
 type Option interface {

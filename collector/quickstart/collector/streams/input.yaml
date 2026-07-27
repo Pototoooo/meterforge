@@ -67,7 +67,7 @@ output:
                   - mapping: root = null
               # https://github.com/benthosdev/benthos/discussions/2324
               # https://github.com/benthosdev/benthos/issues/1946
-              - inproc: openmeter
+              - inproc: meterforge
 
       - check: '"${DEBUG_INPUT:false}" == "true"'
         output:

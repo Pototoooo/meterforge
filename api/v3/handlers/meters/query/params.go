@@ -6,12 +6,12 @@ import (
 	"slices"
 	"time"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/request"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
-	"github.com/openmeterio/openmeter/pkg/filter"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/request"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
+	"github.com/Pototoooo/meterforge/pkg/filter"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 const maxGroupByFilterComplexityDepth = 2

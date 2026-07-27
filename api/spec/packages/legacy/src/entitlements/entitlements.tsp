@@ -5,16 +5,16 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Order by options for entitlements.
  */
 @friendlyName("EntitlementOrderBy")
 enum EntitlementOrderBy {
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   CreatedAt: "createdAt",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   UpdatedAt: "updatedAt",
 }
 
@@ -416,9 +416,9 @@ model EntitlementStatic {
 @friendlyName("MeasureUsageFromPreset")
 @extension("x-enum-varnames", #["CurrentPeriodStart", "Now"])
 enum MeasureUsageFromPreset {
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   CURRENT_PERIOD_START: "CURRENT_PERIOD_START",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   NOW: "NOW",
 }
 

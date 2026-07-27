@@ -5,7 +5,7 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Type of the notification channel.
@@ -13,7 +13,7 @@ namespace OpenMeter;
 @friendlyName("NotificationChannelType")
 @extension("x-enum-varnames", #["Webhook"])
 enum NotificationChannelType {
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   webhook: "WEBHOOK",
 }
 
@@ -148,13 +148,13 @@ model NotificationChannelWebhookCreateRequest
  */
 @friendlyName("NotificationChannelOrderBy")
 enum NotificationChannelOrderBy {
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   id: "id",
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   type: "type",
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   createdAt: "createdAt",
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   updatedAt: "updatedAt",
 }
 

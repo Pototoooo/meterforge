@@ -8,8 +8,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 func TestHandleIssueIfHTTPStatusKnown(t *testing.T) {
@@ -40,7 +40,7 @@ func TestHandleIssueIfHTTPStatusKnown(t *testing.T) {
 		issue, ok := issues[0].(map[string]interface{})
 		require.True(t, ok)
 
-		require.NotContains(t, issue, "commonhttp.httpAttributeKey:openmeter.http.status_code")
+		require.NotContains(t, issue, "commonhttp.httpAttributeKey:meterforge.http.status_code")
 
 		require.Equal(t, string(test_err_code), issue["code"])
 		require.Contains(t, issue, "message")

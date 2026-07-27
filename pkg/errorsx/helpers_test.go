@@ -7,8 +7,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api"
-	apiv3 "github.com/openmeterio/openmeter/api/v3"
+	api "github.com/Pototoooo/meterforge/api"
+	apiv3 "github.com/Pototoooo/meterforge/api/v3"
 )
 
 func TestIsAPIError(t *testing.T) {

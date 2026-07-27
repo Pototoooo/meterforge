@@ -7,7 +7,7 @@ import (
 
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 var (

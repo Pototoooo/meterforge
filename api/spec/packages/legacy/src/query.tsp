@@ -4,7 +4,7 @@ import "@typespec/openapi3";
 
 using TypeSpec.Http;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Pagination query params
@@ -90,9 +90,9 @@ model QueryOrdering<T> {
  */
 @friendlyName("SortOrder")
 enum SortOrder {
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   ASC: "ASC",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   DESC: "DESC",
 }
 

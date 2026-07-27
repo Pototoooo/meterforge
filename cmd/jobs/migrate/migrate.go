@@ -5,8 +5,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/cmd/jobs/internal"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/cmd/jobs/internal"
 )
 
 func RootCommand() *cobra.Command {
@@ -18,7 +18,7 @@ func RootCommand() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			migrationMode := config.AutoMigrate(migrationMode)
 			if migrationMode == "ent" {
-				return fmt.Errorf("ent migration is no longer supported; run 'openmeter-jobs migrate adopt-ent' once, then set migration mode to 'migration'")
+				return fmt.Errorf("ent migration is no longer supported; run 'meterforge-jobs migrate adopt-ent' once, then set migration mode to 'migration'")
 			}
 			if !migrationMode.Enabled() {
 				return fmt.Errorf("migration mode is disabled")

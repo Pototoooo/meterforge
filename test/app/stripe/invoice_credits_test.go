@@ -11,25 +11,25 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stripe/stripe-go/v80"
 
-	"github.com/openmeterio/openmeter/openmeter/app"
-	appcustominvoicing "github.com/openmeterio/openmeter/openmeter/app/custominvoicing"
-	stripeclient "github.com/openmeterio/openmeter/openmeter/app/stripe/client"
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges/creditpurchase"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges/meta"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges/models/payment"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges/usagebased"
-	"github.com/openmeterio/openmeter/openmeter/billing/creditgrant"
-	currenciestestutils "github.com/openmeterio/openmeter/openmeter/currencies/testutils/currency"
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog"
-	"github.com/openmeterio/openmeter/pkg/clock"
-	"github.com/openmeterio/openmeter/pkg/currencyx"
-	"github.com/openmeterio/openmeter/pkg/datetime"
-	"github.com/openmeterio/openmeter/pkg/models"
-	"github.com/openmeterio/openmeter/pkg/timeutil"
-	billingtest "github.com/openmeterio/openmeter/test/billing"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	appcustominvoicing "github.com/Pototoooo/meterforge/meterforge/app/custominvoicing"
+	stripeclient "github.com/Pototoooo/meterforge/meterforge/app/stripe/client"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/creditpurchase"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/meta"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/models/payment"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/usagebased"
+	"github.com/Pototoooo/meterforge/meterforge/billing/creditgrant"
+	currenciestestutils "github.com/Pototoooo/meterforge/meterforge/currencies/testutils/currency"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog"
+	"github.com/Pototoooo/meterforge/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
+	"github.com/Pototoooo/meterforge/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/timeutil"
+	billingtest "github.com/Pototoooo/meterforge/test/billing"
 )
 
 func (s *StripeInvoiceTestSuite) TestInvoiceFundedCreditGrantRequiresStripeCustomerData() {
@@ -346,11 +346,11 @@ func (s *StripeInvoiceTestSuite) expectStripeInvoiceAddLines(stripeInvoiceID str
 					return false
 				}
 
-				if line.Metadata["om_line_type"] != expected.Type {
+				if line.Metadata["mf_line_type"] != expected.Type {
 					return false
 				}
 
-				if line.Metadata["om_line_id"] == "" {
+				if line.Metadata["mf_line_id"] == "" {
 					return false
 				}
 			}

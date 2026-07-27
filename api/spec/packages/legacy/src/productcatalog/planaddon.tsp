@@ -2,7 +2,7 @@ import "@typespec/http";
 import "../types.tsp";
 import "./ratecards.tsp";
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  *  The PlanAddon describes the association between a plan and add-on.

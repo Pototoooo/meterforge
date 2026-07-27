@@ -10,7 +10,7 @@ import (
 	"github.com/samber/lo"
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 // ServerConfig holds HTTP server timeout configuration.

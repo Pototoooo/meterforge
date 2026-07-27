@@ -1,6 +1,9 @@
 /.devenv/
 /.direnv/
 /.env.local
+/web/node_modules/
+/web/dist/
+/web/*.tsbuildinfo
 /.pre-commit-config.yaml
 /build/
 /config.yaml
@@ -16,7 +19,7 @@ go.work.sum
 
 __debug_bin*
 
-openmeter.log
+meterforge.log
 
 .gocache
 .gomodcache

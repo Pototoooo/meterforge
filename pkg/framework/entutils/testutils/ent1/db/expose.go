@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils"
 )
 
 func (c *Client) GetConfig() *entutils.RawEntConfig {

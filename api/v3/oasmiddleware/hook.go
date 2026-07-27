@@ -8,7 +8,7 @@ import (
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/getkin/kin-openapi/openapi3filter"
 
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
 )
 
 var ErrRouteNotFound = errors.New("route not found")

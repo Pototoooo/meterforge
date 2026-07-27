@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/openmeterio/openmeter/pkg/framework/operation"
+	"github.com/Pototoooo/meterforge/pkg/framework/operation"
 )
 
 type ExampleRequest struct {

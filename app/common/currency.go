@@ -5,11 +5,11 @@ import (
 
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/openmeter/currencies"
-	currencyadapter "github.com/openmeterio/openmeter/openmeter/currencies/adapter"
-	"github.com/openmeterio/openmeter/openmeter/currencies/currencyresolver"
-	"github.com/openmeterio/openmeter/openmeter/currencies/service"
-	entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
+	"github.com/Pototoooo/meterforge/meterforge/currencies"
+	currencyadapter "github.com/Pototoooo/meterforge/meterforge/currencies/adapter"
+	"github.com/Pototoooo/meterforge/meterforge/currencies/currencyresolver"
+	"github.com/Pototoooo/meterforge/meterforge/currencies/service"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
 )
 
 var Currency = wire.NewSet(

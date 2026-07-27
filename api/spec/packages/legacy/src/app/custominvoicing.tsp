@@ -10,7 +10,7 @@ import "../billing/invoices/main.tsp";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Custom Invoicing app can be used for interface with any invoicing or payment system.

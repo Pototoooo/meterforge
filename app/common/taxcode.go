@@ -7,12 +7,12 @@ import (
 	"github.com/google/wire"
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/app"
-	entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
-	"github.com/openmeterio/openmeter/openmeter/taxcode"
-	taxcodeadapter "github.com/openmeterio/openmeter/openmeter/taxcode/adapter"
-	taxcodeservice "github.com/openmeterio/openmeter/openmeter/taxcode/service"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
+	"github.com/Pototoooo/meterforge/meterforge/taxcode"
+	taxcodeadapter "github.com/Pototoooo/meterforge/meterforge/taxcode/adapter"
+	taxcodeservice "github.com/Pototoooo/meterforge/meterforge/taxcode/service"
 )
 
 var TaxCode = wire.NewSet(

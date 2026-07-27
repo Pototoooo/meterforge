@@ -15,7 +15,7 @@ if [ -z "${PY_SDK_RELEASE_VERSION:-}" ]; then
     exit 1
   fi
 
-	LATEST_VERSION=$(curl -s https://pypi.org/pypi/openmeter/json | jq -r '.releases | keys[] | select(test("a[0-9]+"))' | sort -V | tail -1)
+	LATEST_VERSION=$(curl -s https://pypi.org/pypi/meterforge/json | jq -r '.releases | keys[] | select(test("a[0-9]+"))' | sort -V | tail -1)
 	if [ -z "$LATEST_VERSION" ]; then
 		PY_SDK_RELEASE_VERSION="1.0.0a0"
 	else
@@ -39,8 +39,8 @@ export PY_SDK_RELEASE_VERSION=$(echo "$PY_SDK_RELEASE_VERSION" | sed -E 's/^v//'
 poetry version "$PY_SDK_RELEASE_VERSION"
 
 # Write version and commit files
-printf "VERSION = \"%s\"" "$PY_SDK_RELEASE_VERSION" > openmeter/_version.py || true
-printf "COMMIT = \"%s\"" "$COMMIT_SHORT_SHA" > openmeter/_commit.py || true
+printf "VERSION = \"%s\"" "$PY_SDK_RELEASE_VERSION" > meterforge/_version.py || true
+printf "COMMIT = \"%s\"" "$COMMIT_SHORT_SHA" > meterforge/_commit.py || true
 
 # Clean dist directory to avoid prompts about existing files
 rm -rf dist

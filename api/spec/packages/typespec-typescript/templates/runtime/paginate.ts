@@ -3,7 +3,7 @@ import { unwrap, type RequestOptions, type Result } from './types.js'
 // A misbehaving server — inconsistent `meta.page.total`/`size`, or a
 // `meta.page.next` cursor that never resolves to an empty page — would
 // otherwise make these generators loop forever. 10,000 pages is far beyond
-// any real OpenMeter list, so hitting it means the server's pagination
+// any real MeterForge list, so hitting it means the server's pagination
 // contract broke, not that the caller has a legitimately large list.
 const MAX_PAGINATION_PAGES = 10_000
 

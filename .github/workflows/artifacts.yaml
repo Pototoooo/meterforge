@@ -122,7 +122,7 @@ jobs:
       #   env:
       #     TRIVY_USERNAME: x-token
       #     TRIVY_PASSWORD: ${{ steps.pull-token.outputs.token }}
-      #     TRIVY_DB_REPOSITORY: ghcr.io/openmeterio/trivy-db:2
+      #     TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
 
       # - name: Upload Trivy scan results as artifact
       #   uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
@@ -163,7 +163,7 @@ jobs:
 
       - name: Set image name
         id: image-name
-        run: echo "value=ghcr.io/openmeterio/benthos-collector" >> "$GITHUB_OUTPUT"
+        run: echo "value=ghcr.io/Pototoooo/meterforge-benthos-collector" >> "$GITHUB_OUTPUT"
 
       - name: Gather build metadata
         id: meta
@@ -227,7 +227,7 @@ jobs:
       #   env:
       #     TRIVY_USERNAME: x-token
       #     TRIVY_PASSWORD: ${{ steps.pull-token.outputs.token }}
-      #     TRIVY_DB_REPOSITORY: ghcr.io/openmeterio/trivy-db:2
+      #     TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
 
       # - name: Upload Trivy scan results as artifact
       #   uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0

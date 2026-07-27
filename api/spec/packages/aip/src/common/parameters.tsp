@@ -33,7 +33,7 @@ model SortQuery {
 @extension("x-go-type", "filters.FilterBoolean")
 @extension(
   "x-go-type-import",
-  #{ path: "github.com/openmeterio/openmeter/api/v3/filters" }
+  #{ path: "github.com/Pototoooo/meterforge/api/v3/filters" }
 )
 @summary("Boolean Field Filter")
 union BooleanFieldFilter {
@@ -54,7 +54,7 @@ union BooleanFieldFilter {
 @extension("x-go-type", "filters.FilterNumeric")
 @extension(
   "x-go-type-import",
-  #{ path: "github.com/openmeterio/openmeter/api/v3/filters" }
+  #{ path: "github.com/Pototoooo/meterforge/api/v3/filters" }
 )
 @summary("Numeric Field Filter")
 union NumericFieldFilter {
@@ -106,7 +106,7 @@ union NumericFieldFilter {
 @extension("x-go-type", "filters.FilterString")
 @extension(
   "x-go-type-import",
-  #{ path: "github.com/openmeterio/openmeter/api/v3/filters" }
+  #{ path: "github.com/Pototoooo/meterforge/api/v3/filters" }
 )
 union StringFieldFilter {
   equals: string,
@@ -177,7 +177,7 @@ union StringFieldFilter {
 @extension("x-go-type", "filters.FilterStringExact")
 @extension(
   "x-go-type-import",
-  #{ path: "github.com/openmeterio/openmeter/api/v3/filters" }
+  #{ path: "github.com/Pototoooo/meterforge/api/v3/filters" }
 )
 @summary("String Field Filter Exact")
 union StringFieldFilterExact {
@@ -210,7 +210,7 @@ union StringFieldFilterExact {
 @extension("x-go-type", "filters.FilterULID")
 @extension(
   "x-go-type-import",
-  #{ path: "github.com/openmeterio/openmeter/api/v3/filters" }
+  #{ path: "github.com/Pototoooo/meterforge/api/v3/filters" }
 )
 @summary("ULID Field Filter")
 union ULIDFieldFilter {
@@ -243,7 +243,7 @@ union ULIDFieldFilter {
 @extension("x-go-type", "filters.FilterDateTime")
 @extension(
   "x-go-type-import",
-  #{ path: "github.com/openmeterio/openmeter/api/v3/filters" }
+  #{ path: "github.com/Pototoooo/meterforge/api/v3/filters" }
 )
 @summary("DateTime Field Filter")
 union DateTimeFieldFilter {
@@ -288,7 +288,7 @@ union DateTimeFieldFilter {
 @extension("x-go-type", "filters.FilterLabels")
 @extension(
   "x-go-type-import",
-  #{ path: "github.com/openmeterio/openmeter/api/v3/filters" }
+  #{ path: "github.com/Pototoooo/meterforge/api/v3/filters" }
 )
 @summary("Labels Field Filter")
 model LabelsFieldFilter is Record<StringFieldFilter>;

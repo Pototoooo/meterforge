@@ -3,7 +3,7 @@ package common
 import (
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/app/config"
+	"github.com/Pototoooo/meterforge/app/config"
 )
 
 // We have configs separatly to be able to reuse wires in other projects

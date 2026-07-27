@@ -34,11 +34,11 @@ import (
 	semconv "go.opentelemetry.io/otel/semconv/v1.27.0"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/server"
-	"github.com/openmeterio/openmeter/pkg/contextx"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
-	"github.com/openmeterio/openmeter/pkg/gosundheit"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/server"
+	"github.com/Pototoooo/meterforge/pkg/contextx"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/pkg/gosundheit"
 )
 
 var TelemetryWithoutServer = wire.NewSet(

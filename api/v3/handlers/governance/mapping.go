@@ -4,9 +4,9 @@ import (
 	"github.com/oapi-codegen/nullable"
 	"github.com/samber/lo"
 
-	apiv3 "github.com/openmeterio/openmeter/api/v3"
-	customershandler "github.com/openmeterio/openmeter/api/v3/handlers/customers"
-	"github.com/openmeterio/openmeter/openmeter/governance"
+	apiv3 "github.com/Pototoooo/meterforge/api/v3"
+	customershandler "github.com/Pototoooo/meterforge/api/v3/handlers/customers"
+	"github.com/Pototoooo/meterforge/meterforge/governance"
 )
 
 // ToAPIGovernanceQueryResponse maps a domain QueryResult to the API response.

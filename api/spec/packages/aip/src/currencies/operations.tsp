@@ -17,9 +17,9 @@ namespace Currencies;
  */
 @friendlyName("ListCurrenciesParamsFilter")
 model ListCurrenciesParamsFilter {
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "filter field"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "filter field"
   type?: CurrencyType;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "filter field"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "filter field"
   code?: Common.StringFieldFilter;
 }
 

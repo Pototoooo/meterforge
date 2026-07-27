@@ -36,7 +36,10 @@ export class Client {
               process.versions?.node != null &&
               !request.headers.has('User-Agent')
             ) {
-              request.headers.set('User-Agent', `openmeter-node/${SDK_VERSION}`)
+              request.headers.set(
+                'User-Agent',
+                `meterforge-node/${SDK_VERSION}`,
+              )
             }
 
             const token =

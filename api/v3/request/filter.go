@@ -3,8 +3,8 @@ package request
 import (
 	"github.com/samber/lo"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/pkg/filter"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/pkg/filter"
 )
 
 func convertContainsOperator(value *string) *string {

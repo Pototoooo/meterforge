@@ -68,7 +68,7 @@ func (c CommonConfigParams) AsConfigMap() (kafka.ConfigMap, error) {
 
 	// This is needed when using localhost brokers on OSX,
 	// since the OSX resolver will return the IPv6 addresses first.
-	// See: https://github.com/openmeterio/openmeter/issues/321
+	// See: https://github.com/Pototoooo/meterforge/issues/321
 	if c.BrokerAddressFamily != "" {
 		if err := m.SetKey("broker.address.family", c.BrokerAddressFamily); err != nil {
 			return nil, err

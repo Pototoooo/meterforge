@@ -122,7 +122,7 @@ func (m *MigrationsConfig) Validate() error {
 	return errors.Join(errs...)
 }
 
-var OMMigrationsConfig = MigrationsConfig{
+var MFMigrationsConfig = MigrationsConfig{
 	FS:             omMigrations,
 	FSPath:         "migrations",
 	StateTableName: MigrationsTable,

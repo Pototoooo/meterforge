@@ -3,7 +3,7 @@ package entutils
 import (
 	"entgo.io/ent/dialect/sql"
 
-	"github.com/openmeterio/openmeter/pkg/sortx"
+	"github.com/Pototoooo/meterforge/pkg/sortx"
 )
 
 func GetOrdering(order sortx.Order) []sql.OrderTermOption {

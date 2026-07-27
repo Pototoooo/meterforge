@@ -5,7 +5,7 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Metadata only fields of a notification channel.
@@ -112,13 +112,13 @@ union NotificationRuleCreateRequest {
  */
 @friendlyName("NotificationRuleOrderBy")
 enum NotificationRuleOrderBy {
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   id: "id",
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   type: "type",
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   createdAt: "createdAt",
-  #suppress "@openmeter/api-spec-legacy/casing" "Ignore due to backward compatibility"
+  #suppress "@meterforge/api-spec-legacy/casing" "Ignore due to backward compatibility"
   updatedAt: "updatedAt",
 }
 

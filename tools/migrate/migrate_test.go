@@ -10,8 +10,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	"github.com/openmeterio/openmeter/tools/migrate"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	"github.com/Pototoooo/meterforge/tools/migrate"
 )
 
 // The main test runner
@@ -92,7 +92,7 @@ func (r runner) Test(t *testing.T) {
 
 	migrator, err := migrate.New(migrate.MigrateOptions{
 		ConnectionString: testDB.URL,
-		Migrations:       migrate.OMMigrationsConfig,
+		Migrations:       migrate.MFMigrationsConfig,
 		Logger:           testutils.NewLogger(t),
 	})
 	if err != nil {
@@ -181,7 +181,7 @@ func (r runner) purgeDB(t *testing.T, db *testutils.TestDB) {
 		FROM pg_tables
 		WHERE schemaname = $1
 		AND tablename != $2
-	`, schema, migrate.OMMigrationsConfig.StateTableName)
+	`, schema, migrate.MFMigrationsConfig.StateTableName)
 	require.NoError(t, err)
 	defer rows.Close()
 

@@ -11,11 +11,11 @@ import (
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/ent/db"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/entdriver"
-	"github.com/openmeterio/openmeter/pkg/framework/pgdriver"
-	"github.com/openmeterio/openmeter/tools/migrate"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/ent/db"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/entdriver"
+	"github.com/Pototoooo/meterforge/pkg/framework/pgdriver"
+	"github.com/Pototoooo/meterforge/tools/migrate"
 )
 
 var Database = wire.NewSet(
@@ -45,7 +45,7 @@ func (m Migrator) Migrate(ctx context.Context) error {
 
 	migrator, err := migrate.New(migrate.MigrateOptions{
 		ConnectionString: m.Config.AsURL(),
-		Migrations:       migrate.OMMigrationsConfig,
+		Migrations:       migrate.MFMigrationsConfig,
 		Logger:           m.Logger,
 	})
 	if err != nil {

@@ -1,4 +1,4 @@
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * Pro-rating mode options for handling billing period changes.

@@ -15,7 +15,7 @@ namespace LLMCost;
 /**
  * Filter options for listing LLM cost prices.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "model_id and model_name should not be grouped"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "model_id and model_name should not be grouped"
 @friendlyName("ListLLMCostPricesParamsFilter")
 model ListPricesParamsFilter {
   /**

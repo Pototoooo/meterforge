@@ -5,9 +5,9 @@ import (
 
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/portal"
-	portaladapter "github.com/openmeterio/openmeter/openmeter/portal/adapter"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/portal"
+	portaladapter "github.com/Pototoooo/meterforge/meterforge/portal/adapter"
 )
 
 var Portal = wire.NewSet(

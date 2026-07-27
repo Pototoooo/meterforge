@@ -3,8 +3,8 @@ package query
 import (
 	"fmt"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/openmeter/meter"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
 )
 
 var iso8601ToWindowSize = map[string]meter.WindowSize{

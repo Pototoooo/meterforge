@@ -9,4 +9,4 @@ import "./currencies.tsp";
 import "./progress.tsp";
 import "./routes.tsp";
 
-namespace OpenMeter;
+namespace MeterForge;

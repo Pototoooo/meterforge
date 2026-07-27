@@ -12,7 +12,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent2/db/example2"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent2/db/example2"
 )
 
 // Example2Create is the builder for creating a Example2 entity.

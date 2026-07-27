@@ -3,7 +3,7 @@ import "../types.tsp";
 import "./ratecards.tsp";
 import "./prorating.tsp";
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * The status of a plan.

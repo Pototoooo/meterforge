@@ -26,7 +26,7 @@ All collection endpoints must be paginated from inception — adding pagination 
 
 This style is acceptable only when you are sure the collection is small, bounded, and offset-friendly. Default to cursor pagination otherwise.
 
-## OpenMeter opaque-offset pagination (Kong-common extension, not AIP-158)
+## MeterForge opaque-offset pagination (Kong-common extension, not AIP-158)
 
 `metadatas.yaml` also defines an additional offset-based pagination style **not described by AIP-158**:
 

@@ -20,13 +20,13 @@ namespace ProductCatalog;
  */
 @friendlyName("ListPlansParamsFilter")
 model ListPlansParamsFilter {
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   key?: Common.StringFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   name?: Common.StringFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   status?: Common.StringFieldFilterExact;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   currency?: Common.StringFieldFilterExact;
 }
 
@@ -147,15 +147,15 @@ interface PlanOperations {
  */
 @friendlyName("ListAddonsParamsFilter")
 model ListAddonsParamsFilter {
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   id?: Common.ULIDFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   key?: Common.StringFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   name?: Common.StringFieldFilter;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   status?: Common.StringFieldFilterExact;
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "shared model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "shared model"
   currency?: Common.StringFieldFilterExact;
 }
 

@@ -8,7 +8,7 @@ namespace Apps;
  * External Invoicing app enables integration with third-party invoicing or payment
  * system.
  *
- * The app supports a bi-directional synchronization pattern where OpenMeter
+ * The app supports a bi-directional synchronization pattern where MeterForge
  * Billing manages the invoice lifecycle while the external system handles invoice
  * presentation and payment collection.
  *

@@ -9,7 +9,7 @@ import (
 	"github.com/oklog/ulid/v2"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/productcatalog"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog"
 )
 
 func TestStartAfterChange(t *testing.T) {

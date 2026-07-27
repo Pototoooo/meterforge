@@ -4,7 +4,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/schema/field"
 
-	"github.com/openmeterio/openmeter/pkg/framework/entutils"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils"
 )
 
 type Example2 struct {

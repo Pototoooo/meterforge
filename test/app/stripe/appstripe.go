@@ -11,18 +11,18 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/stripe/stripe-go/v80"
 
-	"github.com/openmeterio/openmeter/api"
-	"github.com/openmeterio/openmeter/openmeter/app"
-	appstripe "github.com/openmeterio/openmeter/openmeter/app/stripe"
-	stripeclient "github.com/openmeterio/openmeter/openmeter/app/stripe/client"
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	customerapp "github.com/openmeterio/openmeter/openmeter/customer/app"
-	secretentity "github.com/openmeterio/openmeter/openmeter/secret/entity"
-	"github.com/openmeterio/openmeter/pkg/currencyx"
-	"github.com/openmeterio/openmeter/pkg/datetime"
-	"github.com/openmeterio/openmeter/pkg/models"
-	"github.com/openmeterio/openmeter/pkg/pagination"
+	"github.com/Pototoooo/meterforge/api"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	appstripe "github.com/Pototoooo/meterforge/meterforge/app/stripe"
+	stripeclient "github.com/Pototoooo/meterforge/meterforge/app/stripe/client"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	customerapp "github.com/Pototoooo/meterforge/meterforge/customer/app"
+	secretentity "github.com/Pototoooo/meterforge/meterforge/secret/entity"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
+	"github.com/Pototoooo/meterforge/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/pagination"
 )
 
 var TestStripeAPIKey = "test_stripe_api_key"
@@ -757,14 +757,14 @@ func (s *AppHandlerTestSuite) TestCreatePortalSession(ctx context.Context, t *te
 	s.Env.StripeAppClient().
 		On("CreatePortalSession", stripeclient.CreatePortalSessionInput{
 			StripeCustomerID: defaultStripeCustomerID,
-			ReturnURL:        lo.ToPtr("https://openmeter.io"),
+			ReturnURL:        lo.ToPtr("https://github.com/Pototoooo/meterforge"),
 		}).
 		Return(stripeclient.PortalSession{
 			ID:               "ps_123",
 			StripeCustomerID: defaultStripeCustomerID,
 			Livemode:         true,
 			Locale:           "en",
-			ReturnURL:        "https://openmeter.io",
+			ReturnURL:        "https://github.com/Pototoooo/meterforge",
 			URL:              "https://portal.stripe.com/ps_123",
 			CreatedAt:        createdAt,
 		}, nil)
@@ -775,7 +775,7 @@ func (s *AppHandlerTestSuite) TestCreatePortalSession(ctx context.Context, t *te
 	portalSession, err := s.Env.AppStripe().CreatePortalSession(ctx, appstripe.CreateStripePortalSessionInput{
 		AppID:      appID,
 		CustomerID: customerID,
-		ReturnURL:  lo.ToPtr("https://openmeter.io"),
+		ReturnURL:  lo.ToPtr("https://github.com/Pototoooo/meterforge"),
 	})
 
 	require.NoError(t, err, "Create portal session must not return error")
@@ -785,7 +785,7 @@ func (s *AppHandlerTestSuite) TestCreatePortalSession(ctx context.Context, t *te
 		StripeCustomerID: defaultStripeCustomerID,
 		Livemode:         true,
 		Locale:           "en",
-		ReturnURL:        "https://openmeter.io",
+		ReturnURL:        "https://github.com/Pototoooo/meterforge",
 		URL:              "https://portal.stripe.com/ps_123",
 		CreatedAt:        createdAt,
 	}, portalSession, "Create portal session must match")

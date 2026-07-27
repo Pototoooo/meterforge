@@ -3,7 +3,7 @@ package llmcost
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/openmeterio/openmeter/cmd/jobs/internal"
+	"github.com/Pototoooo/meterforge/cmd/jobs/internal"
 )
 
 var Cmd = &cobra.Command{

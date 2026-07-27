@@ -1,4 +1,4 @@
-package openmeter
+package meterforge
 
 // ErrResponse renderer type for handling all sorts of errors.
 // In the best case scenario, the excellent github.com/pkg/errors package

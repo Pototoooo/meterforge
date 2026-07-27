@@ -13,9 +13,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	"github.com/openmeterio/openmeter/tools/migrate"
-	"github.com/openmeterio/openmeter/tools/migrate/viewgen"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	"github.com/Pototoooo/meterforge/tools/migrate"
+	"github.com/Pototoooo/meterforge/tools/migrate/viewgen"
 )
 
 var (
@@ -204,7 +204,7 @@ func loadPublicViewColumns(t *testing.T, db *sql.DB, viewName string) []viewColu
 func applyGeneratedViews(t *testing.T, db *sql.DB) {
 	t.Helper()
 
-	sql, err := viewgen.GenerateSQL("../../openmeter/ent/schema")
+	sql, err := viewgen.GenerateSQL("../../meterforge/ent/schema")
 	require.NoError(t, err)
 
 	cleaned := strings.TrimSpace(stripSQLLineComments(string(sql)))
@@ -215,7 +215,7 @@ func applyGeneratedViews(t *testing.T, db *sql.DB) {
 }
 
 func TestViewDefinitionsMatchGeneratedSchemaSQL(t *testing.T) {
-	sql, err := viewgen.GenerateSQL("../../openmeter/ent/schema")
+	sql, err := viewgen.GenerateSQL("../../meterforge/ent/schema")
 	require.NoError(t, err)
 
 	expectedBodies, err := parseExpectedViews(string(sql))
@@ -230,13 +230,13 @@ func TestViewDefinitionsMatchGeneratedSchemaSQL(t *testing.T) {
 	generatedDB := testutils.InitPostgresDB(t, testutils.PostgresDBStateEmpty)
 	defer generatedDB.PGDriver.Close()
 
-	manualMigrator := newMigratorForTest(t, manualDB.URL, migrate.OMMigrationsConfig)
+	manualMigrator := newMigratorForTest(t, manualDB.URL, migrate.MFMigrationsConfig)
 	defer func() {
 		srcErr, dbErr := manualMigrator.Close()
 		require.NoError(t, errors.Join(srcErr, dbErr))
 	}()
 
-	filteredCfg, err := buildMigrationsWithoutViews(migrate.OMMigrationsConfig)
+	filteredCfg, err := buildMigrationsWithoutViews(migrate.MFMigrationsConfig)
 	require.NoError(t, err)
 
 	generatedMigrator := newMigratorForTest(t, generatedDB.URL, filteredCfg)

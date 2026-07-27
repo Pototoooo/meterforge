@@ -131,7 +131,7 @@ model CreditGrantTaxConfig {
  * Credits are drawn down against charges according to the settlement mode
  * configured on the rate card.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "credit grant model"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "credit grant model"
 @summary("Credit grant")
 @friendlyName("BillingCreditGrant")
 model CreditGrant {
@@ -178,7 +178,7 @@ model CreditGrant {
   @visibility(Lifecycle.Read)
   invoice?: CreditGrantInvoiceReference;
 
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "nested model"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "nested model"
   @visibility(Lifecycle.Read, Lifecycle.Create)
   filters?: CreditGrantFilters;
 

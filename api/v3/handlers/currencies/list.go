@@ -6,16 +6,16 @@ import (
 
 	"github.com/samber/lo"
 
-	v3 "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	"github.com/openmeterio/openmeter/api/v3/filters"
-	"github.com/openmeterio/openmeter/api/v3/request"
-	"github.com/openmeterio/openmeter/api/v3/response"
-	"github.com/openmeterio/openmeter/openmeter/currencies"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
-	"github.com/openmeterio/openmeter/pkg/pagination"
-	"github.com/openmeterio/openmeter/pkg/sortx"
+	v3 "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/api/v3/filters"
+	"github.com/Pototoooo/meterforge/api/v3/request"
+	"github.com/Pototoooo/meterforge/api/v3/response"
+	"github.com/Pototoooo/meterforge/meterforge/currencies"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/pkg/pagination"
+	"github.com/Pototoooo/meterforge/pkg/sortx"
 )
 
 type (

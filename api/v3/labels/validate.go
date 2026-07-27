@@ -5,16 +5,16 @@ import (
 	"net/http"
 	"regexp"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
-// https://regex101.com/?regex=%5E%28%3F%3A%5Ba-zA-Z0-9%5D%28%3F%3A%5Ba-zA-Z0-9._-%5D%5Ba-zA-Z0-9%5D%29%3F%29%7B1%2C63%7D%24&testString=openmeter_good%0Aopenmeter.good%0Aopenmeter-good%0Aopenmeter_bad_%0Aopenmeter-bad-%0Aopenmeter.bad.%0A_openmeter-bad%0A-openmeter-bad%0A.openmeter.bad%0A.openmeter.way_toooooooooooooooooooooooooooooooooooooooooooooooooooooo_long&flags=gm&flavor=pcre2&delimiter=%2F
+// https://regex101.com/?regex=%5E%28%3F%3A%5Ba-zA-Z0-9%5D%28%3F%3A%5Ba-zA-Z0-9._-%5D%5Ba-zA-Z0-9%5D%29%3F%29%7B1%2C63%7D%24&testString=meterforge_good%0Ameterforge.good%0Ameterforge-good%0Ameterforge_bad_%0Ameterforge-bad-%0Ameterforge.bad.%0A_meterforge-bad%0A-meterforge-bad%0A.meterforge.bad%0A.meterforge.way_toooooooooooooooooooooooooooooooooooooooooooooooooooooo_long&flags=gm&flavor=pcre2&delimiter=%2F
 var keyValueFormat = regexp.MustCompile(`^(?:[a-zA-Z0-9](?:[a-zA-Z0-9._-]?[a-zA-Z0-9])?){1,63}$`)
 
-// https://regex101.com/?regex=%5E%28%3F%3A%5Ba-zA-Z0-9%5D%28%3F%3A%5Ba-zA-Z0-9._-%5D%5Ba-zA-Z0-9%5D%29%3F%29%7B1%2C63%7D%24&testString=openmeter_good%0Aopenmeter.good%0Aopenmeter-good%0Aopenmeter_bad_%0Aopenmeter-bad-%0Aopenmeter.bad.%0A_openmeter-bad%0A-openmeter-bad%0A.openmeter.bad%0A.openmeter.way_toooooooooooooooooooooooooooooooooooooooooooooooooooooo_long&flags=gm&flavor=pcre2&delimiter=%2F
-var reservedPrefixMatcher = regexp.MustCompile(`^(_|kong|konnect|insomnia|mesh|kic|kuma|openmeter)`)
+// https://regex101.com/?regex=%5E%28%3F%3A%5Ba-zA-Z0-9%5D%28%3F%3A%5Ba-zA-Z0-9._-%5D%5Ba-zA-Z0-9%5D%29%3F%29%7B1%2C63%7D%24&testString=meterforge_good%0Ameterforge.good%0Ameterforge-good%0Ameterforge_bad_%0Ameterforge-bad-%0Ameterforge.bad.%0A_meterforge-bad%0A-meterforge-bad%0A.meterforge.bad%0A.meterforge.way_toooooooooooooooooooooooooooooooooooooooooooooooooooooo_long&flags=gm&flavor=pcre2&delimiter=%2F
+var reservedPrefixMatcher = regexp.MustCompile(`^(_|kong|konnect|insomnia|mesh|kic|kuma|meterforge)`)
 
 func ValidateLabel(k, v string) error {
 	var errs []error

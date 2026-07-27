@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/otel/metric/noop"
 
-	"github.com/openmeterio/openmeter/openmeter/testutils"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
 )
 
 var _ AdminClient = (*mockTopicProvisioner)(nil)

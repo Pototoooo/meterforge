@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"strings"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/pkg/errorsx"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/pkg/errorsx"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
-const httpStatusCodeErrorAttribute = "openmeter.http.status_code"
+const httpStatusCodeErrorAttribute = "meterforge.http.status_code"
 
 // NewV3ErrorHandlerFunc returns an oapi-codegen ChiServerOptions.ErrorHandlerFunc implementation.
 //

@@ -4,10 +4,10 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	meter "github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	meter "github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
 )
 
 type (

@@ -5,12 +5,12 @@ package enttest
 import (
 	"context"
 
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent2/db"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent2/db"
 	// required by schema hooks.
-	_ "github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent2/db/runtime"
+	_ "github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent2/db/runtime"
 
 	"entgo.io/ent/dialect/sql/schema"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent2/db/migrate"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent2/db/migrate"
 )
 
 type (

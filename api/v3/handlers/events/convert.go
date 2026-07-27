@@ -10,13 +10,13 @@ import (
 	"github.com/oapi-codegen/nullable"
 	"github.com/samber/lo"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	"github.com/openmeterio/openmeter/api/v3/request"
-	"github.com/openmeterio/openmeter/openmeter/meterevent"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
-	"github.com/openmeterio/openmeter/pkg/filter"
-	"github.com/openmeterio/openmeter/pkg/sortx"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/api/v3/request"
+	"github.com/Pototoooo/meterforge/meterforge/meterevent"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
+	"github.com/Pototoooo/meterforge/pkg/filter"
+	"github.com/Pototoooo/meterforge/pkg/sortx"
 )
 
 const cloudEventsSpecVersion = "1.0"

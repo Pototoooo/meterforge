@@ -3,11 +3,11 @@ include:
 
 services:
   collector:
-    image: ghcr.io/openmeterio/benthos-collector:latest
+    image: ghcr.io/Pototoooo/meterforge-benthos-collector:latest
     ports:
       - "127.0.0.1:4195:4195"
     environment:
-      OPENMETER_URL: http://openmeter:8888
+      METERFORGE_URL: http://meterforge:8888
       BATCH_SIZE: 1
     command: [
       "--config",
@@ -33,13 +33,13 @@ services:
         source: ./collector
         target: /etc/collector
     depends_on:
-      openmeter:
+      meterforge:
         condition: service_healthy
 
   seeder:
-    image: ghcr.io/openmeterio/benthos-collector:latest
+    image: ghcr.io/Pototoooo/meterforge-benthos-collector:latest
     environment:
-      OPENMETER_URL: http://collector:8889
+      METERFORGE_URL: http://collector:8889
       SEEDER_LOG: true
       SEEDER_COUNT: 100
     command: [

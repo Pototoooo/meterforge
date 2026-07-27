@@ -10,7 +10,7 @@ import (
 	"github.com/invopop/gobl/currency"
 	"github.com/invopop/gobl/num"
 
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 type CurrencyType string

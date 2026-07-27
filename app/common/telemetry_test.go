@@ -18,18 +18,18 @@ func TestLowCardinalityPath(t *testing.T) {
 	}{
 		{
 			name: "fixed route is unchanged",
-			path: "/api/v3/openmeter/customers",
-			want: "/api/v3/openmeter/customers",
+			path: "/api/v3/meterforge/customers",
+			want: "/api/v3/meterforge/customers",
 		},
 		{
 			name: "ULID segment masked",
-			path: "/api/v3/openmeter/customers/01ARZ3NDEKTSV4RRFFQ69G5FAV/billing",
-			want: "/api/v3/openmeter/customers/:id/billing",
+			path: "/api/v3/meterforge/customers/01ARZ3NDEKTSV4RRFFQ69G5FAV/billing",
+			want: "/api/v3/meterforge/customers/:id/billing",
 		},
 		{
 			name: "UUID segment masked",
-			path: "/api/v3/openmeter/customers/550e8400-e29b-41d4-a716-446655440000",
-			want: "/api/v3/openmeter/customers/:id",
+			path: "/api/v3/meterforge/customers/550e8400-e29b-41d4-a716-446655440000",
+			want: "/api/v3/meterforge/customers/:id",
 		},
 		{
 			name: "numeric segment masked",
@@ -43,8 +43,8 @@ func TestLowCardinalityPath(t *testing.T) {
 		},
 		{
 			name: "short legit segments preserved",
-			path: "/api/v3/openmeter/customers/01ARZ3NDEKTSV4RRFFQ69G5FAV/entitlement-access",
-			want: "/api/v3/openmeter/customers/:id/entitlement-access",
+			path: "/api/v3/meterforge/customers/01ARZ3NDEKTSV4RRFFQ69G5FAV/entitlement-access",
+			want: "/api/v3/meterforge/customers/:id/entitlement-access",
 		},
 	}
 

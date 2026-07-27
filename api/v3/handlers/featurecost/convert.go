@@ -4,9 +4,9 @@ import (
 	"github.com/oapi-codegen/nullable"
 	"github.com/samber/lo"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/handlers/meters/query"
-	"github.com/openmeterio/openmeter/openmeter/cost"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/handlers/meters/query"
+	"github.com/Pototoooo/meterforge/meterforge/cost"
 )
 
 // ToAPIFeatureCostQueryResult converts a domain CostQueryResult to the v3 API response.

@@ -9,11 +9,11 @@ import (
 	"github.com/google/wire"
 	"go.opentelemetry.io/otel/metric"
 
-	"github.com/openmeterio/openmeter/app/config"
-	watermillkafka "github.com/openmeterio/openmeter/openmeter/watermill/driver/kafka"
-	"github.com/openmeterio/openmeter/openmeter/watermill/eventbus"
-	"github.com/openmeterio/openmeter/openmeter/watermill/router"
-	pkgkafka "github.com/openmeterio/openmeter/pkg/kafka"
+	"github.com/Pototoooo/meterforge/app/config"
+	watermillkafka "github.com/Pototoooo/meterforge/meterforge/watermill/driver/kafka"
+	"github.com/Pototoooo/meterforge/meterforge/watermill/eventbus"
+	"github.com/Pototoooo/meterforge/meterforge/watermill/router"
+	pkgkafka "github.com/Pototoooo/meterforge/pkg/kafka"
 )
 
 var Watermill = wire.NewSet(

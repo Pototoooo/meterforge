@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/openmeterio/openmeter/tools/migrate/legacyent"
+	"github.com/Pototoooo/meterforge/tools/migrate/legacyent"
 )
 
 type databaseMigrationState int
@@ -21,7 +21,7 @@ const (
 
 // AdoptLegacyEnt brings an unversioned database created by Ent to the frozen migration baseline.
 // It intentionally stops at the baseline so the normal migration command remains responsible for
-// upgrading from that version to the target OpenMeter version.
+// upgrading from that version to the target MeterForge version.
 func AdoptLegacyEnt(ctx context.Context, db *sql.DB, connectionString string, logger *slog.Logger) error {
 	if db == nil {
 		return errors.New("database is required")
@@ -39,11 +39,11 @@ func AdoptLegacyEnt(ctx context.Context, db *sql.DB, connectionString string, lo
 	}
 	defer lockConn.Close()
 
-	if _, err := lockConn.ExecContext(ctx, `SELECT pg_advisory_lock(hashtext('openmeter.legacy-ent-adoption'))`); err != nil {
+	if _, err := lockConn.ExecContext(ctx, `SELECT pg_advisory_lock(hashtext('meterforge.legacy-ent-adoption'))`); err != nil {
 		return fmt.Errorf("acquire legacy Ent migration lock: %w", err)
 	}
 	defer func() {
-		if _, err := lockConn.ExecContext(context.WithoutCancel(ctx), `SELECT pg_advisory_unlock(hashtext('openmeter.legacy-ent-adoption'))`); err != nil {
+		if _, err := lockConn.ExecContext(context.WithoutCancel(ctx), `SELECT pg_advisory_unlock(hashtext('meterforge.legacy-ent-adoption'))`); err != nil {
 			logger.Error("failed to release legacy Ent migration lock", "error", err)
 		}
 	}()
@@ -67,12 +67,12 @@ func AdoptLegacyEnt(ctx context.Context, db *sql.DB, connectionString string, lo
 			return fmt.Errorf("reconcile legacy Ent database: %w", err)
 		}
 	case databaseMigrationStateUnknown:
-		return errors.New("database has no schema_om migration state and is neither empty nor a recognized Ent-managed OpenMeter database")
+		return errors.New("database has no schema_om migration state and is neither empty nor a recognized Ent-managed MeterForge database")
 	default:
 		return fmt.Errorf("unsupported database migration state: %d", state)
 	}
 
-	migrator, err := New(MigrateOptions{ConnectionString: connectionString, Migrations: OMMigrationsConfig, Logger: logger})
+	migrator, err := New(MigrateOptions{ConnectionString: connectionString, Migrations: MFMigrationsConfig, Logger: logger})
 	if err != nil {
 		return fmt.Errorf("create versioned migrator: %w", err)
 	}

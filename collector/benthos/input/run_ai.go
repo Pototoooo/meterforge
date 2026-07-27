@@ -12,8 +12,8 @@ import (
 	"github.com/robfig/cron/v3"
 	"github.com/samber/lo"
 
-	"github.com/openmeterio/openmeter/collector/benthos/input/runai"
-	"github.com/openmeterio/openmeter/collector/benthos/services/leaderelection"
+	"github.com/Pototoooo/meterforge/collector/benthos/input/runai"
+	"github.com/Pototoooo/meterforge/collector/benthos/services/leaderelection"
 )
 
 var resourceTypes = []string{"workload", "pod"}

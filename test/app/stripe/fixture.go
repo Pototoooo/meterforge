@@ -9,10 +9,10 @@ import (
 	"github.com/stretchr/testify/mock"
 	"golang.org/x/exp/rand"
 
-	"github.com/openmeterio/openmeter/openmeter/app"
-	appstripe "github.com/openmeterio/openmeter/openmeter/app/stripe"
-	stripeclient "github.com/openmeterio/openmeter/openmeter/app/stripe/client"
-	"github.com/openmeterio/openmeter/openmeter/customer"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	appstripe "github.com/Pototoooo/meterforge/meterforge/app/stripe"
+	stripeclient "github.com/Pototoooo/meterforge/meterforge/app/stripe/client"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
 )
 
 const defaultStripeCustomerID = "cus_123"

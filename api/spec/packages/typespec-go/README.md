@@ -1,14 +1,14 @@
-# @openmeter/typespec-go
+# @meterforge/typespec-go
 
-A TypeSpec **emitter** that generates the OpenMeter **Go** SDK from the AIP
-TypeSpec specs, mirroring [`@openmeter/typespec-typescript`](../typespec-typescript)
+A TypeSpec **emitter** that generates the MeterForge **Go** SDK from the AIP
+TypeSpec specs, mirroring [`@meterforge/typespec-typescript`](../typespec-typescript)
 but targeting Go.
 
 ## Output
 
 The emitter writes to `api/v3/client` at the **repo root** (not a sibling of
-this package): a single flat `package openmeter` that is its own nested Go
-module, `github.com/openmeterio/openmeter/api/v3/client`. The output directory
+this package): a single flat `package meterforge` that is its own nested Go
+module, `github.com/Pototoooo/meterforge/api/v3/client`. The output directory
 is set in [`packages/aip/tspconfig.yaml`](../aip/tspconfig.yaml) via
 `emitter-output-dir: '{output-dir}/../../../v3/client'`.
 
@@ -36,10 +36,10 @@ Declared in `src/lib.ts`, configured in `packages/aip/tspconfig.yaml`:
 
 | Option                | Required | Purpose                                                                                |
 | --------------------- | -------- | -------------------------------------------------------------------------------------- |
-| `module-path`         | yes      | Go module path of the generated SDK (`github.com/openmeterio/openmeter/api/v3/client`) |
-| `package-name`        | yes      | Go package name (`openmeter`)                                                          |
+| `module-path`         | yes      | Go module path of the generated SDK (`github.com/Pototoooo/meterforge/api/v3/client`)  |
+| `package-name`        | yes      | Go package name (`meterforge`)                                                         |
 | `sdk-version`         | no       | Fallback version used when Go build info is unavailable; defaults to `0.0.0-dev`       |
-| `include-services`    | no       | Service namespaces to emit (`['OpenMeter']`); all services when omitted                |
+| `include-services`    | no       | Service namespaces to emit (`['MeterForge']`); all services when omitted               |
 | `strip-name-prefixes` | no       | PascalCase type-name prefixes stripped when unambiguous                                |
 | `include-resources`   | no       | Operation groups to emit; every discovered group when omitted                          |
 | `readme-note`         | no       | Markdown callout inserted after the generated README intro                             |
@@ -54,14 +54,14 @@ Declared in `src/lib.ts`, configured in `packages/aip/tspconfig.yaml`:
 | Typecheck           | `pnpm typecheck`                                                                                         |
 | Emitter tests       | `pnpm test` (vitest over `test/`)                                                                        |
 | Emitter checks      | `pnpm check` (typecheck + tests)                                                                         |
-| Regenerate the SDK  | `pnpm --filter @openmeter/api-spec-aip run generate` (or `make gen-api`, repo root)                      |
+| Regenerate the SDK  | `pnpm --filter @meterforge/api-spec-aip run generate` (or `make gen-api`, repo root)                     |
 | Generated SDK check | `make test-go-sdk` (repo root), or in `api/v3/client`: `go build ./... && go vet ./... && go test ./...` |
 
 ## Wiring
 
 Registered in [`packages/aip/tspconfig.yaml`](../aip/tspconfig.yaml) under
 `emit:` and declared as a `workspace:*` devDependency of
-`@openmeter/api-spec-aip` so `tsp` resolves it. One `pnpm generate` produces
+`@meterforge/api-spec-aip` so `tsp` resolves it. One `pnpm generate` produces
 the OpenAPI document and every SDK.
 
 ## Releases

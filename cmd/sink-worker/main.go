@@ -14,8 +14,8 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/pkg/log"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/pkg/log"
 )
 
 func main() {
@@ -24,7 +24,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	v, flags := viper.NewWithOptions(viper.WithDecodeHook(config.DecodeHook())), pflag.NewFlagSet("OpenMeter", pflag.ExitOnError)
+	v, flags := viper.NewWithOptions(viper.WithDecodeHook(config.DecodeHook())), pflag.NewFlagSet("MeterForge", pflag.ExitOnError)
 
 	config.SetViperDefaults(v, flags)
 
@@ -85,7 +85,7 @@ func main() {
 
 	logger := app.Logger
 
-	logger.Info("starting OpenMeter sink worker", "config", map[string]string{
+	logger.Info("starting MeterForge sink worker", "config", map[string]string{
 		"telemetry.address":   conf.Telemetry.Address,
 		"ingest.kafka.broker": conf.Ingest.Kafka.Broker,
 	})

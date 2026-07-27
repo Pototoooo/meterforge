@@ -5,9 +5,9 @@ package customersbilling
 
 import (
 	"fmt"
-	api "github.com/openmeterio/openmeter/api"
-	v3 "github.com/openmeterio/openmeter/api/v3"
-	stripe "github.com/openmeterio/openmeter/openmeter/app/stripe"
+	api "github.com/Pototoooo/meterforge/api"
+	v3 "github.com/Pototoooo/meterforge/api/v3"
+	stripe "github.com/Pototoooo/meterforge/meterforge/app/stripe"
 )
 
 func init() {

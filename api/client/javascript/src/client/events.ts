@@ -79,7 +79,7 @@ export async function setDefaultsForEvent(ev: Event): Promise<Event> {
   return {
     ...ev,
     id: ev.id ?? (await generateId()),
-    source: ev.source ?? '@openmeter/sdk',
+    source: ev.source ?? '@meterforge/sdk',
     specversion: ev.specversion ?? '1.0',
     time: ev.time ?? new Date(),
   }

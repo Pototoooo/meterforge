@@ -7,8 +7,8 @@ import (
 	"github.com/oklog/ulid/v2"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	"github.com/openmeterio/openmeter/tools/migrate"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	"github.com/Pototoooo/meterforge/tools/migrate"
 )
 
 // TestLedgerTaxBehaviorMigrationRollback documents the rollback guard in
@@ -26,7 +26,7 @@ func TestLedgerTaxBehaviorMigrationRollback(t *testing.T) {
 
 	migrator, err := migrate.New(migrate.MigrateOptions{
 		ConnectionString: testDB.URL,
-		Migrations:       migrate.OMMigrationsConfig,
+		Migrations:       migrate.MFMigrationsConfig,
 		Logger:           testutils.NewLogger(t),
 	})
 	require.NoError(t, err)

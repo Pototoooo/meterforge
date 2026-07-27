@@ -8,13 +8,13 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/assert"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges/meta"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges/usagebased"
-	currenciestestutils "github.com/openmeterio/openmeter/openmeter/currencies/testutils/currency"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog"
-	"github.com/openmeterio/openmeter/pkg/timeutil"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/meta"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/usagebased"
+	currenciestestutils "github.com/Pototoooo/meterforge/meterforge/currencies/testutils/currency"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog"
+	"github.com/Pototoooo/meterforge/pkg/timeutil"
 )
 
 func TestConvertTaxCodeConfigToAPI(t *testing.T) {

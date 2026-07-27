@@ -34,7 +34,7 @@ components:
       description: Filter by a boolean value (true/false).
       title: Boolean Field Filter
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/api/v3/filters
+        path: github.com/Pototoooo/meterforge/api/v3/filters
       x-go-type: filters.FilterBoolean
     DateTime:
       type: string
@@ -75,7 +75,7 @@ components:
         optional; provide exactly one to specify the comparison.
       title: DateTime Field Filter
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/api/v3/filters
+        path: github.com/Pototoooo/meterforge/api/v3/filters
       x-go-type: filters.FilterDateTime
     FieldFilters:
       type: object
@@ -109,7 +109,7 @@ components:
         (dot-notation).
       title: Labels Field Filter
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/api/v3/filters
+        path: github.com/Pototoooo/meterforge/api/v3/filters
       x-go-type: filters.FilterLabels
     NumericFieldFilter:
       anyOf:
@@ -150,7 +150,7 @@ components:
         specify the comparison.
       title: Numeric Field Filter
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/api/v3/filters
+        path: github.com/Pototoooo/meterforge/api/v3/filters
       x-go-type: filters.FilterNumeric
     StringFieldFilter:
       anyOf:
@@ -200,7 +200,7 @@ components:
         Filters on the given string field value by either exact or fuzzy match. All
         properties are optional; provide exactly one to specify the comparison.
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/api/v3/filters
+        path: github.com/Pototoooo/meterforge/api/v3/filters
       x-go-type: filters.FilterString
     StringFieldFilterExact:
       anyOf:
@@ -224,7 +224,7 @@ components:
         optional; provide exactly one to specify the comparison.
       title: String Field Filter Exact
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/api/v3/filters
+        path: github.com/Pototoooo/meterforge/api/v3/filters
       x-go-type: filters.FilterStringExact
     ULID:
       type: string
@@ -256,5 +256,5 @@ components:
         optional; provide exactly one to specify the comparison.
       title: ULID Field Filter
       x-go-type-import:
-        path: github.com/openmeterio/openmeter/api/v3/filters
+        path: github.com/Pototoooo/meterforge/api/v3/filters
       x-go-type: filters.FilterULID

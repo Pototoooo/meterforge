@@ -4,7 +4,7 @@
 
 image:
   # -- Name of the image repository to pull the container image from.
-  repository: ghcr.io/openmeterio/benthos-collector
+  repository: ghcr.io/Pototoooo/meterforge-benthos-collector
 
   # -- [Image pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) for updating already existing images on a node.
   pullPolicy: IfNotPresent
@@ -15,11 +15,11 @@ image:
 # -- Number of replicas of pods in the StatefulSet
 replicaCount: 1
 
-openmeter:
-  # -- OpenMeter API URL
-  url: https://openmeter.cloud
+meterforge:
+  # -- MeterForge API URL
+  url: http://localhost:8888
 
-  # -- OpenMeter token
+  # -- MeterForge token
   token: ""
 
 # -- Benthos configuration

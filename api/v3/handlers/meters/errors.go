@@ -3,8 +3,8 @@ package meters
 import (
 	"net/http"
 
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 const ErrCodeReservedDimension models.ErrorCode = "reserved_dimension"

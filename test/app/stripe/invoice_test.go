@@ -16,40 +16,40 @@ import (
 	"github.com/stretchr/testify/suite"
 	"github.com/stripe/stripe-go/v80"
 
-	"github.com/openmeterio/openmeter/openmeter/app"
-	appstripe "github.com/openmeterio/openmeter/openmeter/app/stripe"
-	appstripeadapter "github.com/openmeterio/openmeter/openmeter/app/stripe/adapter"
-	stripeclient "github.com/openmeterio/openmeter/openmeter/app/stripe/client"
-	appstripeservice "github.com/openmeterio/openmeter/openmeter/app/stripe/service"
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	"github.com/openmeterio/openmeter/openmeter/billing/charges"
-	chargestestutils "github.com/openmeterio/openmeter/openmeter/billing/charges/testutils"
-	creditgrant "github.com/openmeterio/openmeter/openmeter/billing/creditgrant"
-	creditgrantservice "github.com/openmeterio/openmeter/openmeter/billing/creditgrant/service"
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	enttx "github.com/openmeterio/openmeter/openmeter/ent/tx"
-	ledgerbreakage "github.com/openmeterio/openmeter/openmeter/ledger/breakage"
-	ledgerchargeadapter "github.com/openmeterio/openmeter/openmeter/ledger/chargeadapter"
-	ledgercollector "github.com/openmeterio/openmeter/openmeter/ledger/collector"
-	"github.com/openmeterio/openmeter/openmeter/ledger/creditvoid"
-	ledgerresolvers "github.com/openmeterio/openmeter/openmeter/ledger/resolvers"
-	ledgertestutils "github.com/openmeterio/openmeter/openmeter/ledger/testutils"
-	"github.com/openmeterio/openmeter/openmeter/ledger/transactions"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog/feature"
-	"github.com/openmeterio/openmeter/openmeter/secret"
-	secretadapter "github.com/openmeterio/openmeter/openmeter/secret/adapter"
-	secretservice "github.com/openmeterio/openmeter/openmeter/secret/service"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
-	"github.com/openmeterio/openmeter/openmeter/taxcode"
-	"github.com/openmeterio/openmeter/openmeter/watermill/eventbus"
-	"github.com/openmeterio/openmeter/pkg/clock"
-	"github.com/openmeterio/openmeter/pkg/currencyx"
-	"github.com/openmeterio/openmeter/pkg/datetime"
-	"github.com/openmeterio/openmeter/pkg/models"
-	"github.com/openmeterio/openmeter/pkg/timeutil"
-	billingtest "github.com/openmeterio/openmeter/test/billing"
+	"github.com/Pototoooo/meterforge/meterforge/app"
+	appstripe "github.com/Pototoooo/meterforge/meterforge/app/stripe"
+	appstripeadapter "github.com/Pototoooo/meterforge/meterforge/app/stripe/adapter"
+	stripeclient "github.com/Pototoooo/meterforge/meterforge/app/stripe/client"
+	appstripeservice "github.com/Pototoooo/meterforge/meterforge/app/stripe/service"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges"
+	chargestestutils "github.com/Pototoooo/meterforge/meterforge/billing/charges/testutils"
+	creditgrant "github.com/Pototoooo/meterforge/meterforge/billing/creditgrant"
+	creditgrantservice "github.com/Pototoooo/meterforge/meterforge/billing/creditgrant/service"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	enttx "github.com/Pototoooo/meterforge/meterforge/ent/tx"
+	ledgerbreakage "github.com/Pototoooo/meterforge/meterforge/ledger/breakage"
+	ledgerchargeadapter "github.com/Pototoooo/meterforge/meterforge/ledger/chargeadapter"
+	ledgercollector "github.com/Pototoooo/meterforge/meterforge/ledger/collector"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/creditvoid"
+	ledgerresolvers "github.com/Pototoooo/meterforge/meterforge/ledger/resolvers"
+	ledgertestutils "github.com/Pototoooo/meterforge/meterforge/ledger/testutils"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/transactions"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog/feature"
+	"github.com/Pototoooo/meterforge/meterforge/secret"
+	secretadapter "github.com/Pototoooo/meterforge/meterforge/secret/adapter"
+	secretservice "github.com/Pototoooo/meterforge/meterforge/secret/service"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
+	"github.com/Pototoooo/meterforge/meterforge/taxcode"
+	"github.com/Pototoooo/meterforge/meterforge/watermill/eventbus"
+	"github.com/Pototoooo/meterforge/pkg/clock"
+	"github.com/Pototoooo/meterforge/pkg/currencyx"
+	"github.com/Pototoooo/meterforge/pkg/datetime"
+	"github.com/Pototoooo/meterforge/pkg/models"
+	"github.com/Pototoooo/meterforge/pkg/timeutil"
+	billingtest "github.com/Pototoooo/meterforge/test/billing"
 )
 
 type StripeInvoiceTestSuite struct {
@@ -668,8 +668,8 @@ func (s *StripeInvoiceTestSuite) TestComplexInvoice() {
 					End:   lo.ToPtr(expectedPeriodEndUnix),
 				},
 				Metadata: map[string]string{
-					"om_line_id":   getLineID("UBP - AI Usecase: usage in period"),
-					"om_line_type": "line",
+					"mf_line_id":   getLineID("UBP - AI Usecase: usage in period"),
+					"mf_line_type": "line",
 				},
 			},
 			{
@@ -681,8 +681,8 @@ func (s *StripeInvoiceTestSuite) TestComplexInvoice() {
 					End:   lo.ToPtr(expectedPeriodEndUnix),
 				},
 				Metadata: map[string]string{
-					"om_line_id":   getLineID("UBP - FLAT per any usage"),
-					"om_line_type": "line",
+					"mf_line_id":   getLineID("UBP - FLAT per any usage"),
+					"mf_line_type": "line",
 				},
 			},
 			{
@@ -694,8 +694,8 @@ func (s *StripeInvoiceTestSuite) TestComplexInvoice() {
 					End:   lo.ToPtr(expectedPeriodEndUnix),
 				},
 				Metadata: map[string]string{
-					"om_line_id":   getLineID("UBP - FLAT per unit: usage in period"),
-					"om_line_type": "line",
+					"mf_line_id":   getLineID("UBP - FLAT per unit: usage in period"),
+					"mf_line_type": "line",
 				},
 			},
 			{
@@ -707,8 +707,8 @@ func (s *StripeInvoiceTestSuite) TestComplexInvoice() {
 					End:   lo.ToPtr(expectedPeriodEndUnix),
 				},
 				Metadata: map[string]string{
-					"om_line_id":   getDiscountID("UBP - FLAT per unit: usage in period (Maximum spend discount for charges over 2000)"),
-					"om_line_type": "discount",
+					"mf_line_id":   getDiscountID("UBP - FLAT per unit: usage in period (Maximum spend discount for charges over 2000)"),
+					"mf_line_type": "discount",
 				},
 			},
 			{
@@ -720,8 +720,8 @@ func (s *StripeInvoiceTestSuite) TestComplexInvoice() {
 					End:   lo.ToPtr(expectedPeriodEndUnix),
 				},
 				Metadata: map[string]string{
-					"om_line_id":   getLineID("UBP - Tiered graduated: usage price for tier 1"),
-					"om_line_type": "line",
+					"mf_line_id":   getLineID("UBP - Tiered graduated: usage price for tier 1"),
+					"mf_line_type": "line",
 				},
 			},
 			{
@@ -733,8 +733,8 @@ func (s *StripeInvoiceTestSuite) TestComplexInvoice() {
 					End:   lo.ToPtr(expectedPeriodEndUnix),
 				},
 				Metadata: map[string]string{
-					"om_line_id":   getLineID("UBP - Tiered graduated: usage price for tier 2"),
-					"om_line_type": "line",
+					"mf_line_id":   getLineID("UBP - Tiered graduated: usage price for tier 2"),
+					"mf_line_type": "line",
 				},
 			},
 			{
@@ -746,8 +746,8 @@ func (s *StripeInvoiceTestSuite) TestComplexInvoice() {
 					End:   lo.ToPtr(expectedPeriodEndUnix),
 				},
 				Metadata: map[string]string{
-					"om_line_id":   getLineID("UBP - Tiered graduated: usage price for tier 3"),
-					"om_line_type": "line",
+					"mf_line_id":   getLineID("UBP - Tiered graduated: usage price for tier 3"),
+					"mf_line_type": "line",
 				},
 			},
 			{
@@ -759,8 +759,8 @@ func (s *StripeInvoiceTestSuite) TestComplexInvoice() {
 					End:   lo.ToPtr(expectedPeriodEndUnix),
 				},
 				Metadata: map[string]string{
-					"om_line_id":   getLineID("UBP - Tiered volume: minimum spend"),
-					"om_line_type": "line",
+					"mf_line_id":   getLineID("UBP - Tiered volume: minimum spend"),
+					"mf_line_type": "line",
 				},
 			},
 			{
@@ -773,8 +773,8 @@ func (s *StripeInvoiceTestSuite) TestComplexInvoice() {
 					End:   lo.ToPtr(expectedPeriodEndUnix),
 				},
 				Metadata: map[string]string{
-					"om_line_id":   getLineID("UBP - Tiered volume: unit price for tier 2"),
-					"om_line_type": "line",
+					"mf_line_id":   getLineID("UBP - Tiered volume: unit price for tier 2"),
+					"mf_line_type": "line",
 				},
 			},
 		}
@@ -859,11 +859,11 @@ func (s *StripeInvoiceTestSuite) TestComplexInvoice() {
 
 		for _, stripeLine := range stripeInvoice.Lines.Data {
 			// TODO: currently we don't have a way to match Stripe discount line items
-			if stripeLine.Metadata["om_line_type"] == "discount" {
+			if stripeLine.Metadata["mf_line_type"] == "discount" {
 				continue
 			}
 
-			expectedResult[stripeLine.Metadata["om_line_id"]] = stripeLine.ID
+			expectedResult[stripeLine.Metadata["mf_line_id"]] = stripeLine.ID
 		}
 
 		s.Equal(expectedResult, results.GetLineExternalIDs())

@@ -1,24 +1,24 @@
 ---
 name: ledger
-description: Work with the OpenMeter ledger package. Use when modifying ledger code, writing ledger tests, or debugging ledger issues.
+description: Work with the MeterForge ledger package. Use when modifying ledger code, writing ledger tests, or debugging ledger issues.
 user-invocable: false
 allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
 ---
 
 # Ledger
 
-Guidance for working with the OpenMeter ledger package (`openmeter/ledger/`).
+Guidance for working with the MeterForge ledger package (`meterforge/ledger/`).
 
 ## Package Structure
 
-- `openmeter/ledger/` — core interfaces and primitives: `Ledger`, `Account`, `SubAccount`, `Querier`, routing, validation, account type definitions
-- `openmeter/ledger/historical/` — current concrete ledger implementation; books immutable transactions and computes balances by summing entries
-- `openmeter/ledger/account/` — account and sub-account domain types, posting addresses, route-backed sub-account identity
-- `openmeter/ledger/account/service/` — account service; `New(repo, liveServices)` self-wires `SubAccountService` into `AccountLiveServices`
-- `openmeter/ledger/account/adapter/` — ent repo adapter
-- `openmeter/ledger/resolvers/` — `AccountResolver` implementation; provisions per-customer accounts and shared business accounts
-- `openmeter/ledger/resolvers/adapter/` — ent repo for customer→account mapping
-- `openmeter/ledger/transactions/` — transaction templates, resolution, and prioritized customer-credit collection helpers
+- `meterforge/ledger/` — core interfaces and primitives: `Ledger`, `Account`, `SubAccount`, `Querier`, routing, validation, account type definitions
+- `meterforge/ledger/historical/` — current concrete ledger implementation; books immutable transactions and computes balances by summing entries
+- `meterforge/ledger/account/` — account and sub-account domain types, posting addresses, route-backed sub-account identity
+- `meterforge/ledger/account/service/` — account service; `New(repo, liveServices)` self-wires `SubAccountService` into `AccountLiveServices`
+- `meterforge/ledger/account/adapter/` — ent repo adapter
+- `meterforge/ledger/resolvers/` — `AccountResolver` implementation; provisions per-customer accounts and shared business accounts
+- `meterforge/ledger/resolvers/adapter/` — ent repo for customer→account mapping
+- `meterforge/ledger/transactions/` — transaction templates, resolution, and prioritized customer-credit collection helpers
 
 ## Business Domain Model
 
@@ -47,7 +47,7 @@ Guidance for working with the OpenMeter ledger package (`openmeter/ledger/`).
 
 ## Transaction Semantics
 
-- Transaction templates in `openmeter/ledger/transactions/` encode posting mechanics, not settlement-mode orchestration.
+- Transaction templates in `meterforge/ledger/transactions/` encode posting mechanics, not settlement-mode orchestration.
 - Current customer/business posting flows:
   - `IssueCustomerReceivableTemplate`: customer credit `+`, customer receivable `-`
   - `FundCustomerReceivableTemplate`: wash `-`, customer receivable `+`
@@ -75,14 +75,14 @@ Guidance for working with the OpenMeter ledger package (`openmeter/ledger/`).
 - Ledger tests are Postgres-backed. Use real migrations, not bare schema creation, when tests rely on route/account/entry integrity.
 - For direct `go test` runs, set `POSTGRES_HOST=127.0.0.1` so Postgres-backed tests are not skipped.
 - For ledger changes that affect customer credit balance, credit flows, or related API behavior, also run the credit package tests and any referenced end-to-end coverage. At minimum, include `POSTGRES_HOST=127.0.0.1 go test -tags=dynamic ./test/credits` so the legacy credit stack is covered too.
-- `openmeter/ledger/testutils/integration.go` is the main integration fixture for the ledger domain. It sets up:
+- `meterforge/ledger/testutils/integration.go` is the main integration fixture for the ledger domain. It sets up:
   - migrated Postgres schema
   - account service
   - account resolver
   - historical ledger
   - pre-created customer and business accounts
-- Transaction tests in `openmeter/ledger/transactions/` are a good source of business-domain examples and expected balances.
-- Historical adapter tests in `openmeter/ledger/historical/adapter/ledger_test.go` are the best reference for query/filter behavior and migration-backed setup patterns.
+- Transaction tests in `meterforge/ledger/transactions/` are a good source of business-domain examples and expected balances.
+- Historical adapter tests in `meterforge/ledger/historical/adapter/ledger_test.go` are the best reference for query/filter behavior and migration-backed setup patterns.
 
 ## Running Ledger Tests
 
@@ -90,10 +90,10 @@ Prefer direct command execution for ledger verification. Do not wrap commands in
 
 ```bash
 # Run all ledger tests
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./openmeter/ledger/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./meterforge/ledger/...
 
 # Run specific sub-packages
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./openmeter/ledger/historical/...
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./openmeter/ledger/account/...
-POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./openmeter/ledger/transactions/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./meterforge/ledger/historical/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./meterforge/ledger/account/...
+POSTGRES_HOST=127.0.0.1 go test -tags=dynamic -v ./meterforge/ledger/transactions/...
 ```

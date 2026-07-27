@@ -7,9 +7,9 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	appcustominvoicing "github.com/openmeterio/openmeter/openmeter/app/custominvoicing"
-	"github.com/openmeterio/openmeter/openmeter/billing"
-	billingtest "github.com/openmeterio/openmeter/test/billing"
+	appcustominvoicing "github.com/Pototoooo/meterforge/meterforge/app/custominvoicing"
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	billingtest "github.com/Pototoooo/meterforge/test/billing"
 )
 
 type CustomInvoicingEventTestSuite struct {

@@ -22,31 +22,31 @@ model ListInvoicesParamsFilter {
   /**
    * Filter by invoice status.
    */
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "filter field"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "filter field"
   status?: Common.StringFieldFilterExact;
 
   /**
    * Filter by customer ID.
    */
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "filter field"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "filter field"
   customer_id?: Common.ULIDFieldFilter;
 
   /**
    * Filter by the time the invoice was issued.
    */
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "filter field"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "filter field"
   issued_at?: Common.DateTimeFieldFilter;
 
   /**
    * Filter by service period start.
    */
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "filter field"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "filter field"
   service_period_start?: Common.DateTimeFieldFilter;
 
   /**
    * Filter by invoice creation time.
    */
-  #suppress "@openmeter/api-spec-aip/doc-decorator" "filter field"
+  #suppress "@meterforge/api-spec-aip/doc-decorator" "filter field"
   created_at?: Common.DateTimeFieldFilter;
 }
 

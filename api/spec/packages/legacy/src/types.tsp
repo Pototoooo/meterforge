@@ -242,13 +242,13 @@ union RecurringPeriodInterval {
  */
 @friendlyName("RecurringPeriodIntervalEnum")
 enum RecurringPeriodIntervalEnum {
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   Day: "DAY",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   Week: "WEEK",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   Month: "MONTH",
-  #suppress "@openmeter/api-spec-legacy/casing" "Use existing values"
+  #suppress "@meterforge/api-spec-legacy/casing" "Use existing values"
   Year: "YEAR",
 }
 
@@ -429,7 +429,7 @@ alias Money = Numeric;
 @example(50)
 @friendlyName("Percentage")
 @extension("x-go-type", "models.Percentage")
-@extension("x-go-package", "github.com/openmeterio/openmeter/pkg/models")
+@extension("x-go-package", "github.com/Pototoooo/meterforge/pkg/models")
 scalar Percentage extends float64;
 
 /**

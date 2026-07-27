@@ -7,16 +7,16 @@ import (
 	"github.com/google/wire"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/customer"
-	entdb "github.com/openmeterio/openmeter/openmeter/ent/db"
-	entitlementvalidator "github.com/openmeterio/openmeter/openmeter/entitlement/validators/customer"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/openmeter/registry"
-	registrybuilder "github.com/openmeterio/openmeter/openmeter/registry/builder"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
-	"github.com/openmeterio/openmeter/openmeter/watermill/eventbus"
-	"github.com/openmeterio/openmeter/pkg/framework/lockr"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/customer"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
+	entitlementvalidator "github.com/Pototoooo/meterforge/meterforge/entitlement/validators/customer"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/meterforge/registry"
+	registrybuilder "github.com/Pototoooo/meterforge/meterforge/registry/builder"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
+	"github.com/Pototoooo/meterforge/meterforge/watermill/eventbus"
+	"github.com/Pototoooo/meterforge/pkg/framework/lockr"
 )
 
 var Entitlement = wire.NewSet(

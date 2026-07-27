@@ -24,7 +24,7 @@ func NewClickhouseClient(addr string) (clickhousedriver.Conn, error) {
 	return clickhouse.Open(&clickhouse.Options{
 		Addr: []string{addr},
 		Auth: clickhouse.Auth{
-			Database: "openmeter",
+			Database: "meterforge",
 			Username: "default",
 			Password: "default",
 		},

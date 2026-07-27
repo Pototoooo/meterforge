@@ -28,23 +28,19 @@ using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
 /**
- * OpenMeter is a cloud native usage metering service.
- * The OpenMeter API allows you to ingest events, query meter usage, and manage resources.
+ * MeterForge is a cloud native usage metering service.
+ * The MeterForge API allows you to ingest events, query meter usage, and manage resources.
  */
-@service(#{ title: "OpenMeter API" })
+@service(#{ title: "MeterForge API" })
 @info(#{
   version: "1.0.0",
-  license: #{
-    name: "Apache 2.0",
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html",
-  },
 })
 @server("https://127.0.0.1", "Local")
 // Tags will appear in alphabetical order in the API documentation
 @tagMetadata(
   "Apps",
   #{
-    description: "Manage integrations for extending OpenMeter's functionality. ",
+    description: "Manage integrations for extending MeterForge's functionality. ",
   }
 )
 @tagMetadata("App: Stripe", #{ description: "Support for Stripe billing." })
@@ -88,13 +84,13 @@ using TypeSpec.OpenAPI;
 @tagMetadata(
   "Notifications",
   #{
-    description: "Notifications provide automated triggers when specific entitlement balances and usage thresholds are reached, ensuring that your customers and sales teams are always informed. Notify customers and internal teams when specific conditions are met, like reaching 75%, 100%, and 150% of their monthly usage allowance. [Read more](https://openmeter.io/docs/guides/notifications/overview).",
+    description: "Notifications provide automated triggers when specific entitlement balances and usage thresholds are reached, ensuring that your customers and sales teams are always informed. Notify customers and internal teams when specific conditions are met, like reaching 75%, 100%, and 150% of their monthly usage allowance. [Read more](https://github.com/Pototoooo/meterforge/tree/main/docs/guides/notifications/overview).",
   }
 )
 @tagMetadata(
   "Portal",
   #{
-    description: "With the Consumer Portal, you can build in-app user-facing dashboards where your users can track their usage in real-time. Subject scoped portal tokens can be generated on your behalf to allow restricted access to the OpenMeter API.",
+    description: "With the Consumer Portal, you can build in-app user-facing dashboards where your users can track their usage in real-time. Subject scoped portal tokens can be generated on your behalf to allow restricted access to the MeterForge API.",
   }
 )
 @tagMetadata(
@@ -115,4 +111,4 @@ using TypeSpec.OpenAPI;
     description: "With Subscriptions, you can easily start, cancel, and manage customer subscriptions. For example, provisioning them on a specific plan or assigning custom rate cards.",
   }
 )
-namespace OpenMeter;
+namespace MeterForge;

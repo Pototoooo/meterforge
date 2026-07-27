@@ -7,13 +7,13 @@ import (
 	"github.com/alpacahq/alpacadecimal"
 	"github.com/samber/lo"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	"github.com/openmeterio/openmeter/api/v3/handlers/meters/query"
-	"github.com/openmeterio/openmeter/api/v3/labels"
-	"github.com/openmeterio/openmeter/api/v3/response"
-	"github.com/openmeterio/openmeter/openmeter/meter"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/api/v3/handlers/meters/query"
+	"github.com/Pototoooo/meterforge/api/v3/labels"
+	"github.com/Pototoooo/meterforge/api/v3/response"
+	"github.com/Pototoooo/meterforge/meterforge/meter"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 // goverter:variables

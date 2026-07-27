@@ -1852,7 +1852,7 @@ export interface paths {
     /**
      * Create a subject entitlement
      * @deprecated
-     * @description OpenMeter has three types of entitlements: metered, boolean, and static. The type property determines the type of entitlement. The underlying feature has to be compatible with the entitlement type specified in the request (e.g., a metered entitlement needs a feature associated with a meter).
+     * @description MeterForge has three types of entitlements: metered, boolean, and static. The type property determines the type of entitlement. The underlying feature has to be compatible with the entitlement type specified in the request (e.g., a metered entitlement needs a feature associated with a meter).
      *
      *     - Boolean entitlements define static feature access, e.g. "Can use SSO authentication".
      *     - Static entitlements let you pass along a configuration while granting access, e.g. "Using this feature with X Y settings" (passed in the config).
@@ -2256,7 +2256,7 @@ export interface paths {
     put?: never
     /**
      * Create a customer entitlement
-     * @description OpenMeter has three types of entitlements: metered, boolean, and static. The type property determines the type of entitlement. The underlying feature has to be compatible with the entitlement type specified in the request (e.g., a metered entitlement needs a feature associated with a meter).
+     * @description MeterForge has three types of entitlements: metered, boolean, and static. The type property determines the type of entitlement. The underlying feature has to be compatible with the entitlement type specified in the request (e.g., a metered entitlement needs a feature associated with a meter).
      *
      *     - Boolean entitlements define static feature access, e.g. "Can use SSO authentication".
      *     - Static entitlements let you pass along a configuration while granting access, e.g. "Using this feature with X Y settings" (passed in the config).
@@ -2934,7 +2934,7 @@ export interface components {
     /**
      * @description BillingInvoiceCustomerExtendedDetails is a collection of fields that are used to extend the billing party details for invoices.
      *
-     *     These fields contain the OpenMeter specific details for the customer, that are not strictly required for the invoice itself.
+     *     These fields contain the MeterForge specific details for the customer, that are not strictly required for the invoice itself.
      */
     BillingInvoiceCustomerExtendedDetails: {
       /** @description Unique identifier for the party (if available) */
@@ -3441,7 +3441,7 @@ export interface components {
       enabled?: boolean
       /**
        * @description Enforce tax calculation when tax is supported by the app.
-       *     When enabled, OpenMeter will not allow to create an invoice without tax calculation.
+       *     When enabled, MeterForge will not allow to create an invoice without tax calculation.
        *     Enforcement is different per apps, for example, Stripe app requires customer
        *     to have a tax location when starting a paid subscription.
        * @default false
@@ -3472,7 +3472,7 @@ export interface components {
      * @enum {string}
      */
     CheckoutSessionUIMode: 'embedded' | 'hosted'
-    /** @description Response from the client app (OpenMeter backend) to start the OAuth2 flow. */
+    /** @description Response from the client app (MeterForge backend) to start the OAuth2 flow. */
     ClientAppStartResponse: {
       /** @description The URL to start the OAuth2 authorization code grant flow. */
       url: string
@@ -3618,7 +3618,7 @@ export interface components {
        */
       appId?: string
       /**
-       * @description Provide a customer ID or key to use an existing OpenMeter customer.
+       * @description Provide a customer ID or key to use an existing MeterForge customer.
        *     or provide a customer object to create a new customer.
        */
       customer:
@@ -3627,8 +3627,8 @@ export interface components {
         | components['schemas']['CustomerCreate']
       /**
        * @description Stripe customer ID.
-       *     If not provided OpenMeter creates a new Stripe customer or
-       *     uses the OpenMeter customer's default Stripe customer ID.
+       *     If not provided MeterForge creates a new Stripe customer or
+       *     uses the MeterForge customer's default Stripe customer ID.
        */
       stripeCustomerId?: string
       /** @description Options passed to Stripe when creating the checkout session. */
@@ -3700,7 +3700,7 @@ export interface components {
     /** @description Create Stripe Checkout Session response. */
     CreateStripeCheckoutSessionResult: {
       /**
-       * @description The OpenMeter customer ID.
+       * @description The MeterForge customer ID.
        * @example 01G65Z755AFWAKHE12NY0CQ9FH
        */
       customerId: string
@@ -3805,7 +3805,7 @@ export interface components {
        */
       readonly url: string
     } & WithRequired<components['schemas']['InvoiceGenericDocumentRef'], 'type'>
-    /** @description Currency describes a currency supported by OpenMeter. */
+    /** @description Currency describes a currency supported by MeterForge. */
     Currency: {
       /** @description The currency ISO code. */
       code: components['schemas']['CurrencyCode']
@@ -5831,7 +5831,7 @@ export interface components {
       /** @description The items in the current page. */
       items: components['schemas']['EntitlementV2'][]
     }
-    /** @description Entitlements are the core of OpenMeter access management. They define access to features for subjects. Entitlements can be metered, boolean, or static. */
+    /** @description Entitlements are the core of MeterForge access management. They define access to features for subjects. Entitlements can be metered, boolean, or static. */
     EntitlementValue: {
       /**
        * @description Whether the subject has access to the feature. Shared accross all entitlement types.
@@ -6869,13 +6869,13 @@ export interface components {
        * @example 01G65Z755AFWAKHE12NY0CQ9FH
        */
       id: string
-      /** @description managedBy specifies if the line is manually added via the api or managed by OpenMeter. */
+      /** @description managedBy specifies if the line is manually added via the api or managed by MeterForge. */
       readonly managedBy: components['schemas']['InvoiceLineManagedBy']
       /**
        * @description Status of the line.
        *
        *     External calls always create valid lines, other line types are managed by the
-       *     billing engine of OpenMeter.
+       *     billing engine of MeterForge.
        */
       readonly status: components['schemas']['InvoiceLineStatus']
       /**
@@ -7055,13 +7055,13 @@ export interface components {
        * @example 01G65Z755AFWAKHE12NY0CQ9FH
        */
       id: string
-      /** @description managedBy specifies if the line is manually added via the api or managed by OpenMeter. */
+      /** @description managedBy specifies if the line is manually added via the api or managed by MeterForge. */
       readonly managedBy: components['schemas']['InvoiceLineManagedBy']
       /**
        * @description Status of the line.
        *
        *     External calls always create valid lines, other line types are managed by the
-       *     billing engine of OpenMeter.
+       *     billing engine of MeterForge.
        */
       readonly status: components['schemas']['InvoiceLineStatus']
       /**
@@ -9999,7 +9999,7 @@ export interface components {
       readonly createdAt?: Date
       /**
        * @description The token is only returned at creation.
-       * @example om_portal_IAnD3PpWW2A2Wr8m9jfzeHlGX8xmCXwG.y5q4S-AWqFu6qjfaFz0zQq4Ez28RsnyVwJffX5qxMvo
+       * @example mf_portal_IAnD3PpWW2A2Wr8m9jfzeHlGX8xmCXwG.y5q4S-AWqFu6qjfaFz0zQq4Ez28RsnyVwJffX5qxMvo
        */
       readonly token?: string
       /**
@@ -10405,10 +10405,10 @@ export interface components {
       preserveOverage?: boolean
     }
     /**
-     * @description Sandbox app can be used for testing OpenMeter features.
+     * @description Sandbox app can be used for testing MeterForge features.
      *
      *     The app is not creating anything in external systems, thus it is safe to use for
-     *     verifying OpenMeter features.
+     *     verifying MeterForge features.
      */
     SandboxApp: {
       /**

@@ -7,8 +7,8 @@ import (
 	"github.com/samber/lo"
 	"github.com/spf13/viper"
 
-	"github.com/openmeterio/openmeter/openmeter/watermill/eventbus"
-	"github.com/openmeterio/openmeter/pkg/errorsx"
+	"github.com/Pototoooo/meterforge/meterforge/watermill/eventbus"
+	"github.com/Pototoooo/meterforge/pkg/errorsx"
 )
 
 type EventsConfiguration struct {
@@ -227,15 +227,15 @@ func ConfigureConsumer(v *viper.Viper, prefix string) {
 func ConfigureEvents(v *viper.Viper) {
 	// TODO: after the system events are fully implemented, we should enable them by default
 	v.SetDefault("events.enabled", false)
-	v.SetDefault("events.systemEvents.topic", "om_sys.api_events")
+	v.SetDefault("events.systemEvents.topic", "mf_sys.api_events")
 	v.SetDefault("events.systemEvents.autoProvision.enabled", true)
 	v.SetDefault("events.systemEvents.autoProvision.partitions", 4)
 
-	v.SetDefault("events.ingestEvents.topic", "om_sys.ingest_events")
+	v.SetDefault("events.ingestEvents.topic", "mf_sys.ingest_events")
 	v.SetDefault("events.ingestEvents.autoProvision.enabled", true)
 	v.SetDefault("events.ingestEvents.autoProvision.partitions", 8)
 
-	v.SetDefault("events.balanceWorkerEvents.topic", "om_sys.balance_worker_events")
+	v.SetDefault("events.balanceWorkerEvents.topic", "mf_sys.balance_worker_events")
 	v.SetDefault("events.balanceWorkerEvents.autoProvision.enabled", true)
 	v.SetDefault("events.balanceWorkerEvents.autoProvision.partitions", 4)
 }

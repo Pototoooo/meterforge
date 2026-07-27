@@ -122,7 +122,7 @@ model ChargeUsageBasedSystemIntent {
 /**
  * Shared fields present on all customer charge responses.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "charge temporal fields should remain flat"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "charge temporal fields should remain flat"
 @friendlyName("BillingChargeBase")
 @summary("Charge")
 model ChargeBase<T extends ChargeType> {
@@ -143,7 +143,7 @@ model ChargeBase<T extends ChargeType> {
   customer: CustomerReference;
 
   /**
-   * Indicates whether the charge lifecycle is controlled by OpenMeter or manually
+   * Indicates whether the charge lifecycle is controlled by MeterForge or manually
    * overridden by the API user.
    */
   @visibility(Lifecycle.Read)
@@ -233,7 +233,7 @@ model ChargeBase<T extends ChargeType> {
 /**
  * A flat fee charge for a customer.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" ""
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" ""
 @friendlyName("BillingChargeFlatFee")
 @summary("Flat fee charge")
 model ChargeFlatFee {

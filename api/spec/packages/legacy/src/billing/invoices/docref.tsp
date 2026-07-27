@@ -6,7 +6,7 @@ using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * InvoiceDocumentRefType defines the type of document that is being referenced.

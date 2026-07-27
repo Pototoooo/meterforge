@@ -8,12 +8,12 @@ import (
 	"github.com/ClickHouse/clickhouse-go/v2"
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/app/config"
-	"github.com/openmeterio/openmeter/openmeter/namespace"
-	"github.com/openmeterio/openmeter/openmeter/progressmanager"
-	"github.com/openmeterio/openmeter/openmeter/streaming"
-	clickhouseconnector "github.com/openmeterio/openmeter/openmeter/streaming/clickhouse"
-	streamingretry "github.com/openmeterio/openmeter/openmeter/streaming/retry"
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/namespace"
+	"github.com/Pototoooo/meterforge/meterforge/progressmanager"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
+	clickhouseconnector "github.com/Pototoooo/meterforge/meterforge/streaming/clickhouse"
+	streamingretry "github.com/Pototoooo/meterforge/meterforge/streaming/retry"
 )
 
 var Streaming = wire.NewSet(

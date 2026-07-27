@@ -42,7 +42,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        chart: [ openmeter, benthos-collector ]
+        chart: [ meterforge, benthos-collector ]
 
     steps:
       - name: Checkout repository
@@ -62,13 +62,13 @@ jobs:
       - name: Restore Nix store
         uses: nix-community/cache-nix-action/restore@7df957e333c1e5da7721f60227dbba6d06080569 # v7.0.2
         with:
-          primary-key: ${{ runner.os }}-openmeter-nix-build-${{ github.ref_name }}-${{
+          primary-key: ${{ runner.os }}-meterforge-nix-build-${{ github.ref_name }}-${{
             hashFiles('flake.*') }}
           restore-prefixes-first-match: |
-            ${{ runner.os }}-openmeter-nix-build-${{ github.ref_name }}-
-            ${{ runner.os }}-openmeter-nix-build-main-${{ hashFiles('flake.*') }}
-            ${{ runner.os }}-openmeter-nix-build-main-
-            ${{ runner.os }}-openmeter-nix-build-
+            ${{ runner.os }}-meterforge-nix-build-${{ github.ref_name }}-
+            ${{ runner.os }}-meterforge-nix-build-main-${{ hashFiles('flake.*') }}
+            ${{ runner.os }}-meterforge-nix-build-main-
+            ${{ runner.os }}-meterforge-nix-build-
 
       - name: Package chart
         # Untrusted values (github.ref_name, matrix.chart) passed via env to
@@ -90,7 +90,7 @@ jobs:
         run: |
           nix develop --impure .#ci -c helm push \
             "build/helm/${CHART}-${GITHUB_REF_NAME#v}.tgz" \
-            oci://ghcr.io/openmeterio/helm-charts
+            oci://ghcr.io/Pototoooo/helm-charts
         env:
           CHART: ${{ matrix.chart }}
           GITHUB_REF_NAME: ${{ github.ref_name }}
@@ -132,25 +132,25 @@ jobs:
       - name: Restore Nix store
         uses: nix-community/cache-nix-action/restore@7df957e333c1e5da7721f60227dbba6d06080569 # v7.0.2
         with:
-          primary-key: ${{ runner.os }}-openmeter-nix-build-${{ github.ref_name }}-${{
+          primary-key: ${{ runner.os }}-meterforge-nix-build-${{ github.ref_name }}-${{
             hashFiles('flake.*') }}
           restore-prefixes-first-match: |
-            ${{ runner.os }}-openmeter-nix-build-${{ github.ref_name }}-
-            ${{ runner.os }}-openmeter-nix-build-main-${{ hashFiles('flake.*') }}
-            ${{ runner.os }}-openmeter-nix-build-main-
-            ${{ runner.os }}-openmeter-nix-build-
+            ${{ runner.os }}-meterforge-nix-build-${{ github.ref_name }}-
+            ${{ runner.os }}-meterforge-nix-build-main-${{ hashFiles('flake.*') }}
+            ${{ runner.os }}-meterforge-nix-build-main-
+            ${{ runner.os }}-meterforge-nix-build-
 
       - name: Restore go.mod cache if exists
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .devenv/state/go
-          key: ${{ runner.os }}-openmeter-go-modules-${{ github.ref_name }}-${{
+          key: ${{ runner.os }}-meterforge-go-modules-${{ github.ref_name }}-${{
             hashFiles('flake.*', 'go.*', '.github/workflows/*.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-openmeter-go-modules-${{ github.ref_name }}-${{ hashFiles('flake.*', 'go.*', '.github/workflows/*.yaml') }}
-            ${{ runner.os }}-openmeter-go-modules-${{ github.ref_name }}-
-            ${{ runner.os }}-openmeter-go-modules-main-${{ hashFiles('flake.*', 'go.*', '.github/workflows/*.yaml') }}
-            ${{ runner.os }}-openmeter-go-modules-main
+            ${{ runner.os }}-meterforge-go-modules-${{ github.ref_name }}-${{ hashFiles('flake.*', 'go.*', '.github/workflows/*.yaml') }}
+            ${{ runner.os }}-meterforge-go-modules-${{ github.ref_name }}-
+            ${{ runner.os }}-meterforge-go-modules-main-${{ hashFiles('flake.*', 'go.*', '.github/workflows/*.yaml') }}
+            ${{ runner.os }}-meterforge-go-modules-main
 
       - name: Build benthos-collector binary
         # Untrusted github.ref_name passed via env; matrix values are
@@ -263,8 +263,8 @@ jobs:
 
   sdk-aip-release:
     name: AIP TypeScript SDK Release
-    # The AIP SDK (@openmeter/client) shares the repo version and dist-tag with
-    # @openmeter/sdk, so it reuses the same meta job. Runs on both tag pushes
+    # The AIP SDK (@meterforge/client) shares the repo version and dist-tag with
+    # @meterforge/sdk, so it reuses the same meta job. Runs on both tag pushes
     # (stable/pre-release) and main pushes (per-commit beta). npm's trusted
     # publisher entry is keyed on caller workflow file + environment, so this
     # caller must serve both channels.
@@ -307,13 +307,13 @@ jobs:
       - name: Restore Nix store
         uses: nix-community/cache-nix-action/restore@7df957e333c1e5da7721f60227dbba6d06080569 # v7.0.2
         with:
-          primary-key: ${{ runner.os }}-openmeter-nix-build-${{ github.ref_name }}-${{
+          primary-key: ${{ runner.os }}-meterforge-nix-build-${{ github.ref_name }}-${{
             hashFiles('flake.*') }}
           restore-prefixes-first-match: |
-            ${{ runner.os }}-openmeter-nix-build-${{ github.ref_name }}-
-            ${{ runner.os }}-openmeter-nix-build-main-${{ hashFiles('flake.*') }}
-            ${{ runner.os }}-openmeter-nix-build-main-
-            ${{ runner.os }}-openmeter-nix-build-
+            ${{ runner.os }}-meterforge-nix-build-${{ github.ref_name }}-
+            ${{ runner.os }}-meterforge-nix-build-main-${{ hashFiles('flake.*') }}
+            ${{ runner.os }}-meterforge-nix-build-main-
+            ${{ runner.os }}-meterforge-nix-build-
 
       - name: Publish Python package via Nix make target
         run: |

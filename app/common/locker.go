@@ -5,7 +5,7 @@ import (
 
 	"github.com/google/wire"
 
-	"github.com/openmeterio/openmeter/pkg/framework/lockr"
+	"github.com/Pototoooo/meterforge/pkg/framework/lockr"
 )
 
 var Lockr = wire.NewSet(

@@ -76,7 +76,7 @@ import (
 	"strings"
 	"testing"
 
-	v20250605102416 "github.com/openmeterio/openmeter/tools/migrate/testdata/sqlcgen/20250605102416/db"
+	v20250605102416 "github.com/Pototoooo/meterforge/tools/migrate/testdata/sqlcgen/20250605102416/db"
 )
 
 func TestMigrateFlatFeesToUBPFlatFees(t *testing.T) {

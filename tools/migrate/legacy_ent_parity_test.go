@@ -11,9 +11,9 @@ import (
 	"ariga.io/atlas/sql/schema"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/openmeter/testutils"
-	ommigrate "github.com/openmeterio/openmeter/tools/migrate"
-	"github.com/openmeterio/openmeter/tools/migrate/legacyent"
+	"github.com/Pototoooo/meterforge/meterforge/testutils"
+	mfmigrate "github.com/Pototoooo/meterforge/tools/migrate"
+	"github.com/Pototoooo/meterforge/tools/migrate/legacyent"
 )
 
 func TestLegacyEntAdoptionSchemaParity(t *testing.T) {
@@ -30,9 +30,9 @@ func TestLegacyEntAdoptionSchemaParity(t *testing.T) {
 	adoptedDB := testutils.InitPostgresDB(t, testutils.PostgresDBStateEmpty)
 	defer adoptedDB.Close(t)
 
-	canonicalMigrator, err := ommigrate.New(ommigrate.MigrateOptions{
+	canonicalMigrator, err := mfmigrate.New(mfmigrate.MigrateOptions{
 		ConnectionString: canonicalDB.URL,
-		Migrations:       ommigrate.OMMigrationsConfig,
+		Migrations:       mfmigrate.MFMigrationsConfig,
 		Logger:           testutils.NewLogger(t),
 	})
 	require.NoError(t, err)
@@ -42,9 +42,9 @@ func TestLegacyEntAdoptionSchemaParity(t *testing.T) {
 	require.NoError(t, legacyent.MigrateToBaseline(t.Context(), adoptedDB.PGDriver.DB()))
 	require.NoError(t, legacyent.Reconcile(t.Context(), adoptedDB.PGDriver.DB()))
 
-	adoptedMigrator, err := ommigrate.New(ommigrate.MigrateOptions{
+	adoptedMigrator, err := mfmigrate.New(mfmigrate.MigrateOptions{
 		ConnectionString: adoptedDB.URL,
-		Migrations:       ommigrate.OMMigrationsConfig,
+		Migrations:       mfmigrate.MFMigrationsConfig,
 		Logger:           testutils.NewLogger(t),
 	})
 	require.NoError(t, err)
@@ -118,7 +118,7 @@ func currentSchema(t *testing.T, db *sql.DB) string {
 }
 
 // loadProgrammableDatabaseObjects returns normalized definitions for the PostgreSQL objects that
-// are required by OpenMeter but are not fully represented by Atlas's relational schema diff.
+// are required by MeterForge but are not fully represented by Atlas's relational schema diff.
 func loadProgrammableDatabaseObjects(t *testing.T, db *sql.DB, schemaName string) []programmableDatabaseObject {
 	t.Helper()
 

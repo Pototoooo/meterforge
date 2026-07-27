@@ -17,7 +17,7 @@ enum PriceSource {
 /**
  * Token pricing for an LLM model, denominated per token.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "per token prices should be grouped together"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "per token prices should be grouped together"
 @friendlyName("LLMCostModelPricing")
 model ModelPricing {
   /**
@@ -50,7 +50,7 @@ model ModelPricing {
  * An LLM cost price record, representing the cost per token for a specific model
  * from a specific provider.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "source and effective_from/to should be grouped together"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "source and effective_from/to should be grouped together"
 @friendlyName("LLMCostPrice")
 model Price {
   /**
@@ -151,7 +151,7 @@ model Model {
  * and currency. If an override already exists for the given provider, model and
  * currency, it will be updated. If an override does not exist, it will be created.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "model_id, model_name, and effective_from/to should be grouped together"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "model_id, model_name, and effective_from/to should be grouped together"
 @friendlyName("LLMCostOverrideCreate")
 model OverrideCreate {
   /**

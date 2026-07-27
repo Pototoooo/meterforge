@@ -3,7 +3,7 @@ package ledger
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/openmeterio/openmeter/cmd/jobs/ledger/backfillaccounts"
+	"github.com/Pototoooo/meterforge/cmd/jobs/ledger/backfillaccounts"
 )
 
 var Cmd = &cobra.Command{

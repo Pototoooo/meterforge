@@ -1,8 +1,0 @@
-services:
-  openmeter:
-    image: ghcr.io/openmeterio/openmeter:latest
-    pull_policy: always
-
-  sink-worker:
-    image: ghcr.io/openmeterio/openmeter:latest
-    pull_policy: always

@@ -8,9 +8,9 @@ allowed-tools: Read, Edit, Write, Bash, Grep, Glob, Agent
 
 # v3 API Filter Parsing
 
-You are helping the user add or modify AIP-style query-parameter filters on an OpenMeter v3 list endpoint.
+You are helping the user add or modify AIP-style query-parameter filters on an MeterForge v3 list endpoint.
 
-OpenMeter follows the **Kong AIP filter spec** (NOT Google AIP-160 expression syntax). Filters use the deepObject query-parameter encoding `?filter[field][op]=value`. The implementation is split across three layers:
+MeterForge follows the **Kong AIP filter spec** (NOT Google AIP-160 expression syntax). Filters use the deepObject query-parameter encoding `?filter[field][op]=value`. The implementation is split across three layers:
 
 - `api/v3/filters/` — API-layer filter types, `Parse` entry point, and `FromAPI*` converters
 - `pkg/filter/` — internal predicate model with `Validate()`, `Select(field)`, `ApplyToQuery(...)` helpers
@@ -20,7 +20,7 @@ OpenMeter follows the **Kong AIP filter spec** (NOT Google AIP-160 expression sy
 
 Filtering straddles two layers that the repo skill set keeps separate:
 
-- **TypeSpec / OAS side** — `Common.*FieldFilter` types, `Shared.ResourceFilters`, `deepObject` exposure, label dot-notation. See `../api/rules/aip-160-filtering.md` (the canonical Kong AIP-160 rule for OpenMeter). Use the `/api` skill when you also need to scaffold or modify the TypeSpec operation itself.
+- **TypeSpec / OAS side** — `Common.*FieldFilter` types, `Shared.ResourceFilters`, `deepObject` exposure, label dot-notation. See `../api/rules/aip-160-filtering.md` (the canonical Kong AIP-160 rule for MeterForge). Use the `/api` skill when you also need to scaffold or modify the TypeSpec operation itself.
 - **Go implementation side** — what this skill covers: `api/v3/filters.Parse`, the API-layer filter structs, `FromAPI*` helpers, service input wiring, adapter `filter.ApplyToQuery`, gotchas.
 
 If you are adding a brand-new filterable endpoint, invoke `/api` first to wire up the TypeSpec + handler shell, then come back here for the conversion + adapter code. If you are only adding/modifying filters on an existing endpoint, this skill is enough on its own.
@@ -29,7 +29,7 @@ If you are adding a brand-new filterable endpoint, invoke `/api` first to wire u
 
 - **API-layer package:** `api/v3/filters/` — API-shaped filter structs and `FromAPI*` converters
 - **Internal predicate model:** `pkg/filter/` — implements the `Filter` interface (`Validate`, `Select`, `IsEmpty`, …); used by Ent query builders
-- **Reference implementation in use:** `api/v3/handlers/customers/list.go` (handler) + `openmeter/customer/adapter/customer.go` (adapter) + `openmeter/customer/customer.go` (service input struct)
+- **Reference implementation in use:** `api/v3/handlers/customers/list.go` (handler) + `meterforge/customer/adapter/customer.go` (adapter) + `meterforge/customer/customer.go` (service input struct)
 - **Kong AIP spec for filtering:** `../api/rules/aip-160-filtering.md`
 
 ## Architecture: three-layer conversion
@@ -150,7 +150,7 @@ After editing TypeSpec, run `make gen-api` so the generated `params.Filter` stru
 
 ### Step 2: Store `pkg/filter` predicates on the service input struct
 
-In your domain service input type, add fields typed as **pkg/filter predicates**, not API-layer types. Example from `openmeter/customer/customer.go:296`:
+In your domain service input type, add fields typed as **pkg/filter predicates**, not API-layer types. Example from `meterforge/customer/customer.go:296`:
 
 ```go
 type ListCustomersInput struct {
@@ -187,8 +187,8 @@ In the handler decoder (the first argument to `httptransport.NewHandlerWithArgs`
 
 ```go
 import (
-    "github.com/openmeterio/openmeter/api/v3/apierrors"
-    "github.com/openmeterio/openmeter/api/v3/filters"
+    "github.com/Pototoooo/meterforge/api/v3/apierrors"
+    "github.com/Pototoooo/meterforge/api/v3/filters"
 )
 
 if params.Filter != nil {
@@ -224,7 +224,7 @@ Adapters use `filter.ApplyToQuery(query, input.Field, dbField)` — a generic he
 2. Builds an Ent predicate via `pkg/filter.SelectPredicate[P](...)`.
 3. Calls `q.Where(*p)` when the predicate is non-empty.
 
-From `openmeter/customer/adapter/customer.go:52`:
+From `meterforge/customer/adapter/customer.go:52`:
 
 ```go
 query = filter.ApplyToQuery(query, input.Key, customerdb.FieldKey)
@@ -307,7 +307,7 @@ Multiple range operators on the same field (e.g. `gte`+`lte`) are packed into `A
 
 ### Quantifiers (`any` / `all`) on list fields
 
-The Kong AIP spec allows `?filter[tags][eq][any]=urgent` and `[all]` quantifiers on **list-typed** fields. **The current OpenMeter implementation does NOT support quantifiers.** If a request comes in for a list field, raise this with the user before attempting to add it — this is a parser-level extension, not a per-endpoint change.
+The Kong AIP spec allows `?filter[tags][eq][any]=urgent` and `[all]` quantifiers on **list-typed** fields. **The current MeterForge implementation does NOT support quantifiers.** If a request comes in for a list field, raise this with the user before attempting to add it — this is a parser-level extension, not a per-endpoint change.
 
 ### Things the parser intentionally does NOT support
 
@@ -342,8 +342,8 @@ Representative error messages from `Parse`:
 - `api/v3/filters/parse_test.go`, `api/v3/filters/convert_test.go` — canonical examples of supported syntax
 - `pkg/filter/filter.go` — `Filter` interface, predicate types, `Validate`, `Select`, `ApplyToQuery` (line 743)
 - `api/v3/handlers/customers/list.go` — reference handler using `FromAPIFilterString`
-- `openmeter/customer/customer.go:296` — reference service input struct typed with `*filter.FilterString` fields and a `Validate()` method
-- `openmeter/customer/adapter/customer.go:52` — reference adapter using `filter.ApplyToQuery`
+- `meterforge/customer/customer.go:296` — reference service input struct typed with `*filter.FilterString` fields and a `Validate()` method
+- `meterforge/customer/adapter/customer.go:52` — reference adapter using `filter.ApplyToQuery`
 - `../api/rules/aip-160-filtering.md` — TypeSpec-side rule: `Common.*FieldFilter` ↔ Go `filters.Filter*` mapping, `Shared.ResourceFilters`, label dot-notation
 
 ## Important Reminders

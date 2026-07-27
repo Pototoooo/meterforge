@@ -50,7 +50,7 @@ enum FeatureLlmTokenType {
  * be specified as either a static value or a meter group-by property name
  * (mutually exclusive).
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "token_type and token_type_property are distinct API fields, not a groupable prefix"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "token_type and token_type_property are distinct API fields, not a groupable prefix"
 @friendlyName("BillingFeatureLLMUnitCost")
 model FeatureLlmUnitCost {
   /**
@@ -114,7 +114,7 @@ model FeatureLlmUnitCost {
 /**
  * Resolved per-token pricing from the LLM cost database.
  */
-#suppress "@openmeter/api-spec-aip/repeated-prefix-grouping" "cache_read and cache_write are distinct pricing dimensions"
+#suppress "@meterforge/api-spec-aip/repeated-prefix-grouping" "cache_read and cache_write are distinct pricing dimensions"
 @friendlyName("BillingFeatureLLMUnitCostPricing")
 model FeatureLlmUnitCostPricing {
   /**

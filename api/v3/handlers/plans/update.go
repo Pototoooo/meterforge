@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"net/http"
 
-	api "github.com/openmeterio/openmeter/api/v3"
-	"github.com/openmeterio/openmeter/api/v3/apierrors"
-	"github.com/openmeterio/openmeter/api/v3/request"
-	"github.com/openmeterio/openmeter/openmeter/productcatalog/plan"
-	"github.com/openmeterio/openmeter/pkg/framework/commonhttp"
-	"github.com/openmeterio/openmeter/pkg/framework/transport/httptransport"
-	"github.com/openmeterio/openmeter/pkg/models"
+	api "github.com/Pototoooo/meterforge/api/v3"
+	"github.com/Pototoooo/meterforge/api/v3/apierrors"
+	"github.com/Pototoooo/meterforge/api/v3/request"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog/plan"
+	"github.com/Pototoooo/meterforge/pkg/framework/commonhttp"
+	"github.com/Pototoooo/meterforge/pkg/framework/transport/httptransport"
+	"github.com/Pototoooo/meterforge/pkg/models"
 )
 
 type (
@@ -34,7 +34,7 @@ func (h *handler) UpdatePlan() UpdatePlanHandler {
 				for _, phase := range body.Phases {
 					for _, rc := range phase.RateCards {
 						if rc.UnitConfig != nil {
-							return UpdatePlanRequest{}, models.NewGenericValidationError(fmt.Errorf("unit_config is not enabled on this deployment of OpenMeter"))
+							return UpdatePlanRequest{}, models.NewGenericValidationError(fmt.Errorf("unit_config is not enabled on this deployment of MeterForge"))
 						}
 					}
 				}

@@ -4,7 +4,7 @@ import "@typespec/openapi3";
 import "..";
 import "../..";
 
-namespace OpenMeter;
+namespace MeterForge;
 
 /**
  * The grant.

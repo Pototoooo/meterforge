@@ -5,14 +5,14 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter;
+namespace MeterForge;
 
 @route("/api/v1/subjects/{subjectIdOrKey}/entitlements")
 @tag("Entitlements")
 @friendlyName("Subjects")
 interface SubjectEntitlementsEndpoints {
   /**
-   * OpenMeter has three types of entitlements: metered, boolean, and static. The type property determines the type of entitlement. The underlying feature has to be compatible with the entitlement type specified in the request (e.g., a metered entitlement needs a feature associated with a meter).
+   * MeterForge has three types of entitlements: metered, boolean, and static. The type property determines the type of entitlement. The underlying feature has to be compatible with the entitlement type specified in the request (e.g., a metered entitlement needs a feature associated with a meter).
    *
    * - Boolean entitlements define static feature access, e.g. "Can use SSO authentication".
    * - Static entitlements let you pass along a configuration while granting access, e.g. "Using this feature with X Y settings" (passed in the config).
@@ -250,7 +250,7 @@ interface SubjectEntitlementsEndpoints {
 }
 
 /**
- * Entitlements are the core of OpenMeter access management. They define access to features for subjects. Entitlements can be metered, boolean, or static.
+ * Entitlements are the core of MeterForge access management. They define access to features for subjects. Entitlements can be metered, boolean, or static.
  */
 @friendlyName("EntitlementValue")
 model EntitlementValue {

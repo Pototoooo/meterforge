@@ -3,10 +3,10 @@ package billing
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/openmeterio/openmeter/cmd/jobs/billing/advance"
-	"github.com/openmeterio/openmeter/cmd/jobs/billing/advancecharges"
-	"github.com/openmeterio/openmeter/cmd/jobs/billing/collect"
-	"github.com/openmeterio/openmeter/cmd/jobs/billing/subscriptionsync"
+	"github.com/Pototoooo/meterforge/cmd/jobs/billing/advance"
+	"github.com/Pototoooo/meterforge/cmd/jobs/billing/advancecharges"
+	"github.com/Pototoooo/meterforge/cmd/jobs/billing/collect"
+	"github.com/Pototoooo/meterforge/cmd/jobs/billing/subscriptionsync"
 )
 
 var Cmd = &cobra.Command{

@@ -3,6 +3,6 @@ tracer:
     grpc:
       - address: 127.0.0.1:4317
     tags:
-      application: openmeter-output
+      application: meterforge-output
     sampling:
       enabled: false

@@ -10,9 +10,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	notificationwebhook "github.com/openmeterio/openmeter/openmeter/notification/webhook"
-	"github.com/openmeterio/openmeter/pkg/convert"
-	"github.com/openmeterio/openmeter/pkg/defaultx"
+	notificationwebhook "github.com/Pototoooo/meterforge/meterforge/notification/webhook"
+	"github.com/Pototoooo/meterforge/pkg/convert"
+	"github.com/Pototoooo/meterforge/pkg/defaultx"
 )
 
 func NewCreateWebhookInput(namespace string, id *string, desc string) notificationwebhook.CreateWebhookInput {

@@ -12,8 +12,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent1/db/example1"
-	"github.com/openmeterio/openmeter/pkg/framework/entutils/testutils/ent1/db/predicate"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent1/db/example1"
+	"github.com/Pototoooo/meterforge/pkg/framework/entutils/testutils/ent1/db/predicate"
 )
 
 // Example1Query is the builder for querying Example1 entities.

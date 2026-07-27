@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	api "github.com/openmeterio/openmeter/api/v3"
+	api "github.com/Pototoooo/meterforge/api/v3"
 )
 
 func TestValidateLabel(t *testing.T) {
@@ -127,8 +127,8 @@ func TestValidateLabel(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			name:    "reserved openmeter prefix",
-			key:     "openmeter_key",
+			name:    "reserved meterforge prefix",
+			key:     "meterforge_key",
 			value:   "value",
 			wantErr: true,
 		},
@@ -217,7 +217,7 @@ func TestValidateLabels(t *testing.T) {
 		{
 			name: "reserved prefix key",
 			labels: api.Labels{
-				"openmeter_key": "value",
+				"meterforge_key": "value",
 			},
 			wantErr: true,
 		},

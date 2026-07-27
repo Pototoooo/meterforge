@@ -8,7 +8,7 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/stretchr/testify/require"
 
-	"github.com/openmeterio/openmeter/app/config"
+	"github.com/Pototoooo/meterforge/app/config"
 )
 
 // resolveClientIP drives a request through the middleware built from cfg and

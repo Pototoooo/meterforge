@@ -5,7 +5,7 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
 
-namespace OpenMeter.Portal;
+namespace MeterForge.Portal;
 
 @route("/api/v1/portal/tokens")
 @tag("Portal")
@@ -56,7 +56,7 @@ interface TokensEndpoints {
      * Invalidate all portal tokens for a subject.
      */
     subject?: string,
-  ): void | OpenMeter.CommonErrors;
+  ): void | MeterForge.CommonErrors;
 }
 
 /**
@@ -89,7 +89,7 @@ model Token {
    * The token is only returned at creation.
    */
   @visibility(Lifecycle.Read)
-  @example("om_portal_IAnD3PpWW2A2Wr8m9jfzeHlGX8xmCXwG.y5q4S-AWqFu6qjfaFz0zQq4Ez28RsnyVwJffX5qxMvo")
+  @example("mf_portal_IAnD3PpWW2A2Wr8m9jfzeHlGX8xmCXwG.y5q4S-AWqFu6qjfaFz0zQq4Ez28RsnyVwJffX5qxMvo")
   token?: string;
 
   // TODO: make sure items are unique
