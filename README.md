@@ -173,9 +173,3 @@ make build    # 构建服务
 - Event 幂等、异步消费、余额控制和计费一致性。
 
 仓库包含完整后端、Console、API 定义和 SDK 源码，但不承诺已经向 npm、PyPI 或其他公共 Registry 发布同名软件包。当前推荐使用 Docker Compose 在本地体验。
-
-## 来源与许可
-
-MeterForge 基于 [OpenMeter](https://github.com/openmeterio/openmeter) 的开源代码演进，并在本仓库中进行了命名空间迁移、本地 Console、中文体验和 AI 用量场景整理。具体边界见 [UPSTREAM.md](UPSTREAM.md)。
-
-项目依据 [Apache License 2.0](LICENSE) 分发。第三方组件可能包含各自的许可文件和条款。
