@@ -5,11 +5,11 @@ go 1.26.4
 replace github.com/Pototoooo/meterforge => ../
 
 require (
+	github.com/Pototoooo/meterforge v0.0.0
 	github.com/go-co-op/gocron/v2 v2.22.0
 	github.com/go-logr/logr v1.4.3
 	github.com/go-resty/resty/v2 v2.17.2
 	github.com/golang-jwt/jwt/v5 v5.3.1
-	github.com/Pototoooo/meterforge v0.0.0
 	github.com/prometheus/client_golang v1.23.2
 	github.com/prometheus/common v0.70.0
 	github.com/redpanda-data/benthos/v4 v4.76.0
@@ -325,7 +325,7 @@ require (
 	github.com/neo4j/neo4j-go-driver/v5 v5.28.4 // indirect
 	github.com/nsf/jsondiff v0.0.0-20260207060731-8e8d90c4c0ac // indirect
 	github.com/nsqio/go-nsq v1.1.0 // indirect
-	github.com/oapi-codegen/runtime v1.4.2 // indirect
+	github.com/oapi-codegen/runtime v1.6.0 // indirect
 	github.com/oasdiff/yaml v0.1.0 // indirect
 	github.com/oasdiff/yaml3 v0.0.13 // indirect
 	github.com/oklog/ulid/v2 v2.1.1 // indirect
