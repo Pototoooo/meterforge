@@ -1,0 +1,1 @@
+Initial Go draft compile exit 1: wrong SDK method names and invalid TestingT; archived, not used as evidence. Next authoring failed due to wrong working-directory paths. Compose config then exited 1 because e2e latest overlay omits billing-worker image; corrected with image override before removing unused billing-worker. No successful product measurement yet.

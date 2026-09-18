@@ -1,0 +1,1 @@
+Diagnostic pilot: no customer mappings; raw event lookup has no-customer validation errors. Do not combine with three mapped-customer qualification runs.

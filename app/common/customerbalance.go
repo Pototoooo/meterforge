@@ -1,0 +1,48 @@
+package common
+
+import (
+	"github.com/google/wire"
+
+	"github.com/Pototoooo/meterforge/app/config"
+	"github.com/Pototoooo/meterforge/meterforge/ledger"
+	ledgeraccount "github.com/Pototoooo/meterforge/meterforge/ledger/account"
+	ledgerbreakage "github.com/Pototoooo/meterforge/meterforge/ledger/breakage"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/creditvoid"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/customerbalance"
+)
+
+var CustomerBalance = wire.NewSet(
+	NewCustomerBalanceService,
+	NewCustomerBalanceFacade,
+)
+
+func NewCustomerBalanceService(
+	creditsConfig config.CreditsConfiguration,
+	historicalLedger ledger.Ledger,
+	balanceQuerier ledger.BalanceQuerier,
+	accountResolver ledger.AccountResolver,
+	accountService ledgeraccount.Service,
+	billingRegistry BillingRegistry,
+	breakageService ledgerbreakage.Service,
+	creditVoidService creditvoid.Service,
+) (customerbalance.Service, error) {
+	if !creditsConfig.Enabled {
+		return customerbalance.NewNoopService(), nil
+	}
+
+	return customerbalance.New(customerbalance.Config{
+		AccountResolver:   accountResolver,
+		SubAccountService: accountService,
+		ChargesService:    billingRegistry.Charges.Service,
+		CreditPurchaseSvc: billingRegistry.Charges.CreditPurchaseService,
+		UsageBasedService: billingRegistry.Charges.UsageBasedService,
+		Ledger:            historicalLedger,
+		BalanceQuerier:    balanceQuerier,
+		Breakage:          breakageService,
+		CreditVoid:        creditVoidService,
+	})
+}
+
+func NewCustomerBalanceFacade(service customerbalance.Service) (*customerbalance.Facade, error) {
+	return customerbalance.NewFacade(service)
+}

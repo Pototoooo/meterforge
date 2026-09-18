@@ -1,0 +1,68 @@
+{
+  "data_origin": "synthetic_assumption",
+  "actual_participants": 0,
+  "actual_payments": 0,
+  "metrics": {
+    "onboarding": {
+      "baseline": {
+        "n": 24,
+        "success": 17,
+        "success_rate": 0.7083333333333334,
+        "assisted": 15,
+        "critical_errors": 7,
+        "independent_success": 9,
+        "capped_time_median_minutes": 23.0
+      },
+      "proposed": {
+        "n": 24,
+        "success": 22,
+        "success_rate": 0.9166666666666666,
+        "assisted": 4,
+        "critical_errors": 2,
+        "independent_success": 20,
+        "capped_time_median_minutes": 13.5
+      },
+      "delta_pp": 20.833333333333325,
+      "capped_median_reduction_pct": 41.30434782608695
+    },
+    "operations": {
+      "baseline": {
+        "n": 36,
+        "success": 23,
+        "success_rate": 0.6388888888888888,
+        "assisted": 18,
+        "critical_errors": 3,
+        "independent_success": 11,
+        "capped_time_median_minutes": 15.5
+      },
+      "proposed": {
+        "n": 36,
+        "success": 31,
+        "success_rate": 0.8611111111111112,
+        "assisted": 6,
+        "critical_errors": 1,
+        "independent_success": 30,
+        "capped_time_median_minutes": 7.0
+      },
+      "delta_pp": 22.222222222222232,
+      "capped_median_reduction_pct": 54.83870967741935
+    },
+    "understanding": {
+      "baseline": {
+        "n": 40,
+        "success": 26,
+        "success_rate": 0.65,
+        "assisted": 0,
+        "critical_errors": 0
+      },
+      "proposed": {
+        "n": 40,
+        "success": 35,
+        "success_rate": 0.875,
+        "assisted": 0,
+        "critical_errors": 0
+      },
+      "delta_pp": 22.499999999999996
+    }
+  }
+}

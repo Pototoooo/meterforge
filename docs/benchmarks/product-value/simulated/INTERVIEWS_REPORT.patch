@@ -1,0 +1,25 @@
+--- SIMULATED_PRODUCT_REPORT.md
++++ SIMULATED_PRODUCT_REPORT.md
+@@ -38,7 +38,7 @@
+ | 运营 | 6 个运营角色 | 6 | 36 |
+ | 理解度 | 8 个业务使用角色 | 5 | 40 |
+ 
+-两版共 **200 条模拟任务记录**，不是 200 名用户或独立样本。ID 均以 `SYN-` 开头，每条记录都有 `data_origin=synthetic_assumption`；不附真实姓名、工作经历、访谈引语或录屏编号。
++两版共 **200 条模拟任务记录**，不是 200 名用户或独立样本。ID 均以 `SYN-` 开头，每条记录都有 `data_origin=synthetic_assumption`；不附真实身份、真实访谈引语或录屏编号。补充的角色经验和第一人称问答均为虚构，见模拟访谈附件。
+ 
+ - **基线情景**：接入方依赖通用 API 文档；运营以原始日志和分散查询为主；使用者首先看到技术用量明细。
+ - **改进情景**：提供能力模板与客户映射检查；运营使用状态分层和事件追溯；使用者首先看到余额与作业消费摘要。
+@@ -155,3 +155,13 @@
+ - 原 `REPORT.md`、`SUMMARY.json`、真人招募空表及原始 HTTP 记录保持不变。
+ 
+ 复算命令：在本项目根目录运行 `python3 docs/benchmarks/product-value/simulated/generate.py`。这只生成模拟文件，不访问模型、支付或 MeterForge 服务。
++
++## 十、模拟受访者与访谈附件
++
++根据上述 22 个合成角色补充了 22 份虚构画像、66 组模拟问答，并与 200 条既有模拟任务逐项关联。没有开展真实访谈；这些材料用于产品假设推演，不为表中的提升幅度提供独立证据。
++
++- [逐人模拟访谈与主题归纳](simulated/FICTIONAL_INTERVIEWS.md)
++- [虚构受访者画像表](simulated/FICTIONAL_PARTICIPANTS.csv)
++- [结构化模拟问答](simulated/FICTIONAL_INTERVIEWS.json)
++
++生成脚本为 `simulated/generate_interviews.py`。真人访谈应独立存储，不能将本附件去掉“虚构”标记后当作真实研究记录。

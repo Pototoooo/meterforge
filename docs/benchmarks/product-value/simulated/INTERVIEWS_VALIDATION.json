@@ -1,0 +1,30 @@
+{
+  "fictional_profiles": 22,
+  "fictional_qa_pairs": 66,
+  "actual_interviews": 0,
+  "all_personas_match_synthetic_task_ids": true,
+  "all_task_counts_recomputed": true,
+  "original_empirical_artifacts_unchanged": true,
+  "report_before_sha256": "0ad9cd42969fd571b079eb2f0dcc3ab6e57efd44f765ecbde41a3cd39c5bcfaa",
+  "report_after_sha256": "dad333c78ae6422059c2e04a5f734e4bb15942f15622fa4024253dd264b4c979",
+  "original_role_checks": [
+    {
+      "label": "BASELINE",
+      "exit": 0,
+      "stdout": "scope=original_proposal\nhuman_results=not_measured\n",
+      "stderr": ""
+    },
+    {
+      "label": "MODIFIED",
+      "exit": 0,
+      "stdout": "scope=automated_acceptance_appendix\nhuman_results=not_measured\n",
+      "stderr": ""
+    },
+    {
+      "label": "ROLLBACK",
+      "exit": 0,
+      "stdout": "scope=original_proposal\nhuman_results=not_measured\n",
+      "stderr": ""
+    }
+  ]
+}

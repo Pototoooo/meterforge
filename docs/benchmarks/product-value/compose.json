@@ -1,0 +1,222 @@
+{
+  "configs": {
+    "svix_sql": {
+      "name": "e2e_svix_sql",
+      "content": "CREATE USER svix WITH PASSWORD 'svix';\nCREATE DATABASE svix;\nGRANT ALL PRIVILEGES ON DATABASE svix TO svix;\nALTER DATABASE svix OWNER TO svix;\n"
+    }
+  },
+  "services": {
+    "clickhouse": {
+      "command": null,
+      "entrypoint": null,
+      "environment": {
+        "CLICKHOUSE_DB": "meterforge",
+        "CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT": "1",
+        "CLICKHOUSE_PASSWORD": "default",
+        "CLICKHOUSE_USER": "default"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "wget",
+          "--spider",
+          "http://clickhouse:8123/ping"
+        ],
+        "timeout": "3s",
+        "interval": "5s",
+        "retries": 30
+      },
+      "image": "clickhouse/clickhouse-server:25.12.3-alpine@sha256:74da41cd61db84f652c6364fd30d59e19b7276d34f7c82515f5f0e70d6f325da",
+      "ulimits": {
+        "nofile": {
+          "soft": 262144,
+          "hard": 262144
+        }
+      }
+    },
+    "kafka": {
+      "command": null,
+      "entrypoint": null,
+      "environment": {
+        "CLUSTER_ID": "ca497efe-9f82-4b84-890b-d9969a9a2e1c",
+        "JMX_PORT": "9997",
+        "KAFKA_ADVERTISED_LISTENERS": "INTERNAL://kafka:9092,EXTERNAL://localhost:29092",
+        "KAFKA_AUTO_CREATE_TOPICS_ENABLE": "false",
+        "KAFKA_BROKER_ID": "0",
+        "KAFKA_CONTROLLER_LISTENER_NAMES": "CONTROLLER",
+        "KAFKA_CONTROLLER_QUORUM_VOTERS": "0@kafka:9093",
+        "KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS": "0",
+        "KAFKA_INTER_BROKER_LISTENER_NAME": "INTERNAL",
+        "KAFKA_JMX_OPTS": "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka -Dcom.sun.management.jmxremote.rmi.port=9997",
+        "KAFKA_LISTENERS": "INTERNAL://kafka:9092,EXTERNAL://0.0.0.0:29092,CONTROLLER://kafka:9093",
+        "KAFKA_LISTENER_SECURITY_PROTOCOL_MAP": "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT",
+        "KAFKA_LOG_MESSAGE_TIMESTAMP_AFTER_MAX_MS": "9223372036854775807",
+        "KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR": "1",
+        "KAFKA_PROCESS_ROLES": "broker,controller",
+        "KAFKA_TRANSACTION_STATE_LOG_MIN_ISR": "1",
+        "KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR": "1",
+        "KAFKA_HEAP_OPTS": "-Xms128m -Xmx256m"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "JMX_PORT=9998",
+          "kafka-topics",
+          "--bootstrap-server",
+          "kafka:9092",
+          "--list"
+        ],
+        "timeout": "3s",
+        "interval": "5s",
+        "retries": 30
+      },
+      "image": "confluentinc/cp-kafka:8.0.3@sha256:db5eac24a1d15a1689fa89642ef97a7e3bc4f55ad5159a07b213c4dc7d0114e3"
+    },
+    "meterforge": {
+      "command": [
+        "meterforge",
+        "--address",
+        "0.0.0.0:8888",
+        "--config",
+        "/etc/meterforge/config.yaml"
+      ],
+      "depends_on": {
+        "clickhouse": {
+          "condition": "service_healthy",
+          "required": true
+        },
+        "kafka": {
+          "condition": "service_healthy",
+          "required": true
+        },
+        "postgres": {
+          "condition": "service_healthy",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "wget",
+          "--spider",
+          "http://meterforge:8888/api/v1/debug/metrics"
+        ],
+        "timeout": "3s",
+        "interval": "5s",
+        "retries": 30
+      },
+      "image": "sha256:06052c76009f63d136f8ae6366451e5f1a21f1466a25afbdbb6706769cbfe8dc",
+      "pull_policy": "never",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/Users/macbook/Documents/Projects/meterforge/docs/benchmarks/product-value/config.yaml",
+          "target": "/etc/meterforge/config.yaml",
+          "read_only": true
+        }
+      ],
+      "ports": [
+        {
+          "target": 8888,
+          "published": "39888",
+          "host_ip": "127.0.0.1",
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "postgres": {
+      "command": [
+        "postgres",
+        "-c",
+        "wal_level=logical"
+      ],
+      "configs": [
+        {
+          "source": "svix_sql",
+          "target": "/docker-entrypoint-initdb.d/svix.sql",
+          "mode": "0444"
+        }
+      ],
+      "entrypoint": null,
+      "environment": {
+        "POSTGRES_DB": "postgres",
+        "POSTGRES_HOST_AUTH_METHOD": "md5",
+        "POSTGRES_PASSWORD": "postgres",
+        "POSTGRES_USER": "postgres"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "pg_isready",
+          "-d",
+          "postgres",
+          "-U",
+          "postgres"
+        ],
+        "timeout": "5s",
+        "interval": "10s",
+        "retries": 30
+      },
+      "image": "postgres:14.20-alpine3.23@sha256:14f02666642586a64d6fae8ef42d479fd76456a77c73ae8a626b8fe323b76d22"
+    },
+    "redis": {
+      "command": [
+        "redis-server",
+        "--maxmemory",
+        "50mb",
+        "--maxmemory-policy",
+        "noeviction",
+        "--maxmemory-samples",
+        "10"
+      ],
+      "entrypoint": null,
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "redis-cli ping | grep PONG"
+        ],
+        "timeout": "3s",
+        "interval": "5s",
+        "retries": 30
+      },
+      "image": "redis:7.4.7@sha256:c6e4a82ce60b829a72a21cc4ad4c1c274fa6962eb0d6ac698e8157cbc3fe16a4"
+    },
+    "sink-worker": {
+      "command": [
+        "meterforge-sink-worker",
+        "--config",
+        "/etc/meterforge/config.yaml"
+      ],
+      "depends_on": {
+        "clickhouse": {
+          "condition": "service_healthy",
+          "required": true
+        },
+        "kafka": {
+          "condition": "service_healthy",
+          "required": true
+        },
+        "meterforge": {
+          "condition": "service_healthy",
+          "required": true
+        },
+        "redis": {
+          "condition": "service_healthy",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "image": "sha256:06052c76009f63d136f8ae6366451e5f1a21f1466a25afbdbb6706769cbfe8dc",
+      "pull_policy": "never",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/Users/macbook/Documents/Projects/meterforge/docs/benchmarks/product-value/config.yaml",
+          "target": "/etc/meterforge/config.yaml",
+          "read_only": true
+        }
+      ]
+    }
+  }
+}

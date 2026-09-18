@@ -1,0 +1,62 @@
+{
+  "runs": [
+    "20260911_031213_09ccd4",
+    "20260911_031302_d045e3",
+    "20260911_031350_82f1c8"
+  ],
+  "model_run_checks": 15,
+  "unique_main_events": 15000,
+  "main_retries": 3750,
+  "group_checks": 120,
+  "trace_samples": 15,
+  "cost_metadata_checks": 15,
+  "quantity_difference": 0.0,
+  "batch_visibility_median_s": 1.029,
+  "batch_visibility_min_s": 1.021,
+  "batch_visibility_max_s": 1.05,
+  "recovery_seconds": [
+    1.033,
+    3.072,
+    3.071
+  ],
+  "recovery_backlog_events": 1500,
+  "post_recovery_retries": 1500,
+  "late_events": 600,
+  "envelope_invalid_tests": 12,
+  "business_invalid_tests": 12,
+  "subject_claim_probes": 3,
+  "human_participants": 0,
+  "actual_payments": 0,
+  "failed_cases": [
+    {
+      "run": "20260911_031213_09ccd4",
+      "cases": [
+        "wrong_unit_rejection",
+        "negative_rejection",
+        "missing_quantity_rejection",
+        "nonnumeric_rejection",
+        "subject_claim_rejected"
+      ]
+    },
+    {
+      "run": "20260911_031302_d045e3",
+      "cases": [
+        "wrong_unit_rejection",
+        "negative_rejection",
+        "missing_quantity_rejection",
+        "nonnumeric_rejection",
+        "subject_claim_rejected"
+      ]
+    },
+    {
+      "run": "20260911_031350_82f1c8",
+      "cases": [
+        "wrong_unit_rejection",
+        "negative_rejection",
+        "missing_quantity_rejection",
+        "nonnumeric_rejection",
+        "subject_claim_rejected"
+      ]
+    }
+  ]
+}

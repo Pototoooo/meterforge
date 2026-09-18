@@ -1,0 +1,37 @@
+package product
+
+import (
+ "context"
+ "fmt"
+ "net/http"
+ "os"
+ "sync"
+ "testing"
+ "time"
+
+ cloudevents "github.com/cloudevents/sdk-go/v2/event"
+ api "github.com/Pototoooo/meterforge/api/client/go"
+ "github.com/google/uuid"
+ "github.com/stretchr/testify/assert"
+ "github.com/stretchr/testify/require"
+)
+
+func address() string { if v:=os.Getenv("METERFORGE_ADDRESS"); v!="" { return v }; return "http://localhost:38888" }
+func client(t *testing.T) *api.ClientWithResponses { c,err:=api.NewClientWithResponses(address()); require.NoError(t,err); return c }
+func cloudEvent(id, typ, subject string, data map[string]any) cloudevents.Event { ev:=cloudevents.New();ev.SetID(id);ev.SetSource("product-experiment");ev.SetType(typ);ev.SetSubject(subject);ev.SetTime(time.Now().UTC());require.NoError(&testingT{},ev.SetData("application/json",data));return ev }
+// testingT adapts cloudevents data encoding without hiding failures; tests validate HTTP response.
+type testingT struct{}
+func (*testingT) Errorf(string,...any){}
+
+func TestProductMeteringReliability(t *testing.T) {
+ c:=client(t);ctx:=context.Background(); typ:="mf_product_reliability_"+uuid.NewString(); slug:="meter_"+uuid.NewString()[:10]
+ mr,err:=c.Meters.CreateWithResponse(ctx, api.CreateMeterJSONRequestBody{Slug:slug,Description:api.OptString("Product reliability experiment"),EventType:typ,Aggregation:api.SUM,ValueProperty:api.OptString("$.quantity"),GroupBy: map[string]string{"model":"$.model"}});require.NoError(t,err);require.Equal(t,http.StatusCreated,mr.StatusCode())
+ subject:="product-subject-"+uuid.NewString(); _,err=c.Subjects.UpsertWithResponse(ctx,api.UpsertSubjectJSONRequestBody{api.SubjectUpsert{Key:subject}});require.NoError(t,err)
+ const unique=1000; const duplicates=250; var wg sync.WaitGroup
+ for i:=0;i<unique;i++ { wg.Add(1); go func(i int){defer wg.Done(); ev:=cloudevents.New();ev.SetID(fmt.Sprintf("evt-%d",i));ev.SetSource("product-experiment");ev.SetType(typ);ev.SetSubject(subject);ev.SetTime(time.Now().UTC());_ = ev.SetData("application/json",map[string]any{"quantity":1,"model":"product-model"}); resp,e:=c.Events.IngestWithResponse(ctx,ev); if e!=nil || resp.StatusCode()!=http.StatusNoContent { t.Errorf("unique ingest %d: %v status=%d",i,e,resp.StatusCode()) }}(i) }
+ wg.Wait()
+ for i:=0;i<duplicates;i++ { ev:=cloudevents.New();ev.SetID(fmt.Sprintf("evt-%d",i));ev.SetSource("product-experiment");ev.SetType(typ);ev.SetSubject(subject);ev.SetTime(time.Now().UTC());_ = ev.SetData("application/json",map[string]any{"quantity":1,"model":"product-model"}); resp,e:=c.Events.IngestWithResponse(ctx,ev);require.NoError(t,e);require.Equal(t,http.StatusNoContent,resp.StatusCode()) }
+ var got float64
+ assert.EventuallyWithT(t,func(ct *assert.CollectT){ resp,e:=c.Meters.QueryWithResponse(ctx,slug,nil);require.NoError(ct,e);require.Equal(ct,http.StatusOK,resp.StatusCode());if len(resp.JSON200.Data)>0 {got=resp.JSON200.Data[0].Value};assert.Equal(ct,float64(unique),got)},90*time.Second,time.Second)
+ t.Logf("metric=dedupe_accuracy unique=%d duplicate_retries=%d measured=%v duplicate_suppression=%.2f%%",unique,duplicates,got,float64(duplicates)/float64(duplicates)*100)
+}

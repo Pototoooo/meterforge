@@ -1,0 +1,23 @@
+{
+  "original_manifest": "all entries unchanged",
+  "original_role_checks": [
+    {
+      "label": "BASELINE",
+      "exit": 0,
+      "stdout": "scope=original_proposal\nhuman_results=not_measured\n",
+      "stderr": ""
+    },
+    {
+      "label": "MODIFIED",
+      "exit": 0,
+      "stdout": "scope=automated_acceptance_appendix\nhuman_results=not_measured\n",
+      "stderr": ""
+    },
+    {
+      "label": "ROLLBACK",
+      "exit": 0,
+      "stdout": "scope=original_proposal\nhuman_results=not_measured\n",
+      "stderr": ""
+    }
+  ]
+}

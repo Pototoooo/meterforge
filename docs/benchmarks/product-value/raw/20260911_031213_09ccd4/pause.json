@@ -1,0 +1,15 @@
+{
+  "command": [
+    "docker",
+    "compose",
+    "-p",
+    "mf-product-value",
+    "-f",
+    "/Users/macbook/Documents/Projects/meterforge/docs/benchmarks/product-value/compose.json",
+    "pause",
+    "sink-worker"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": " Container mf-product-value-sink-worker-1 Paused \n"
+}

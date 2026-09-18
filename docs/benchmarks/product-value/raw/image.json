@@ -1,0 +1,10 @@
+{
+  "Id": "sha256:06052c76009f63d136f8ae6366451e5f1a21f1466a25afbdbb6706769cbfe8dc",
+  "RepoTags": [
+    "ghcr.io/pototoooo/meterforge:latest"
+  ],
+  "RepoDigests": [
+    "ghcr.io/pototoooo/meterforge@sha256:06052c76009f63d136f8ae6366451e5f1a21f1466a25afbdbb6706769cbfe8dc"
+  ],
+  "Created": "2026-07-28T03:21:00.070975168Z"
+}

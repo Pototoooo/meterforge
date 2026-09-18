@@ -1,0 +1,16 @@
+input:
+  inproc: meterforge
+
+buffer:
+  sqlite:
+    path: /var/lib/collector/buffer.sqlite
+    post_processors:
+      - split: {}
+
+output:
+  meterforge:
+    url: "${METERFORGE_URL:http://localhost:8888}"
+    token: "${METERFORGE_TOKEN:}"
+    batching:
+      count: ${BATCH_SIZE:1}
+      period: ${BATCH_PERIOD:30s}

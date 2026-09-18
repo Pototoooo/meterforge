@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+import json, os, sys, time, uuid, urllib.request, urllib.error, concurrent.futures, statistics
+BASE=os.getenv('METERFORGE_ADDRESS','http://127.0.0.1:39888').rstrip('/')
+suffix=time.strftime('%Y%m%dT%H%M%S')+'_'+uuid.uuid4().hex[:8]
+slug='product_reliability_'+suffix
+typ='product.reliability.'+suffix
+subject='product-subject-'+suffix
+
+def req(method,path,obj=None):
+ data=None
+ if obj is not None: data=json.dumps(obj).encode(); headers={'Content-Type':'application/json'}
+ else: headers={}
+ r=urllib.request.Request(BASE+path,data=data,headers=headers,method=method)
+ try:
+  with urllib.request.urlopen(r,timeout=30) as x:return x.status,json.loads(x.read() or b'{}')
+ except urllib.error.HTTPError as e:return e.code,e.read().decode()
+
+status,_=req('POST','/api/v1/meters',{'slug':slug,'description':'Product reliability experiment','eventType':typ,'aggregation':'SUM','valueProperty':'$.quantity','groupBy':{'model':'$.model'}})
+if status not in (200,201): raise SystemExit(f'meter create failed: {status}')
+status,_=req('POST','/api/v1/subjects',{'key':subject})
+if status not in (200,201): raise SystemExit(f'subject create failed: {status}')
+def send(i):
+ ev={'specversion':'1.0','id':f'evt-{i}','source':'product-experiment','type':typ,'subject':subject,'time':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'data':{'quantity':1,'model':'product-model'}}
+ return req('POST','/api/v1/events',ev)[0]
+start=time.time()
+with concurrent.futures.ThreadPoolExecutor(max_workers=32) as ex: statuses=list(ex.map(send,range(1000)))
+unique_ok=sum(s==204 for s in statuses)
+dup_status=[send(i) for i in range(250)]
+dup_ok=sum(s==204 for s in dup_status)
+measured=None
+for _ in range(90):
+ status,data=req('GET','/api/v1/meters/'+slug+'/query')
+ if status==200 and isinstance(data,dict) and data.get('data'):
+  measured=data['data'][0].get('value')
+  if measured==1000:break
+ time.sleep(1)
+result={'experiment':'product_metering_reliability','executed_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'address':BASE,'meter_slug':slug,'event_type':typ,'subject':subject,'unique_events':1000,'unique_http_204':unique_ok,'duplicate_retries':250,'duplicate_http_204':dup_ok,'expected_quantity':1000,'measured_quantity':measured,'duplicate_suppression_rate':None if measured is None else round(1-(measured-1000)/250,6),'unique_send_seconds':round(time.time()-start,3),'limitations':['Synthetic local stack; not a user study.','Measured result is only valid when the meter query has completed ingestion.']}
+if measured is not None: result['duplicate_suppression_rate']=1.0 if measured==1000 else None
+out='docs/benchmarks/product-value/raw/product-metering-reliability-'+suffix+'.json'
+os.makedirs(os.path.dirname(out),exist_ok=True)
+open(out,'w').write(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps(result,ensure_ascii=False,indent=2))
+if unique_ok!=1000 or dup_ok!=250 or measured!=1000: sys.exit(2)

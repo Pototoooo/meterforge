@@ -1,0 +1,8 @@
+services:
+  meterforge:
+    image: ghcr.io/Pototoooo/meterforge:latest
+    pull_policy: always
+
+  sink-worker:
+    image: ghcr.io/Pototoooo/meterforge:latest
+    pull_policy: always

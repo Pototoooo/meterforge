@@ -1,0 +1,2299 @@
+[
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_semantics_nonnumeric",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_semantics",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:39Z",
+      "data": {
+        "billing_mode": "platform",
+        "job_id": "job-nonnumeric",
+        "model": "llm",
+        "price_version": "fixture-v1",
+        "quantity": "ten",
+        "unit": "token"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:39Z",
+    "storedAt": "2026-09-11T03:12:40Z",
+    "validationError": "invalid event: value cannot be parsed as float64: ten"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_semantics_negative",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_semantics",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:39Z",
+      "data": {
+        "billing_mode": "platform",
+        "job_id": "job-negative",
+        "model": "llm",
+        "price_version": "fixture-v1",
+        "quantity": -2,
+        "unit": "token"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:39Z",
+    "storedAt": "2026-09-11T03:12:40Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_semantics_wrong_unit",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_semantics",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:39Z",
+      "data": {
+        "billing_mode": "platform",
+        "job_id": "job-wrong_unit",
+        "model": "llm",
+        "price_version": "fixture-v1",
+        "quantity": 10,
+        "unit": "banana"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:39Z",
+    "storedAt": "2026-09-11T03:12:40Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_semantics_missing_quantity",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_semantics",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:39Z",
+      "data": {
+        "billing_mode": "platform",
+        "job_id": "job-missing_quantity",
+        "model": "llm",
+        "price_version": "fixture-v1",
+        "unit": "token"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:39Z",
+    "storedAt": "2026-09-11T03:12:40Z",
+    "validationError": "invalid event: missing value property: \"$.quantity\""
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_184",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 45,
+        "job_id": "job-184",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 15,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_378",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-378",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 5,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_364",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 24,
+        "job_id": "job-364",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 8,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_166",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 28,
+        "job_id": "job-166",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 14,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_420",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-420",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 13,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_896",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 26,
+        "job_id": "job-896",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 13,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_582",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-582",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 5,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_726",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-726",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 13,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_698",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 4,
+        "job_id": "job-698",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 2,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_330",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-330",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 8,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_318",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-318",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 13,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_758",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 22,
+        "job_id": "job-758",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 11,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_502",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 20,
+        "job_id": "job-502",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 10,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_604",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 20,
+        "job_id": "job-604",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 10,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_874",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 16,
+        "job_id": "job-874",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 8,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_578",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 2,
+        "job_id": "job-578",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 1,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_596",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 4,
+        "job_id": "job-596",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 2,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_688",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 18,
+        "job_id": "job-688",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 9,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_254",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 51,
+        "job_id": "job-254",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 17,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_508",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 48,
+        "job_id": "job-508",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 16,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_882",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-882",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 16,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_134",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 32,
+        "job_id": "job-134",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 16,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_664",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 4,
+        "job_id": "job-664",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 2,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_58",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 24,
+        "job_id": "job-58",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 8,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_284",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 39,
+        "job_id": "job-284",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 13,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_804",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-804",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 6,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_800",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 6,
+        "job_id": "job-800",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 2,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_42",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-42",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 9,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_4",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 15,
+        "job_id": "job-4",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 5,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_298",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 20,
+        "job_id": "job-298",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 10,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_646",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 2,
+        "job_id": "job-646",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 1,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_880",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 28,
+        "job_id": "job-880",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 14,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_808",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 20,
+        "job_id": "job-808",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 10,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_278",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 14,
+        "job_id": "job-278",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 7,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_658",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 26,
+        "job_id": "job-658",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 13,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_786",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-786",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 5,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_828",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-828",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 13,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_452",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 22,
+        "job_id": "job-452",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 11,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_674",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 24,
+        "job_id": "job-674",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 12,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_798",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-798",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 17,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_676",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 28,
+        "job_id": "job-676",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 14,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_70",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 9,
+        "job_id": "job-70",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 3,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_572",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 24,
+        "job_id": "job-572",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 12,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_614",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 6,
+        "job_id": "job-614",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 3,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_244",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 14,
+        "job_id": "job-244",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 7,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_958",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 14,
+        "job_id": "job-958",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 7,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_850",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 2,
+        "job_id": "job-850",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 1,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_844",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 24,
+        "job_id": "job-844",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 12,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_520",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 22,
+        "job_id": "job-520",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 11,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_76",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 18,
+        "job_id": "job-76",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 9,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_990",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-990",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 5,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_128",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 20,
+        "job_id": "job-128",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 10,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_270",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-270",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 16,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_158",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 12,
+        "job_id": "job-158",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 6,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_632",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 8,
+        "job_id": "job-632",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 4,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_978",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-978",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 10,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_320",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 30,
+        "job_id": "job-320",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 15,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_878",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 36,
+        "job_id": "job-878",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 12,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_362",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 18,
+        "job_id": "job-362",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 6,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_796",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 45,
+        "job_id": "job-796",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 15,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_188",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 4,
+        "job_id": "job-188",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 2,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_302",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 42,
+        "job_id": "job-302",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 14,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_692",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 39,
+        "job_id": "job-692",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 13,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_920",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 6,
+        "job_id": "job-920",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 3,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_668",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 18,
+        "job_id": "job-668",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 6,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_618",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-618",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 7,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_678",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-678",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 16,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_180",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-180",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 11,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_336",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-336",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 14,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_566",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 18,
+        "job_id": "job-566",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 6,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_388",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 45,
+        "job_id": "job-388",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 15,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_440",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 48,
+        "job_id": "job-440",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 16,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_190",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 8,
+        "job_id": "job-190",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 4,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_812",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 42,
+        "job_id": "job-812",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 14,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_32",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 48,
+        "job_id": "job-32",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 16,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_24",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-24",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 8,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_768",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-768",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 4,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_810",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-810",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 12,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_980",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 24,
+        "job_id": "job-980",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 12,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_322",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 51,
+        "job_id": "job-322",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 17,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_732",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-732",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 2,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_426",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-426",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 2,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_992",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 14,
+        "job_id": "job-992",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 7,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_370",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 42,
+        "job_id": "job-370",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 14,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_564",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-564",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 4,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_16",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 51,
+        "job_id": "job-16",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 17,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_766",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 4,
+        "job_id": "job-766",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 2,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_8",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 18,
+        "job_id": "job-8",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 9,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_434",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 30,
+        "job_id": "job-434",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 10,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_702",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-702",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 6,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_858",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-858",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 9,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_686",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 21,
+        "job_id": "job-686",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 7,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_680",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 2,
+        "job_id": "job-680",
+        "model": "asr",
+        "price_version": "fixture-v1",
+        "quantity": 1,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_948",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-948",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 14,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_584",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "platform",
+        "cost_microusd": 21,
+        "job_id": "job-584",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 7,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  },
+  {
+    "customerId": "01M277741SQX4FR929MDNCRWXZ",
+    "event": {
+      "specversion": "1.0",
+      "id": "pv_20260911_031213_09ccd4_asr_516",
+      "source": "product-acceptance",
+      "type": "pv_20260911_031213_09ccd4_asr",
+      "subject": "20260911_031213_09ccd4_a",
+      "datacontenttype": "application/json",
+      "time": "2026-09-11T03:10:34Z",
+      "data": {
+        "billing_mode": "byok",
+        "cost_microusd": 0,
+        "job_id": "job-516",
+        "model": "asr",
+        "price_version": "fixture-v2",
+        "quantity": 7,
+        "unit": "second"
+      }
+    },
+    "ingestedAt": "2026-09-11T03:12:34Z",
+    "storedAt": "2026-09-11T03:12:35Z"
+  }
+]

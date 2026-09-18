@@ -1,0 +1,288 @@
+package testutils
+
+import (
+	"errors"
+	"fmt"
+	"log/slog"
+	"testing"
+
+	"github.com/Pototoooo/meterforge/meterforge/billing"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges"
+	chargesadapter "github.com/Pototoooo/meterforge/meterforge/billing/charges/adapter"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/creditpurchase"
+	creditpurchaseadapter "github.com/Pototoooo/meterforge/meterforge/billing/charges/creditpurchase/adapter"
+	creditpurchaselineengine "github.com/Pototoooo/meterforge/meterforge/billing/charges/creditpurchase/lineengine"
+	creditpurchaseservice "github.com/Pototoooo/meterforge/meterforge/billing/charges/creditpurchase/service"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/flatfee"
+	flatfeeadapter "github.com/Pototoooo/meterforge/meterforge/billing/charges/flatfee/adapter"
+	flatfeeservice "github.com/Pototoooo/meterforge/meterforge/billing/charges/flatfee/service"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/invoiceupdater"
+	lineageadapter "github.com/Pototoooo/meterforge/meterforge/billing/charges/lineage/adapter"
+	lineageservice "github.com/Pototoooo/meterforge/meterforge/billing/charges/lineage/service"
+	metaadapter "github.com/Pototoooo/meterforge/meterforge/billing/charges/meta/adapter"
+	chargesservice "github.com/Pototoooo/meterforge/meterforge/billing/charges/service"
+	"github.com/Pototoooo/meterforge/meterforge/billing/charges/usagebased"
+	usagebasedadapter "github.com/Pototoooo/meterforge/meterforge/billing/charges/usagebased/adapter"
+	usagebasedservice "github.com/Pototoooo/meterforge/meterforge/billing/charges/usagebased/service"
+	billingratingservice "github.com/Pototoooo/meterforge/meterforge/billing/rating/service"
+	currencyadapter "github.com/Pototoooo/meterforge/meterforge/currencies/adapter"
+	"github.com/Pototoooo/meterforge/meterforge/currencies/currencyresolver"
+	currencyservice "github.com/Pototoooo/meterforge/meterforge/currencies/service"
+	entdb "github.com/Pototoooo/meterforge/meterforge/ent/db"
+	"github.com/Pototoooo/meterforge/meterforge/ledger/recognizer"
+	"github.com/Pototoooo/meterforge/meterforge/productcatalog/feature"
+	"github.com/Pototoooo/meterforge/meterforge/streaming"
+	"github.com/Pototoooo/meterforge/meterforge/taxcode"
+	"github.com/Pototoooo/meterforge/pkg/framework/lockr"
+)
+
+type Config struct {
+	Client *entdb.Client
+	Logger *slog.Logger
+
+	BillingService     billing.Service
+	FeatureService     feature.FeatureConnector
+	StreamingConnector streaming.Connector
+	RecognizerService  recognizer.Service
+	TaxCodeService     taxcode.Service
+
+	FlatFeeHandler        flatfee.Handler
+	CreditPurchaseHandler creditpurchase.Handler
+	UsageBasedHandler     usagebased.Handler
+}
+
+func (c Config) Validate() error {
+	var errs []error
+
+	if c.Client == nil {
+		errs = append(errs, fmt.Errorf("client is required"))
+	}
+
+	if c.BillingService == nil {
+		errs = append(errs, fmt.Errorf("billing service is required"))
+	}
+
+	if c.FeatureService == nil {
+		errs = append(errs, fmt.Errorf("feature service is required"))
+	}
+
+	if c.StreamingConnector == nil {
+		errs = append(errs, fmt.Errorf("streaming connector is required"))
+	}
+
+	if c.FlatFeeHandler == nil {
+		errs = append(errs, fmt.Errorf("flat fee handler is required"))
+	}
+
+	if c.CreditPurchaseHandler == nil {
+		errs = append(errs, fmt.Errorf("credit purchase handler is required"))
+	}
+
+	if c.UsageBasedHandler == nil {
+		errs = append(errs, fmt.Errorf("usage based handler is required"))
+	}
+
+	if c.TaxCodeService == nil {
+		errs = append(errs, fmt.Errorf("tax code service is required"))
+	}
+
+	return errors.Join(errs...)
+}
+
+type Services struct {
+	ChargesService        charges.Service
+	UsageBasedService     usagebased.Service
+	FlatFeeService        flatfee.Service
+	CreditPurchaseService creditpurchase.Service
+}
+
+// NewServices constructs the charges stack from external dependencies and handlers.
+func NewServices(t testing.TB, config Config) (*Services, error) {
+	t.Helper()
+
+	if config.RecognizerService == nil {
+		config.RecognizerService = recognizer.NoopService{}
+	}
+
+	if err := config.Validate(); err != nil {
+		return nil, err
+	}
+
+	logger := config.Logger
+	if logger == nil {
+		logger = slog.Default()
+	}
+
+	metaAdapter, err := metaadapter.New(metaadapter.Config{
+		Client: config.Client,
+		Logger: logger,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating meta adapter: %w", err)
+	}
+
+	locker, err := lockr.NewLocker(&lockr.LockerConfig{
+		Logger: logger,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating locker: %w", err)
+	}
+
+	lineageAdapter, err := lineageadapter.New(lineageadapter.Config{
+		Client: config.Client,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating lineage adapter: %w", err)
+	}
+
+	lineageService, err := lineageservice.New(lineageservice.Config{
+		Adapter: lineageAdapter,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating lineage service: %w", err)
+	}
+
+	flatFeeAdapter, err := flatfeeadapter.New(flatfeeadapter.Config{
+		Client:      config.Client,
+		Logger:      logger,
+		MetaAdapter: metaAdapter,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating flat fee adapter: %w", err)
+	}
+
+	flatFeeService, err := flatfeeservice.New(flatfeeservice.Config{
+		Adapter:       flatFeeAdapter,
+		Handler:       config.FlatFeeHandler,
+		Lineage:       lineageService,
+		MetaAdapter:   metaAdapter,
+		Locker:        locker,
+		RatingService: billingratingservice.New(billingratingservice.Config{UnitConfigEnabled: true}),
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating flat fee service: %w", err)
+	}
+
+	if err := config.BillingService.RegisterLineEngine(flatFeeService.GetLineEngine()); err != nil {
+		return nil, fmt.Errorf("registering flat fee line engine: %w", err)
+	}
+
+	usageBasedAdapter, err := usagebasedadapter.New(usagebasedadapter.Config{
+		Client:      config.Client,
+		Logger:      logger,
+		MetaAdapter: metaAdapter,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating usage based adapter: %w", err)
+	}
+
+	invoiceUpdater, err := invoiceupdater.New(invoiceupdater.Config{
+		BillingService: config.BillingService,
+		Logger:         logger,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating invoice updater: %w", err)
+	}
+
+	usageBasedService, err := usagebasedservice.New(usagebasedservice.Config{
+		Adapter:                 usageBasedAdapter,
+		Handler:                 config.UsageBasedHandler,
+		Lineage:                 lineageService,
+		Locker:                  locker,
+		MetaAdapter:             metaAdapter,
+		InvoiceUpdater:          invoiceUpdater,
+		CustomerOverrideService: config.BillingService,
+		FeatureService:          config.FeatureService,
+		RatingService:           billingratingservice.New(billingratingservice.Config{UnitConfigEnabled: true}),
+		StreamingConnector:      config.StreamingConnector,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating usage based service: %w", err)
+	}
+
+	if err := config.BillingService.RegisterLineEngine(usageBasedService.GetLineEngine()); err != nil {
+		return nil, fmt.Errorf("registering usage based line engine: %w", err)
+	}
+
+	creditPurchaseAdapter, err := creditpurchaseadapter.New(creditpurchaseadapter.Config{
+		Client:      config.Client,
+		Logger:      logger,
+		MetaAdapter: metaAdapter,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating credit purchase adapter: %w", err)
+	}
+
+	creditPurchaseService, err := creditpurchaseservice.New(creditpurchaseservice.Config{
+		Adapter:     creditPurchaseAdapter,
+		Handler:     config.CreditPurchaseHandler,
+		Lineage:     lineageService,
+		MetaAdapter: metaAdapter,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating credit purchase service: %w", err)
+	}
+
+	creditPurchaseLineEngine, err := creditpurchaselineengine.New(creditpurchaselineengine.Config{
+		RatingService: billingratingservice.New(billingratingservice.Config{UnitConfigEnabled: true}),
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating credit purchase line engine: %w", err)
+	}
+
+	if err := config.BillingService.RegisterLineEngine(creditPurchaseLineEngine); err != nil {
+		return nil, fmt.Errorf("registering credit purchase line engine: %w", err)
+	}
+	if err := config.BillingService.RegisterCreateLineRouter(NewChargesEnabledLineRouter(t)); err != nil {
+		return nil, fmt.Errorf("registering charges create line router: %w", err)
+	}
+
+	rootAdapter, err := chargesadapter.New(chargesadapter.Config{
+		Client: config.Client,
+		Logger: logger,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating charges adapter: %w", err)
+	}
+
+	currencyAdapter, err := currencyadapter.New(currencyadapter.Config{
+		Client: config.Client,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating currency adapter: %w", err)
+	}
+
+	currencyService, err := currencyservice.New(currencyAdapter)
+	if err != nil {
+		return nil, fmt.Errorf("creating currency service: %w", err)
+	}
+
+	currencyResolver, err := currencyresolver.New(currencyService)
+	if err != nil {
+		return nil, fmt.Errorf("creating currency resolver: %w", err)
+	}
+
+	chargesService, err := chargesservice.New(chargesservice.Config{
+		Logger:                logger,
+		Adapter:               rootAdapter,
+		FeatureService:        config.FeatureService,
+		MetaAdapter:           metaAdapter,
+		FlatFeeService:        flatFeeService,
+		CreditPurchaseService: creditPurchaseService,
+		UsageBasedService:     usageBasedService,
+		RecognizerService:     config.RecognizerService,
+		BillingService:        config.BillingService,
+		TaxCodeService:        config.TaxCodeService,
+		CurrencyResolver:      currencyResolver,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating charges service: %w", err)
+	}
+
+	return &Services{
+		ChargesService:        chargesService,
+		UsageBasedService:     usageBasedService,
+		FlatFeeService:        flatFeeService,
+		CreditPurchaseService: creditPurchaseService,
+	}, nil
+}

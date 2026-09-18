@@ -1,0 +1,74 @@
+TARGET: /Users/macbook/Documents/Projects/meterforge
+MODIFIED_FILE role: PLAN.md (proposal plus actual execution scope)
+DIFF_FILE role: PLAN.patch
+Baseline checks below validate the plan artifact, NOT before/after product efficiency.
+Product implementation was not modified. Earlier failed fixture/config attempts are in raw/initial-errors.txt.
+Observed execution: isolated Compose up exit 0; three mapped-customer experiment runs completed; independent online analysis exit 0; offline analysis exit 0.
+Product scenario failures are retained in SUMMARY.json and REPORT.md, not treated as runner failures.
+Actual human studies and payments: none. No production LoreLattice or old quickstart modifications.
+
+SOURCE_SHA256=6de8c044144b9bf68652c15c367392378e2e3752513a75767c05de287e6c50d7
+MODIFIED_SHA256=dcd6aac77c7625a01e04e02dcded6d232d6db93641c2416e04d0768cbf96c6ba
+RESTORED_SHA256=6de8c044144b9bf68652c15c367392378e2e3752513a75767c05de287e6c50d7
+
+[
+  {
+    "label": "BASELINE",
+    "command": [
+      "python3",
+      "check_plan.py",
+      "BASELINE_PLAN.md"
+    ],
+    "exit": 0,
+    "stdout": "scope=original_proposal\nhuman_results=not_measured\n",
+    "stderr": ""
+  },
+  {
+    "label": "MODIFIED",
+    "command": [
+      "python3",
+      "check_plan.py",
+      "PLAN.md"
+    ],
+    "exit": 0,
+    "stdout": "scope=automated_acceptance_appendix\nhuman_results=not_measured\n",
+    "stderr": ""
+  },
+  {
+    "label": "ROLLBACK_EXECUTE",
+    "command": [
+      "/Users/macbook/Documents/Projects/meterforge/docs/benchmarks/product-value/ROLLBACK.sh",
+      "/var/folders/nm/383nlbws045b628myj9gvd9r0000gn/T/mf-plan-verify-rj8q2u4t/restored.md"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "ROLLBACK",
+    "command": [
+      "python3",
+      "check_plan.py",
+      "/var/folders/nm/383nlbws045b628myj9gvd9r0000gn/T/mf-plan-verify-rj8q2u4t/restored.md"
+    ],
+    "exit": 0,
+    "stdout": "scope=original_proposal\nhuman_results=not_measured\n",
+    "stderr": ""
+  },
+  {
+    "label": "PATCH_RECONSTRUCTION",
+    "command": [
+      "patch",
+      "/var/folders/nm/383nlbws045b628myj9gvd9r0000gn/T/mf-plan-verify-rj8q2u4t/reconstructed.md",
+      "/Users/macbook/Documents/Projects/meterforge/docs/benchmarks/product-value/PLAN.patch"
+    ],
+    "exit": 0,
+    "stdout": "patching file '/var/folders/nm/383nlbws045b628myj9gvd9r0000gn/T/mf-plan-verify-rj8q2u4t/reconstructed.md'\n",
+    "stderr": ""
+  }
+]
+
+Tracked MeterForge source diff: exit 0, stdout empty, stderr empty.
+
+Independent offline verification: python3 analyze.py --offline; exit 0; literal stdout in raw/offline-analysis.log; stderr empty.
+Disposable stack teardown: make down; exit 0; literal stdout/stderr in raw/shutdown.log.

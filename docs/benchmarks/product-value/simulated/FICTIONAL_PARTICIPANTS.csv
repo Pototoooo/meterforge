@@ -1,0 +1,23 @@
+data_origin,persona_id,role,experience_hypothesis,scenario,theme,actual_interview_conducted
+fictional_interview,SYN-D01,AI 应用后端开发,3 年,首次接入模型计量,客户归属,False
+fictional_interview,SYN-D02,语音产品后端开发,4 年,语音转写用量接入,计量单位,False
+fictional_interview,SYN-D03,独立 SaaS 开发者,2 年,同时接入平台模型和自备 Key,付费归属,False
+fictional_interview,SYN-D04,平台 SDK 开发,5 年,为业务团队封装接入包,激活标准,False
+fictional_interview,SYN-D05,数据工程师,4 年,批量发送与核对用量,聚合窗口,False
+fictional_interview,SYN-D06,全栈开发,3 年,首次维护计量系统,故障提示,False
+fictional_interview,SYN-D07,企业集成工程师,6 年,多工作空间接入,权限边界,False
+fictional_interview,SYN-D08,模型服务工程师,5 年,多个提供商共用计量,供应商差异,False
+fictional_interview,SYN-O01,客户成功运营,3 年,解释客户用量疑问,错误状态,False
+fictional_interview,SYN-O02,计费运营,4 年,日常核对异常,重试与重复,False
+fictional_interview,SYN-O03,财务运营,6 年,核对价格版本,金额解释,False
+fictional_interview,SYN-O04,平台支持,2 年,排查归属错误,客户映射,False
+fictional_interview,SYN-O05,业务运营负责人,7 年,审核异常处置,误操作防护,False
+fictional_interview,SYN-O06,运维支持协调员,4 年,跟踪积压恢复,恢复进度,False
+fictional_interview,SYN-U01,小团队负责人,5 年,选择模型付费方式,余额与套餐,False
+fictional_interview,SYN-U02,知识库管理员,3 年,上传文档与核对消费,隐藏模型步骤,False
+fictional_interview,SYN-U03,产品经理,4 年,评估团队使用成本,任务成本,False
+fictional_interview,SYN-U04,内容运营,2 年,日常问答,专业术语,False
+fictional_interview,SYN-U05,财务助理,3 年,核对充值状态,到账判断,False
+fictional_interview,SYN-U06,自备 Key 使用者,4 年,避免重复扣费,BYOK,False
+fictional_interview,SYN-U07,项目负责人,6 年,管理工作空间预算,成员权限,False
+fictional_interview,SYN-U08,非技术研究人员,1 年,确认调用异常后的消费,失败解释,False

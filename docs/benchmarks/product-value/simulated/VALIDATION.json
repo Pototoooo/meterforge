@@ -1,0 +1,11 @@
+{
+  "data_origin": "synthetic_assumption",
+  "row_count": 200,
+  "unique_task_variant_keys": 200,
+  "all_rows_labeled": true,
+  "aggregate_recomputed": true,
+  "timeouts_retained": true,
+  "actual_participants": 0,
+  "actual_payments": 0,
+  "scope": "Checks consistency, not empirical validity"
+}

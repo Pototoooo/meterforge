@@ -1,0 +1,41 @@
+python3 run.py
+{"case": "llm_unique", "passed": true, "unique_events": 1000, "expected": 8979, "observed": 8979.0, "batch_statuses": [204, 204, 204, 204, 204, 204, 204, 204, 204, 204], "visible_after_last_send_s": 1.029, "total_machine_task_s": 1.167}
+{"case": "llm_duplicate", "passed": true, "duplicate_events": 250, "expected_after_replay": 8979, "observed": 8979.0, "batch_statuses": [204, 204, 204], "observation_delay_s": 4, "qualification": "Finite settled-window aggregate check, not lifetime exactly-once proof"}
+{"case": "llm_subject_a", "passed": true, "expected": 4486, "observed": 4486.0, "scope": "subject-filter attribution only"}
+{"case": "llm_subject_b", "passed": true, "expected": 4493, "observed": 4493.0, "scope": "subject-filter attribution only"}
+{"case": "llm_trace", "passed": true, "sample_size": 1, "exact_event_matches": 1, "http_status": 200}
+{"case": "embedding_unique", "passed": true, "unique_events": 1000, "expected": 8979, "observed": 8979.0, "batch_statuses": [204, 204, 204, 204, 204, 204, 204, 204, 204, 204], "visible_after_last_send_s": 1.027, "total_machine_task_s": 1.121}
+{"case": "embedding_duplicate", "passed": true, "duplicate_events": 250, "expected_after_replay": 8979, "observed": 8979.0, "batch_statuses": [204, 204, 204], "observation_delay_s": 4, "qualification": "Finite settled-window aggregate check, not lifetime exactly-once proof"}
+{"case": "embedding_subject_a", "passed": true, "expected": 4486, "observed": 4486.0, "scope": "subject-filter attribution only"}
+{"case": "embedding_subject_b", "passed": true, "expected": 4493, "observed": 4493.0, "scope": "subject-filter attribution only"}
+{"case": "embedding_trace", "passed": true, "sample_size": 1, "exact_event_matches": 1, "http_status": 200}
+{"case": "rerank_unique", "passed": true, "unique_events": 1000, "expected": 8979, "observed": 8979.0, "batch_statuses": [204, 204, 204, 204, 204, 204, 204, 204, 204, 204], "visible_after_last_send_s": 1.024, "total_machine_task_s": 1.129}
+{"case": "rerank_duplicate", "passed": true, "duplicate_events": 250, "expected_after_replay": 8979, "observed": 8979.0, "batch_statuses": [204, 204, 204], "observation_delay_s": 4, "qualification": "Finite settled-window aggregate check, not lifetime exactly-once proof"}
+{"case": "rerank_subject_a", "passed": true, "expected": 4486, "observed": 4486.0, "scope": "subject-filter attribution only"}
+{"case": "rerank_subject_b", "passed": true, "expected": 4493, "observed": 4493.0, "scope": "subject-filter attribution only"}
+{"case": "rerank_trace", "passed": true, "sample_size": 1, "exact_event_matches": 1, "http_status": 200}
+{"case": "vlm_unique", "passed": true, "unique_events": 1000, "expected": 8979, "observed": 8979.0, "batch_statuses": [204, 204, 204, 204, 204, 204, 204, 204, 204, 204], "visible_after_last_send_s": 2.179, "total_machine_task_s": 2.289}
+{"case": "vlm_duplicate", "passed": true, "duplicate_events": 250, "expected_after_replay": 8979, "observed": 8979.0, "batch_statuses": [204, 204, 204], "observation_delay_s": 4, "qualification": "Finite settled-window aggregate check, not lifetime exactly-once proof"}
+{"case": "vlm_subject_a", "passed": true, "expected": 4486, "observed": 4486.0, "scope": "subject-filter attribution only"}
+{"case": "vlm_subject_b", "passed": true, "expected": 4493, "observed": 4493.0, "scope": "subject-filter attribution only"}
+{"case": "vlm_trace", "passed": true, "sample_size": 1, "exact_event_matches": 1, "http_status": 200}
+{"case": "asr_unique", "passed": true, "unique_events": 1000, "expected": 8979, "observed": 8979.0, "batch_statuses": [204, 204, 204, 204, 204, 204, 204, 204, 204, 204], "visible_after_last_send_s": 1.037, "total_machine_task_s": 1.606}
+{"case": "asr_duplicate", "passed": true, "duplicate_events": 250, "expected_after_replay": 8979, "observed": 8979.0, "batch_statuses": [204, 204, 204], "observation_delay_s": 4, "qualification": "Finite settled-window aggregate check, not lifetime exactly-once proof"}
+{"case": "asr_subject_a", "passed": true, "expected": 4486, "observed": 4486.0, "scope": "subject-filter attribution only"}
+{"case": "asr_subject_b", "passed": true, "expected": 4493, "observed": 4493.0, "scope": "subject-filter attribution only"}
+{"case": "asr_trace", "passed": true, "sample_size": 1, "exact_event_matches": 1, "http_status": 200}
+{"case": "missing_id", "passed": true, "http_status": 400, "expected": "4xx synchronous rejection"}
+{"case": "missing_source", "passed": true, "http_status": 400, "expected": "4xx synchronous rejection"}
+{"case": "invalid_specversion", "passed": true, "http_status": 400, "expected": "4xx synchronous rejection"}
+{"case": "invalid_time", "passed": true, "http_status": 400, "expected": "4xx synchronous rejection"}
+{"case": "wrong_unit_rejection", "passed": false, "http_status": 204, "expected": "business-invalid input rejected", "scope": "producer semantic contract probe, not a CloudEvents standards assertion"}
+{"case": "negative_rejection", "passed": false, "http_status": 204, "expected": "business-invalid input rejected", "scope": "producer semantic contract probe, not a CloudEvents standards assertion"}
+{"case": "missing_quantity_rejection", "passed": false, "http_status": 204, "expected": "business-invalid input rejected", "scope": "producer semantic contract probe, not a CloudEvents standards assertion"}
+{"case": "nonnumeric_rejection", "passed": false, "http_status": 204, "expected": "business-invalid input rejected", "scope": "producer semantic contract probe, not a CloudEvents standards assertion"}
+{"case": "subject_claim_rejected", "passed": false, "http_status": 204, "observed_quantity": 999.0, "scope": "unauthenticated local default namespace; cannot claim authenticated tenant isolation"}
+{"case": "consumer_paused", "passed": true, "accepted_events": 500, "batch_statuses": [204, 204, 204, 204, 204], "visible_quantity_during_pause": 100.0, "pause_hold_after_send_s": 5}
+{"case": "consumer_recovered", "passed": true, "expected": 600, "observed": 600.0, "recovery_to_visible_s": 1.035, "backlog_events": 500}
+{"case": "recovery_replay", "passed": true, "replayed_events": 500, "expected": 600, "observed": 600.0}
+{"case": "late_arrival", "passed": true, "initial_events": 200, "late_events": 200, "late_age_days": 7, "expected": 1000, "observed": 1000.0, "visible_after_last_send_s": 2.058}
+{"case": "empty_meter", "passed": true, "observed": 0}
+RESULT_DIR=/Users/macbook/Documents/Projects/meterforge/docs/benchmarks/product-value/raw/20260911_030759_d21e6b

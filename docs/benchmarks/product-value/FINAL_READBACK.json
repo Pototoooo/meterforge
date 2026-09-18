@@ -1,0 +1,272 @@
+[
+  {
+    "run": "20260911_031213_09ccd4",
+    "kind": "llm",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031213_09ccd4_llm/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:11:00Z",
+          "windowStart": "2026-09-09T02:17:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031213_09ccd4",
+    "kind": "embedding",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031213_09ccd4_embedding/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:11:00Z",
+          "windowStart": "2026-09-09T02:17:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031213_09ccd4",
+    "kind": "rerank",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031213_09ccd4_rerank/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:11:00Z",
+          "windowStart": "2026-09-09T02:17:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031213_09ccd4",
+    "kind": "vlm",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031213_09ccd4_vlm/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:11:00Z",
+          "windowStart": "2026-09-09T02:17:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031213_09ccd4",
+    "kind": "asr",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031213_09ccd4_asr/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:11:00Z",
+          "windowStart": "2026-09-09T02:17:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031302_d045e3",
+    "kind": "llm",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031302_d045e3_llm/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:12:00Z",
+          "windowStart": "2026-09-09T02:18:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031302_d045e3",
+    "kind": "embedding",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031302_d045e3_embedding/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:12:00Z",
+          "windowStart": "2026-09-09T02:18:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031302_d045e3",
+    "kind": "rerank",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031302_d045e3_rerank/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:12:00Z",
+          "windowStart": "2026-09-09T02:18:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031302_d045e3",
+    "kind": "vlm",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031302_d045e3_vlm/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:12:00Z",
+          "windowStart": "2026-09-09T02:18:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031302_d045e3",
+    "kind": "asr",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031302_d045e3_asr/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:12:00Z",
+          "windowStart": "2026-09-09T02:18:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031350_82f1c8",
+    "kind": "llm",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031350_82f1c8_llm/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:12:00Z",
+          "windowStart": "2026-09-09T02:18:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031350_82f1c8",
+    "kind": "embedding",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031350_82f1c8_embedding/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:12:00Z",
+          "windowStart": "2026-09-09T02:18:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031350_82f1c8",
+    "kind": "rerank",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031350_82f1c8_rerank/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:13:00Z",
+          "windowStart": "2026-09-09T02:19:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031350_82f1c8",
+    "kind": "vlm",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031350_82f1c8_vlm/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:13:00Z",
+          "windowStart": "2026-09-09T02:19:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  },
+  {
+    "run": "20260911_031350_82f1c8",
+    "kind": "asr",
+    "url": "http://127.0.0.1:39888/api/v1/meters/pv_20260911_031350_82f1c8_asr/query",
+    "final_response": {
+      "data": [
+        {
+          "groupBy": {},
+          "subject": null,
+          "value": 8979,
+          "windowEnd": "2026-09-11T03:13:00Z",
+          "windowStart": "2026-09-09T02:19:00Z"
+        }
+      ]
+    },
+    "expected": 8979,
+    "matches": true
+  }
+]

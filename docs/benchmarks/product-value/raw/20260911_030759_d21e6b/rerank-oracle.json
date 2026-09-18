@@ -1,0 +1,8 @@
+{
+  "unique_events": 1000,
+  "expected_total": 8979,
+  "expected_by_subject": {
+    "20260911_030759_d21e6b_a": 4486,
+    "20260911_030759_d21e6b_b": 4493
+  }
+}

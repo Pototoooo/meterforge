@@ -1,0 +1,1 @@
+{"services": {"meterforge": {"image": "sha256:06052c76009f63d136f8ae6366451e5f1a21f1466a25afbdbb6706769cbfe8dc"}, "sink-worker": {"image": "sha256:06052c76009f63d136f8ae6366451e5f1a21f1466a25afbdbb6706769cbfe8dc"}, "billing-worker": {"image": "sha256:06052c76009f63d136f8ae6366451e5f1a21f1466a25afbdbb6706769cbfe8dc"}}}

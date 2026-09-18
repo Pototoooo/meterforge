@@ -1,0 +1,38 @@
+/.devenv/
+/.direnv/
+/.env.local
+/web/node_modules/
+/web/dist/
+/web/*.tsbuildinfo
+/.pre-commit-config.yaml
+/build/
+/config.yaml
+/tmp/
+
+.tmp.*
+
+.DS_Store
+
+# Go workspace file
+go.work
+go.work.sum
+
+__debug_bin*
+
+meterforge.log
+
+.gocache
+.gomodcache
+
+# Claude Code (local settings and session files)
+.claude/settings.local.json
+.claude/plans/
+.claude/todos.json
+.claude/worktrees
+CLAUDE.local.md
+
+# oapi-codegen patched templates (generated from patch files)
+api/v3/templates/chi-middleware.tmpl
+
+# CodeGraph
+.codegraph/

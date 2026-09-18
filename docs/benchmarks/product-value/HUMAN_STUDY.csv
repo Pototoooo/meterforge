@@ -1,0 +1,1 @@
+participant_id,role,task_id,variant,order,started_at,ended_at,success,help_count,root_cause_correct,critical_error,evidence_path
